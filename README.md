@@ -66,9 +66,12 @@ apt-mark hold python2.7 wicd python2.7-dev
 ## **Install**
 ```bash
 sudo apt install stow
+git clone https://github.com/gitzhangzhao/dotfiles.git $HOME
+cd $HOME/dotfiles
 ./install
 ```
 ## **Uninstall**
 ```bash
+cd $HOME/dotfiles
 ./uninstall
 ```
