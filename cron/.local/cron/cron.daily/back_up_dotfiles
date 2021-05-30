@@ -1,0 +1,26 @@
+#!/bin/bash
+# File              : back_up_dotfiles
+# Author            : zhangzhao <zhangzhao@ihep.ac.cn>
+# Date              : 11.07.2020
+# Last Modified Date: 13.04.2021
+# Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
+#!/bin/sh
+cd /home/zhangzhao/
+cp .zshrc zhangzhao/dotfiles/dotfiles_x64/zshrc
+cp .oh-my-zsh/themes/agnoster.zsh-theme zhangzhao/dotfiles/dotfiles_x64
+cp .vimrc zhangzhao/dotfiles/dotfiles_x64/vimrc
+cp .config/polybar/config zhangzhao/dotfiles/dotfiles_x64/config.polybar
+cp .config/i3/config zhangzhao/dotfiles/dotfiles_x64/config.i3
+cp .ssh/config zhangzhao/dotfiles/dotfiles_x64/config.ssh
+cp .config/sakura/sakura.conf zhangzhao/dotfiles/dotfiles_x64/
+cp .vim/plugged/nord-vim/colors/nord.vim zhangzhao/dotfiles/dotfiles_x64/
+cp .config/picom.conf zhangzhao/dotfiles/dotfiles_x64/
+cp .goldendict/config zhangzhao/dotfiles/dotfiles_x64/config.goldendict
+cp .config/redshift.conf zhangzhao/dotfiles/dotfiles_x64/
+dpkg -l > zhangzhao/dotfiles/dotfiles_x64/dpkg-l
+cp .config/dunst/dunstrc zhangzhao/dotfiles/dotfiles_x64/
+cp .config/qv2ray/Qv2ray.conf zhangzhao/dotfiles/dotfiles_x64/
+cp /etc/samba/smb.conf zhangzhao/dotfiles/dotfiles_x64/
+cp .config/mpv/mpv.conf zhangzhao/dotfiles/dotfiles_x64/
+cp .gitconfig zhangzhao/dotfiles/dotfiles_x64/gitconfig
+cp .config/qterminal.org/qterminal.ini zhangzhao/dotfiles/dotfiles_x64/

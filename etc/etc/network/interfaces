@@ -1,0 +1,29 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+# The network interfaces of My PC
+source /etc/network/interfaces.d/*
+
+# The loopback network interface
+auto lo
+iface lo inet loopback
+
+# # The primary network interface
+auto enp2s0
+allow-hotplug enp2s0
+iface enp2s0 inet static
+    address 192.168.137.8
+    netmask 255.255.255.0
+    gateway 192.168.137.1
+    dns-nameservers 202.38.128.58
+    dns-nameservers 202.38.128.10
+    
+auto enp1s0
+allow-hotplug enp1s0
+iface enp1s0 inet static
+    address 192.168.1.1
+    netmask 255.255.255.0
+    
+# iface enp1s0 inet6 auto 
+#     up route -A inet6 add default gw 2401:de00:1:6::1 dev enp1s0
+

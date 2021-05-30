@@ -1,0 +1,11 @@
+#!/bin/bash
+# File              : bkup
+# Author            : zhangzhao <zhangzhao@ihep.ac.cn>
+# Date              : 27.05.2020
+# Last Modified Date: 15.07.2020
+# Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
+NAME=backup_$(date "+%Y%m%d").tar
+cd ~
+tar -cf "$NAME" --exclude=./zhangzhao/.git .config/i3 .config/polybar .config/sakura .config/qv2ray zhangzhao 
+scp $NAME root@39.101.136.33:/home/备份
+rm $NAME

@@ -1,0 +1,25 @@
+# 
+
+# deb cdrom:[Debian GNU/Linux 10.4.0 _Buster_ - Official amd64 NETINST 20200509-10:25]/ buster main
+
+#deb cdrom:[Debian GNU/Linux 10.4.0 _Buster_ - Official amd64 NETINST 20200509-10:25]/ buster main
+
+#deb http://mirrors.163.com/debian/ sid main non-free contrib
+#deb-src http://mirrors.163.com/debian/ sid main non-free contrib
+
+deb http://ftp.cn.debian.org/debian/ sid main non-free contrib
+deb-src http://ftp.cn.debian.org/debian/ sid main non-free contrib
+
+deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+
+deb [arch=amd64] https://download.docker.com/linux/debian/ bullseye stable
+
+#deb http://security.debian.org/debian-security buster/updates main
+#deb-src http://security.debian.org/debian-security buster/updates main
+
+
+# This system was installed using small removable media
+# (e.g. netinst, live or single CD). The matching "deb cdrom"
+# entries were disabled at the end of the installation process.
+# For information about how to configure apt package sources,
+# see the sources.list(5) manual.

@@ -1,0 +1,40 @@
+#!/bin/bash
+# File              : install_vim.sh
+# Author            : zhangzhao <zhangzhao@ihep.ac.cn>
+# Date              : 27.05.2020
+# Last Modified Date: 07.12.2020
+# Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
+#!/bin/sh
+#编译vim：支持lua，perl，ruby，python2，python3，x环境
+#下载vim源码并在顶层目录执行脚本
+
+if [ $(whoami) != "root" ]
+then
+    echo "please run this script in root mode"
+    exit 0
+fi
+
+#需要安装的包：
+sudo apt install libxt-dev libxpm-dev libx11-dev ruby-dev libperl-dev liblua-dev lua python-dev
+if [ $? -ne 0 ] 
+then
+    exit 0;
+fi
+
+#configure命令：
+./configure --with-features=huge \
+            --enable-rubyinterp=yes \
+            --enable-luainterp=yes \
+            --enable-perlinterp=yes \
+            --enable-pythoninterp=yes \
+            --enable-python3interp=yes \
+            --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
+            --with-python3-config-dir=/usr/lib/python3.9/config-3.9-x86_64-linux-gnu \
+            --enable-fontset=yes \
+            --enable-cscope=yes \
+            --with-x \
+            --enable-multibyte \
+            --disable-gui \
+            --enable-fail-if-missing \
+
+make && make install

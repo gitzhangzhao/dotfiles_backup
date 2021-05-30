@@ -1,0 +1,23 @@
+#!/bin/bash
+# File              : bkconf
+# Author            : zhangzhao <zhangzhao@ihep.ac.cn>
+# Date              : 11.07.2020
+# Last Modified Date: 26.09.2020
+# Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
+#!/bin/sh
+cd /home/zhangzhao/
+cp .zshrc zhangzhao/dotfiles/zshrc
+cp .oh-my-zsh/themes/agnoster.zsh-theme zhangzhao/dotfiles
+cp .vimrc zhangzhao/dotfiles/vimrc
+cp .config/polybar/config zhangzhao/dotfiles/config.polybar
+cp .config/i3/config zhangzhao/dotfiles/config.i3
+cp .config/sakura/sakura.conf zhangzhao/dotfiles/
+cp .vim/plugged/nord-vim/colors/nord.vim zhangzhao/dotfiles/
+cp .config/picom.conf zhangzhao/dotfiles/
+cp .goldendict/config zhangzhao/dotfiles/config.goldendict
+cp .config/redshift.conf zhangzhao/dotfiles/
+dpkg -l > zhangzhao/dotfiles/dpkg-l
+cp .config/dunst/dunstrc zhangzhao/dotfiles/
+cp .config/qv2ray/Qv2ray.conf zhangzhao/dotfiles/
+cp /etc/samba/smb.conf zhangzhao/dotfiles/
+cp .config/mpv/mpv.conf zhangzhao/dotfiles/

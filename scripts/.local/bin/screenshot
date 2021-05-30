@@ -1,0 +1,25 @@
+#!/bin/bash
+# File              : jietu
+# Author            : zhangzhao <zhangzhao@ihep.ac.cn>
+# Date              : 05.06.2020
+# Last Modified Date: 05.07.2020
+# Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
+#需要为该脚本在/bin目录下创建链接文件
+flameshot gui -p ~ -d 2000 
+cd ~ 
+while true
+do
+if [ -e *.png ]
+then
+mv *.png foo.png
+scp foo.png root@39.101.136.33:/home/截图  
+rm foo.png
+break
+fi
+done
+
+# sleep 2;
+# flameshot gui -p ~ 
+# mv *.png foo.png
+# scp foo.png root@39.101.136.33:/home
+# rm foo.png

@@ -1,0 +1,23 @@
+#!/bin/bash
+# File              : upanddown.sh
+# Author            : zhangzhao <zhangzhao@ihep.ac.cn>
+# Date              : 12.06.2020
+# Last Modified Date: 03.07.2020
+# Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
+# 这个文件用于从IP的DIR上传或者下载文件
+# 使用方法：在/bin目录下为该脚本建立两个软链接up，down
+FLAG=$(echo $0 | cut -d / -f 4)
+TOOL="scp"
+USER="root"
+IP="39.101.136.33:"
+DIR="/home"
+if [ $FLAG = up ]
+then
+    FILE=$(echo $* | cut -f 1-$(($#-1)) -d' ')
+    REMOTEDIR=$(echo $* | cut -f $# -d' ')
+    $TOOL $FILE $USER@$IP$DIR/$REMOTEDIR
+elif [ $FLAG = down ] 
+then
+    $TOOL $USER@$IP$DIR/$1 .
+fi
+

@@ -1,0 +1,30 @@
+#!/bin/bash
+# File              : get_github_code.sh
+# Author            : zhangzhao <zhangzhao@ihep.ac.cn>
+# Date              : 30.11.2020
+# Last Modified Date: 30.11.2020
+# Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
+dir_name=Code
+
+if [ ! -d "$HOME/$dir_name" ]
+then
+    mkdir $HOME/$dir_name
+fi
+
+cd $HOME/$dir_name
+git clone https://github.com/vim/vim.git
+git clone git://git.savannah.gnu.org/nano.git
+git clone https://github.com/stefanhaustein/TerminalImageViewer.git
+git clone https://gitee.com/liangkangnan/tinyriscv.git
+git clone git@github.com:jaburns/ngincat.git
+git clone https://github.com/cbsheng/tinyhttpd.git
+git clone git@github.com:alexanderepstein/Bash-Snippets.git
+git clone https://github.com/HX-IoT/ESP32-Developer-Guide.git
+git clone git@github.com:al0ne/LinuxCheck.git
+git clone git@github.com:kaka555/tinyfs.git
+git clone git://git.code.sf.net/p/linuxptp/code
+git clone git@github.com:gitzhangzhao/sakura-nord.git
+git clone https://github.com/jagd/ntp.git
+git clone git@github.com:j0k3r-92/netcat.git
+git clone https://github.com/Raymo111/i3lock-color.git
+git clone git@github.com:meskarune/i3lock-fancy.git

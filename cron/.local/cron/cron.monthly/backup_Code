@@ -1,0 +1,11 @@
+#!/bin/bash
+# File              : backup_Code
+# Author            : zhangzhao <zhangzhao@ihep.ac.cn>
+# Date              : 26.04.2021
+# Last Modified Date: 27.04.2021
+# Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
+
+TARGET=Code_$(date "+%Y%m%d").tar.bz2
+cd /home/zhangzhao
+tar cvjf $TARGET Code
+mv $TARGET IHEP/backup

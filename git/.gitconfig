@@ -1,0 +1,13 @@
+[user]
+	name = gitzhangzhao
+	email = zhangzhao@ihep.ac.cn
+# [https]
+# 	proxy = socks5://localhost:8888
+# [http]
+# 	proxy = 127.0.0.1:8888
+[core]
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+	diffFilter = diff-so-fancy --patch
+[init]
+	defaultBranch = main
