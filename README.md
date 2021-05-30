@@ -1,6 +1,5 @@
-<h1 align="center">dotfiles ❤ ~/</h1>
+<h1 align="center">dotfiles ❤ ~/</h1> My dotfiles for my debian PC, managed by GNU Stow.
 
-> My dotfiles for my debian PC, managed by GNU Stow.
 > debian sid with i3-gap ([i3wm-themer](https://github.com/unix121/i3wm-themer))
 
 ## **softwares:**
