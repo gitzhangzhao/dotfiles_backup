@@ -1,1 +1,13 @@
-xserver-xorg zsh trash-cli qterminal fcitx goldendict axel vlc exa bat lightdm lightdm-gtk-greeter-settings pulseaudio pavucontrol firefox ripgrep zip unzip rar unrar tldr locate fd-find zsh wget universal-ctags xautolock clang nomacs redshift translate-shell speedcrunch pylint shellcheck smartmontools sudo flameshot progress sshfs ncdu wireshark cflow lxappearance ufw xserver-xorg-input-synaptics dos2unix strace ltrace samba mpv lshw fzf hexyl davfs2 remmina iotop neofetch picom pandoc graphviz feh zathura unclutter duf man-db manpages-zh libpam0g-dev libx11-xcb-dev imagemagick fonts-noto-cjk fonts-noto-color-emoji fonts-firacode breeze-gtk-theme breeze-cursor-theme
+sudo apt install \
+xserver-xorg zsh trash-cli qterminal fcitx goldendict axel \
+vlc exa bat lightdm lightdm-gtk-greeter-settings pulseaudio \
+pavucontrol firefox ripgrep zip unzip rar unrar tldr locate \
+fd-find zsh wget universal-ctags xautolock clang nomacs \
+redshift translate-shell speedcrunch pylint shellcheck \
+smartmontools sudo flameshot progress sshfs ncdu wireshark \
+cflow lxappearance ufw xserver-xorg-input-synaptics dos2unix \
+strace ltrace samba mpv lshw fzf hexyl davfs2 remmina \
+iotop neofetch picom pandoc graphviz feh zathura unclutter \
+duf man-db manpages-zh libpam0g-dev libx11-xcb-dev imagemagick \
+fonts-noto-cjk fonts-noto-color-emoji fonts-firacode breeze-gtk-theme \
+breeze-cursor-theme \
