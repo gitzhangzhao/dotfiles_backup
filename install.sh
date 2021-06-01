@@ -41,6 +41,7 @@ stow --no-fold --target "$HOME" ssh
 stow --no-fold --target "$HOME" vim
 stow --no-fold --target "$HOME" wallpaper
 stow --no-fold --target "$HOME" zsh
+stow --no-fold --target "$HOME" sogoupinyin
 }
 
 check_prog stow

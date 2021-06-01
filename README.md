@@ -9,7 +9,8 @@
 
 #### **apps(manually):**
 ```bash
-i3wm-themes ohmyzsh vim baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux gtags i3lock-fancy electron-ssr qv2ray zotero gping sd docker code
+i3wm-themes ohmyzsh vim baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux gtags 
+i3lock-fancy electron-ssr qv2ray zotero gping sd docker code
 ```
 
 #### **fonts:**
@@ -44,7 +45,7 @@ lightdm-gtk-greeter-settings
 
 #### **Chinese man page:**
 ```bash
-/etc/manpath.config -> /usr/share/man -> /usr/share/man/zh_CN
+/etc/manpath.config : /usr/share/man -> /usr/share/man/zh_CN
 ```
 
 #### **i3gaps for default x-window-manager:**
