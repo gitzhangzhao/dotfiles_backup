@@ -1,10 +1,9 @@
 #!/usr/bin/bash
 
 function creat_directory() {
-    cd $HOME
-    mkdir -p .config
-    mkdir -p .local/bin
-    mkdir -p .local/share/fonts
+    mkdir -p $(HOME)/.config
+    mkdir -p $(HOME)/.local/bin
+    mkdir -p $(HOME)/.local/share/fonts
 }
 
 function check_prog() {
@@ -15,34 +14,35 @@ function check_prog() {
 }
 
 function deploy_dotfiles() {
-sudo stow --target /  etc
-stow --target "$HOME" Xresources
-stow --target "$HOME" bin
-stow --target "$HOME" compton
-stow --target "$HOME" cron
-stow --target "$HOME" dunst
-stow --target "$HOME" flameshot
-stow --target "$HOME" fonts
-stow --target "$HOME" gdb
-stow --target "$HOME" git
-stow --target "$HOME" goldendict
-stow --target "$HOME" i3
-stow --target "$HOME" mpv
-stow --target "$HOME" nitrogen
-stow --target "$HOME" picom
-stow --target "$HOME" polybar
-stow --target "$HOME" qterminal
-stow --target "$HOME" qv2ray
-stow --target "$HOME" redshift
-stow --target "$HOME" scripts
-stow --target "$HOME" ssh
-stow --target "$HOME" vim
-stow --target "$HOME" vscode
-stow --target "$HOME" wallpaper
-stow --target "$HOME" zsh
+sudo stow --no-fold --targe /etc apt
+sudo stow --no-fold --targe /etc network
+sudo stow --no-fold --targe /etc systemd
+sudo stow --no-fold --targe /etc samba
+stow --no-fold --target "$HOME" Xresources
+stow --no-fold --target "$HOME" bin
+stow --no-fold --target "$HOME" compton
+stow --no-fold --target "$HOME" cron
+stow --no-fold --target "$HOME" dunst
+stow --no-fold --target "$HOME" flameshot
+stow --no-fold --target "$HOME" fonts
+stow --no-fold --target "$HOME" gdb
+stow --no-fold --target "$HOME" git
+stow --no-fold --target "$HOME" goldendict
+stow --no-fold --target "$HOME" i3
+stow --no-fold --target "$HOME" mpv
+stow --no-fold --target "$HOME" nitrogen
+stow --no-fold --target "$HOME" picom
+stow --no-fold --target "$HOME" polybar
+stow --no-fold --target "$HOME" qterminal
+stow --no-fold --target "$HOME" qv2ray
+stow --no-fold --target "$HOME" redshift
+stow --no-fold --target "$HOME" scripts
+stow --no-fold --target "$HOME" ssh
+stow --no-fold --target "$HOME" vim
+stow --no-fold --target "$HOME" wallpaper
+stow --no-fold --target "$HOME" zsh
 }
 
 check_prog stow
-creat_directory 
-cd $HOME/dotfiles
+#creat_directory 
 deploy_dotfiles

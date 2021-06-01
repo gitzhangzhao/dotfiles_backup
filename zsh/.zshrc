@@ -164,5 +164,6 @@ bindkey '`' autosuggest-accept
 ##############################################################################
 # My environment variable
 # Epics environment variables
-export PATH=$PATH:/home/zhangzhao/Lab/epics/base-3.15.5/bin/linux-x86_64
-export EPICS_CA_ADDR_LIST=192.168.1.8
+PATH=$PATH:/home/zhangzhao/Lab/epics/base-3.15.5/bin/linux-x86_64:/usr/lib/cargo/bin
+EPICS_CA_ADDR_LIST=192.168.1.8
+ZSH_COMPDUMP="$ZSH_CACHE_DIR/.zcompdump"

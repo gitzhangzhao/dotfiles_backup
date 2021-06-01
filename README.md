@@ -5,9 +5,7 @@
 ## **softwares:**
 
 #### **apps(apt):**
-```bash
-xserver-xorg zsh trash qterminal fcitx goldendict axel vlc exa bat wicd lightdm lightdm-gtk-greeter-settings pulseaudio pavucontrol Firefox ripgrep zip unzip rar unrar tldr locate fd-find zsh wget universal-ctags xautolock clang nomacs redshift translate-shell speedcrunch pylint shellcheck smartmontools sudo flameshot progress sshfs ncdu wireshark cflow lxappearance ufw xserver-xorg-input-synaptics dos2unix strace ltrace samba mpv lshw fzf hexyl davfs remmina iotop neofetch picom pandoc graphviz feh zathura unclutter
-```
+[requirements](requirements.txt)
 
 #### **apps(manually):**
 ```bash
