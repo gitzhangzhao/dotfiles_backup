@@ -35,7 +35,6 @@ stow --no-fold --target "$HOME" picom
 stow --no-fold --target "$HOME" polybar
 stow --no-fold --target "$HOME" qterminal
 stow --no-fold --target "$HOME" qv2ray
-stow --no-fold --target "$HOME" redshift
 stow --no-fold --target "$HOME" scripts
 stow --no-fold --target "$HOME" ssh
 stow --no-fold --target "$HOME" vim

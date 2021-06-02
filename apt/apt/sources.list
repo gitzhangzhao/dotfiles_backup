@@ -1,9 +1,4 @@
 # 
-
-# deb cdrom:[Debian GNU/Linux 10.4.0 _Buster_ - Official amd64 NETINST 20200509-10:25]/ buster main
-
-#deb cdrom:[Debian GNU/Linux 10.4.0 _Buster_ - Official amd64 NETINST 20200509-10:25]/ buster main
-
 #deb http://mirrors.163.com/debian/ sid main non-free contrib
 #deb-src http://mirrors.163.com/debian/ sid main non-free contrib
 

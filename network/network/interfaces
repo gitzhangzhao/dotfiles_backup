@@ -18,7 +18,7 @@ iface enp2s0 inet static
     dns-nameservers 202.38.128.58
     dns-nameservers 202.38.128.10
     
-auto enp1s0
+# auto enp1s0
 allow-hotplug enp1s0
 iface enp1s0 inet static
     address 192.168.1.1

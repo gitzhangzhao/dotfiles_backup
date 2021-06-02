@@ -22,7 +22,6 @@ stow -D --target "$HOME" picom
 stow -D --target "$HOME" polybar
 stow -D --target "$HOME" qterminal
 stow -D --target "$HOME" qv2ray
-stow -D --target "$HOME" redshift
 stow -D --target "$HOME" scripts
 stow -D --target "$HOME" ssh
 stow -D --target "$HOME" vim

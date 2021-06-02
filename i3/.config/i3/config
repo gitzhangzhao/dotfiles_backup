@@ -126,7 +126,7 @@ bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # switch to workspace with urgent window automatically
-for_window [urgent=latest] focus
+# for_window [urgent=latest] focus
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -251,9 +251,10 @@ exec --no-startup-id xset s noexpose
 exec --no-startup-id xset s 0 0
 exec --no-startup-id unclutter -grab
 exec --no-startup-id goldendict
-exec_always --no-startup-id xautolock -time 40 -locker "i3lock-fancy -n -t ' '"      
-exec --no-startup-id synclient TapButton1=1                                                                           #设置触摸板可以点击
-exec --no-startup-id synclient Touchpadoff=1                                                                          #默认关闭触摸板 
+exec --no-startup-id xautolock -time 40 -locker "i3lock-fancy -n -t ' '"      
+exec --no-startup-id redshift -l 39.5:116.2 -t 5600:5000
+# exec --no-startup-id synclient TapButton1=1                                                                           #设置触摸板可以点击
+# exec --no-startup-id synclient Touchpadoff=1                                                                          #默认关闭触摸板 
 # exec --no-startup-id sleep 20; xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'                                   #将Lock键映射为ESC,延时10s等待X启动完成后设置才有效
 ##############################################################################
 
