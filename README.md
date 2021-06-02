@@ -85,6 +85,13 @@ apt-mark hold python2.7 wicd python2.7-dev
 08 24 * * * run-parts /home/zhangzhao/.local/cron/cron.daily
 ```
 
+#### **add webdav address, username and passwd to davfs2:**
+```bash
+sudo echo "use_locks 0"  >> /etc/davfs2/davfs2.conf
+sudo echo "address username passwd" >>/etc/davfs2/secrets
+sudo chmod 0600 /etc/davfs2/secrets
+
+
 ## **Install**
 ```bash
 sudo apt install stow
