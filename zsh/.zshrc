@@ -156,6 +156,7 @@ alias pdf="zathura"
 alias ag="sudo apt dist-upgrade"
 alias aa="sudo apt autopurge"
 alias au="sudo apt update"
+alias stow="stow --no-fold"
 
 ##############################################################################
 #Key bindings
