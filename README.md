@@ -3,25 +3,25 @@
 > debian sid with i3-gap ([i3wm-themer](https://github.com/unix121/i3wm-themer))
 
 ```bash
-       _,met$$$$$gg.          zhangzhao@debian
-    ,g$$$$$$$$$$$$$$$P.       ----------------
-  ,g$$P"     """Y$$.".        OS: Debian GNU/Linux 11 (sid)
- ,$$P'              `$$$.     Host: Inspiron 5537
-',$$P       ,ggs.     `$$b:   Kernel: 5.10.0-7-amd64
-`d$$'     ,$P"'   .    $$$    Uptime: 14 hours
- $$P      d$'     ,    $$P    Packages: 1388 (dpkg)
- $$:      $$.   -    ,d$$'    Shell: zsh 5.8
- $$;      Y$b._   _,d$P'      Resolution: 1920x1080
- Y$$.    `.`"Y$$$$P"'         DE: lightdm-xsession
- `$$b      "-.__              WM: i3
-  `Y$$                        Theme: Breeze-Dark [GTK2/3]
-   `Y$$.                      Icons: Adwaita [GTK2/3]
-     `$$b.                    Terminal: qterminal
-       `Y$$b.                 Terminal Font: Fira Code 13
-          `"Y$b._             CPU: Intel i5-4200U (4) @ 2.60
-              `"""            GPU: Intel Haswell-ULT
-                              GPU: AMD ATI Radeon HD 
-                              Memory: 761MiB / 7844MiB
+       _,met$$$$$gg.           zhangzhao@debian
+    ,g$$$$$$$$$$$$$$$P.        ----------------
+  ,g$$P"        """Y$$.".      OS: Debian GNU/Linux 11 (sid)
+ ,$$P'                `$$$.    Host: Inspiron 5537
+',$$P        ,ggs.     `$$b:   Kernel: 5.10.0-7-amd64
+`d$$'      ,$P"'   .    $$$    Uptime: 14 hours
+ $$P       d$'     ,    $$P    Packages: 1388 (dpkg)
+ $$:       $$.   -    ,d$$'    Shell: zsh 5.8
+ $$;       Y$b._   _,d$P'      Resolution: 1920x1080
+ Y$$.     `.`"Y$$$$P"'         DE: lightdm-xsession
+ `$$b       "-.__              WM: i3
+  `Y$$                         Theme: Breeze-Dark [GTK2/3]
+   `Y$$.                       Icons: Adwaita [GTK2/3]
+     `$$b.                     Terminal: qterminal
+       `Y$$b.                  Terminal Font: Fira Code 13
+          `"Y$b._              CPU: Intel i5-4200U (4) @ 2.60
+              `"""             GPU: Intel Haswell-ULT
+                               GPU: AMD ATI Radeon HD 
+                               Memory: 761MiB / 7844MiB
 ```
 
 ## **softwares:**
@@ -95,7 +95,7 @@ sudo chmod 0600 /etc/davfs2/secrets
 ## **Install**
 ```bash
 sudo apt install stow
-git clone https://github.com/gitzhangzhao/dotfiles.git $HOME
+git clone --recursive https://github.com/gitzhangzhao/dotfiles.git $HOME
 cd $HOME/dotfiles
 ./install
 ```
