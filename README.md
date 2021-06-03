@@ -109,9 +109,17 @@ cd $HOME/dotfiles
 ---
 
 ## **Bugs record**
-### plymouth failed when update initramfs
+
+### 1. plymouth failed when update initramfs
+
+> E: plymouth failed with return 1
+
 ```bash
+# 'plymouth depends dejavu font, but you don't have to install it.'
+# just reinstall plymouth like this:
 sudo apt purge plymouth
 reboot
 sudo apt install plymouth
+# apt reinstall is useless.
 ```
+
