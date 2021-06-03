@@ -6,5 +6,5 @@
 # Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 NAME=backup_$(date "+%Y%m%d").tar.gz
 cd /home/zhangzhao
-tar -czf "$NAME" --exclude=./zhangzhao/.git .config zhangzhao
+tar -czf "$NAME" --exclude=./dotfiles/.git dotfiles
 mv $NAME IHEP/backup

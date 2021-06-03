@@ -28,6 +28,7 @@ stow -D --target "$HOME" vim
 stow -D --target "$HOME" wallpaper
 stow -D --target "$HOME" zsh
 stow -D --target "$HOME" sogoupinyin
+stow -D --target "$HOME" zathura
 }
 
 uninstall_dotfiles

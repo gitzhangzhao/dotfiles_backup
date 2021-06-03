@@ -46,7 +46,7 @@ Droid Sans Mono for Powerline Nerd Font Complete    #powerline and nerd fonts
 
 #### **GTK cursor theme and icon theme:**
 ```bash
-sudo apt install breeze-gtk-theme breeze-cursor-theme
+sudo apt install breeze-gtk-theme breeze-cursor-theme breeze-icon-theme
 lxappearance
 ```
 
@@ -104,4 +104,14 @@ cd $HOME/dotfiles
 ```bash
 cd $HOME/dotfiles
 ./uninstall
+```
+
+---
+
+## **Bugs record**
+### plymouth failed when update initramfs
+```bash
+sudo apt purge plymouth
+reboot
+sudo apt install plymouth
 ```

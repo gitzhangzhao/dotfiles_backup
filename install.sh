@@ -41,6 +41,7 @@ stow --no-fold --restow --target "$HOME" vim
 stow --no-fold --restow --target "$HOME" wallpaper
 stow --no-fold --restow --target "$HOME" zsh
 stow --no-fold --restow --target "$HOME" sogoupinyin
+stow --no-fold --restow --target "$HOME" zathura
 }
 
 check_prog stow
