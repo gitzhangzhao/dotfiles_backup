@@ -15,20 +15,20 @@ i3wm-themes ohmyzsh vim baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux 
 i3lock-fancy electron-ssr qv2ray zotero gping sd docker code
 ```
 
-#### **my fonts:**
-- fonts-noto-cjk                                      #cjk
-- fonts-noto-color-emoji                              #emoji
-- fonts-firacode                                      #code font
-- fontawesome-free-5.0.13                             #awesome for polybar
-- Droid Sans Mono for Powerline Nerd Font Complete    #powerline and nerd fonts
+#### **My fonts:**
+- fonts-noto-cjk                                     
+- fonts-noto-color-emoji                            
+- fonts-firacode                                  
+- fontawesome-free-5.0.13                        
+- Droid Sans Mono for Powerline Nerd Font Complete
 
-#### **my GTK theme, cursor theme and icon theme:**
+#### **My GTK theme, cursor theme and icon theme:**
 - breeze-gtk-theme 
 - breeze-cursor-theme 
 - breeze-icon-theme
 
 ## **Installation**
-need stow first.
+install stow first.
 ```bash
 sudo apt install stow
 ```
@@ -39,10 +39,10 @@ cd $HOME/dotfiles
 ```
 there are four scripts can be used:
 
-- install: install all dotfiles, include home/ and /etc/.
-- uninstall: uninstall all dotfiles, include home/ and /etc/.
-- stow: stow one app at a time.
-- unstow: unstow one app at a time.
+- install:  install all dotfiles, include home/ and /etc/.
+- uninstall:  uninstall all dotfiles, include home/ and /etc/.
+- stow:  stow one app at a time.
+- unstow:  unstow one app at a time.
 
 ---------------------------------------------------------------
 
