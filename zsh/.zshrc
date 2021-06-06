@@ -151,12 +151,12 @@ alias hexdump='hexyl'
 alias cv="progress"
 alias ip="ip --color"
 alias reconfigure="sudo dpkg-reconfigure"
-alias history="history -i"
 alias pdf="zathura"
 alias ag="sudo apt dist-upgrade"
 alias aa="sudo apt autopurge"
 alias au="sudo apt update"
-alias stow="stow --no-fold"
+# alias stow="./$HOWE/dotfiles/stow"
+# alias unstow="./$HOWE/dotfiles/unstow"
 
 ##############################################################################
 #Key bindings
@@ -165,5 +165,5 @@ bindkey '`' autosuggest-accept
 ##############################################################################
 # My environment variable
 # Epics environment variables
-PATH=$PATH:/home/zhangzhao/Lab/epics/base-3.15.5/bin/linux-x86_64:/usr/lib/cargo/bin
+PATH=$HOME/dotfiles:$PATH:/home/zhangzhao/Lab/epics/base-3.15.5/bin/linux-x86_64:/usr/lib/cargo/bin
 EPICS_CA_ADDR_LIST=192.168.1.8

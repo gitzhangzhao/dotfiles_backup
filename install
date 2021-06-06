@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+# install my dotfiles.
+
+STOW="/usr/bin/stow"
+PWD=$(basename $(pwd))
+STOW_FLAG="--no-fold --restow"
+
+function check_root() {
+    if [ $(whoami) == "root" ]
+    then
+        echo -e "\033[31m error \033[0m: can't run this script in root mode."
+        exit 1
+    fi
+}
+
+function check_prog() {
+    if ! hash "$1" > /dev/null 2>&1; then
+        echo -e "Command not found:\033[31m $1\033[0m, Aborting"
+        exit 1
+    fi
+}
+
+function check_path() {
+    if [ $PWD != "dotfiles" ]
+    then
+        echo -e "\033[31m error \033[0m: must be run in $HOME/dotfiles."
+        exit 1
+    fi
+}
+
+function install_home_dotfiles() {
+    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v 'etc'|cut -d '/' -f 2|sort)
+    echo -e "\033[34m$HOME:install...\033[0m"
+    for DOTFILES in $HOME_DIR
+    do
+        $STOW $STOW_FLAG --target "$HOME" $DOTFILES
+        if [ $? -eq 0 ] 
+        then
+            echo -e "$DOTFILES \033[32m stowed. \033[0m"
+        else
+            echo -e "\033[31m Error on stow $DOTFILES. \033[0m"
+            exit 1
+        fi
+    done
+    echo -e ""
+}
+
+function install_etc_dotfiles() {
+    ETC_DIR=$(find ./etc/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
+    echo -e "\033[34m/etc:install...\033[0m"
+    sudo $STOW $STOW_FLAG --target "/etc" etc 2> /dev/null
+    if [ $? -eq 0 ] 
+    then
+        for DOTFILES in $ETC_DIR
+        do
+            echo -e "$DOTFILES \033[32m stowed. \033[0m"
+        done
+    else
+        echo -e "\033[31m Error on stow etc. \033[0m"
+    fi
+    echo -e ""
+}
+
+check_root
+check_prog stow
+check_path
+install_home_dotfiles
+install_etc_dotfiles

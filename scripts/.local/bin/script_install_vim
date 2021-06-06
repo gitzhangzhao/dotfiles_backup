@@ -16,6 +16,8 @@ fi
 
 #需要安装的包：
 sudo apt install libxt-dev libxpm-dev libx11-dev ruby-dev libperl-dev liblua-dev lua python-dev
+#deoplete plugin needs pynvim
+pip3 install --user pynvim 
 if [ $? -ne 0 ] 
 then
     exit 0;
@@ -26,9 +28,7 @@ fi
             --enable-rubyinterp=yes \
             --enable-luainterp=yes \
             --enable-perlinterp=yes \
-            --enable-pythoninterp=yes \
             --enable-python3interp=yes \
-            --with-python-config-dir=/usr/lib/python2.7/config-x86_64-linux-gnu \
             --with-python3-config-dir=/usr/lib/python3.9/config-3.9-x86_64-linux-gnu \
             --enable-fontset=yes \
             --enable-cscope=yes \

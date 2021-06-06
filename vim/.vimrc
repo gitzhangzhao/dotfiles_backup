@@ -318,17 +318,17 @@ Plug 'PotatoesMaster/i3-vim-syntax',{ 'for': 'i3' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature' 
 Plug 'vim-airline/vim-airline' 
-"Plug 'ludovicchabant/vim-gutentags'
-"Plug 'alpertuna/vim-header' 
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'alpertuna/vim-header' 
 "自动补全
-"Plug 'Shougo/deoplete.nvim',{ 'on':[] }
-"Plug 'roxma/nvim-yarp',{ 'on':[] }
-"Plug 'roxma/vim-hug-neovim-rpc',{ 'on':[] }
-"Plug 'Shougo/deoplete-clangx',{ 'on':[] }
-"augroup load_deo     "延迟加载插件
-"    autocmd!
-"    autocmd InsertEnter * call plug#load('nvim-yarp','vim-hug-neovim-rpc','deoplete.nvim','deoplete-clangx') | autocmd! load_deo
-"augroup END
+Plug 'Shougo/deoplete.nvim',{ 'on':[] }
+Plug 'roxma/nvim-yarp',{ 'on':[] }
+Plug 'roxma/vim-hug-neovim-rpc',{ 'on':[] }
+Plug 'Shougo/deoplete-clangx',{ 'on':[] }
+augroup load_deo     "延迟加载插件
+    autocmd!
+    autocmd InsertEnter * call plug#load('nvim-yarp','vim-hug-neovim-rpc','deoplete.nvim','deoplete-clangx') | autocmd! load_deo
+augroup END
 "文本对象插件
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'

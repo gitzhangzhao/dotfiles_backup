@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# uninstall my dotfiles.
+
+HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v 'etc'|cut -d '/' -f 2|sort)
+ETC_DIR=$(find ./etc/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
+STOW="/usr/bin/stow"
+PWD=$(basename $(pwd))
+STOW_FLAG="--no-fold --restow"
+
+function check_root() {
+    if [ $(whoami) == "root" ]
+    then
+        echo -e "\033[31m error \033[0m: can't run this script in root mode."
+        exit 1
+    fi
+}
+
+function check_prog() {
+    if ! hash "$1" > /dev/null 2>&1; then
+        echo -e "Command not found:\033[31m $1\033[0m, Aborting"
+        exit 1
+    fi
+}
+
+function check_path() {
+    if [ $PWD != "dotfiles" ]
+    then
+        echo -e "\033[31m error \033[0m: must be run in $HOME/dotfiles."
+        exit 1
+    fi
+}
+
+function uninstall_home_dotfiles() {
+    echo -e "\033[34m$HOME:uninstall...\033[0m"
+    for DOTFILES in $HOME_DIR
+    do
+        $STOW $STOW_FLAG -D --target "$HOME" $DOTFILES
+        if [ $? -eq 0 ] 
+        then
+            echo -e "$DOTFILES \033[33m has been deleted. \033[0m"
+        else
+            echo -e "\033[31m Error on delete $DOTFILES. \033[0m"
+            exit 1
+        fi
+    done
+    echo -e ""
+}
+
+function uninstall_etc_dotfiles() {
+    echo -e "\033[34m/etc:uninstall...\033[0m"
+    sudo $STOW $STOW_FLAG -D --target "/etc" etc 2> /dev/null
+    if [ $? -eq 0 ] 
+    then
+        for DOTFILES in $ETC_DIR
+        do
+            echo -e "$DOTFILES \033[33m has been deleted. \033[0m"
+        done
+    else
+        echo -e "\033[31m Error on delete etc. \033[0m"
+    fi
+    echo -e ""
+}
+
+
+    
+
+check_root
+check_prog stow
+check_path
+uninstall_home_dotfiles
+uninstall_etc_dotfiles

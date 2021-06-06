@@ -1,0 +1,84 @@
+#!/usr/bin/env bash
+# install my dotfiles.
+
+PWD=$(basename $(pwd))
+ARGC=$#
+STOW="/usr/bin/stow"
+STOW_FLAG="--no-fold --restow"
+
+function check_root() {
+    if [ $(whoami) == "root" ]
+    then
+        echo -e "\033[31merror \033[0m: can't run this script in root mode."
+        exit 1
+    fi
+}
+
+function check_prog() {
+    if ! hash "$1" > /dev/null 2>&1; then
+        echo -e "Command not found:\033[31m $1\033[0m, Aborting"
+        exit 1
+    fi
+}
+
+function check_path() {
+    if [ $PWD != "dotfiles" ]
+    then
+        echo -e "\033[31merror \033[0m: must be run in $HOME/dotfiles."
+        exit 1
+    fi
+}
+
+function print_help() {
+    echo -e "stow: \033[31mfatal error \033[0m"
+    echo "usage: ./stow.sh app."
+}
+
+function check_argv() {
+    if [ $ARGC != 1 ]
+    then
+        print_help
+        echo wrong number of parameter.
+        exit 1
+    elif [[ ($1 == "-h") || ($1 == "--help") ]]
+    then
+        echo "usage: ./stow.sh app."
+        exit 1
+    fi
+}
+
+function stow() {
+
+    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v 'etc'|cut -d '/' -f 2|sort)
+    ETC_DIR=$(find ./etc/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
+
+    if [[ "$HOME_DIR" =~ "$1" ]]
+    then
+        $STOW $STOW_FLAG --target "$HOME" $1 >/dev/null 2>&1
+        if [ $? -ne 0 ]
+        then 
+        	echo -e "\033[31merror:\033[0m $1 is not in here."
+        exit 1
+	    fi
+    elif [[ "$ETC_DIR" =~ "$1" ]]
+    then
+        pushd etc > /dev/null
+        sudo $STOW $STOW_FLAG --target /etc/$1 $1 >/dev/null 2>&1
+	    if [ $? -ne 0 ]
+        then 
+        	echo -e "\033[31merror:\033[0m $1 is not in here."
+        exit 1
+	    fi
+        popd > /dev/null
+    else
+        echo -e "\033[31merror:\033[0m $1 is not in here."
+        exit 1
+    fi
+    echo -e "$1\033[32m stowed.\033[0m"
+}
+
+check_root
+check_prog stow
+check_path
+check_argv $1
+stow $1

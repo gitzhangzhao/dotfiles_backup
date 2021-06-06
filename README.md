@@ -44,6 +44,13 @@ fontawesome-free-5.0.13                             #awesome for polybar
 Droid Sans Mono for Powerline Nerd Font Complete    #powerline and nerd fonts
 ```
 
+#### **my docker:**
+- glances
+
+```bash
+sudo docker run -d --restart="always" -p 61208-61209:61208-61209 -e GLANCES_OPT="-w" -v /home/zhangzhao/.config/glances/glances.conf:/glances/conf/glances.conf -v /var/run/docker.sock:/var/run/docker.sock:ro --pid host --name debian nicolargo/glances:latest
+```
+
 #### **GTK cursor theme and icon theme:**
 ```bash
 sudo apt install breeze-gtk-theme breeze-cursor-theme breeze-icon-theme
@@ -108,18 +115,17 @@ cd $HOME/dotfiles
 
 ---
 
-## **Bugs record**
+## **Bug records**
 
 ### 1. plymouth failed when update initramfs
 
 > E: plymouth failed with return 1
 
 ```bash
-# 'plymouth depends dejavu font, but you don't have to install it.'
-# just reinstall plymouth like this:
+# plymouth depends dejavu font, but you don't have to install it,
+# just reinstall plymouth (apt reinstall is useless).
 sudo apt purge plymouth
 reboot
 sudo apt install plymouth
-# apt reinstall is useless.
 ```
 

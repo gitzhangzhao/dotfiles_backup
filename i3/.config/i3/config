@@ -243,7 +243,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2db-
 # settings of zhangzhao:                                                     # 
 ##############################################################################
 # boot
-exec --no-startup-id xrandr --output HDMI-1 --auto --output eDP-1 --off
 exec_always --no-startup-id $HOME/.config/polybar/i3wmthemer_bar_launch.sh
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
 exec --no-startup-id xset dpms 0 0 7200                                                                               #设置自动灭屏
@@ -279,10 +278,10 @@ bindsym $mod+Shift+b exec --no-startup-id speedcrunch
 ##############################################################################
 
 ##############################################################################
-# assign windows
-assign [class="netease-cloud-music"] $ws3
-assign [class="Zotero"] $ws5
-assign [class="Firefox"] $ws2 
-assign [class="baidunetdisk"] $ws6
-assign [class="remmina"] $ws4
+#assign windows
+assign [class="Firefox"]              $ws2 
+assign [class="netease-cloud-music"]  $ws3
+assign [class="remmina"]              $ws4
+assign [class="Zotero"]               $ws5
+assign [class="baidunetdisk"]         $ws6
 ##############################################################################
