@@ -11,7 +11,7 @@
 
 #### **other software(manually):**
 ```bash
-i3wm-themes ohmyzsh vim baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux gtags 
+i3wm-themes vim baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux gtags 
 i3lock-fancy electron-ssr qv2ray zotero gping sd docker code
 ```
 

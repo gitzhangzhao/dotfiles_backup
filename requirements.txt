@@ -1,8 +1,8 @@
 sudo apt install \
-zsh trash-cli qterminal fcitx goldendict axel \
+zsh zplug trash-cli qterminal fcitx goldendict axel \
 vlc exa bat lightdm-gtk-greeter-settings \
 firefox ripgrep zip unzip rar unrar tldr locate \
-fd-find zsh wget universal-ctags xautolock clang nomacs \
+fd-find wget universal-ctags xautolock clang nomacs \
 redshift translate-shell speedcrunch pylint shellcheck \
 smartmontools flameshot progress sshfs ncdu wireshark \
 cflow lxappearance ufw xserver-xorg-input-synaptics dos2unix \
