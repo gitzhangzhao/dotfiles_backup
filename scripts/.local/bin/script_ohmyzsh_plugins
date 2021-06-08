@@ -5,11 +5,13 @@
 # Last Modified Date: 02.03.2021
 # Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 Target_Path=$HOME/.oh-my-zsh/custom/plugins
+Theme_Path=$HOME/.oh-my-zsh/custom/themes
 Git1="https://github.com/zsh-users/zsh-syntax-highlighting.git"
 Git2="https://github.com/zsh-users/zsh-autosuggestions.git"
 Git3="https://github.com/TamCore/autoupdate-oh-my-zsh-plugins"
 Git4="https://github.com/MichaelAquilina/zsh-you-should-use.git"
 Git5="https://github.com/zsh-users/zsh-completions.git"
+Git6="https://github.com/romkatv/powerlevel10k.git"
 
 cd $Target_Path
 
@@ -20,6 +22,9 @@ git clone $Git2
 git clone $Git3 $Target_Path/autoupdate
 git clone $Git4 $Target_Path/you-should-use
 git clone $Git5 
+
+cd $Theme_Path
+git clone $Git6
 
 elif [ "$1" = 'update' ]
 then

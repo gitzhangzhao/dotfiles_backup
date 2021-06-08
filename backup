@@ -1,0 +1,22 @@
+#!/bin/env bash
+
+
+function backup() {
+    if [ -f $1 ] 
+    then
+        echo -e "changing $1 to $1.bk..."
+        mv $1 $1.bk
+        if [ $? -ne 0 ]
+        then
+            echo -e "\033[31mfailed: can not change $1 to $1.bk, discontinue."
+            exit 1
+        fi
+        echo -e "\033[32msucceed!"
+    fi
+}
+
+# backup $1
+# TODO: 
+# pushd path
+# backup file
+# popd
