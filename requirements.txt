@@ -1,6 +1,6 @@
 sudo apt install \
 zsh trash-cli qterminal fcitx goldendict axel \
-vlc exa bat lightdm-gtk-greeter-settings \
+vlc exa bat traceroute lightdm-gtk-greeter-settings \
 firefox ripgrep zip unzip rar unrar tldr locate \
 fd-find wget universal-ctags xautolock clang nomacs \
 redshift translate-shell speedcrunch pylint shellcheck \

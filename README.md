@@ -12,7 +12,8 @@
 #### **other software(manually):**
 ```bash
 i3wm-themes oh-my-zsh vim baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux gtags 
-i3lock-fancy electron-ssr qv2ray zotero gping sd docker code
+i3lock-fancy electron-ssr v2raya(docker) glances(docker) zotero gping sd docker code
+i3lock-color
 ```
 
 #### **My fonts:**
@@ -51,6 +52,20 @@ there are four scripts can be used:
 
 ```bash
 sudo docker run -d --restart="always" -p 61208-61209:61208-61209 -e GLANCES_OPT="-w" -v /home/zhangzhao/.config/glances/glances.conf:/glances/conf/glances.conf -v /var/run/docker.sock:/var/run/docker.sock:ro --pid host --name debian nicolargo/glances:latest
+```
+
+### 2. v2raya
+
+```bash
+sudo docker run -d \
+        --restart=always \
+        --privileged \
+        --network=host \
+        --name v2raya \
+        -v /lib/modules:/lib/modules \
+        -v /etc/resolv.conf:/etc/resolv.conf \
+        -v /etc/v2raya:/etc/v2raya \
+        mzz2017/v2raya
 ```
 
 ---------------------------------------------------------------
