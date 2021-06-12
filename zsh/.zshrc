@@ -124,7 +124,7 @@ export EPICS_CA_ADDR_LIST=192.168.1.8
 # ---------------------------------------
 # aliases
 # alias windows="remmina -c ~/zhangzhao/dotfiles/dotfiles_x64/group_rdp_debian2win10_192-168-137-1.remmina"
-alias ls='exa --icons --header'
+alias ls='lsd'
 alias l='ls -l'
 alias ll='ls -l'
 alias la='ls -a'
