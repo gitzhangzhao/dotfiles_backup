@@ -73,16 +73,6 @@ nnoremap ; $a;<ESC>
 nnoremap <C-c> "+Y
 vnoremap <C-c> "+y
 
-"按文件类型补全dict
-au FileType hp setlocal dict+=~/.vim/dict/php_funclist.dict
-au FileType ss setlocal dict+=~/.vim/dict/css.dict
-au FileType c setlocal dict+=~/.vim/dict/c.dict
-au FileType cpp setlocal dict+=~/.vim/dict/cpp.dict
-au FileType scale setlocal dict+=~/.vim/dict/scale.dict
-au FileType javascript setlocal dict+=~/.vim/dict/javascript.dict
-au FileType html setlocal dict+=~/.vim/dict/javascript.dict
-au FileType html setlocal dict+=~/.vim/dict/css.dict
-
 "设置基本一些特性
 "行列线设置
 set cul 
@@ -290,7 +280,7 @@ if has("autocmd")
 endif
 
 
-"vim-plug插件安装
+" vim-plug插件安装
 call plug#begin('~/.vim/plugged')
 Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
@@ -320,21 +310,22 @@ Plug 'kshenoy/vim-signature'
 Plug 'vim-airline/vim-airline' 
 " Plug 'ludovicchabant/vim-gutentags'
 " Plug 'alpertuna/vim-header' 
-"自动补全
+" 自动补全
 Plug 'Shougo/deoplete.nvim',{ 'on':[] }
 Plug 'roxma/nvim-yarp',{ 'on':[] }
 Plug 'roxma/vim-hug-neovim-rpc',{ 'on':[] }
 Plug 'Shougo/deoplete-clangx',{ 'on':[] }
-augroup load_deo     "延迟加载插件
+" 延迟加载插件
+augroup load_deo     
     autocmd!
     autocmd InsertEnter * call plug#load('nvim-yarp','vim-hug-neovim-rpc','deoplete.nvim','deoplete-clangx') | autocmd! load_deo
 augroup END
-"文本对象插件
+" 文本对象插件
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
-"主题插件
+" 主题插件
 " Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
@@ -344,13 +335,13 @@ Plug 'cocopon/iceberg.vim'
 call plug#end()
 
 
-"indentline插件设置
+" indentline插件设置
 let g:indentLine_char     = '┊'
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1  = "inc"
 
-"quickscope设置（高亮f查找结果）
+" quickscope设置（高亮f查找结果）
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 augroup qs_colors
   autocmd!
@@ -358,10 +349,10 @@ augroup qs_colors
   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 augroup END
 
-"number.vim配置
+" number.vim配置
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
-"vim-surround插件设置
+" vim-surround插件设置
 vmap " S"
 vmap ] S]
 vmap ' S'
@@ -370,10 +361,10 @@ vmap / S/
 vmap ) S)
 vmap } S}
 
-"supertab插件设置
+" supertab插件设置
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-"ale插件的配置(ale会默认配置编译器(默认clang))
+" ale插件的配置(ale会默认配置编译器(默认clang))
 " let g:ale_linters = {
 " \   'c++': ['clang'],
 " \   'c': ['clang'],
@@ -381,7 +372,7 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 " \   'python': ['pylint'],
 " \   'sh': ['shellcheck'],
 " \}
-"let g:ale_linters_explicit =1 
+" let g:ale_linters_explicit =1 
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 1
 let g:ale_sign_warning               = '⚡'
@@ -393,16 +384,16 @@ highlight clear ALEWarningSign
 let g:ale_echo_msg_error_str         = 'E'
 let g:ale_echo_msg_warning_str       = 'W'
 let g:ale_echo_msg_format  = '[%linter%] %s [%severity%]'
-"禁用默认INSERT模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
+" 禁用默认INSERT模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 nmap <C-k> <Plug>(ale_previous_wrap)
 nmap <C-j> <Plug>(ale_next_wrap)
 
-"主题设置
+" 主题设置
 set t_Co=256
 set background=dark
-"gruvbox
+" gruvbox
 let g:gitgutter_override_sign_column_highlight = 1
 let g:gruvbox_italic = 1
 let g:gruvbox_bold = 1
@@ -418,14 +409,14 @@ color gruvbox " 设置背景主题
 " iceberg
 " color iceberg
 
-"让背景，行号，状态栏背景透明
+" 让背景，行号，状态栏背景透明
 set termguicolors
 highlight Normal guibg       = NONE
 highlight LineNr guibg       = NONE
 highlight SignColumn guibg   = NONE "设置标志列背景色
 highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
 
-"gtags和gutentags插件的配置"
+" gtags和gutentags插件的配置"
 " set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
 "gutentags搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
 " let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
@@ -456,27 +447,27 @@ highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
 " nnoremap <C-[>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
 " nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
  
-"NerdTree设置
-"F3打开目录树  
+" NerdTree设置
+" F3打开目录树  
 nnoremap <silent><F3> :NERDTreeToggle<CR>
-"打开树状文件目录  
+" 打开树状文件目录  
 nnoremap <C-F3> \be  
 autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
-"当打开vim且没有文件时自动打开NERDTree
+" 当打开vim且没有文件时自动打开NERDTree
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-"只剩 NERDTree时自动关闭
+" 只剩 NERDTree时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-"tagbar键盘命令映射
+" tagbar键盘命令映射
 nmap <F9> :TagbarToggle<CR>
 let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 
-"自动注释
-"在注释行之下新开一行时不要自动加注释
+" 自动注释
+" 在注释行之下新开一行时不要自动加注释
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-"rainbow设置
+" rainbow设置
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 let g:rainbow_conf = {
 \   'guifgs': ['SeaGreen3','darkcyan','lightyellow', 'lightmagenta','firebrick'],
@@ -492,10 +483,10 @@ let g:rainbow_conf = {
 \   }
 \}
 
-"supertab设置
+" supertab设置
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
-"设置easy-align
+" 设置easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -509,22 +500,22 @@ let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_experimental_template_highlight        = 1
 let g:cpp_concepts_highlight                     = 1
 
-"airline设置
-let g:airline_powerline_fonts = 1 "使用airline
+" airline设置
+let g:airline_powerline_fonts = 1 
 let g:Powerline_symbols='fancy'
 
-"LeaderF配置
+" LeaderF配置
 nnoremap <C-f> :LeaderfFile<CR>
 nnoremap <C-g> :LeaderfFunction<CR>
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 
-"vim-header配置
+" vim-header配置
 let g:header_field_author = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
-"neocomplete.vim配置
+" neocomplete.vim配置
 let g:deoplete#enable_at_startup = 1
 
-"auto-pairs配置
+" auto-pairs配置
 let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'} 
