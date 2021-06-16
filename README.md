@@ -20,7 +20,7 @@ i3lock-color
 - fonts-noto-cjk                                     
 - fonts-noto-color-emoji                            
 - fonts-firacode                                  
-- fontawesome-free-5.0.13                        
+- fonts-font-awesome                        
 - Droid Sans Mono for Powerline Nerd Font Complete
 
 #### **My GTK theme, cursor theme and icon theme:**
@@ -51,7 +51,15 @@ there are four scripts can be used:
 ### 1. glances
 
 ```bash
-sudo docker run -d --restart="always" -p 61208-61209:61208-61209 -e GLANCES_OPT="-w" -v /home/zhangzhao/.config/glances/glances.conf:/glances/conf/glances.conf -v /var/run/docker.sock:/var/run/docker.sock:ro --pid host --name debian nicolargo/glances:latest
+sudo docker run -d \
+         --restart=always \
+         -p 61208-61209:61208-61209 \
+         -e GLANCES_OPT="-w" \
+         -v /home/zhangzhao/.config/glances/glances.conf:/glances/conf/glances.conf \
+         -v /var/run/docker.sock:/var/run/docker.sock:ro \
+         --pid host \
+         --name debian \
+         nicolargo/glances:latest
 ```
 
 ### 2. v2raya

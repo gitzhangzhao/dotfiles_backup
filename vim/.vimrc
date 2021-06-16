@@ -209,76 +209,75 @@ nnoremap <F12> gg=G
 nnoremap <F2> :g/^\s*$/d<CR> 
 
 "F8格式化代码
-nnoremap <silent><F8> :ClangFormat<CR>
+" nnoremap <silent><F8> :ClangFormat<CR>
 
 "F4跳转头文件(:A)
-function! s:a(cmd)
-  let name = expand('%:r')
-  let ext = tolower(expand('%:e'))
-  let sources = ['c', 'cc', 'cpp', 'cxx']
-  let headers = ['h', 'hh', 'hpp', 'hxx']
-  for pair in [[sources, headers], [headers, sources]]
-    let [set1, set2] = pair
-    if index(set1, ext) >= 0
-      for h in set2
-        let aname = name.'.'.h
-        for a in [aname, toupper(aname)]
-          if filereadable(a)
-            execute a:cmd a
-            return
-          end
-        endfor
-      endfor
-    endif
-  endfor
-endfunction
-command! A call s:a('e')
-command! AV call s:a('botright vertical split')
-nnoremap <silent><F4> :A<CR>
-nnoremap <silent>\<F4> :AV<CR>
+" function! s:a(cmd)
+"   let name = expand('%:r')
+"   let ext = tolower(expand('%:e'))
+"   let sources = ['c', 'cc', 'cpp', 'cxx']
+"   let headers = ['h', 'hh', 'hpp', 'hxx']
+"   for pair in [[sources, headers], [headers, sources]]
+"     let [set1, set2] = pair
+"     if index(set1, ext) >= 0
+"       for h in set2
+"         let aname = name.'.'.h
+"         for a in [aname, toupper(aname)]
+"           if filereadable(a)
+"             execute a:cmd a
+"             return
+"           end
+"         endfor
+"       endfor
+"     endif
+"   endfor
+" endfunction
+" command! A call s:a('e')
+" command! AV call s:a('botright vertical split')
+" nnoremap <silent><F4> :A<CR>
+" nnoremap <silent>\<F4> :AV<CR>
 
 " F5编译运行
-nnoremap <silent><F5> :call CompileRunGcc()<CR>
-func! CompileRunGcc()
-    exec "w"
-    if &filetype == 'c'
-        exec "!clang % -o %<"
-       exec "!time ./%<"
-   elseif &filetype == 'cpp'
-       exec "!g++ % -std=c++11 -o %<"
-       exec "!time ./%<"
-   elseif &filetype == 'java' 
-       exec "!javac %" 
-       exec "!time java %<"
-   elseif &filetype == 'sh'
-       :!time bash %
-   elseif &filetype == 'python'
-       exec "!time python3 %"
-   elseif &filetype == 'html'
-       exec "!firefox % &"
-   elseif &filetype == 'go'
-       "        exec "!go build %<"
-       exec "!time go run %"
-   elseif &filetype == 'mkd'
-       exec "!typora %"
-   endif
-endfunc
+" nnoremap <silent><F5> :call CompileRunGcc()<CR>
+" func! CompileRunGcc()
+"     exec "w"
+"     if &filetype == 'c'
+"         exec "!clang % -o %<"
+"        exec "!time ./%<"
+"    elseif &filetype == 'cpp'
+"        exec "!g++ % -std=c++11 -o %<"
+"        exec "!time ./%<"
+"    elseif &filetype == 'java' 
+"        exec "!javac %" 
+"        exec "!time java %<"
+"    elseif &filetype == 'sh'
+"        :!time bash %
+"    elseif &filetype == 'python'
+"        exec "!time python3 %"
+"    elseif &filetype == 'html'
+"        exec "!firefox % &"
+"    elseif &filetype == 'go'
+"        "        exec "!go build %<"
+"        exec "!time go run %"
+"    elseif &filetype == 'mkd'
+"        exec "!typora %"
+"    endif
+" endfunc
 
-"F6进行C,C++的调试
-map <F6> :call Rungdb()<CR>
-func! Rungdb()
-    exec "w"
-    exec "!gcc % -g -o %<"
-    exec "!gdb ./%<"
-endfunc
+" F6进行C,C++的调试
+"map <F6> :call Rungdb()<CR>
+"func! Rungdb()
+"    exec "w"
+"    exec "!gcc % -g -o %<"
+"    exec "!gdb ./%<"
+"endfunc
 
-if has("autocmd")
-    autocmd BufReadPost *
-                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-                \   exe "normal g`\"" |
-                \ endif
-endif
-
+"if has("autocmd")
+"    autocmd BufReadPost *
+"                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"                \   exe "normal g`\"" |
+"                \ endif
+" endif
 
 " vim-plug插件安装
 call plug#begin('~/.vim/plugged')
@@ -291,15 +290,12 @@ Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
 Plug 'w0rp/ale',{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
-Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'justinmk/vim-syntax-extra', { 'for': ['c', 'bison', 'flex', 'cpp'] }
-Plug 'majutsushi/tagbar',{ 'on': 'TagbarToggle' } 
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
 Plug 'airblade/vim-gitgutter' 
 Plug 'junegunn/vim-easy-align' 
 Plug 'vim-scripts/fcitx.vim'
-Plug 'rhysd/vim-clang-format' , { 'on': 'ClangFormat' }
 Plug 'Yggdroot/LeaderF', { 'on': ['LeaderfFile','LeaderfFunction'] }
 Plug 'myusuf3/numbers.vim'
 Plug 'unblevable/quick-scope'       
@@ -308,23 +304,30 @@ Plug 'PotatoesMaster/i3-vim-syntax',{ 'for': 'i3' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature' 
 Plug 'vim-airline/vim-airline' 
+" Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
+" Plug 'majutsushi/tagbar',{ 'on': 'TagbarToggle' } 
+" Plug 'rhysd/vim-clang-format' , { 'on': 'ClangFormat' }
 " Plug 'ludovicchabant/vim-gutentags'
 " Plug 'alpertuna/vim-header' 
+
 " 自动补全
 Plug 'Shougo/deoplete.nvim',{ 'on':[] }
 Plug 'roxma/nvim-yarp',{ 'on':[] }
 Plug 'roxma/vim-hug-neovim-rpc',{ 'on':[] }
 Plug 'Shougo/deoplete-clangx',{ 'on':[] }
+
 " 延迟加载插件
 augroup load_deo     
     autocmd!
     autocmd InsertEnter * call plug#load('nvim-yarp','vim-hug-neovim-rpc','deoplete.nvim','deoplete-clangx') | autocmd! load_deo
 augroup END
+
 " 文本对象插件
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
+
 " 主题插件
 " Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
@@ -449,19 +452,19 @@ highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
  
 " NerdTree设置
 " F3打开目录树  
-nnoremap <silent><F3> :NERDTreeToggle<CR>
+" nnoremap <silent><F3> :NERDTreeToggle<CR>
 " 打开树状文件目录  
-nnoremap <C-F3> \be  
-autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
+" nnoremap <C-F3> \be  
+" autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
 " 当打开vim且没有文件时自动打开NERDTree
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " 只剩 NERDTree时自动关闭
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " tagbar键盘命令映射
-nmap <F9> :TagbarToggle<CR>
-let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+" nmap <F9> :TagbarToggle<CR>
+" let g:tagbar_ctags_bin='/usr/local/bin/ctags'
 
 " 自动注释
 " 在注释行之下新开一行时不要自动加注释
@@ -511,8 +514,8 @@ let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 
 " vim-header配置
-let g:header_field_author = 'zhangzhao'
-let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
+" let g:header_field_author = 'zhangzhao'
+" let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
 " neocomplete.vim配置
 let g:deoplete#enable_at_startup = 1
