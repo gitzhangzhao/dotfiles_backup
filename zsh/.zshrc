@@ -118,7 +118,7 @@ bindkey '`' autosuggest-accept
 # environment variable
 export EDITOR=vim
 export PAGER=less
-export PATH=$HOME/dotfiles:$HOME/.local/bin:/home/zhangzhao/Lab/epics/base-3.15.5/bin/linux-x86_64:/usr/lib/cargo/bin:$PATH
+export PATH=$HOME/dotfiles:$HOME/.cargo/bin:$HOME/.local/bin:/home/zhangzhao/Lab/epics/base-3.15.5/bin/linux-x86_64:$PATH
 export EPICS_CA_ADDR_LIST=192.168.1.8
 
 # ---------------------------------------
@@ -142,7 +142,7 @@ alias hibernate='systemctl hibernate'
 alias suspend='systemctl suspend'
 alias du='ncdu -2'
 alias df='duf'
-alias cat='batcat --theme 1337'
+alias cat='bat --theme 1337'
 alias al='apt list --upgradable'
 alias ap='sudo apt purge'
 alias search='sudo apt search -n'
@@ -175,3 +175,5 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+

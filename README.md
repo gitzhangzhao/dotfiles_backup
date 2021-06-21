@@ -6,13 +6,13 @@
 
 ## **Requirments:**
 
-#### **package(apt):**
+#### **package(apt&&cargo):**
 [requirements](requirements.txt)
 
 #### **other software(manually):**
 ```bash
-i3wm-themes oh-my-zsh vim lsd baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux gtags 
-i3lock-fancy electron-ssr v2raya(docker) glances(docker) zotero gping sd docker code
+i3wm-themes oh-my-zsh vim baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux gtags 
+i3lock-fancy electron-ssr v2raya(docker) glances(docker) zotero docker code
 i3lock-color
 ```
 

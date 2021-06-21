@@ -1,13 +1,16 @@
 sudo apt install \
 zsh trash-cli qterminal fcitx goldendict axel xclip \
-vlc bat traceroute lightdm-gtk-greeter-settings \
-firefox ripgrep zip unzip rar unrar tldr locate \
-fd-find wget universal-ctags xautolock clang nomacs \
+vlc traceroute lightdm-gtk-greeter-settings \
+firefox zip unzip rar unrar tldr locate \
+wget universal-ctags xautolock clang nomacs \
 redshift translate-shell speedcrunch pylint shellcheck \
 smartmontools flameshot progress sshfs ncdu wireshark \
 cflow lxappearance ufw xserver-xorg-input-synaptics dos2unix \
-strace ltrace samba mpv lshw fzf hexyl davfs2 remmina fonts-font-awesome \
+strace ltrace samba mpv lshw fzf davfs2 remmina fonts-font-awesome \
 neofetch picom pandoc graphviz feh zathura unclutter \
 duf man-db manpages-zh libpam0g-dev libx11-xcb-dev imagemagick \
 fonts-noto-cjk fonts-noto-color-emoji fonts-firacode breeze-gtk-theme \
-breeze-cursor-theme breeze-icon-theme lsof \
+breeze-cursor-theme breeze-icon-theme lsof cargo \
+
+cargo install fd-find sd gping lsd ripgrep bat hexyl
+
