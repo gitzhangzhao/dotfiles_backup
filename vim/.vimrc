@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : zhangzhao <zhangzhao@ihep.ac.cn>
 " Date              : 21.05.2020
-" Last Modified Date: 15.05.2021
+" Last Modified Date: 22.06.2021
 " Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 "张昭的个人vim配置，需要安装powerline和nerd字体，ctags，gtags
@@ -308,7 +308,7 @@ Plug 'vim-airline/vim-airline'
 " Plug 'majutsushi/tagbar',{ 'on': 'TagbarToggle' } 
 " Plug 'rhysd/vim-clang-format' , { 'on': 'ClangFormat' }
 " Plug 'ludovicchabant/vim-gutentags'
-" Plug 'alpertuna/vim-header' 
+Plug 'alpertuna/vim-header' 
 
 " 自动补全
 Plug 'Shougo/deoplete.nvim',{ 'on':[] }
@@ -335,6 +335,11 @@ Plug 'joshdick/onedark.vim'
 Plug 'jacoborus/tender.vim'
 Plug 'arcticicestudio/nord-vim' 
 Plug 'cocopon/iceberg.vim' 
+
+" 代码片段
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 call plug#end()
 
 
@@ -514,11 +519,14 @@ let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 
 " vim-header配置
-" let g:header_field_author = 'zhangzhao'
-" let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
+let g:header_field_author = 'zhangzhao'
+let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
 " neocomplete.vim配置
 let g:deoplete#enable_at_startup = 1
 
 " auto-pairs配置
 let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'} 
+
+" snips配置
+let g:UltiSnipsExpandTrigger='<CR>'
