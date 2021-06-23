@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : zhangzhao <zhangzhao@ihep.ac.cn>
 " Date              : 21.05.2020
-" Last Modified Date: 22.06.2021
+" Last Modified Date: 23.06.2021
 " Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 "张昭的个人vim配置，需要安装powerline和nerd字体，ctags，gtags
@@ -197,9 +197,10 @@ set matchtime=2
 "光标移动到buffer的顶部和底部时保持10行距离
 set scrolloff=10
 
-"代码补全 
-"打开文件类型检测, 加了这句才可以用智能补全
-set completeopt=menu,longest
+"记录退出行
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif 
 
 "定义F1-F12映射
 "F12整理代码
@@ -286,7 +287,6 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' 
 Plug 'junegunn/vim-slash'
-Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
 Plug 'w0rp/ale',{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
@@ -304,22 +304,20 @@ Plug 'PotatoesMaster/i3-vim-syntax',{ 'for': 'i3' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature' 
 Plug 'vim-airline/vim-airline' 
+Plug 'alpertuna/vim-header' 
+" Plug 'ervandew/supertab'
 " Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
 " Plug 'majutsushi/tagbar',{ 'on': 'TagbarToggle' } 
 " Plug 'rhysd/vim-clang-format' , { 'on': 'ClangFormat' }
 " Plug 'ludovicchabant/vim-gutentags'
-Plug 'alpertuna/vim-header' 
 
 " 自动补全
-Plug 'Shougo/deoplete.nvim',{ 'on':[] }
-Plug 'roxma/nvim-yarp',{ 'on':[] }
-Plug 'roxma/vim-hug-neovim-rpc',{ 'on':[] }
-Plug 'Shougo/deoplete-clangx',{ 'on':[] }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' }
 
 " 延迟加载插件
 augroup load_deo     
     autocmd!
-    autocmd InsertEnter * call plug#load('nvim-yarp','vim-hug-neovim-rpc','deoplete.nvim','deoplete-clangx') | autocmd! load_deo
+    autocmd InsertEnter * call plug#load('YouCompleteMe') | autocmd! load_deo
 augroup END
 
 " 文本对象插件
@@ -492,7 +490,7 @@ let g:rainbow_conf = {
 \}
 
 " supertab设置
-let g:SuperTabDefaultCompletionType = "<c-n>"
+" let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " 设置easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -522,11 +520,23 @@ let g:Lf_PreviewInPopup = 1
 let g:header_field_author = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
-" neocomplete.vim配置
-let g:deoplete#enable_at_startup = 1
-
 " auto-pairs配置
 let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'} 
 
 " snips配置
-let g:UltiSnipsExpandTrigger='<CR>'
+let g:UltiSnipsExpandTrigger='<c-s>'
+
+" YCM配置
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+set completeopt=menu,menuone
+noremap <c-z> <NOP>
+let g:ycm_semantic_triggers =  {
+			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+			\ 'cs,lua,javascript': ['re!\w{2}'],
+			\ }

@@ -1,8 +1,8 @@
 #!/bin/bash
-# File              : install_vim.sh
+# File              : script_install_vim
 # Author            : zhangzhao <zhangzhao@ihep.ac.cn>
 # Date              : 27.05.2020
-# Last Modified Date: 07.12.2020
+# Last Modified Date: 23.06.2021
 # Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 #!/bin/sh
 #编译vim：支持lua，perl，ruby，python2，python3，x环境
@@ -15,9 +15,8 @@ then
 fi
 
 #需要安装的包：
-sudo apt install libxt-dev libxpm-dev libx11-dev ruby-dev libperl-dev liblua-dev lua python-dev
-#deoplete plugin needs pynvim
-pip3 install --user pynvim 
+sudo apt install libxt-dev libxpm-dev libx11-dev ruby-dev libperl-dev liblua-dev lua
+
 if [ $? -ne 0 ] 
 then
     exit 0;
