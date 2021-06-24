@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : zhangzhao <zhangzhao@ihep.ac.cn>
 " Date              : 21.05.2020
-" Last Modified Date: 23.06.2021
+" Last Modified Date: 24.06.2021
 " Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 "张昭的个人vim配置，需要安装powerline和nerd字体，ctags，gtags
@@ -286,6 +286,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' 
+Plug 'tpope/vim-repeat'
 Plug 'junegunn/vim-slash'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
@@ -366,6 +367,9 @@ vmap > S>
 vmap / S/
 vmap ) S)
 vmap } S}
+
+" vim-repeat插件设置
+" silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 " supertab插件设置
 let g:SuperTabDefaultCompletionType = "<c-n>"
