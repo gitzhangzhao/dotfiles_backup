@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : zhangzhao <zhangzhao@ihep.ac.cn>
 " Date              : 21.05.2020
-" Last Modified Date: 24.06.2021
+" Last Modified Date: 25.06.2021
 " Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 "张昭的个人vim配置，需要安装powerline和nerd字体，ctags，gtags
@@ -369,7 +369,7 @@ vmap ) S)
 vmap } S}
 
 " vim-repeat插件设置
-" silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 " supertab插件设置
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -521,6 +521,7 @@ let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
 
 " vim-header配置
+let g:header_auto_add_header = 0
 let g:header_field_author = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
