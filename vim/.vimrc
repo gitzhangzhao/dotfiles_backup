@@ -327,7 +327,7 @@ Plug 'kana/vim-textobj-function'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
 
-" 主题插件
+" Themes
 " Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
@@ -397,8 +397,6 @@ let g:ale_echo_msg_format  = '[%linter%] %s [%severity%]'
 " 禁用默认INSERT模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
-nmap <C-k> <Plug>(ale_previous_wrap)
-nmap <C-j> <Plug>(ale_next_wrap)
 
 " 主题设置
 set t_Co=256
