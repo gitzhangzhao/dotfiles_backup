@@ -9,8 +9,7 @@ auto lo
 iface lo inet loopback
 
 # # The primary network interface
-auto enp2s0 enp1s0
-
+auto enp2s0
 iface enp2s0 inet static
     address 192.168.137.8
     netmask 255.255.255.0
@@ -18,10 +17,20 @@ iface enp2s0 inet static
     dns-nameservers 202.38.128.58
     dns-nameservers 202.38.128.10
     
+auto enp1s0
 iface enp1s0 inet static
     address 192.168.1.1
     netmask 255.255.255.0
     
+# auto wlp2s0
+# iface wlp2s0 inet dhcp
+#     wireless-essid IHEP
+
+# auto wlp2s0
+# iface wlp2s0 inet dhcp
+#     wpa-ssid Ace
+#     wpa-psk 12345678
+
 # iface enp1s0 inet6 auto 
 #     up route -A inet6 add default gw 2401:de00:1:6::1 dev enp1s0
 
