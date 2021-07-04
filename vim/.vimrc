@@ -111,6 +111,7 @@ set tabstop=4
 set shiftwidth=4
 "在行和段开始处使用制表符
 set smarttab
+set expandtab
 "显示行号
 set number
 "历史记录数
@@ -313,6 +314,8 @@ Plug 'alpertuna/vim-header'
 " Plug 'ludovicchabant/vim-gutentags'
 
 " 自动补全
+Plug 'skywind3000/vim-auto-popmenu'
+Plug 'skywind3000/vim-dict'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' }
 
 " 延迟加载插件
@@ -524,7 +527,7 @@ let g:header_field_author = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
 " auto-pairs配置
-let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'} 
+let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'} 
 
 " snips配置
 let g:UltiSnipsExpandTrigger='<c-s>'
@@ -537,9 +540,21 @@ let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_complete_in_strings=1
 let g:ycm_key_invoke_completion = '<c-z>'
+let g:ycm_complete_in_comments = 1
 set completeopt=menu,menuone
 noremap <c-z> <NOP>
 let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
+let g:ycm_filetype_blacklist = {'text'}
+
+" vim-auto-popmenu配置
+" 设定需要生效的文件类型，如果是 "*" 的话，代表所有类型
+let g:apc_enable_ft = {'text':1, 'markdown':1, 'php':1}
+" 设定从字典文件以及当前打开的文件里收集补全单词，详情看 ':help cpt'
+set cpt=.,k,w,b
+" 不要自动选中第一个选项。
+set completeopt=menu,menuone,noselect
+" 禁止在下方显示一些啰嗦的提示
+set shortmess+=c
