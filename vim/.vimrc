@@ -211,33 +211,33 @@ nnoremap <F12> gg=G
 nnoremap <F2> :g/^\s*$/d<CR> 
 
 "F8格式化代码
-" nnoremap <silent><F8> :ClangFormat<CR>
+nnoremap <silent><F8> :ClangFormat<CR>
 
-"F4跳转头文件(:A)
-" function! s:a(cmd)
-"   let name = expand('%:r')
-"   let ext = tolower(expand('%:e'))
-"   let sources = ['c', 'cc', 'cpp', 'cxx']
-"   let headers = ['h', 'hh', 'hpp', 'hxx']
-"   for pair in [[sources, headers], [headers, sources]]
-"     let [set1, set2] = pair
-"     if index(set1, ext) >= 0
-"       for h in set2
-"         let aname = name.'.'.h
-"         for a in [aname, toupper(aname)]
-"           if filereadable(a)
-"             execute a:cmd a
-"             return
-"           end
-"         endfor
-"       endfor
-"     endif
-"   endfor
-" endfunction
-" command! A call s:a('e')
-" command! AV call s:a('botright vertical split')
-" nnoremap <silent><F4> :A<CR>
-" nnoremap <silent>\<F4> :AV<CR>
+" <F7>跳转头文件(:A)
+ function! s:a(cmd)
+   let name = expand('%:r')
+   let ext = tolower(expand('%:e'))
+   let sources = ['c', 'cc', 'cpp', 'cxx']
+   let headers = ['h', 'hh', 'hpp', 'hxx']
+   for pair in [[sources, headers], [headers, sources]]
+     let [set1, set2] = pair
+     if index(set1, ext) >= 0
+       for h in set2
+         let aname = name.'.'.h
+         for a in [aname, toupper(aname)]
+           if filereadable(a)
+             execute a:cmd a
+             return
+           end
+         endfor
+       endfor
+     endif
+   endfor
+endfunction
+command! A call s:a('e')
+command! AV call s:a('botright vertical split')
+nnoremap <silent><F7> :A<CR>
+nnoremap <silent>\<F7> :AV<CR>
 
 " F5编译运行
 " nnoremap <silent><F5> :call CompileRunGcc()<CR>
@@ -307,15 +307,14 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature' 
 Plug 'vim-airline/vim-airline' 
 Plug 'alpertuna/vim-header' 
-" Plug 'ervandew/supertab'
-" Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
+Plug 'rhysd/vim-clang-format' , { 'on': 'ClangFormat' }
 " Plug 'majutsushi/tagbar',{ 'on': 'TagbarToggle' } 
-" Plug 'rhysd/vim-clang-format' , { 'on': 'ClangFormat' }
-" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
+
+" tags
+Plug 'ludovicchabant/vim-gutentags'
 
 " 自动补全
-Plug 'skywind3000/vim-auto-popmenu'
-Plug 'skywind3000/vim-dict'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' }
 
 " 延迟加载插件
@@ -374,9 +373,6 @@ vmap } S}
 " vim-repeat插件设置
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
-" supertab插件设置
-let g:SuperTabDefaultCompletionType = "<c-n>"
-
 " ale插件的配置(ale会默认配置编译器(默认clang))
 " let g:ale_linters = {
 " \   'c++': ['clang'],
@@ -428,39 +424,38 @@ highlight SignColumn guibg   = NONE "设置标志列背景色
 highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
 
 " gtags和gutentags插件的配置"
-" set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
 "gutentags搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
-" let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 " 所生成的数据文件的名称
-" let g:gutentags_ctags_tagfile = '.tags'
-" let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_ctags_tagfile = '.tags'
 " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-" let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_cache_dir = expand('~/.cache/tags')
 " 配置 ctags 的参数，老的 Exuberant-ctags 不能有 --extra=+q，注意
-" let g:gutentags_ctags_extra_args  = ['--fields=+niazS']
-" let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args  = ['--fields=+niazS']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 " let g:gutentags_ctags_extra_args += ['--extra=+q']
-" let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-" let g:gutentags_ctags_extra_args += ['--languages=c']
-" let g:gutentags_ctags_extra_args += ['--langmap=c:+.h']
-" let g:gutentags_ctags_extra_args += ['--languages=verilog']
-" let g:gutentags_ctags_extra_args += ['--languages=VHDL']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--languages=c']
+let g:gutentags_ctags_extra_args += ['--langmap=c:+.h']
+let g:gutentags_ctags_extra_args += ['--languages=verilog']
+let g:gutentags_ctags_extra_args += ['--languages=VHDL']
 " 如果使用 universal ctags 需要增加下面一行，老的 Exuberant-ctags 不能加下一行
-" let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 " 增加cscope使用的快捷键(C-[和esc按键一致，可以直接esc+s进行查找)
-" nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-" nnoremap <C-[>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-" nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
  
 " NerdTree设置
 " F3打开目录树  
-" nnoremap <silent><F3> :NERDTreeToggle<CR>
+" nnoremap <silent><F8> :NERDTreeToggle<CR>
 " 打开树状文件目录  
 " nnoremap <C-F3> \be  
 " autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
@@ -471,8 +466,8 @@ highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " tagbar键盘命令映射
-" nmap <F9> :TagbarToggle<CR>
-" let g:tagbar_ctags_bin='/usr/local/bin/ctags'
+nmap <F9> :LeaderFunction!<CR>
+let g:tagbar_ctags_bin='/usr/bin/ctags'
 
 " 自动注释
 " 在注释行之下新开一行时不要自动加注释
@@ -493,9 +488,6 @@ let g:rainbow_conf = {
 \       'css': 0,
 \   }
 \}
-
-" supertab设置
-" let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " 设置easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -547,14 +539,4 @@ let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
-let g:ycm_filetype_blacklist = {'text'}
-
-" vim-auto-popmenu配置
-" 设定需要生效的文件类型，如果是 "*" 的话，代表所有类型
-let g:apc_enable_ft = {'text':1, 'markdown':1, 'php':1}
-" 设定从字典文件以及当前打开的文件里收集补全单词，详情看 ':help cpt'
-set cpt=.,k,w,b
-" 不要自动选中第一个选项。
-set completeopt=menu,menuone,noselect
-" 禁止在下方显示一些啰嗦的提示
-set shortmess+=c
+let g:ycm_filetype_blacklist = {'text':1, 'markdown':1}
