@@ -3,7 +3,7 @@
 # zsh trash-cli qterminal fcitx goldendict axel xclip \
 # vlc traceroute lightdm-gtk-greeter-settings \
 # firefox zip unzip rar unrar tldr locate \
-# wget universal-ctags global xautolock clang nomacs \
+# wget universal-ctags global xautolock clang clang-format nomacs \
 # redshift translate-shell speedcrunch pylint shellcheck \
 # smartmontools flameshot progress sshfs ncdu wireshark \
 # cflow lxappearance ufw xserver-xorg-input-synaptics dos2unix \

@@ -203,18 +203,19 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif 
 
-"定义F1-F12映射
-"F12整理代码
-nnoremap <F12> gg=G
+"定义<F9>-<F12>映射
+"<F9>整理代码
+nnoremap <F9> gg=G
 
-"F2去空行  
-nnoremap <F2> :g/^\s*$/d<CR> 
+"<F10>去空行  
+nnoremap <F10> :g/^\s*$/d<CR> 
 
-"F8格式化代码
-nnoremap <silent><F8> :ClangFormat<CR>
+"<F11>格式化代码
+nnoremap <silent><F11> :ClangFormat<CR>
+vnoremap <silent><F11> :ClangFormat<CR>
 
-" <F7>跳转头文件(:A)
- function! s:a(cmd)
+"<F12>跳转头文件(:A)
+function! s:a(cmd)
    let name = expand('%:r')
    let ext = tolower(expand('%:e'))
    let sources = ['c', 'cc', 'cpp', 'cxx']
@@ -233,11 +234,11 @@ nnoremap <silent><F8> :ClangFormat<CR>
        endfor
      endif
    endfor
-endfunction
-command! A call s:a('e')
-command! AV call s:a('botright vertical split')
-nnoremap <silent><F7> :A<CR>
-nnoremap <silent>\<F7> :AV<CR>
+ endfunction
+ command! A call s:a('e')
+ command! AV call s:a('botright vertical split')
+ nnoremap <silent><F12> :A<CR>
+nnoremap <silent>\<F12> :AV<CR>
 
 " F5编译运行
 " nnoremap <silent><F5> :call CompileRunGcc()<CR>
@@ -293,12 +294,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
 Plug 'w0rp/ale',{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
-Plug 'justinmk/vim-syntax-extra', { 'for': ['c', 'bison', 'flex', 'cpp'] }
+Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
 Plug 'airblade/vim-gitgutter' 
 Plug 'junegunn/vim-easy-align' 
 Plug 'vim-scripts/fcitx.vim'
-Plug 'Yggdroot/LeaderF', { 'on': ['LeaderfFile','LeaderfFunction'] }
+Plug 'Yggdroot/LeaderF',{ 'on': ['LeaderfFile','LeaderfFunction'] }
 Plug 'myusuf3/numbers.vim'
 Plug 'unblevable/quick-scope'       
 Plug 'chrisbra/vim-diff-enhanced'
@@ -307,16 +308,16 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature' 
 Plug 'vim-airline/vim-airline' 
 Plug 'alpertuna/vim-header' 
-Plug 'rhysd/vim-clang-format' , { 'on': 'ClangFormat' }
-" Plug 'majutsushi/tagbar',{ 'on': 'TagbarToggle' } 
+Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat' }
 " Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
+" Plug 'majutsushi/tagbar',{ 'on': 'TagbarToggle' } 
 
 " tags
 Plug 'ludovicchabant/vim-gutentags'
 
 " 自动补全
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clangd-completer' }
-
+Plug 'Valloric/YouCompleteMe',{ 'do': './install.py --clangd-completer', 'on': [] }
+Plug 'Shougo/echodoc.vim',{'for': ['c', 'cpp']}
 " 延迟加载插件
 augroup load_deo     
     autocmd!
@@ -372,6 +373,9 @@ vmap } S}
 
 " vim-repeat插件设置
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+
+" supertab插件设置
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " ale插件的配置(ale会默认配置编译器(默认clang))
 " let g:ale_linters = {
@@ -455,7 +459,7 @@ nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
  
 " NerdTree设置
 " F3打开目录树  
-" nnoremap <silent><F8> :NERDTreeToggle<CR>
+" nnoremap <silent><F3> :NERDTreeToggle<CR>
 " 打开树状文件目录  
 " nnoremap <C-F3> \be  
 " autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
@@ -466,8 +470,8 @@ nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " tagbar键盘命令映射
-nmap <F9> :LeaderFunction!<CR>
-let g:tagbar_ctags_bin='/usr/bin/ctags'
+" nmap <F9> :TagbarToggle<CR>
+" let g:tagbar_ctags_bin='/usr/bin/ctags'
 
 " 自动注释
 " 在注释行之下新开一行时不要自动加注释
@@ -509,9 +513,16 @@ let g:Powerline_symbols='fancy'
 
 " LeaderF配置
 nnoremap <C-f> :LeaderfFile<CR>
-nnoremap <C-g> :LeaderfFunction<CR>
-let g:Lf_WindowPosition = 'popup'
+nnoremap <C-g> :LeaderfFunction!<CR>
 let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 0
+let g:Lf_HideHelp = 1
+let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 
 " vim-header配置
 let g:header_auto_add_header = 0
@@ -539,4 +550,7 @@ let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
-let g:ycm_filetype_blacklist = {'text':1, 'markdown':1}
+
+" echodoc设置
+set noshowmode
+let g:echodoc_enable_at_startup = 1
