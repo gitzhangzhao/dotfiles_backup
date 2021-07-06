@@ -95,10 +95,6 @@ nnoremap <silent><space> za
     
 "显示中文帮助
 set encoding=UTF-8
-if version >= 603
-    set helplang=cn
-    set encoding=utf-8
-endif
 
 "自动缩进风格
 "set autoindent
@@ -146,6 +142,10 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
 au BufRead,BufNewFile *.{go}   set filetype=go
 au BufRead,BufNewFile *.{js}   set filetype=javascript
 
+" 自动注释
+" 在注释行之下新开一行时不要自动加注释
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 "设置当文件被改动时自动载入
 set autoread
 "自动保存
@@ -153,12 +153,13 @@ set autowrite
 set magic                   " 设置魔术
 set guioptions-=T           " 隐藏工具栏
 set guioptions-=m           " 隐藏菜单栏
+"在处理未保存或只读文件的时候，弹出确认
+set confirm
+
 "不要使用vi的键盘模式，而是vim自己的
 set nocompatible
 "去掉输入错误的提示声音
 set noeb
-"在处理未保存或只读文件的时候，弹出确认
-set confirm
 
 "设置备份
 "允许备份
@@ -285,51 +286,51 @@ nnoremap <silent>\<F12> :AV<CR>
 " vim-plug插件安装
 call plug#begin('~/.vim/plugged')
 Plug 'Yggdroot/indentLine'
+" tpope
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' 
 Plug 'tpope/vim-repeat'
+" junegunn
 Plug 'junegunn/vim-slash'
-Plug 'jiangmiao/auto-pairs'
-Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
+Plug 'junegunn/vim-easy-align' 
+" staric checking
 Plug 'w0rp/ale',{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
+" syntax
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
+Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat' }
+" others
+Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
 Plug 'airblade/vim-gitgutter' 
-Plug 'junegunn/vim-easy-align' 
 Plug 'vim-scripts/fcitx.vim'
-Plug 'Yggdroot/LeaderF',{ 'on': ['LeaderfFile','LeaderfFunction'] }
 Plug 'myusuf3/numbers.vim'
 Plug 'unblevable/quick-scope'       
 Plug 'chrisbra/vim-diff-enhanced'
-Plug 'PotatoesMaster/i3-vim-syntax',{ 'for': 'i3' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'kshenoy/vim-signature' 
-Plug 'vim-airline/vim-airline' 
+Plug 'Yggdroot/LeaderF',{ 'on': ['LeaderfFile','LeaderfFunction'] }
 Plug 'alpertuna/vim-header' 
-Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat' }
-" Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
-" Plug 'majutsushi/tagbar',{ 'on': 'TagbarToggle' } 
-
+Plug 'vim-airline/vim-airline' 
+Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
+Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' } 
 " tags
 Plug 'ludovicchabant/vim-gutentags'
-
-" 自动补全
+" completion
 Plug 'Valloric/YouCompleteMe',{ 'do': './install.py --clangd-completer', 'on': [] }
 Plug 'Shougo/echodoc.vim',{'for': ['c', 'cpp']}
-" 延迟加载插件
 augroup load_deo     
     autocmd!
     autocmd InsertEnter * call plug#load('YouCompleteMe') | autocmd! load_deo
 augroup END
-
-" 文本对象插件
+" text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
-
 " Themes
 " Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
@@ -337,13 +338,11 @@ Plug 'joshdick/onedark.vim'
 Plug 'jacoborus/tender.vim'
 Plug 'arcticicestudio/nord-vim' 
 Plug 'cocopon/iceberg.vim' 
-
-" 代码片段
+" snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 call plug#end()
-
 
 " indentline插件设置
 let g:indentLine_char     = '┊'
@@ -373,9 +372,6 @@ vmap } S}
 
 " vim-repeat插件设置
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
-
-" supertab插件设置
-let g:SuperTabDefaultCompletionType = "<c-n>"
 
 " ale插件的配置(ale会默认配置编译器(默认clang))
 " let g:ale_linters = {
@@ -458,24 +454,20 @@ nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
  
 " NerdTree设置
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+let NERDTreeShowHidden=1
 " F3打开目录树  
-" nnoremap <silent><F3> :NERDTreeToggle<CR>
-" 打开树状文件目录  
-" nnoremap <C-F3> \be  
-" autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
+nnoremap <silent><F7> :NERDTreeToggle<CR>
 " 当打开vim且没有文件时自动打开NERDTree
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " 只剩 NERDTree时自动关闭
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " tagbar键盘命令映射
-" nmap <F9> :TagbarToggle<CR>
-" let g:tagbar_ctags_bin='/usr/bin/ctags'
-
-" 自动注释
-" 在注释行之下新开一行时不要自动加注释
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_ctags_bin='/usr/bin/ctags'
 
 " rainbow设置
 let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
@@ -515,7 +507,6 @@ let g:Powerline_symbols='fancy'
 nnoremap <C-f> :LeaderfFile<CR>
 nnoremap <C-g> :LeaderfFunction!<CR>
 let g:Lf_PreviewInPopup = 1
-let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_WindowHeight = 0.30
