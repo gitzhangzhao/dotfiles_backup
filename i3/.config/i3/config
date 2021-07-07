@@ -179,13 +179,13 @@ mode "resize" {
 }
 
 # Theme colors
-client.focused #b0c4bb #2f2f38 #b0c4bb #81a2be #81a2be
-client.focused_inactive #b0c4bb #2f2f38 #b0c4bb #688486 #688486
-client.unfocused #b0c4bb #2f2f38 #b0c4bb #688486 #688486
-client.urgent #b0c4bb #2f2f38 #b0c4bb #688486 #688486
-client.placeholder #b0c4bb #2f2f38 #b0c4bb #688486 #688486
+client.focused #c5c8c6 #1d1f21 #c5c8c6 #81a2be #81a2be
+client.focused_inactive #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
+client.unfocused #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
+client.urgent #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
+client.placeholder #c5c8c6 #1d1f21 #c5c8c6 #5f819d #5f819d
 
-client.background #2f2f38
+client.background #1d1f21
 
 # Gaps
 gaps inner 25

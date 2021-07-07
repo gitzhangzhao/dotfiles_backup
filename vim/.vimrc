@@ -6,6 +6,11 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 "张昭的个人vim配置，需要安装powerline和nerd字体，ctags，gtags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             Universal settings                             "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set ts=4
 set sw=4
 set et
@@ -68,13 +73,17 @@ nnoremap ' `
 "normal下;自动添加末尾分号
 nnoremap ; $a;<ESC>
 
-"选中状态下 Ctrl+c 复制,normal下 Ctrl+c复制一整行
-" set clipboard=unnamed
+" Use system clipboard
+" visual: Ctrl+c copy the selected area; normal: Ctrl+c copy a line
+" defaut to use system clipboard
+" set clipboard=unnamedplus 
 nnoremap <C-c> "+Y
 vnoremap <C-c> "+y
+" prevent vim from clearing the clipboard on exit 
+autocmd VimLeave * call system("xclip -selection clipboard -i", getreg('+'))
 
-"设置基本一些特性
-"行列线设置
+" 设置基本一些特性
+" 行列线设置
 set cul 
 " set cuc
 
@@ -204,7 +213,10 @@ if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif 
 
-"定义<F9>-<F12>映射
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                         Define <F9>-<F12> mapping                          "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 "<F9>整理代码
 nnoremap <F9> gg=G
 
@@ -283,24 +295,28 @@ nnoremap <silent>\<F12> :AV<CR>
 "                \ endif
 " endif
 
-" vim-plug插件安装
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 vim-plug                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 call plug#begin('~/.vim/plugged')
 Plug 'Yggdroot/indentLine'
-" tpope
+" tpope'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise' 
 Plug 'tpope/vim-repeat'
-" junegunn
+" junegunn'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/vim-easy-align' 
 " staric checking
 Plug 'w0rp/ale',{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
-" syntax
+" syntax highlight
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
 Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
 Plug 'PotatoesMaster/i3-vim-syntax'
+" code format
 Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat' }
 " others
 Plug 'jiangmiao/auto-pairs'
@@ -311,10 +327,10 @@ Plug 'myusuf3/numbers.vim'
 Plug 'unblevable/quick-scope'       
 Plug 'chrisbra/vim-diff-enhanced'
 Plug 'ryanoasis/vim-devicons'
-Plug 'kshenoy/vim-signature' 
 Plug 'Yggdroot/LeaderF',{ 'on': ['LeaderfFile','LeaderfFunction'] }
-Plug 'alpertuna/vim-header' 
+Plug 'kshenoy/vim-signature' 
 Plug 'vim-airline/vim-airline' 
+Plug 'alpertuna/vim-header' 
 Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
 Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' } 
 " tags
@@ -332,7 +348,7 @@ Plug 'kana/vim-textobj-function'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
 " Themes
-" Plug 'NLKNguyen/papercolor-theme'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'jacoborus/tender.vim'
@@ -343,6 +359,10 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 call plug#end()
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               plug settings                                "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " indentline插件设置
 let g:indentLine_char     = '┊'
@@ -397,7 +417,7 @@ let g:ale_echo_msg_format  = '[%linter%] %s [%severity%]'
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 
-" 主题设置
+" themes settings
 set t_Co=256
 set background=dark
 " gruvbox
@@ -405,17 +425,16 @@ let g:gitgutter_override_sign_column_highlight = 1
 let g:gruvbox_italic = 1
 let g:gruvbox_bold = 1
 let g:gruvbox_contrast_dark = 'hard'
-color gruvbox " 设置背景主题
+color gruvbox
 " nord
-" color nord " 设置背景主题
+" color nord
 " ondark
-" color onedark " 设置背景主题
+" color onedark
 " tender
 " color tender
 " let g:airline_theme = 'onedark'
 " iceberg
 " color iceberg
-
 " 让背景，行号，状态栏背景透明
 set termguicolors
 highlight Normal guibg       = NONE
@@ -425,6 +444,7 @@ highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
 
 " gtags和gutentags插件的配置"
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_ctags_executable = '/usr/bin/ctags'
 set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
 "gutentags搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
@@ -435,7 +455,7 @@ let g:gutentags_cache_dir = expand('~/.cache/tags')
 " 配置 ctags 的参数，老的 Exuberant-ctags 不能有 --extra=+q，注意
 let g:gutentags_ctags_extra_args  = ['--fields=+niazS']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-" let g:gutentags_ctags_extra_args += ['--extra=+q']
+let g:gutentags_ctags_extra_args += ['--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--languages=c']
 let g:gutentags_ctags_extra_args += ['--langmap=c:+.h']
