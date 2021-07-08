@@ -20,7 +20,7 @@ set sm
 set selection=inclusive
 set mousemodel=popup
 set nocompatible   " 去掉vi一致性模式，避免bug
-set ttimeoutlen=0 " 降低fcitx插件的反应时间
+set ttimeoutlen=0  " 降低fcitx插件的反应时间
 set lazyredraw     " 延迟绘制（提升性能）
 set fileformats=unix,dos
 
