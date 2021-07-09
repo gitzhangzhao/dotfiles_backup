@@ -6,7 +6,7 @@ python
 
 # License ----------------------------------------------------------------------
 
-# Copyright (c) 2015-2020 Andrea Cardaci <cyrus.and@gmail.com>
+# Copyright (c) 2015-2021 Andrea Cardaci <cyrus.and@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,8 @@ python
 # Imports ----------------------------------------------------------------------
 
 import ast
+import io
+import itertools
 import math
 import os
 import re
@@ -107,7 +109,7 @@ See the `prompt` attribute. This value is used as a Python format string where
                 'doc': '''Define the value of `{status}` when the target program is running.
 
 See the `prompt` attribute. This value is used as a Python format string.''',
-                'default': '\[\e[1;30m\]>>>\[\e[0m\]'
+                'default': '\[\e[90m\]>>>\[\e[0m\]'
             },
             # divider
             'omit_divider': {
@@ -129,7 +131,7 @@ See the `prompt` attribute. This value is used as a Python format string.''',
             },
             'divider_fill_style_secondary': {
                 'doc': 'Style for `divider_fill_char_secondary`',
-                'default': '1;30'
+                'default': '90'
             },
             'divider_label_style_on_primary': {
                 'doc': 'Label style for non-empty primary dividers',
@@ -145,7 +147,7 @@ See the `prompt` attribute. This value is used as a Python format string.''',
             },
             'divider_label_style_off_secondary': {
                 'doc': 'Label style for empty secondary dividers',
-                'default': '1;30'
+                'default': '90'
             },
             'divider_label_skip': {
                 'doc': 'Gap between the aligning border and the label.',
@@ -172,7 +174,7 @@ See the `prompt` attribute. This value is used as a Python format string.''',
                 'default': '32'
             },
             'style_low': {
-                'default': '1;30'
+                'default': '90'
             },
             'style_high': {
                 'default': '1;37'
@@ -624,7 +626,17 @@ class Dashboard(gdb.Command):
 
     @staticmethod
     def parse_inits(python):
-        for root, dirs, files in os.walk(os.path.expanduser('~/.gdbinit.d/')):
+        # paths where the .gdbinit.d directory might be
+        search_paths = [
+            '/etc/gdb-dashboard',
+            '{}/gdb-dashboard'.format(os.getenv('XDG_CONFIG_HOME', '~/.config')),
+            '~/Library/Preferences/gdb-dashboard',
+            '~/.gdbinit.d'
+        ]
+        # expand the tilde and walk the paths
+        inits_dirs = (os.walk(os.path.expanduser(path)) for path in search_paths)
+        # process all the init files in order
+        for root, dirs, files in itertools.chain.from_iterable(inits_dirs):
             dirs.sort()
             for init in sorted(files):
                 path = os.path.join(root, init)
@@ -1173,7 +1185,7 @@ class Source(Dashboard.Module):
         if style_changed or file_name != self.file_name or ts and ts > self.ts:
             try:
                 # reload the source file if changed
-                with open(file_name) as source_file:
+                with io.open(file_name, errors='replace') as source_file:
                     highlighter = Beautifier(file_name, self.tab_size)
                     self.highlighted = highlighter.active
                     source = highlighter.process(source_file.read())

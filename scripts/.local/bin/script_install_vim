@@ -15,7 +15,7 @@ then
 fi
 
 #需要安装的包：
-sudo apt install libxt-dev libxpm-dev libx11-dev ruby-dev libperl-dev liblua-dev lua
+sudo apt install libxt-dev libxpm-dev libx11-dev ruby ruby-dev libperl-dev liblua5.4-dev lua5.4
 
 if [ $? -ne 0 ] 
 then
@@ -24,9 +24,9 @@ fi
 
 #configure命令：
 ./configure --with-features=huge \
-            --enable-rubyinterp=yes \
-            --enable-luainterp=yes \
-            --enable-perlinterp=yes \
+           --enable-rubyinterp=yes \
+           --enable-luainterp=yes \
+           --enable-perlinterp=yes \
             --enable-python3interp=yes \
             --with-python3-config-dir=/usr/lib/python3.9/config-3.9-x86_64-linux-gnu \
             --enable-fontset=yes \
