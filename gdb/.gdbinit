@@ -2285,6 +2285,7 @@ set python print-stack full
 # Start ------------------------------------------------------------------------
 
 python Dashboard.start()
+dashboard -layout !assembly breakpoints expressions !memory !registers source stack !threads variables
 
 # File variables ---------------------------------------------------------------
 
