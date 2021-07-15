@@ -1,0 +1,13 @@
+[Unit]
+Description=Mount Sshfs for Chengsn' Raspberry
+After=network.target ssh.service
+
+[Service]
+Type=forking
+User=zhangzhao
+ExecStart=/usr/bin/sshfs chengsn@192.168.206.210: /home/zhangzhao/RasPi -p 9090 -o reconnect -o cache=yes
+ExecReload=/usr/bin/sshfs chengsn@192.168.206.210: /home/zhangzhao/RasPi -p 9090 -o reconnect -o cache=yes
+ExecStop=/usr/bin/umount /home/zhangzhao/RasPi
+
+[Install]
+WantedBy=multi-user.target

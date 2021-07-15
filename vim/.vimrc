@@ -347,7 +347,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
-" Themes
+" themes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
