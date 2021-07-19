@@ -13,8 +13,8 @@ export ZSH="/home/zhangzhao/.oh-my-zsh"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
@@ -122,7 +122,8 @@ export EPICS_CA_ADDR_LIST=192.168.1.8
 
 # ---------------------------------------
 # aliases
-# alias windows="remmina -c ~/zhangzhao/dotfiles/dotfiles_x64/group_rdp_debian2win10_192-168-137-1.remmina"
+alias csn="remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina"
+alias zz="remmina -c ~/.local/share/remmina/group_rdp_win-张昭_192-168-206-210-9092.remmina"
 alias ls='lsd'
 alias l='ls -l'
 alias ll='ls -l'
