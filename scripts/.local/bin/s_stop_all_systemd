@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo systemctl stop sshfs-RasPi.service
+sudo systemctl stop home-zhangzhao-IHEP.mount
+sudo systemctl stop sshfs-OrangePi.service

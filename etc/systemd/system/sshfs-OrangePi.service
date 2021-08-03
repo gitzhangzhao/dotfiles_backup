@@ -1,12 +1,13 @@
 [Unit]
 Description=Mount Sshfs for OrangePi
+Requires=network.target ssh.service
 After=network.target ssh.service
 
 [Service]
 Type=forking
 User=zhangzhao
-ExecStart=/usr/bin/sshfs root@192.168.1.8:/ /home/zhangzhao/OrangePi -o reconnect -o cache=yes
-ExecReload=/usr/bin/sshfs root@192.168.1.8:/ /home/zhangzhao/OrangePi -o reconnect -o cache=yes
+ExecStart=/usr/bin/sshfs root@192.168.206.202:/ /home/zhangzhao/OrangePi -p 9090 -o reconnect -o cache=yes
+ExecReload=/usr/bin/sshfs root@192.168.206.202:/ /home/zhangzhao/OrangePi -p 9090 -o reconnect -o cache=yes
 ExecStop=/usr/bin/umount /home/zhangzhao/OrangePi
 
 [Install]

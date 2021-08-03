@@ -7,7 +7,8 @@
 ## **Requirments:**
 
 #### **package(apt&&cargo):**
-[requirements](requirements.txt)
+- [requirements(apt)](requirements.apt)
+- [requirements(cargo)](requirements.cargo)
 
 #### **other software(manually):**
 ```bash
@@ -40,8 +41,8 @@ cd $HOME/dotfiles
 ```
 there are four scripts can be used:
 
-- install:  install all dotfiles, include home/ and /etc/.
-- uninstall:  uninstall all dotfiles, include home/ and /etc/.
+- stow_all:  stow all dotfiles, include home/ and /etc/.
+- unstow_all:  unstow all dotfiles, include home/ and /etc/.
 - stow:  stow one app at a time.
 - unstow:  unstow one app at a time.
 
