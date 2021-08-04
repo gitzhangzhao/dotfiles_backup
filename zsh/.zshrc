@@ -159,6 +159,8 @@ alias aa="sudo apt autopurge"
 alias au="sudo apt update"
 alias c="command cat ~/Share/pipe.txt | clipcopy > /dev/null"
 alias p="clippaste"
+alias start="s_start_all_systemd"
+alias stop="s_stop_all_systemd"
 
 # ---------------------------------------
 # functions
