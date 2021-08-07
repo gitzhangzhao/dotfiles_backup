@@ -153,7 +153,6 @@ alias hexdump='hexyl'
 alias cv="progress"
 alias ip="ip --color"
 alias reconfigure="sudo dpkg-reconfigure"
-alias pdf="zathura"
 alias ag="sudo apt dist-upgrade"
 alias aa="sudo apt autopurge"
 alias au="sudo apt update"
