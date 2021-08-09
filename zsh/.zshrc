@@ -134,13 +134,13 @@ alias rm="trash-put"
 alias wicd="wicd-client"
 alias feh="feh --full-screen"
 alias ps="ps -ef"
-alias bc="speedcrunch"
+alias bc="eva"
 alias on='synclient Touchpadoff=0'
 alias off='synclient Touchpadoff=1'
 alias k9='kill -9'
 alias hibernate='systemctl hibernate'
 alias suspend='systemctl suspend'
-alias du='ncdu -2'
+alias du='dust'
 alias df='duf'
 alias cat='bat --theme 1337'
 alias al='apt list --upgradable'
