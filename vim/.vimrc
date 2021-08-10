@@ -555,6 +555,7 @@ let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_complete_in_strings=1
 let g:ycm_key_invoke_completion = '<c-z>'
 let g:ycm_complete_in_comments = 1
+let g:ycm_disable_signature_help = 1
 set completeopt=menu,menuone
 noremap <c-z> <NOP>
 let g:ycm_semantic_triggers =  {
