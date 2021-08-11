@@ -333,6 +333,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'alpertuna/vim-header' 
 Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
 Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' } 
+Plug 'RRethy/vim-illuminate'
 " tags
 Plug 'ludovicchabant/vim-gutentags'
 " completion
