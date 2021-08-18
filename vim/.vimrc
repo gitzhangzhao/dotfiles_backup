@@ -224,7 +224,7 @@ nnoremap <F9> gg=G
 nnoremap <F10> :g/^\s*$/d<CR> 
 
 "<F11>格式化代码
-nnoremap <silent><F11> :ClangFormat<CR>
+nnoremap <silent><F11> V:ClangFormat<CR>
 vnoremap <silent><F11> :ClangFormat<CR>
 
 "<F12>跳转头文件(:A)
@@ -395,13 +395,13 @@ vmap } S}
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 " ale插件的配置(ale会默认配置编译器(默认clang))
-" let g:ale_linters = {
-" \   'c++': ['clang'],
-" \   'c': ['clang'],
-" \   'h': ['clang'],
-" \   'python': ['pylint'],
-" \   'sh': ['shellcheck'],
-" \}
+let g:ale_linters = {
+\   'c++': ['clang'],
+\   'c': ['clang'],
+\   'h': ['clang'],
+\   'python': ['pylint'],
+\   'sh': ['shellcheck'],
+\}
 " let g:ale_linters_explicit =1 
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
