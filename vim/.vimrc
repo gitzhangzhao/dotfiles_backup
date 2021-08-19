@@ -214,14 +214,8 @@ if has("autocmd")
 endif 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                         Define <F9>-<F12> mapping                          "
+"                         Define <F11>-<F12> mapping                          "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"<F9>整理代码
-nnoremap <F9> gg=G
-
-"<F10>去空行  
-nnoremap <F10> :g/^\s*$/d<CR> 
 
 "<F11>格式化代码
 nnoremap <silent><F11> V:ClangFormat<CR>
@@ -564,6 +558,10 @@ let g:ycm_semantic_triggers =  {
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
 
-" echodoc设置
+" echodoc配置
 set noshowmode
 let g:echodoc_enable_at_startup = 1
+
+" vim-gitgutter配置
+let g:gitgutter_sign_allow_clobber = 1
+
