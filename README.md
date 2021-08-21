@@ -12,8 +12,7 @@
 
 #### **other software(manually):**
 ```bash
-i3wm-themes oh-my-zsh vim baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux gtags 
-i3lock-fancy electron-ssr v2raya(docker) glances(docker) zotero docker code
+i3wm-themes oh-my-zsh vim baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux i3lock-fancy electron-ssr v2raya(docker) glances(docker) zotero docker code
 i3lock-color
 ```
 

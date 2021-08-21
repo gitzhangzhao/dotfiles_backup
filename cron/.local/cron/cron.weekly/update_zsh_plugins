@@ -1,8 +1,0 @@
-#!/bin/bash
-# File              : get_zsh_plugins
-# Author            : zhangzhao <zhangzhao@ihep.ac.cn>
-# Date              : 01.12.2020
-# Last Modified Date: 02.03.2021
-# Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
-cd $HOME/dotfiles
-git submodule update

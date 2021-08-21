@@ -1,8 +1,8 @@
 #!/bin/bash
 sudo apt install \
  zsh trash-cli qterminal fcitx goldendict axel xclip \
- vlc traceroute lightdm-gtk-greeter-settings \
- firefox zip unzip rar unrar tldr locate \
+ stow vlc traceroute lightdm-gtk-greeter-settings \
+ ssh arandr firefox zip unzip rar unrar tldr locate \
  wget universal-ctags global xautolock clang clang-format nomacs \
  redshift translate-shell pylint shellcheck \
  smartmontools flameshot progress sshfs wireshark \
