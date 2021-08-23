@@ -29,7 +29,7 @@ function check_path() {
 }
 
 function install_home_dotfiles() {
-    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v 'etc'|cut -d '/' -f 2|sort)
+    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v 'etc'|grep -v 'usr'|cut -d '/' -f 2|sort)
     echo -e "\033[34m$HOME:install...\033[0m"
     for DOTFILES in $HOME_DIR
     do
@@ -61,8 +61,31 @@ function install_etc_dotfiles() {
     echo -e ""
 }
 
+function install_usr_dotfiles() {
+    USR_DIR=$(find ./usr/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
+    echo -e "\033[34m/usr:install...\033[0m"
+
+    # plymouth depends on dejavu font
+    sudo mkdir -p /usr/share/fonts/truetype/dejavu
+    pushd usr > /dev/null
+    sudo $STOW $STOW_FLAG --target '/usr/share/fonts/truetype/dejavu' dejavu >/dev/null 2>&1
+    popd > /dev/null
+
+    if [ $? -eq 0 ] 
+    then
+        for DOTFILES in $USR_DIR
+        do
+            echo -e "$DOTFILES \033[32m stowed. \033[0m"
+        done
+    else
+        echo -e "\033[31m Error on stow usr. \033[0m"
+    fi
+    echo -e ""
+}
+
 check_root
 check_prog stow
 check_path
 install_home_dotfiles
 install_etc_dotfiles
+install_usr_dotfiles

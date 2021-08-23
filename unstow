@@ -49,31 +49,47 @@ function check_argv() {
 
 function unstow() {
 
-    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v 'etc'|cut -d '/' -f 2|sort)
+    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v 'etc'|grep -v 'usr'|cut -d '/' -f 2|sort)
     ETC_DIR=$(find ./etc/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
+    USR_DIR=$(find ./usr/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
 
     if [[ "$HOME_DIR" =~ "$1" ]]
     then
         $STOW $STOW_FLAG -D --target "$HOME" $1 >/dev/null 2>&1
         if [ $? -ne 0 ]
         then 
-        	echo -e "\033[31merror:\033[0m $1 is not in here."
-        exit 1
-	    fi
+            echo -e "\033[31merror:\033[0m $1 is not in here."
+            exit 1
+        fi
     elif [[ "$ETC_DIR" =~ "$1" ]]
     then
         pushd etc > /dev/null
         sudo $STOW $STOW_FLAG -D --target /etc/$1 $1 >/dev/null 2>&1
-	    if [ $? -ne 0 ]
+        if [ $? -ne 0 ]
         then 
-        	echo -e "\033[31merror:\033[0m $1 is not in here."
-        exit 1
-	    fi
+            echo -e "\033[31merror:\033[0m $1 is not in here."
+            exit 1
+        fi
         popd > /dev/null
+    elif [[ "$USR_DIR" =~ "$1" ]]
+    then
+        pushd usr > /dev/null
+
+        # plymouth depends on dejavu font
+        sudo $STOW $STOW_FLAG -D --target /usr/share/fonts/truetype/$1 $1 >/dev/null 2>&1
+        if [ $? -ne 0 ]
+        then 
+            echo -e "\033[31merror:\033[0m $1 is not in here."
+            exit 1
+        fi
+        sudo rmdir /usr/share/fonts/truetype/$1
+        popd > /dev/null
+
     else
         echo -e "\033[31merror:\033[0m $1 is not in here."
         exit 1
     fi
+
     echo -e "$1\033[33m unstowed.\033[0m"
 }
 
