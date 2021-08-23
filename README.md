@@ -85,9 +85,10 @@ sudo docker run -d \
 > E: plymouth failed with return 1
 
 ```bash
-# plymouth depends dejavu font, and I can not see plymouth output because of ssd.
-# just purge plymouth:
-sudo apt purge plymouth
+# plymouth depends on dejavu font.
+# stow dejavu font for plymouth:
+cd ~/dotfiles
+stow dejavu
 ```
 
 ### 2. webdav: systemd server failed

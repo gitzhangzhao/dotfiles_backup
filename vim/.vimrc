@@ -452,10 +452,6 @@ let g:gutentags_ctags_extra_args  = ['--fields=+niazS']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--languages=c']
-let g:gutentags_ctags_extra_args += ['--langmap=c:+.h']
-let g:gutentags_ctags_extra_args += ['--languages=verilog']
-let g:gutentags_ctags_extra_args += ['--languages=VHDL']
 " 如果使用 universal ctags 需要增加下面一行，老的 Exuberant-ctags 不能加下一行
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 " 增加cscope使用的快捷键(C-[和esc按键一致，可以直接esc+s进行查找)
