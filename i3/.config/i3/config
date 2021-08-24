@@ -274,7 +274,7 @@ bindsym $mod+Shift+f exec --no-startup-id flameshot gui
 bindsym $mod+a exec --no-startup-id flameshot gui -p ~/Share
 bindsym $mod+c exec --no-startup-id code
 bindsym $mod+Shift+b exec --no-startup-id speedcrunch
-bindsym $mod+g exec --no-startup-id remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina
+bindsym $mod+g exec --no-startup-id remmina -c ~/.local/share/remmina/group_vnc_rasp_192-168-206-210-9091.remmina
 
 ##############################################################################
 
