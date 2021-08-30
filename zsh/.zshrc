@@ -119,6 +119,10 @@ export EDITOR=vim
 export PAGER=less
 export PATH=$HOME/dotfiles:$HOME/.cargo/bin:$HOME/.local/bin:/home/zhangzhao/Lab/epics/base-3.15.5/bin/linux-x86_64:$PATH
 export EPICS_CA_ADDR_LIST=192.168.1.8
+eval "$(mcfly init zsh)"
+export MCFLY_INTERFACE_VIEW=BOTTOM
+export MCFLY_KEY_SCHEME=vim
+export MCFLY_RESULTS=50
 
 # ---------------------------------------
 # aliases
