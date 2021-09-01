@@ -48,7 +48,10 @@ function install_home_dotfiles() {
 function install_etc_dotfiles() {
     ETC_DIR=$(find ./etc/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
     echo -e "\033[34m/etc:install...\033[0m"
-    sudo $STOW $STOW_FLAG --target "/etc" etc 2> /dev/null
+    pushd etc > /dev/null
+    sudo $STOW $STOW_FLAG --target /etc * > /dev/null 2>&1
+    popd > /dev/null
+
     if [ $? -eq 0 ] 
     then
         for DOTFILES in $ETC_DIR
@@ -64,11 +67,8 @@ function install_etc_dotfiles() {
 function install_usr_dotfiles() {
     USR_DIR=$(find ./usr/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
     echo -e "\033[34m/usr:install...\033[0m"
-
-    # plymouth depends on dejavu font
-    sudo mkdir -p /usr/share/fonts/truetype/dejavu
     pushd usr > /dev/null
-    sudo $STOW $STOW_FLAG --target '/usr/share/fonts/truetype/dejavu' dejavu >/dev/null 2>&1
+    sudo $STOW $STOW_FLAG --target /usr * >/dev/null 2>&1
     popd > /dev/null
 
     if [ $? -eq 0 ] 

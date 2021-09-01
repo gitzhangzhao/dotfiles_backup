@@ -48,7 +48,10 @@ function uninstall_home_dotfiles() {
 function uninstall_etc_dotfiles() {
     ETC_DIR=$(find ./etc/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
     echo -e "\033[34m/etc:uninstall...\033[0m"
-    sudo $STOW $STOW_FLAG -D --target "/etc" etc 2> /dev/null
+    pushd etc > /dev/null
+    sudo $STOW $STOW_FLAG -D --target /etc * >/dev/null 2>&1
+    popd > /dev/null
+
     if [ $? -eq 0 ] 
     then
         for DOTFILES in $ETC_DIR
@@ -64,10 +67,8 @@ function uninstall_etc_dotfiles() {
 function uninstall_usr_dotfiles() {
     USR_DIR=$(find ./usr/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
     echo -e "\033[34m/usr:uninstall...\033[0m"
-
-    # plymouth depends on dejavu font
     pushd usr > /dev/null
-    sudo $STOW $STOW_FLAG -D --target /usr/share/fonts/truetype/dejavu dejavu >/dev/null 2>&1
+    sudo $STOW $STOW_FLAG -D --target /usr * >/dev/null 2>&1
     popd > /dev/null
 
     if [ $? -eq 0 ] 
@@ -79,7 +80,6 @@ function uninstall_usr_dotfiles() {
     else
         echo -e "\033[31m Error on delete usr. \033[0m"
     fi
-    sudo rmdir /usr/share/fonts/truetype/dejavu
     echo -e ""
 }
 

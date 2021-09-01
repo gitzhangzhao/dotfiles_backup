@@ -61,28 +61,27 @@ function unstow() {
             echo -e "\033[31merror:\033[0m $1 is not in here."
             exit 1
         fi
+
     elif [[ "$ETC_DIR" =~ "$1" ]]
     then
         pushd etc > /dev/null
-        sudo $STOW $STOW_FLAG -D --target /etc/$1 $1 >/dev/null 2>&1
+        sudo $STOW $STOW_FLAG -D --target /etc $1 >/dev/null 2>&1
         if [ $? -ne 0 ]
         then 
             echo -e "\033[31merror:\033[0m $1 is not in here."
             exit 1
         fi
         popd > /dev/null
+
     elif [[ "$USR_DIR" =~ "$1" ]]
     then
         pushd usr > /dev/null
-
-        # plymouth depends on dejavu font
-        sudo $STOW $STOW_FLAG -D --target /usr/share/fonts/truetype/$1 $1 >/dev/null 2>&1
+        sudo $STOW $STOW_FLAG -D --target /usr $1 >/dev/null 2>&1
         if [ $? -ne 0 ]
         then 
             echo -e "\033[31merror:\033[0m $1 is not in here."
             exit 1
         fi
-        sudo rmdir /usr/share/fonts/truetype/$1
         popd > /dev/null
 
     else
