@@ -35,7 +35,7 @@ sudo apt install stow
 ```
 clone the repository
 ```bash
-git clone --recursive https://github.com/gitzhangzhao/dotfiles.git $HOME
+git clone https://github.com/gitzhangzhao/dotfiles.git $HOME
 cd $HOME/dotfiles
 ```
 there are four scripts can be used:
