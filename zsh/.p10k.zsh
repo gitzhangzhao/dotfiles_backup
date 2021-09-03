@@ -37,15 +37,15 @@
   # Zsh >= 5.1 is required.
   autoload -Uz is-at-least && is-at-least 5.1 || return
 
-  # Prompt colors.
-  local green='#A3BE8C'
-  local orange='#D08770'
-  local red='#BF616A'
-  local yellow='#EBCB8B'
-  local blue='#5E81AC'
-  local purple='#B48EAD'
-  local cyan='#88C0D0'
-  local white='#8FBCBB'
+  # Prompt colors (gruvbox).
+  local green='#b8bb26'
+  local orange='#fe8019'
+  local red='#fb4934'
+  local yellow='#fabd2f'
+  local blue='#83a598'
+  local purple='#d3869b'
+  local aqua='#8ec07c'
+  local white='#ebdbb2'
 
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -87,11 +87,11 @@
   # red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS}_FOREGROUND=$red
   # Default prompt symbol.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION=''
   # Prompt symbol in command vi mode.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION=''
   # Prompt symbol in visual vi mode is the same as in command mode.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='❮'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION=''
   # Prompt symbol in overwrite vi mode is the same as in command mode.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=false
 
@@ -102,10 +102,10 @@
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
 
   # purple current directory.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=$purple
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=$aqua
 
-  # Context format when root: user@host. The first part cyan, the rest blue.
-  typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$cyan}%n%f%F{$blue}@%m%f"
+  # Context format when root: user@host. The first part blue, the rest white.
+  typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$blue}%n%f%F{$white}@%m%f"
   # Context format when not root: user@host. The whole thing white.
   typeset -g POWERLEVEL9K_CONTEXT_TEMPLATE="%F{$white}%n@%m%f"
   # Don't show context unless root or in SSH.
@@ -131,8 +131,8 @@
   # asynchronously when Git state changes.
   typeset -g POWERLEVEL9K_VCS_MAX_SYNC_LATENCY_SECONDS=0
 
-  # Cyan ahead/behind arrows.
-  typeset -g POWERLEVEL9K_VCS_{INCOMING,OUTGOING}_CHANGESFORMAT_FOREGROUND=$cyan
+  # aqua ahead/behind arrows.
+  typeset -g POWERLEVEL9K_VCS_{INCOMING,OUTGOING}_CHANGESFORMAT_FOREGROUND=$aqua
   # Don't show remote branch, current tag or stashes.
   typeset -g POWERLEVEL9K_VCS_GIT_HOOKS=(vcs-detect-changes git-untracked git-aheadbehind)
   # Don't show the branch icon.

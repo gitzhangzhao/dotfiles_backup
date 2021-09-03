@@ -10,5 +10,5 @@ sudo apt install \
  strace ltrace samba mpv lshw davfs2 remmina fonts-font-awesome \
  neofetch picom pandoc graphviz feh zathura unclutter \
  duf man-db manpages-zh libpam0g-dev libx11-xcb-dev imagemagick \
- fonts-noto-cjk fonts-noto-color-emoji fonts-firacode breeze-gtk-theme \
- breeze-cursor-theme breeze-icon-theme lsof \
+ fonts-noto-cjk fonts-noto-color-emoji fonts-firacode \
+ breeze-cursor-theme gtk2-engines-murrine lsof \

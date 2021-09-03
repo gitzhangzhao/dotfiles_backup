@@ -24,9 +24,8 @@ i3lock-color
 - Droid Sans Mono for Powerline Nerd Font Complete
 
 #### **My GTK theme, cursor theme and icon theme:**
-- breeze-gtk-theme 
-- breeze-cursor-theme 
-- breeze-icon-theme
+- breeze-cursor-theme for cursor
+- gruvbox-material-gtk for gtk and icons
 
 ## **Installation**
 install stow first.
