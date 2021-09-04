@@ -106,12 +106,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# ---------------------------------------
+# ------------------------------------------------------------------------------
 # completions
 autoload -U compinit && compinit
 
-# ---------------------------------------
-## key bindings
+# ------------------------------------------------------------------------------
+# key bindings
 bindkey '`' autosuggest-accept
 
 # environment variable
@@ -124,7 +124,7 @@ export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_KEY_SCHEME=vim
 export MCFLY_RESULTS=50
 
-# ---------------------------------------
+# ------------------------------------------------------------------------------
 # aliases
 alias csn="remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina"
 alias zz="remmina -c ~/.local/share/remmina/group_rdp_win-张昭_192-168-206-210-9092.remmina"
@@ -165,7 +165,7 @@ alias p="clippaste"
 alias start="s_start_all_systemd"
 alias stop="s_stop_all_systemd"
 
-# ---------------------------------------
+# ------------------------------------------------------------------------------
 # functions
 # 'ls' after every 'cd'
 function chpwd_cdls() {
@@ -177,6 +177,10 @@ function chpwd_cdls() {
 if ! (( $chpwd_functions[(I)chpwd_cdls] )); then
   chpwd_functions+=(chpwd_cdls)
 fi
+
+# ------------------------------------------------------------------------------
+# commands
+ulimit -c 0 > /dev/null 2>&1
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
