@@ -46,6 +46,7 @@
   local purple='#d3869b'
   local aqua='#8ec07c'
   local white='#ebdbb2'
+  local gray='#a89984'
 
   # Left prompt segments.
   typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -83,7 +84,7 @@
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
   # green prompt symbol if the last command succeeded.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$green
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS}_FOREGROUND=$aqua
   # red prompt symbol if the last command failed.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS}_FOREGROUND=$red
   # Default prompt symbol.
@@ -102,7 +103,7 @@
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
 
   # purple current directory.
-  typeset -g POWERLEVEL9K_DIR_FOREGROUND=$aqua
+  typeset -g POWERLEVEL9K_DIR_FOREGROUND=$orange
 
   # Context format when root: user@host. The first part blue, the rest white.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE="%F{$blue}%n%f%F{$white}@%m%f"
@@ -118,10 +119,10 @@
   # Duration format: 1d 2h 3m 4s.
   typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FORMAT='d h m s'
   # yellow previous command duration.
-  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=$yellow
+  typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND=$purple
 
   # orange Git prompt. This makes stale prompts indistinguishable from up-to-date ones.
-  typeset -g POWERLEVEL9K_VCS_FOREGROUND=$orange
+  typeset -g POWERLEVEL9K_VCS_FOREGROUND=$yellow
 
   # Disable async loading indicator to make directories that aren't Git repositories
   # indistinguishable from large Git repositories without known state.
