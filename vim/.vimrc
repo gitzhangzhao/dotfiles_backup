@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : zhangzhao <zhangzhao@ihep.ac.cn>
 " Date              : 21.05.2020
-" Last Modified Date: 12.09.2021
+" Last Modified Date: 13.09.2021
 " Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 "张昭的个人vim配置，需要安装powerline和nerd字体，ctags，gtags
@@ -147,7 +147,7 @@ set viminfo+=!
 set iskeyword+=_,$,@,%,#,-
 
 "filetype添加
-au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
+au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=markdown
 au BufRead,BufNewFile *.{go}   set filetype=go
 au BufRead,BufNewFile *.{js}   set filetype=javascript
 
@@ -352,6 +352,7 @@ Plug 'cocopon/iceberg.vim'
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+
 " markdown
 Plug 'gabrielelana/vim-markdown'
 
@@ -562,4 +563,3 @@ let g:echodoc_enable_at_startup = 1
 
 " vim-gitgutter配置
 let g:gitgutter_sign_allow_clobber = 1
-
