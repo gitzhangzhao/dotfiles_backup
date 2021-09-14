@@ -1,0 +1,14 @@
+[Unit]
+Description=Mount Sshfs for HP Server
+Requires=network.target ssh.service
+After=network.target ssh.service
+
+[Service]
+Type=forking
+User=zhangzhao
+ExecStart=/usr/bin/sshfs zhangzh@192.168.206.186: /home/zhangzhao/HPServer -o reconnect -o cache=yes
+ExecReload=/usr/bin/sshfs zhangzh@192.168.206.186: /home/zhangzhao/HPServer -o reconnect -o cache=yes
+ExecStop=/usr/bin/umount /home/zhangzhao/HPServer
+
+[Install]
+WantedBy=multi-user.target
