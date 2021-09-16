@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo apt install \
- zsh trash-cli qterminal fcitx goldendict axel xclip \
- stow vlc traceroute lightdm-gtk-greeter-settings \
+ zsh trash-cli qterminal fcitx goldendict axel xclip flex\
+ stow vlc traceroute lightdm-gtk-greeter-settings bison\
  ssh arandr firefox zip unzip rar unrar tldr locate \
  wget universal-ctags global xautolock clang clang-format nomacs \
  redshift translate-shell pylint shellcheck linux-headers-amd64 \

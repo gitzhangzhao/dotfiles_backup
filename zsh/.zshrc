@@ -76,7 +76,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
  
-plugins=(zsh-completions git zsh-syntax-highlighting zsh-autosuggestions extract zsh-completions vi-mode colored-man-pages zsh_reload sudo z last-working-dir you-should-use autoupdate docker)
+plugins=(zsh-completions git zsh-syntax-highlighting zsh-autosuggestions extract vi-mode colored-man-pages zsh_reload sudo last-working-dir you-should-use autoupdate docker rustup rust)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -123,6 +123,7 @@ eval "$(mcfly init zsh)"
 export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_KEY_SCHEME=vim
 export MCFLY_RESULTS=50
+# export C_INCLUDE_PATH=/usr/src/linux-headers-5.10.0-8-amd64:/usr/src/linux-headers-5.10.0-8-common/include:/usr/src/linux-headers-5.10.0-8-common/arch:/usr/src/linux-headers-5.10.0-8-common/arch/x86/include/asm/
 
 # ------------------------------------------------------------------------------
 # aliases
@@ -184,3 +185,10 @@ ulimit -c 0 > /dev/null 2>&1
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+# ------------------------------------------------------------------------------
+# proxy
+export http_proxy=http://localhost:20171
+export https_proxy=https://localhost:20171
+export all_proxy=socks5://localhost:20170
