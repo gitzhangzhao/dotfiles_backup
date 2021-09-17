@@ -1,0 +1,2 @@
+@daily run-parts /home/zhangzhao/.local/cron/cron.daily
+@monthly run-parts /home/zhangzhao/.local/cron/cron.monthly

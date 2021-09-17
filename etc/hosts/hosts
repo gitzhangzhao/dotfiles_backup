@@ -1,0 +1,15 @@
+127.0.0.1	localhost
+127.0.1.1	debian
+54.192.131.7 sh.rustup.rs
+54.192.131.64 sh.rustup.rs
+54.192.131.7 sh.rustup.rs
+52.85.89.43 static.rust-lang.org
+52.85.89.57 static.rust-lang.org
+52.85.89.102 static.rust-lang.org
+99.84.173.4 download.docker.com
+99.84.173.69 download.docker.com
+99.84.173.113 download.docker.com
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
