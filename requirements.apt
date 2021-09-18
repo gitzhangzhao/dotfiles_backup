@@ -5,7 +5,7 @@ sudo apt install \
  ssh arandr firefox zip unzip rar unrar tldr locate \
  wget universal-ctags global xautolock clang clang-format nomacs \
  redshift translate-shell pylint shellcheck linux-headers-amd64 \
- smartmontools flameshot progress sshfs wireshark \
+ smartmontools flameshot libjpeg-dev progress sshfs wireshark \
  cflow lxappearance ufw xserver-xorg-input-synaptics dos2unix \
  strace ltrace samba mpv lshw davfs2 remmina fonts-font-awesome \
  neofetch picom pandoc graphviz feh zathura unclutter netcat-openbsd \

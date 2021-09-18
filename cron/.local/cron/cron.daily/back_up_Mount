@@ -5,6 +5,6 @@
 # Last Modified Date: 09.02.2021
 # Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 NAME=backup_$(date "+%Y%m%d").tar.gz
-cd /home/zhangzhao
-tar -czf "$NAME" --exclude=./dotfiles/.git dotfiles
-mv $NAME IHEP/backup
+cd /home/zhangzhao/Mount
+tar -czf "$NAME" --exclude=../dotfiles/.git  --exclude=../Lab/epics* --exclude=../Lab/mrf* --exclude=../Lab/01_demo_book --exclude=../wanglin ../dotfiles ../Lab
+mv $NAME backup/

@@ -6,6 +6,7 @@ After=network.target ssh.service
 [Service]
 Type=forking
 User=zhangzhao
+Type=ext4
 ExecStart=/usr/bin/sshfs zhangzh@192.168.206.186: /home/zhangzhao/HPServer -o reconnect -o cache=yes
 ExecReload=/usr/bin/sshfs zhangzh@192.168.206.186: /home/zhangzhao/HPServer -o reconnect -o cache=yes
 ExecStop=/usr/bin/umount /home/zhangzhao/HPServer

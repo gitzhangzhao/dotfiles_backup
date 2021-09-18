@@ -37,6 +37,14 @@ nnoremap L $
 vnoremap H 0
 vnoremap L $
 
+"d到行首或行尾
+nnoremap dL d$
+nnoremap dH d0
+
+"y到行首或行尾
+nnoremap yL y$
+nnoremap yH y0
+
 "x删除不保存到剪切板
 nnoremap x "_x
 nnoremap X "_X
@@ -313,6 +321,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 " code format
 Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat' }
 " others
+Plug 'mhinz/vim-startify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
 Plug 'airblade/vim-gitgutter' 
