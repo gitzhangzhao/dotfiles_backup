@@ -1,10 +1,11 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File              : .vimrc
 " Author            : zhangzhao <zhangzhao@ihep.ac.cn>
 " Date              : 21.05.2020
 " Last Modified Date: 14.09.2021
 " Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
-"张昭的个人vim配置，需要安装powerline和nerd字体，ctags，gtags
+" vimrc for zhangzhao ,need powerline-font, nerd-font，ctags and gtags
 """"""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -24,7 +25,7 @@ set ttimeoutlen=0  " 降低fcitx插件的反应时间
 set lazyredraw     " 延迟绘制（提升性能）
 set fileformats=unix,dos
 
-"打开语法高亮和插件的语法高亮支持
+" syntax support
 syntax on
 syntax enable
 
@@ -328,14 +329,20 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/fcitx.vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'unblevable/quick-scope'       
+" vimdiff
 Plug 'chrisbra/vim-diff-enhanced'
-Plug 'ryanoasis/vim-devicons'
+" LeaderF
 Plug 'Yggdroot/LeaderF',{ 'on': ['LeaderfFile','LeaderfFunction'] }
 Plug 'kshenoy/vim-signature' 
+" status line
+Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline' 
+" header
 Plug 'alpertuna/vim-header' 
+" bar
 Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
 Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' } 
+" highlight cursor word
 Plug 'RRethy/vim-illuminate'
 " tags
 Plug 'ludovicchabant/vim-gutentags'
@@ -361,8 +368,7 @@ Plug 'cocopon/iceberg.vim'
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-
-" markdown
+" markdown syntax
 Plug 'gabrielelana/vim-markdown'
 
 call plug#end()
@@ -482,9 +488,6 @@ let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeShowHidden=1
 " F3打开目录树  
 nnoremap <silent><F7> :NERDTreeToggle<CR>
-" 当打开vim且没有文件时自动打开NERDTree
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " 只剩 NERDTree时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 

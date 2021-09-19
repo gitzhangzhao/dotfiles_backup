@@ -24,7 +24,7 @@ font-1 = "FontAwesome:style=Solid:size=12;3"
 
 modules-left = wlan eth cpu memory
 modules-center = i3
-modules-right = pulseaudio battery date powermenu
+modules-right = info-trash updates-apt pulseaudio date powermenu
 
 ;tray-position =
 ;tray-padding =
@@ -88,7 +88,7 @@ ramp-signal-foreground = #1d1e26
 [module/eth]
 type = internal/network
 interface = enp3s0
-interval = 3.0
+interval = 1.0
 format-connected-padding = 2
 format-connected-foreground = #1d1e26
 format-connected-background = #789073
@@ -101,7 +101,7 @@ format-disconnected =
 
 [module/date]
 type = internal/date
-interval = 5
+interval = 1.0
 
 date =
 date-alt = " %Y-%m-%d"
@@ -244,7 +244,7 @@ label-volume = %percentage%%
 ; Available tokens:
 ;   %percentage% (default)
 ;   %decibels% (unreleased)
-label-muted =  muted
+label-muted = muted
 ;label-muted-foreground = #666
 
 ; Only applies if <ramp-volume> is used
@@ -255,4 +255,15 @@ ramp-volume-2 = 
 ; Right and Middle click (unreleased)
 ;click-right = pavucontrol &
 ; click-middle =
+
+[module/updates-apt]
+type = custom/script
+exec = ~/.config/polybar/scripts/updates-apt.sh
+interval = 60
+
+[module/info-trash]
+type = custom/script
+exec = ~/.config/polybar/scripts/info-trash.sh
+interval = 60
+click-left = ~/.config/polybar/scripts/info-trash.sh --clean &
 
