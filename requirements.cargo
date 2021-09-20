@@ -1,5 +1,5 @@
 #!/bin/bash
 
 curl https://sh.rustup.rs -sSf | sh
-cargo install fd-find sd gping lsd ripgrep bat hexyl rnr du-dust eva mcfly mdbook kmon tokei
+cargo install fd-find sd gping lsd ripgrep bat hexyl rnr du-dust eva mcfly mdbook kmon tokei git-delta
 

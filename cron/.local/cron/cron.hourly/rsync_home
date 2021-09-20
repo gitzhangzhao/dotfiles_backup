@@ -15,6 +15,12 @@ mkdir -p "${BACKUP_DIR}"
 
 rsync -av --delete \
     "${SOURCE_DIR}/" \
+    --exclude="IHEP" \
+    --exclude="HPServer" \
+    --exclude="OrangePi" \
+    --exclude="RasPi" \
+    --exclude="Mount" \
+    --exclude="Share" \
     --link-dest "${LATEST_LINK}" \
     "${BACKUP_PATH}"
 

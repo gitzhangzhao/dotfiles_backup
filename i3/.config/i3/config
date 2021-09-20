@@ -188,7 +188,7 @@ client.placeholder #b0b287 #1d1e26 #b0b287 #789073 #789073
 client.background #282828
 
 # Gaps
-gaps inner 25
+gaps inner 20
 gaps outer 0
 gaps top 25
 smart_borders on
