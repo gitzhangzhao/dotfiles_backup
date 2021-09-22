@@ -19,7 +19,7 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = "Fira Code:size=11;3"
+font-0 = "Fira Code Medium:size=11;3"
 font-1 = "FontAwesome:style=Solid:size=13;4"
 
 modules-left = wlan eth cpu memory

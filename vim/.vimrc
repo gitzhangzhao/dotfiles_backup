@@ -329,6 +329,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/fcitx.vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'unblevable/quick-scope'       
+Plug 'wellle/context.vim'
 " vimdiff
 Plug 'chrisbra/vim-diff-enhanced'
 " LeaderF
