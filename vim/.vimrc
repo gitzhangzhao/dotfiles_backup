@@ -576,3 +576,6 @@ let g:echodoc_enable_at_startup = 1
 
 " vim-gitgutter配置
 let g:gitgutter_sign_allow_clobber = 1
+
+" context.vim配置
+let g:context_add_mappings = 0

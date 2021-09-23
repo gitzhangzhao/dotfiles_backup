@@ -2,7 +2,7 @@
 sudo apt install \
  zsh trash-cli qterminal fcitx goldendict axel xclip flex\
  stow vlc traceroute lightdm-gtk-greeter-settings bison\
- rsync ssh arandr firefox zip unzip rar unrar tldr locate \
+ rsync ssh arandr firefox zip unzip rar unrar locate \
  wget universal-ctags global xautolock clang clang-format nomacs \
  redshift translate-shell pylint shellcheck linux-headers-amd64 \
  smartmontools flameshot libjpeg-dev progress sshfs wireshark \
@@ -11,4 +11,4 @@ sudo apt install \
  neofetch picom pandoc graphviz feh zathura unclutter netcat-openbsd \
  duf man-db manpages-zh libpam0g-dev libx11-xcb-dev imagemagick \
  fonts-noto-cjk fonts-noto-color-emoji fonts-firacode \
- breeze-cursor-theme gtk2-engines-murrine lsof \
+ breeze-cursor-theme gtk2-engines-murrine lsof libssl-dev \
