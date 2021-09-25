@@ -358,6 +358,9 @@ def fetch_breakpoints(watchpoints=False, pending=False):
     breakpoints = []
     # XXX in older versions gdb.breakpoints() returns None
     for gdb_breakpoint in gdb.breakpoints() or []:
+        # skip internal breakpoints
+        if gdb_breakpoint.number < 0:
+            continue
         addresses, is_pending = parsed_breakpoints[gdb_breakpoint.number]
         is_pending = getattr(gdb_breakpoint, 'pending', is_pending)
         if not pending and is_pending:
@@ -1223,8 +1226,8 @@ class Source(Dashboard.Module):
             if int(number) == current_line:
                 # the current line has a different style without ANSI
                 if R.ansi:
-                    if self.highlighted:
-                        line_format = '{}' + ansi(number_format, R.style_selected_1) + '  {}'
+                    if self.highlighted and not self.highlight_line:
+                        line_format = '{}' + ansi(number_format, R.style_selected_1) + ' {}'
                     else:
                         line_format = '{}' + ansi(number_format + '  {}', R.style_selected_1)
                 else:
@@ -1279,6 +1282,12 @@ A value of 0 uses the whole height.''',
                 'name': 'tab_size',
                 'type': int,
                 'check': check_gt_zero
+            },
+            'highlight-line': {
+                'doc': 'Decide whether the whole current line should be highlighted.',
+                'default': False,
+                'name': 'highlight_line',
+                'type': bool
             }
         }
 
@@ -1404,7 +1413,7 @@ The instructions constituting the current statement are marked, if available.'''
                 indicator = ansi(indicator, R.style_selected_1)
                 opcodes = ansi(opcodes, R.style_selected_1)
                 func_info = ansi(func_info, R.style_selected_1)
-                if not highlighter.active:
+                if not highlighter.active or self.highlight_line:
                     text = ansi(text, R.style_selected_1)
             elif line_info and line_info.pc <= addr < line_info.last:
                 if not R.ansi:
@@ -1413,7 +1422,7 @@ The instructions constituting the current statement are marked, if available.'''
                 indicator = ansi(indicator, R.style_selected_2)
                 opcodes = ansi(opcodes, R.style_selected_2)
                 func_info = ansi(func_info, R.style_selected_2)
-                if not highlighter.active:
+                if not highlighter.active or self.highlight_line:
                     text = ansi(text, R.style_selected_2)
             else:
                 addr_str = ansi(addr_str, R.style_low)
@@ -1466,6 +1475,12 @@ A value of 0 uses the whole height.''',
                 'doc': 'Function information visibility flag.',
                 'default': True,
                 'name': 'show_function',
+                'type': bool
+            },
+            'highlight-line': {
+                'doc': 'Decide whether the whole current line should be highlighted.',
+                'default': False,
+                'name': 'highlight_line',
                 'type': bool
             }
         }
@@ -2286,7 +2301,6 @@ set python print-stack full
 
 python Dashboard.start()
 dashboard -layout !assembly breakpoints !expressions !memory !registers source stack !threads variables
-
 
 # File variables ---------------------------------------------------------------
 
