@@ -2,7 +2,7 @@
 sudo apt install \
  zsh trash-cli qterminal fcitx goldendict axel xclip flex\
  stow vlc traceroute lightdm-gtk-greeter-settings bison\
- rsync ssh arandr firefox zip unzip rar unrar locate \
+ rsync ssh arandr firefox zip unzip rar unrar locate gdb \
  wget universal-ctags global xautolock clang clang-format nomacs \
  redshift translate-shell pylint shellcheck linux-headers-amd64 \
  smartmontools flameshot libjpeg-dev progress sshfs wireshark \
