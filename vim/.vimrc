@@ -49,15 +49,16 @@ nnoremap yH y0
 "x删除不保存到剪切板
 nnoremap x "_x
 nnoremap X "_X
- 
+
 "添加一行但不进插入模式
 nnoremap <C-L> o<Esc>
+nnoremap <C-H> O<Esc>
 
 "tt按键切换窗口
-nnoremap tt <C-w>w 
+nnoremap tt <C-w>w
 
 "回车快速搜索
-nnoremap <CR> gd 
+nnoremap <CR> gd
 
 "n和N固定搜索位置
 nnoremap <expr> n  'Nn'[v:searchforward]
@@ -67,6 +68,10 @@ nnoremap <expr> N  'nN'[v:searchforward]
 nnoremap K  :<c-u>execute 'move -1-'. v:count1<cr>
 nnoremap J  :<c-u>execute 'move +'. v:count1<cr>
 
+"v模式下快速上移下移多行
+vnoremap <silent> J :m '>+1gv=gv<cr>gv
+vnoremap <silent> K :m '<-2gv=gv<cr>gv
+
 "避免进入Ex模式
 nnoremap Q <Nop>
 
@@ -74,7 +79,7 @@ nnoremap Q <Nop>
 nnoremap U <C-r>
 
 "打开root文件时无法保存
-nnoremap ww :w !sudo tee > /dev/null %<CR>   
+nnoremap ww :w !sudo tee > /dev/null %<CR>
 
 "跳转到mark时，跳转到行列的具体位置
 nnoremap ' `
@@ -85,15 +90,16 @@ nnoremap ; $a;<ESC>
 " Use system clipboard
 " visual: Ctrl+c copy the selected area; normal: Ctrl+c copy a line
 " defaut to use system clipboard
-" set clipboard=unnamedplus 
+" set clipboard=unnamedplus
 nnoremap <C-c> "+Y
 vnoremap <C-c> "+y
-" prevent vim from clearing the clipboard on exit 
+
+" prevent vim from clearing the clipboard on exit
 autocmd VimLeave * call system("xclip -selection clipboard -i", getreg('+'))
 
 " 设置基本一些特性
 " 行列线设置
-set cul 
+set cul
 " set cuc
 
 "智能高亮光标所在行
@@ -109,8 +115,8 @@ set showcmd            " 输入的命令显示出来，看的清楚些
 set foldenable            " 允许折叠
 autocmd FileType java,c,cpp set foldmethod=syntax
 set foldlevel=999999      " 默认开始不折叠
-nnoremap <silent><space> za   
-    
+nnoremap <silent><space> za
+
 "显示中文帮助
 set encoding=UTF-8
 
@@ -147,7 +153,7 @@ filetype on
 "载入文件类型插件
 filetype plugin on
 "为特定文件类型载入相关缩进文件
-filetype plugin indent on 
+filetype plugin indent on
 autocmd FileType java,c,cpp set commentstring=//\ %s
 
 "保存全局变量
@@ -220,7 +226,7 @@ set scrolloff=10
 "记录退出行
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif 
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F11>-<F12> mapping                          "
@@ -266,8 +272,8 @@ nnoremap <silent>\<F12> :AV<CR>
 "    elseif &filetype == 'cpp'
 "        exec "!g++ % -std=c++11 -o %<"
 "        exec "!time ./%<"
-"    elseif &filetype == 'java' 
-"        exec "!javac %" 
+"    elseif &filetype == 'java'
+"        exec "!javac %"
 "        exec "!time java %<"
 "    elseif &filetype == 'sh'
 "        :!time bash %
@@ -307,11 +313,11 @@ Plug 'Yggdroot/indentLine'
 " tpope'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise' 
+Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 " junegunn'
 Plug 'junegunn/vim-slash'
-Plug 'junegunn/vim-easy-align' 
+Plug 'junegunn/vim-easy-align'
 " staric checking
 Plug 'w0rp/ale',{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
 " syntax highlight
@@ -325,24 +331,24 @@ Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat' }
 Plug 'mhinz/vim-startify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
-Plug 'airblade/vim-gitgutter' 
+Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/fcitx.vim'
 Plug 'myusuf3/numbers.vim'
-Plug 'unblevable/quick-scope'       
+Plug 'unblevable/quick-scope'
 Plug 'wellle/context.vim'
 " vimdiff
 Plug 'chrisbra/vim-diff-enhanced'
 " LeaderF
 Plug 'Yggdroot/LeaderF',{ 'on': ['LeaderfFile','LeaderfFunction'] }
-Plug 'kshenoy/vim-signature' 
+Plug 'kshenoy/vim-signature'
 " status line
 Plug 'ryanoasis/vim-devicons'
-Plug 'vim-airline/vim-airline' 
+Plug 'vim-airline/vim-airline'
 " header
-Plug 'alpertuna/vim-header' 
+Plug 'alpertuna/vim-header'
 " bar
 Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
-Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' } 
+Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' }
 " highlight cursor word
 Plug 'RRethy/vim-illuminate'
 " tags
@@ -350,7 +356,7 @@ Plug 'ludovicchabant/vim-gutentags'
 " completion
 Plug 'Valloric/YouCompleteMe',{ 'do': './install.py --clangd-completer', 'on': [] }
 Plug 'Shougo/echodoc.vim',{'for': ['c', 'cpp']}
-augroup load_deo     
+augroup load_deo
     autocmd!
     autocmd InsertEnter * call plug#load('YouCompleteMe') | autocmd! load_deo
 augroup END
@@ -364,13 +370,17 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
 Plug 'joshdick/onedark.vim'
 Plug 'jacoborus/tender.vim'
-Plug 'arcticicestudio/nord-vim' 
-Plug 'cocopon/iceberg.vim' 
+Plug 'arcticicestudio/nord-vim'
+Plug 'cocopon/iceberg.vim'
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " markdown syntax
 Plug 'gabrielelana/vim-markdown'
+" whitespace
+Plug 'ntpeters/vim-better-whitespace'
+" smooth move
+Plug 'psliwka/vim-smoothie'
 
 call plug#end()
 
@@ -415,7 +425,7 @@ let g:ale_linters = {
 \   'python': ['pylint'],
 \   'sh': ['shellcheck'],
 \}
-" let g:ale_linters_explicit =1 
+" let g:ale_linters_explicit =1
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
 let g:ale_sign_warning               = '⚡'
@@ -482,12 +492,12 @@ nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
- 
+
 " NerdTree设置
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeShowHidden=1
-" F3打开目录树  
+" F3打开目录树
 nnoremap <silent><F7> :NERDTreeToggle<CR>
 " 只剩 NERDTree时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -527,7 +537,7 @@ let g:cpp_experimental_template_highlight        = 1
 let g:cpp_concepts_highlight                     = 1
 
 " airline设置
-let g:airline_powerline_fonts = 1 
+let g:airline_powerline_fonts = 1
 let g:Powerline_symbols='fancy'
 
 " LeaderF配置
@@ -548,7 +558,7 @@ let g:header_field_author = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
 " auto-pairs配置
-let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'} 
+let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
 
 " snips配置
 let g:UltiSnipsExpandTrigger='<c-s>'
@@ -579,3 +589,12 @@ let g:gitgutter_sign_allow_clobber = 1
 
 " context.vim配置
 let g:context_add_mappings = 0
+
+" whitespace配置"
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
+
+" smoothie配置
+let g:smoothie_no_default_mappings = 1
+silent! nmap <unique> <C-J> <Plug>(SmoothieDownwards)
+silent! nmap <unique> <C-K> <Plug>(SmoothieUpwards)
