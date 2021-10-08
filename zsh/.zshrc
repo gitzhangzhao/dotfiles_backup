@@ -76,7 +76,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(zsh-completions git z zsh-syntax-highlighting zsh-autosuggestions extract vi-mode colored-man-pages zsh_reload sudo last-working-dir you-should-use autoupdate docker rustup rust)
+plugins=(zsh-completions git z zsh-syntax-highlighting zsh-autosuggestions extract vi-mode colored-man-pages sudo last-working-dir you-should-use autoupdate docker rustup rust)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -118,7 +118,7 @@ bindkey '`' autosuggest-accept
 export EDITOR=vim
 export PAGER=less
 export PATH=$HOME/dotfiles:$HOME/.cargo/bin:$HOME/.local/bin:/home/zhangzhao/Lab/epics/base-3.15.5/bin/linux-x86_64:$PATH
-export EPICS_CA_ADDR_LIST=192.168.1.8
+export EPICS_CA_ADDR_LIST=192.168.206.202
 eval "$(mcfly init zsh)"
 export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_KEY_SCHEME=vim
@@ -128,19 +128,18 @@ export GIT_SSL_NO_VERIFY=true
 
 # ------------------------------------------------------------------------------
 # aliases
-alias csn="remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina"
-alias zz="remmina -c ~/.local/share/remmina/group_rdp_win-张昭_192-168-206-210-9092.remmina"
+alias csn='remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina'
+alias zz='remmina -c ~/.local/share/remmina/group_rdp_win-张昭_192-168-206-210-9092.remmina'
 alias ls='lsd'
 alias l='ls -l'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
 alias lt='ls -T'
-alias rm="trash-put"
-alias wicd="wicd-client"
-alias feh="feh --full-screen"
-alias ps="ps -ef"
-alias bc="eva"
+alias rm='trash-put'
+alias wicd='wicd-client'
+alias feh='feh --full-screen'
+alias bc='eva'
 alias on='synclient Touchpadoff=0'
 alias off='synclient Touchpadoff=1'
 alias k9='kill -9'
@@ -156,16 +155,17 @@ alias pgrep='pgrep -a'
 alias cp='cp_with_progress -Rg'
 alias mv='mv_with_progress -g'
 alias hexdump='hexyl'
-alias cv="progress"
-alias ip="ip --color"
-alias reconfigure="sudo dpkg-reconfigure"
-alias ag="sudo apt dist-upgrade"
-alias aa="sudo apt autopurge"
-alias au="sudo apt update"
-alias c="command cat ~/Share/pipe.txt | clipcopy > /dev/null"
-alias p="clippaste"
-alias start="s_start_all_systemd"
-alias stop="s_stop_all_systemd"
+alias cv='progress'
+alias ip='ip --color'
+alias ps='procs'
+alias reconfigure='sudo dpkg-reconfigure'
+alias ag='sudo apt dist-upgrade'
+alias aa='sudo apt autopurge'
+alias au='sudo apt update'
+alias c='command cat ~/Share/pipe.txt | clipcopy > /dev/null'
+alias p='clippaste'
+alias start='s_start_all_systemd'
+alias stop='s_stop_all_systemd'
 
 # ------------------------------------------------------------------------------
 # functions
