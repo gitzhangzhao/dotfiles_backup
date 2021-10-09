@@ -111,11 +111,14 @@ set go=                " 不要图形按钮
 set showcmd            " 输入的命令显示出来，看的清楚些
 " set whichwrap+=<,>,h,l " 允许backspace和光标键跨越行边界(不建议)
 
-"设置折叠
+" 设置折叠
 set foldenable            " 允许折叠
-autocmd FileType java,c,cpp set foldmethod=syntax
-set foldlevel=999999      " 默认开始不折叠
+"autocmd FileType java,c,cpp set foldmethod=syntax
+"set foldlevel=999999      " 默认开始不折叠
 nnoremap <silent><space> za
+autocmd Filetype * AnyFoldActivate               " activate for all filetypes
+set foldlevel=99 " Open all folds
+
 
 "显示中文帮助
 set encoding=UTF-8
@@ -224,9 +227,9 @@ set matchtime=2
 set scrolloff=10
 
 "记录退出行
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-endif
+" if has("autocmd")
+"   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F11>-<F12> mapping                          "
@@ -309,12 +312,17 @@ nnoremap <silent>\<F12> :AV<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.vim/plugged')
+" indent line
 Plug 'Yggdroot/indentLine'
 " tpope'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+" flod
+Plug 'pseewald/vim-anyfold'
+" comment
+Plug 'tyru/caw.vim'
 " junegunn'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/vim-easy-align'
@@ -351,7 +359,7 @@ Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
 Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' }
 " highlight cursor word
 Plug 'RRethy/vim-illuminate'
-" tags
+" tags(ctags,global)
 Plug 'ludovicchabant/vim-gutentags'
 " completion
 Plug 'Valloric/YouCompleteMe',{ 'do': './install.py --clangd-completer', 'on': [] }
@@ -365,6 +373,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
+Plug 'tommcdo/vim-exchange'
 " themes
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
@@ -381,6 +390,8 @@ Plug 'gabrielelana/vim-markdown'
 Plug 'ntpeters/vim-better-whitespace'
 " smooth move
 Plug 'psliwka/vim-smoothie'
+" lastplace
+Plug 'farmergreg/vim-lastplace'
 
 call plug#end()
 
@@ -408,11 +419,15 @@ let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 " vim-surround插件设置
 vmap " S"
 vmap ] S]
+vmap [ S]
 vmap ' S'
 vmap > S>
+vmap < S>
 vmap / S/
 vmap ) S)
+vmap ( S)
 vmap } S}
+vmap { S}
 
 " vim-repeat插件设置
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
