@@ -8,7 +8,7 @@ hp=sshfs-HPServer.service
 ihep=home-zhangzhao-IHEP.mount
 mount=home-zhangzhao-Mount.mount
 orangepi=sshfs-OrangePi.service
-raspi=sshfs-Raspi.service
+raspi=sshfs-RasPi.service
 
 if [ "$1" = "hp" ]
 then
