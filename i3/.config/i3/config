@@ -48,10 +48,10 @@ workspace_auto_back_and_forth yes
 #bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # split orientation
-bindsym $mod+e split toggle 
+bindsym $mod+e split toggle
 
 #swich windows
-bindsym $mod+Tab focus next 
+bindsym $mod+Tab focus next
 bindsym $mod+Shift+Tab focus prev
 
 # toggle fullscreen mode for the focused container
@@ -202,7 +202,7 @@ bindsym $mod+Shift+g mode "$mode_gaps"
 
 mode "$mode_gaps" {
         bindsym o      mode "$mode_gaps_outer"
-    
+
         bindsym i      mode "$mode_gaps_inner"
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -240,7 +240,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2db-
 # bindsym $mod+shift+[ exec --no-startup-id synclient Touchpadoff=1
 
 ##############################################################################
-# settings of zhangzhao:                                                     # 
+# settings of zhangzhao:                                                     #
 ##############################################################################
 # boot
 exec_always --no-startup-id $HOME/.config/polybar/i3wmthemer_bar_launch.sh
@@ -250,10 +250,10 @@ exec --no-startup-id xset s noexpose
 exec --no-startup-id xset s 0 0
 exec --no-startup-id unclutter
 exec --no-startup-id goldendict
-exec --no-startup-id xautolock -time 60 -locker "i3lock-fancy -n -t ' '"      
+exec --no-startup-id xautolock -time 60 -locker "i3lock-fancy-dualmonitor"
 exec --no-startup-id redshift -l 39.5:116.2 -t 5600:5000
 # exec --no-startup-id synclient TapButton1=1                                                                           #设置触摸板可以点击
-# exec --no-startup-id synclient Touchpadoff=1                                                                          #默认关闭触摸板 
+# exec --no-startup-id synclient Touchpadoff=1                                                                          #默认关闭触摸板
 # exec --no-startup-id sleep 20; xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'                                   #将Lock键映射为ESC,延时10s等待X启动完成后设置才有效
 ##############################################################################
 
@@ -266,10 +266,10 @@ bindsym $mod+b exec --no-startup-id baidunetdisk
 bindsym $mod+w exec --no-startup-id wps
 bindsym $mod+z exec --no-startup-id zotero
 bindsym $mod+9 exec --no-startup-id pavucontrol
-bindsym $mod+x exec --no-startup-id i3lock-fancy -n -t " "
+bindsym $mod+x exec --no-startup-id i3lock-fancy-dualmonitor
 bindsym $mod+Shift+s exec --no-startup-id ssr
 bindsym $mod+q exec --no-startup-id qv2ray
-bindsym $mod+Shift+n exec --no-startup-id nomacs 
+bindsym $mod+Shift+n exec --no-startup-id nomacs
 bindsym $mod+Shift+f exec --no-startup-id flameshot gui
 bindsym $mod+a exec --no-startup-id flameshot gui -p ~/Share
 bindsym $mod+c exec --no-startup-id code
@@ -280,9 +280,21 @@ bindsym $mod+g exec --no-startup-id remmina -c ~/.local/share/remmina/group_vnc_
 
 ##############################################################################
 #assign windows
-assign [class="Firefox"]              $ws2 
+assign [class="Firefox"]              $ws2
 assign [class="netease-cloud-music"]  $ws3
 assign [class="remmina"]              $ws4
 assign [class="Zotero"]               $ws5
 assign [class="baidunetdisk"]         $ws6
+##############################################################################
+
+##############################################################################
+#assign workspaces
+workspace 1 output HDMI-1
+workspace 2 output VGA-1
+workspace 3 output HDMI-1
+workspace 4 output HDMI-1
+workspace 5 output HDMI-1 VGA-1
+workspace 6 output HDMI-1 VGA-1
+workspace 7 output HDMI-1 VGA-1
+workspace 8 output HDMI-1 VGA-1
 ##############################################################################
