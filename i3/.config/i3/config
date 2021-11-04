@@ -250,7 +250,7 @@ exec --no-startup-id xset s noexpose
 exec --no-startup-id xset s 0 0
 exec --no-startup-id unclutter
 exec --no-startup-id goldendict
-exec --no-startup-id xautolock -time 60 -locker "i3lock-fancy-dualmonitor"
+exec_always --no-startup-id xautolock -time 60 -locker i3lock-fancy-dualmonitor
 exec --no-startup-id redshift -l 39.5:116.2 -t 5600:5000
 # exec --no-startup-id synclient TapButton1=1                                                                           #设置触摸板可以点击
 # exec --no-startup-id synclient Touchpadoff=1                                                                          #默认关闭触摸板

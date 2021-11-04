@@ -42,6 +42,10 @@ vnoremap L $
 nnoremap dL d$
 nnoremap dH d0
 
+"c到行首或行尾
+nnoremap cL c$
+nnoremap cH c0
+
 "y到行首或行尾
 nnoremap yL y$
 nnoremap yH y0
