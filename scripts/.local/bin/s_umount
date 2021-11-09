@@ -12,23 +12,27 @@ raspi=sshfs-RasPi.service
 
 if [ "$1" = "hp" ]
 then
-    sudo systemctl start $hp
+    sudo systemctl stop $hp
 
 elif [ "$1" = 'ihep' ]
 then
-    sudo systemctl start $ihep
+    sudo systemctl stop $ihep
 
 elif [ "$1" = 'mount' ]
 then
-    sudo systemctl start $mount
+    sudo systemctl stop $mount
 
 elif [ "$1" = 'orangepi' ]
 then
-    sudo systemctl start $orangepi
+    sudo systemctl stop $orangepi
 
 elif [ "$1" = 'raspi' ]
 then
-    sudo systemctl start $raspi
+    sudo systemctl stop $raspi
+
+elif [ "$1" = 'hp_j' ]
+then
+    umount /home/zhangzhao/HPServer
 
 else
     echo "no option......"
