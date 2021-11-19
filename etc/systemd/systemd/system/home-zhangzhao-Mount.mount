@@ -2,7 +2,7 @@
 Description=Mount sdb
 
 [Mount]
-What=/dev/disk/by-uuid/5924df47-43d0-4585-b2ff-d71080afd11e
+What=/dev/disk/by-uuid/ec992520-ff93-402b-850a-9d569ee348de
 Where=/home/zhangzhao/Mount
 Type=ext4
 Options=defaults,rw
