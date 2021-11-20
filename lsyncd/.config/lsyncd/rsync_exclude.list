@@ -1,0 +1,9 @@
+IHEP
+HPServer
+OrangePi
+RasPi
+Mount
+Share
+.config/lsyncd/lsyncd.log
+.config/lsyncd/lsyncd.status
+

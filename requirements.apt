@@ -1,6 +1,6 @@
 #!/bin/bash
 sudo apt install \
- zsh trash-cli qterminal fcitx goldendict axel xclip flex\
+ zsh trash-cli qterminal fcitx goldendict axel xclip flex lsyncd \
  stow vlc traceroute lightdm-gtk-greeter-settings bison ntfs-3g\
  rsync ssh arandr firefox zip unzip rar unrar locate gdb \
  wget universal-ctags global xautolock clang clang-format nomacs \

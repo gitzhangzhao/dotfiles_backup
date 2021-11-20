@@ -623,3 +623,4 @@ silent! nmap <unique> <C-K> <Plug>(SmoothieUpwards)
 let g:fold_cycle_default_mapping = 0 "disable default mappings
 nmap <space> <Plug>(fold-cycle-open)
 nmap <BS> <Plug>(fold-cycle-close)
+
