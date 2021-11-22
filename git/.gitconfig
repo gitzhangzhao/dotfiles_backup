@@ -1,10 +1,10 @@
 [user]
 	name = gitzhangzhao
 	email = gitzhangzhao@gmail.com
-[https]
- 	proxy = socks5://localhost:20170
-[http]
- 	proxy = 127.0.0.1:20171
+# [https]
+#   proxy = socks5://localhost:20170
+# [http]
+#   proxy = 127.0.0.1:20171
 [pager]
     diff = delta
     log = delta
