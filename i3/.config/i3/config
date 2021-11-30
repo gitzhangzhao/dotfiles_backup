@@ -297,5 +297,5 @@ workspace 4 output HDMI-1
 workspace 5 output HDMI-1 VGA-1
 workspace 6 output HDMI-1 VGA-1
 workspace 7 output HDMI-1 VGA-1
-workspace 8 output HDMI-1 VGA-1
+workspace 8 output VGA-1
 ##############################################################################
