@@ -314,7 +314,6 @@ nnoremap <silent>\<F12> :AV<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 vim-plug                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 call plug#begin('~/.vim/plugged')
 " indent line
 Plug 'Yggdroot/indentLine'
@@ -342,7 +341,7 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat' }
 " others
 Plug 'mhinz/vim-startify'
-Plug 'jiangmiao/auto-pairs'
+Plug 'cohama/lexima.vim'
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/fcitx.vim'
