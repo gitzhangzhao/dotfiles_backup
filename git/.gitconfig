@@ -27,3 +27,5 @@
     line-numbers-right-style = cyan
     line-numbers-minus-style = 124
     line-numbers-plus-style = 28
+[url "git@github.com:"]
+	insteadOf = https://github.com/

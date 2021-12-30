@@ -270,8 +270,8 @@ function! s:a(cmd)
 nnoremap <silent>\<F12> :AV<CR>
 
 " F5编译运行
-" nnoremap <silent><F5> :call CompileRunGcc()<CR>
 " func! CompileRunGcc()
+" nnoremap <silent><F5> :call CompileRunGcc()<CR>
 "     exec "w"
 "     if &filetype == 'c'
 "         exec "!clang % -o %<"
@@ -322,6 +322,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
+" comments
+Plug 'cohama/lexima.vim'
 " flod
 Plug 'pseewald/vim-anyfold'
 Plug 'arecarn/vim-fold-cycle'
@@ -330,7 +332,7 @@ Plug 'tyru/caw.vim'
 " junegunn'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/vim-easy-align'
-" staric checking
+" static checking
 Plug 'w0rp/ale',{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
 " syntax highlight
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
@@ -339,14 +341,17 @@ Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
 Plug 'PotatoesMaster/i3-vim-syntax'
 " code format
 Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat' }
+" move
+Plug 'unblevable/quick-scope'
+Plug 'psliwka/vim-smoothie'
+Plug 'chaoren/vim-wordmotion'
+" git
+Plug 'airblade/vim-gitgutter'
 " others
 Plug 'mhinz/vim-startify'
-Plug 'cohama/lexima.vim'
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
-Plug 'airblade/vim-gitgutter'
 Plug 'vim-scripts/fcitx.vim'
 Plug 'myusuf3/numbers.vim'
-Plug 'unblevable/quick-scope'
 Plug 'wellle/context.vim'
 " vimdiff
 Plug 'chrisbra/vim-diff-enhanced'
@@ -392,8 +397,6 @@ Plug 'honza/vim-snippets'
 Plug 'gabrielelana/vim-markdown'
 " whitespace
 Plug 'ntpeters/vim-better-whitespace'
-" smooth move
-Plug 'psliwka/vim-smoothie'
 " lastplace
 Plug 'farmergreg/vim-lastplace'
 
@@ -525,22 +528,6 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_ctags_bin='/usr/bin/ctags'
 
-" rainbow设置
-let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-let g:rainbow_conf = {
-\   'guifgs': ['SeaGreen3','darkcyan','lightyellow', 'lightmagenta','firebrick'],
-\   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-\   'operators': '_\|+\|-_',
-\   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-\   'separately': {
-\       '*': {},
-\       'tex': {
-\           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-\       },
-\       'css': 0,
-\   }
-\}
-
 " 设置easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
@@ -577,7 +564,7 @@ let g:header_field_author = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
 " auto-pairs配置
-let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
+" let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
 
 " snips配置
 let g:UltiSnipsExpandTrigger='<c-s>'
@@ -622,3 +609,6 @@ silent! nmap <unique> <C-K> <Plug>(SmoothieUpwards)
 let g:fold_cycle_default_mapping = 0 "disable default mappings
 nmap <space> <Plug>(fold-cycle-open)
 nmap <BS> <Plug>(fold-cycle-close)
+
+" lexima配置
+set backspace=indent,eol,start

@@ -76,7 +76,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(zsh-completions git z zsh-syntax-highlighting zsh-autosuggestions extract vi-mode colored-man-pages sudo last-working-dir you-should-use autoupdate docker rustup rust)
+plugins=(zsh-completions git z zsh-syntax-highlighting zsh-autosuggestions extract vi-mode colored-man-pages sudo last-working-dir you-should-use autoupdate docker rust)
 
 
 source $ZSH/oh-my-zsh.sh
