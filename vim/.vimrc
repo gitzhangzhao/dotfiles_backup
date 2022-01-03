@@ -322,8 +322,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
-" comments
-Plug 'cohama/lexima.vim'
+" pairs
+Plug 'jiangmiao/auto-pairs'
 " flod
 Plug 'pseewald/vim-anyfold'
 Plug 'arecarn/vim-fold-cycle'
@@ -344,7 +344,6 @@ Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat' }
 " move
 Plug 'unblevable/quick-scope'
 Plug 'psliwka/vim-smoothie'
-Plug 'chaoren/vim-wordmotion'
 " git
 Plug 'airblade/vim-gitgutter'
 " others
@@ -394,7 +393,8 @@ Plug 'cocopon/iceberg.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " markdown syntax
-Plug 'gabrielelana/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 " whitespace
 Plug 'ntpeters/vim-better-whitespace'
 " lastplace
@@ -519,7 +519,7 @@ nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeShowHidden=1
-" F3打开目录树
+" F7打开目录树
 nnoremap <silent><F7> :NERDTreeToggle<CR>
 " 只剩 NERDTree时自动关闭
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -557,14 +557,12 @@ let g:Lf_CacheDirectory = expand('~/.vim/cache')
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+let g:Lf_WindowPosition = 'popup'
 
 " vim-header配置
 let g:header_auto_add_header = 0
 let g:header_field_author = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
-
-" auto-pairs配置
-" let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
 
 " snips配置
 let g:UltiSnipsExpandTrigger='<c-s>'
@@ -612,3 +610,10 @@ nmap <BS> <Plug>(fold-cycle-close)
 
 " lexima配置
 set backspace=indent,eol,start
+
+" vim-markdown配置
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal_code_blocks = 0
+
+" auto-pairs配置
+let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
