@@ -392,7 +392,7 @@ Plug 'cocopon/iceberg.vim'
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
-" markdown syntax
+" markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 " whitespace
