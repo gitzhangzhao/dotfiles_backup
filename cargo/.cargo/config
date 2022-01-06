@@ -1,4 +1,4 @@
 [http]
-proxy = "127.0.0.1:20171"
+proxy = "127.0.0.1:20172"
 [https]
 proxy = "socks5://localhost:20170"

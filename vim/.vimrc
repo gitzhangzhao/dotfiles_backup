@@ -395,6 +395,9 @@ Plug 'honza/vim-snippets'
 " markdown
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+let g:download_deno = 'curl -fsSL https://deno.land/x/install/install.sh | DENO_INSTALL=/home/zhangzhao/.local/ sh'
+Plug 'vim-denops/denops.vim', { 'do': g:download_deno }
+Plug 'kat0h/bufpreview.vim'
 " whitespace
 Plug 'ntpeters/vim-better-whitespace'
 " lastplace
@@ -613,7 +616,13 @@ set backspace=indent,eol,start
 
 " vim-markdown配置
 let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_conceal = 0
+
+" bufpreview配置
+augroup bufpreview
+  autocmd!
+  autocmd Filetype markdown :PreviewMarkdown
+augroup END
 
 " auto-pairs配置
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
