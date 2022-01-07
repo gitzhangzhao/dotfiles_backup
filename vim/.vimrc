@@ -240,8 +240,8 @@ set scrolloff=10
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "<F11>格式化代码
-nnoremap <silent><F11> V:ClangFormat<CR>
-vnoremap <silent><F11> :ClangFormat<CR>
+nnoremap <silent><F11> V:Autoformat<CR>
+vnoremap <silent><F11> :Autoformat<CR>
 
 "<F12>跳转头文件(:A)
 function! s:a(cmd)
@@ -340,7 +340,7 @@ Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
 Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
 Plug 'PotatoesMaster/i3-vim-syntax'
 " code format
-Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat' }
+Plug 'vim-autoformat/vim-autoformat',{ 'on': 'Autoformat', 'do': 'python3 -m pip install pynvim' }
 " move
 Plug 'unblevable/quick-scope'
 Plug 'psliwka/vim-smoothie'
@@ -393,11 +393,18 @@ Plug 'cocopon/iceberg.vim'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 " markdown
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-let g:download_deno = 'curl -fsSL https://deno.land/x/install/install.sh | DENO_INSTALL=/home/zhangzhao/.local/ sh'
-Plug 'vim-denops/denops.vim', { 'do': g:download_deno }
-Plug 'kat0h/bufpreview.vim'
+Plug 'godlygeek/tabular', { 'for': ['markdown'] }
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
+function! BuildComposer(info)
+  if a:info.status != 'unchanged' || a:info.force
+    if has('nvim')
+      !cargo build --release --locked
+    else
+      !cargo build --release --locked --no-default-features --features json-rpc
+    endif
+  endif
+endfunction
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') , 'for': ['markdown'] }
 " whitespace
 Plug 'ntpeters/vim-better-whitespace'
 " lastplace
@@ -617,12 +624,6 @@ set backspace=indent,eol,start
 " vim-markdown配置
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
-
-" bufpreview配置
-augroup bufpreview
-  autocmd!
-  autocmd Filetype markdown :PreviewMarkdown
-augroup END
 
 " auto-pairs配置
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}

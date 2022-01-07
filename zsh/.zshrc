@@ -189,7 +189,7 @@ ulimit -c 0 > /dev/null 2>&1
 
 # ------------------------------------------------------------------------------
 # proxy
-export http_proxy=http://localhost:20171
-export https_proxy=https://localhost:20171
+export http_proxy=http://localhost:20172
+export https_proxy=https://localhost:20172
 export all_proxy=socks5://localhost:20170
 
