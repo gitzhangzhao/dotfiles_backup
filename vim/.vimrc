@@ -588,6 +588,7 @@ let g:ycm_key_invoke_completion = '<c-z>'
 let g:ycm_complete_in_comments = 1
 let g:ycm_disable_signature_help = 1
 set completeopt=menu,menuone
+let g:ycm_use_ultisnips_completer = 0
 noremap <c-z> <NOP>
 let g:ycm_semantic_triggers =  {
 			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
@@ -625,5 +626,5 @@ set backspace=indent,eol,start
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 
-" auto-pairs配置
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
+" auto-pairs配置
