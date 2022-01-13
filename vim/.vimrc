@@ -339,6 +339,7 @@ Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
 Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
 Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'ekalinin/Dockerfile.vim'
 " code format
 Plug 'vim-autoformat/vim-autoformat',{ 'on': 'Autoformat', 'do': 'python3 -m pip install pynvim' }
 " move

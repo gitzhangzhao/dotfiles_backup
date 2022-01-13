@@ -189,7 +189,17 @@ ulimit -c 0 > /dev/null 2>&1
 
 # ------------------------------------------------------------------------------
 # proxy
-export http_proxy=http://localhost:20172
-export https_proxy=https://localhost:20172
-export all_proxy=socks5://localhost:20170
+proxy(){
+    export http_proxy=http://localhost:20172
+    export https_proxy=https://localhost:20172
+    export all_proxy=socks5://localhost:20170
+    echo -e "\033[32mHTTP Proxy on\033[0m"
+}
+
+unproxy(){
+    unset http_proxy
+    unset https_proxy
+    unset all_proxy
+    echo -e "\033[31mHTTP Proxy off\033[0m"
+}
 
