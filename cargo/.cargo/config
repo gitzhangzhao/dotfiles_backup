@@ -2,3 +2,5 @@
 proxy = "127.0.0.1:20172"
 [https]
 proxy = "socks5://localhost:20170"
+[net]
+git-fetch-with-cli = true

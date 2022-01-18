@@ -410,6 +410,8 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') , 'for': 
 Plug 'ntpeters/vim-better-whitespace'
 " lastplace
 Plug 'farmergreg/vim-lastplace'
+" undotree
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -417,13 +419,13 @@ call plug#end()
 "                               plug settings                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" indentline插件设置
+" indentline
 let g:indentLine_char     = '┊'
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1  = "inc"
 
-" quickscope设置（高亮f查找结果）
+" quickscope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 augroup qs_colors
   autocmd!
@@ -431,10 +433,10 @@ augroup qs_colors
   autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 augroup END
 
-" number.vim配置
+" number.vim
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
 
-" vim-surround插件设置
+" vim-surround
 vmap " S"
 vmap ] S]
 vmap [ S]
@@ -447,17 +449,17 @@ vmap ( S)
 vmap } S}
 vmap { S}
 
-" vim-repeat插件设置
+" vim-repeat
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
-" ale插件的配置(ale会默认配置编译器(默认clang))
-let g:ale_linters = {
-\   'c++': ['clang'],
-\   'c': ['clang'],
-\   'h': ['clang'],
-\   'python': ['pylint'],
-\   'sh': ['shellcheck'],
-\}
+" ale
+" let g:ale_linters = {
+"\   'c++': ['clang'],
+"\   'c': ['clang'],
+"\   'h': ['clang'],
+"\   'python': ['pylint'],
+"\   'sh': ['shellcheck'],
+"\}
 " let g:ale_linters_explicit =1
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
@@ -499,7 +501,7 @@ highlight LineNr guibg       = NONE
 highlight SignColumn guibg   = NONE "设置标志列背景色
 highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
 
-" gtags和gutentags插件的配置"
+" gtags && gutentags"
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
 let g:gutentags_ctags_executable = '/usr/bin/ctags'
 set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
@@ -526,7 +528,7 @@ nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-" NerdTree设置
+" NerdTree
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeShowHidden=1
@@ -545,7 +547,7 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" vim-cpp-enhanced-highlight配置
+" vim-cpp-enhanced-highlight
 let g:cpp_member_variable_highlight              = 1
 let g:cpp_class_scope_highlight                  = 1
 let g:cpp_class_decl_highlight                   = 1
@@ -553,11 +555,11 @@ let g:cpp_experimental_simple_template_highlight = 1
 let g:cpp_experimental_template_highlight        = 1
 let g:cpp_concepts_highlight                     = 1
 
-" airline设置
+" airline
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols='fancy'
 
-" LeaderF配置
+" LeaderF
 nnoremap <C-f> :LeaderfFile<CR>
 nnoremap <C-g> :LeaderfFunction!<CR>
 let g:Lf_PreviewInPopup = 1
@@ -570,15 +572,15 @@ let g:Lf_HideHelp = 1
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 let g:Lf_WindowPosition = 'popup'
 
-" vim-header配置
+" vim-header
 let g:header_auto_add_header = 0
 let g:header_field_author = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
-" snips配置
+" snips
 let g:UltiSnipsExpandTrigger='<c-s>'
 
-" YCM配置
+" YCM
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
@@ -596,37 +598,40 @@ let g:ycm_semantic_triggers =  {
 			\ 'cs,lua,javascript': ['re!\w{2}'],
 			\ }
 
-" echodoc配置
+" echodoc
 set noshowmode
 let g:echodoc_enable_at_startup = 1
 
-" vim-gitgutter配置
+" vim-gitgutter
 let g:gitgutter_sign_allow_clobber = 1
 
-" context.vim配置
+" context.vim
 let g:context_add_mappings = 0
 
-" whitespace配置"
+" whitespace
 let g:strip_whitespace_on_save = 1
 let g:strip_whitespace_confirm = 0
 
-" smoothie配置
+" smoothie
 let g:smoothie_no_default_mappings = 1
 silent! nmap <unique> <C-J> <Plug>(SmoothieDownwards)
 silent! nmap <unique> <C-K> <Plug>(SmoothieUpwards)
 
-" fold-cycle配置
+" fold-cycle
 let g:fold_cycle_default_mapping = 0 "disable default mappings
 nmap <space> <Plug>(fold-cycle-open)
 nmap <BS> <Plug>(fold-cycle-close)
 
-" lexima配置
+" lexima
 set backspace=indent,eol,start
 
-" vim-markdown配置
+" vim-markdown
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 
+" auto-pairs
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
-" auto-pairs配置
+
+" undotree
+nnoremap <F6> :UndotreeToggle<CR>
