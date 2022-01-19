@@ -130,7 +130,7 @@ export GIT_SSL_NO_VERIFY=true
 # aliases
 alias csn='remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina'
 alias zz='remmina -c ~/.local/share/remmina/group_rdp_win-张昭_192-168-206-210-9092.remmina'
-alias ls='lsd'
+alias ls='exa --icons -g'
 alias l='ls -l'
 alias ll='ls -l'
 alias la='ls -a'

@@ -412,7 +412,6 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'farmergreg/vim-lastplace'
 " undotree
 Plug 'mbbill/undotree'
-
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
