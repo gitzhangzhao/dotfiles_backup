@@ -119,10 +119,21 @@ set showcmd            " 输入的命令显示出来，看的清楚些
 set foldenable            " 允许折叠
 "autocmd FileType java,c,cpp set foldmethod=syntax
 "set foldlevel=999999      " 默认开始不折叠
-" nnoremap <silent><space> za
 autocmd Filetype * AnyFoldActivate               " activate for all filetypes
 set foldlevel=99 " Open all folds
 
+function! OnSpace()
+    if foldlevel('.')
+        if foldclosed('.') != -1
+            return 'zO'
+        else
+            return 'za'
+        endif
+    else
+        return "\<Space>"
+    endif
+endfunction
+nnoremap <silent> <Space> @=(OnSpace())<CR>
 
 "显示中文帮助
 set encoding=UTF-8
@@ -326,7 +337,6 @@ Plug 'tpope/vim-speeddating'
 Plug 'jiangmiao/auto-pairs'
 " flod
 Plug 'pseewald/vim-anyfold'
-Plug 'arecarn/vim-fold-cycle'
 " comment
 Plug 'tyru/caw.vim'
 " junegunn'
@@ -615,11 +625,6 @@ let g:strip_whitespace_confirm = 0
 let g:smoothie_no_default_mappings = 1
 silent! nmap <unique> <C-J> <Plug>(SmoothieDownwards)
 silent! nmap <unique> <C-K> <Plug>(SmoothieUpwards)
-
-" fold-cycle
-let g:fold_cycle_default_mapping = 0 "disable default mappings
-nmap <space> <Plug>(fold-cycle-open)
-nmap <BS> <Plug>(fold-cycle-close)
 
 " lexima
 set backspace=indent,eol,start
