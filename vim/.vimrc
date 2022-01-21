@@ -55,8 +55,8 @@ nnoremap x "_x
 nnoremap X "_X
 
 "添加一行但不进插入模式
-nnoremap <C-L> o<Esc>
-nnoremap <C-H> O<Esc>
+" nnoremap <C-L> o<Esc>
+" nnoremap <C-H> O<Esc>
 
 "tt按键切换窗口
 nnoremap tt <C-w>w
@@ -381,12 +381,7 @@ Plug 'RRethy/vim-illuminate'
 " tags(ctags,global)
 Plug 'ludovicchabant/vim-gutentags'
 " completion
-Plug 'Valloric/YouCompleteMe',{ 'do': './install.py --clangd-completer', 'on': [] }
-Plug 'Shougo/echodoc.vim',{'for': ['c', 'cpp']}
-augroup load_deo
-    autocmd!
-    autocmd InsertEnter * call plug#load('YouCompleteMe') | autocmd! load_deo
-augroup END
+Plug 'jayli/vim-easycomplete'
 " text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
@@ -394,12 +389,12 @@ Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
 Plug 'tommcdo/vim-exchange'
 " themes
-Plug 'NLKNguyen/papercolor-theme'
+" Plug 'NLKNguyen/papercolor-theme'
 Plug 'morhetz/gruvbox'
-Plug 'joshdick/onedark.vim'
+" Plug 'joshdick/onedark.vim'
 Plug 'jacoborus/tender.vim'
-Plug 'arcticicestudio/nord-vim'
-Plug 'cocopon/iceberg.vim'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'cocopon/iceberg.vim'
 " snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -461,30 +456,6 @@ vmap { S}
 " vim-repeat
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
-" ale
-" let g:ale_linters = {
-"\   'c++': ['clang'],
-"\   'c': ['clang'],
-"\   'h': ['clang'],
-"\   'python': ['pylint'],
-"\   'sh': ['shellcheck'],
-"\}
-" let g:ale_linters_explicit =1
-let g:ale_sign_column_always         = 1
-let g:ale_set_highlights             = 0
-let g:ale_sign_warning               = '⚡'
-let g:ale_lint_on_enter              = 1
-let g:ale_sign_error                 = '✗'
-let g:airline#extensions#ale#enabled = 1
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-let g:ale_echo_msg_error_str         = 'E'
-let g:ale_echo_msg_warning_str       = 'W'
-let g:ale_echo_msg_format  = '[%linter%] %s [%severity%]'
-" 禁用默认INSERT模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
-
 " themes settings
 set t_Co=256
 set background=dark
@@ -509,6 +480,29 @@ highlight Normal guibg       = NONE
 highlight LineNr guibg       = NONE
 highlight SignColumn guibg   = NONE "设置标志列背景色
 highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
+
+" ale
+let g:ale_linters = {
+\   'c++': ['ccls'],
+\   'c': ['ccls'],
+\   'h': ['ccls'],
+\   'sh': ['shellcheck'],
+\}
+" let g:ale_linters_explicit =1
+let g:ale_sign_column_always         = 1
+let g:ale_set_highlights             = 0
+let g:ale_sign_warning               = '⚡'
+let g:ale_lint_on_enter              = 1
+let g:ale_sign_error                 = '✗'
+let g:airline#extensions#ale#enabled = 1
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+let g:ale_echo_msg_error_str         = 'E'
+let g:ale_echo_msg_warning_str       = 'W'
+let g:ale_echo_msg_format  = '[%linter%] %s [%severity%]'
+" 禁用默认INSERT模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
 
 " gtags && gutentags"
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
@@ -586,31 +580,6 @@ let g:header_auto_add_header = 0
 let g:header_field_author = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
-" snips
-let g:UltiSnipsExpandTrigger='<c-s>'
-
-" YCM
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_server_log_level = 'info'
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
-let g:ycm_key_invoke_completion = '<c-z>'
-let g:ycm_complete_in_comments = 1
-let g:ycm_disable_signature_help = 1
-set completeopt=menu,menuone
-let g:ycm_use_ultisnips_completer = 0
-noremap <c-z> <NOP>
-let g:ycm_semantic_triggers =  {
-			\ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
-			\ 'cs,lua,javascript': ['re!\w{2}'],
-			\ }
-
-" echodoc
-set noshowmode
-let g:echodoc_enable_at_startup = 1
-
 " vim-gitgutter
 let g:gitgutter_sign_allow_clobber = 1
 
@@ -639,3 +608,8 @@ let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
 
 " undotree
 nnoremap <F6> :UndotreeToggle<CR>
+
+" easycomplete
+let g:easycomplete_diagnostics_enable = 0
+nnoremap <silent> <Nop> :EasyCompleteNextDiagnostic<CR>
+nnoremap <silent> <Nop> :EasyCompletePreviousDiagnostic<CR>

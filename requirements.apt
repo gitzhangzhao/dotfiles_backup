@@ -3,7 +3,7 @@ sudo apt install \
  zsh trash-cli qterminal fcitx goldendict axel xclip flex lsyncd \
  stow vlc traceroute lightdm-gtk-greeter-settings bison ntfs-3g\
  rsync ssh arandr firefox zip unzip rar unrar locate gdb \
- wget universal-ctags global xautolock clang clang-format nomacs \
+ wget universal-ctags global xautolock ccls nomacs \
  redshift translate-shell pylint shellcheck linux-headers-amd64 \
  smartmontools flameshot libjpeg-dev progress sshfs wireshark \
  cflow lxappearance ufw xserver-xorg-input-synaptics dos2unix \
