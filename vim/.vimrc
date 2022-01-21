@@ -380,6 +380,9 @@ Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' }
 Plug 'RRethy/vim-illuminate'
 " tags(ctags,global)
 Plug 'ludovicchabant/vim-gutentags'
+" snippets
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " completion
 Plug 'jayli/vim-easycomplete'
 " text objects
@@ -395,9 +398,6 @@ Plug 'morhetz/gruvbox'
 Plug 'jacoborus/tender.vim'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'cocopon/iceberg.vim'
-" snippets
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 " markdown
 Plug 'godlygeek/tabular', { 'for': ['markdown'] }
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
