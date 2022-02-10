@@ -4,7 +4,7 @@ new_window none
 new_float none
 
 default_orientation auto
-hide_edge_borders true
+hide_edge_borders both
 
 bindsym $mod+u border none
 bindsym $mod+y border pixel 1
@@ -12,13 +12,13 @@ bindsym $mod+n border normal
 
 floating_modifier $mod
 
-bindsym $mod+Return exec --no-startup-id qterminal
+bindsym $mod+Return exec --no-startup-id /home/zhangzhao/.cargo/bin/alacritty
 
 # Window kill command
 bindsym $mod+Shift+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id rofi -show run
+# bindsym $mod+d exec --no-startup-id rofi -show run
 
 # change focus
 bindsym $mod+h focus left
@@ -179,18 +179,19 @@ mode "resize" {
 }
 
 # Theme colors
-client.focused #b0b287 #1d1e26 #b0b287 #789073 #789073
-client.focused_inactive #b0b287 #1d1e26 #b0b287 #789073 #789073
-client.unfocused #b0b287 #1d1e26 #b0b287 #789073 #789073
-client.urgent #b0b287 #1d1e26 #b0b287 #789073 #789073
-client.placeholder #b0b287 #1d1e26 #b0b287 #789073 #789073
+# Theme colors
+client.focused  #ECECEC  #414941   #FAFAFA   #ECECEC   #ECECEC
+client.focused_inactive   #ECECEC     #ECECEC    #171717  #ECECEC   #ECECEC
+client.unfocused   #ECECEC      #CACACA    #171717     #ECECEC       #ECECEC
+client.urgent   #ff0000  #ff0000   #ffffff   #268BD2
+client.placeholder    #000000    #909090   #FFFFFF    #268BD2
 
 client.background #282828
 
 # Gaps
-gaps inner 20
-gaps outer 0
-gaps top 25
+gaps inner 30
+# gaps outer 0
+# gaps top 25
 smart_borders on
 smart_gaps on
 
@@ -232,9 +233,9 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2db- unmute
-#bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
+# bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 2dB+ unmute
+# bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2db- unmute
+# bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
 # touchpad on and off controller on laptop with Fn+<touchpad control functional key>
 # bindsym $mod+[ exec --no-startup-id synclient Touchpadoff=0
 # bindsym $mod+shift+[ exec --no-startup-id synclient Touchpadoff=1
@@ -244,7 +245,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2db-
 ##############################################################################
 # boot
 exec_always --no-startup-id $HOME/.config/polybar/i3wmthemer_bar_launch.sh
-exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+exec --no-startup-id feh --bg-fill --noxinerama /home/zhangzhao/.local/wallpaper/wallpaper.jpg
+exec --no-startup-id picom --experimental-backend
 exec --no-startup-id xset dpms 0 0 10800                                                                               #设置自动灭屏
 exec --no-startup-id xset s noexpose
 exec --no-startup-id xset s 0 0
@@ -260,14 +262,14 @@ exec --no-startup-id lsyncd $HOME/.config/lsyncd/lsyncd.conf
 
 ##############################################################################
 # bind hotkeys
+# bindsym $mod+o exec --no-startup-id netease-cloud-music
+# bindsym $mod+i exec --no-startup-id qq
+# bindsym $mod+b exec --no-startup-id baidunetdisk
+# bindsym $mod+w exec --no-startup-id wps
+# bindsym $mod+z exec --no-startup-id zotero
+# bindsym $mod+x exec --no-startup-id i3lock-fancy-dualmonitor
 bindsym $mod+p exec --no-startup-id firefox
-bindsym $mod+o exec --no-startup-id netease-cloud-music
-bindsym $mod+i exec --no-startup-id qq
-bindsym $mod+b exec --no-startup-id baidunetdisk
-bindsym $mod+w exec --no-startup-id wps
-bindsym $mod+z exec --no-startup-id zotero
 bindsym $mod+9 exec --no-startup-id pavucontrol
-bindsym $mod+x exec --no-startup-id i3lock-fancy-dualmonitor
 bindsym $mod+Shift+s exec --no-startup-id ssr
 bindsym $mod+q exec --no-startup-id qv2ray
 bindsym $mod+Shift+n exec --no-startup-id nomacs

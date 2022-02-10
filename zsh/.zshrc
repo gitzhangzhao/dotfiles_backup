@@ -203,3 +203,4 @@ unproxy(){
     echo -e "\033[31mHTTP Proxy off\033[0m"
 }
 
+eval "$(starship init zsh)"

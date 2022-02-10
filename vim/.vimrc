@@ -55,8 +55,8 @@ nnoremap x "_x
 nnoremap X "_X
 
 "添加一行但不进插入模式
-" nnoremap <C-L> o<Esc>
-" nnoremap <C-H> O<Esc>
+nnoremap <C-L> o<Esc>
+nnoremap <C-H> O<Esc>
 
 "tt按键切换窗口
 nnoremap tt <C-w>w
@@ -117,10 +117,11 @@ set showcmd            " 输入的命令显示出来，看的清楚些
 
 " 设置折叠
 set foldenable            " 允许折叠
-"autocmd FileType java,c,cpp set foldmethod=syntax
-"set foldlevel=999999      " 默认开始不折叠
-autocmd Filetype * AnyFoldActivate               " activate for all filetypes
-set foldlevel=99 " Open all folds
+"autocmd FileType java,c,cpp
+set foldmethod=syntax
+set foldlevel=999999      " 默认开始不折叠
+" autocmd Filetype * AnyFoldActivate               " activate for all filetypes
+" set foldlevel=99 " Open all folds
 
 function! OnSpace()
     if foldlevel('.')
@@ -335,8 +336,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 " pairs
 Plug 'jiangmiao/auto-pairs'
-" flod
-Plug 'pseewald/vim-anyfold'
 " comment
 Plug 'tyru/caw.vim'
 " junegunn'
@@ -363,6 +362,7 @@ Plug 'mg979/vim-visual-multi',{'branch': 'master'}
 Plug 'vim-scripts/fcitx.vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'wellle/context.vim'
+Plug 'dstein64/vim-startuptime'
 " vimdiff
 Plug 'chrisbra/vim-diff-enhanced'
 " LeaderF
@@ -371,6 +371,7 @@ Plug 'kshenoy/vim-signature'
 " status line
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " header
 Plug 'alpertuna/vim-header'
 " bar
@@ -392,11 +393,13 @@ Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
 Plug 'tommcdo/vim-exchange'
 " themes
-" Plug 'NLKNguyen/papercolor-theme'
-Plug 'morhetz/gruvbox'
+Plug 'NLKNguyen/papercolor-theme'
+" Plug 'morhetz/gruvbox'
 " Plug 'joshdick/onedark.vim'
-Plug 'jacoborus/tender.vim'
+" Plug 'jacoborus/tender.vim'
 " Plug 'arcticicestudio/nord-vim'
+" Plug 'cocopon/iceberg.vim'
+" Plug 'junegunn/seoul256.vim'
 " Plug 'cocopon/iceberg.vim'
 " markdown
 Plug 'godlygeek/tabular', { 'for': ['markdown'] }
@@ -458,28 +461,24 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 " themes settings
 set t_Co=256
-set background=dark
-" gruvbox
-let g:gitgutter_override_sign_column_highlight = 1
-let g:gruvbox_italic = 1
-let g:gruvbox_bold = 1
-let g:gruvbox_contrast_dark = 'hard'
-color gruvbox
-" nord
-" color nord
-" ondark
-" color onedark
-" tender
-" color tender
-" let g:airline_theme = 'onedark'
-" iceberg
-" color iceberg
+set background=light
 " 让背景，行号，状态栏背景透明
-set termguicolors
-highlight Normal guibg       = NONE
-highlight LineNr guibg       = NONE
-highlight SignColumn guibg   = NONE "设置标志列背景色
-highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
+" set termguicolors
+" highlight Normal guibg       = NONE
+" highlight LineNr guibg       = NONE
+" highlight SignColumn guibg   = NONE "设置标志列背景色
+" highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
+
+" gruvbox
+" let g:gitgutter_override_sign_column_highlight = 1
+" let g:gruvbox_italic = 1
+" let g:gruvbox_bold = 1
+" let g:gruvbox_contrast_dark = 'hard'
+" color gruvbox
+
+" paper
+colorscheme PaperColor
+let g:airline_theme = 'papercolor'
 
 " ale
 let g:ale_linters = {
@@ -611,5 +610,6 @@ nnoremap <F6> :UndotreeToggle<CR>
 
 " easycomplete
 let g:easycomplete_diagnostics_enable = 0
-nnoremap <silent> <Nop> :EasyCompleteNextDiagnostic<CR>
-nnoremap <silent> <Nop> :EasyCompletePreviousDiagnostic<CR>
+let g:easycomplete_lsp_checking = 0
+nnoremap <silent> <C-w> :EasyCompleteNextDiagnostic<CR>
+nnoremap <silent> <C-e> :EasyCompletePreviousDiagnostic<CR>

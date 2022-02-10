@@ -1,14 +1,14 @@
 #!/bin/bash
 sudo apt install \
- zsh trash-cli qterminal fcitx goldendict axel xclip flex lsyncd \
- stow vlc traceroute lightdm-gtk-greeter-settings bison ntfs-3g\
- rsync ssh arandr firefox zip unzip rar unrar locate gdb \
- wget universal-ctags global xautolock ccls nomacs \
+ zsh trash-cli fcitx goldendict xclip flex lsyncd \
+ stow traceroute bison ntfs-3g\
+ rsync ssh arandr firefox zip unzip rar unrar gdb \
+ wget universal-ctags global xautolock ccls dunst \
  redshift translate-shell pylint shellcheck linux-headers-amd64 \
- smartmontools flameshot libjpeg-dev progress sshfs wireshark \
- cflow lxappearance ufw xserver-xorg-input-synaptics dos2unix \
- strace ltrace samba mpv lshw davfs2 remmina fonts-font-awesome \
- neofetch picom pandoc graphviz feh zathura unclutter netcat-openbsd \
- duf man-db manpages-zh libpam0g-dev libx11-xcb-dev imagemagick \
- fonts-noto-cjk fonts-noto-color-emoji fonts-firacode iverilog \
- breeze-cursor-theme gtk2-engines-murrine lsof libssl-dev \
+ smartmontools flameshot libjpeg-dev sshfs \
+ cflow lxappearance lightdm-gtk-greeter-settings ufw dos2unix \
+ strace ltrace samba mpv lshw davfs2 remmina \
+ neofetch pandoc graphviz feh unclutter netcat-openbsd \
+ duf man-db manpages-zh imagemagick \
+ fonts-noto-cjk iverilog \
+ breeze-cursor-theme lsof libssl-dev \
