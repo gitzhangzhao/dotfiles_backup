@@ -2,9 +2,9 @@
 Description=Mount sdb
 
 [Mount]
-What=/dev/disk/by-uuid/ec992520-ff93-402b-850a-9d569ee348de
+What=/dev/disk/by-uuid/4c22aaa9-7890-4c89-a3f6-44b2254c01b8
 Where=/home/zhangzhao/Mount
-Type=ext4
+Type=xfs
 Options=defaults,rw
 TimeoutSec=15
 

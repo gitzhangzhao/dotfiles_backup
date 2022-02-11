@@ -1,10 +1,15 @@
-<h1 align="center">dotfiles ❤ ~/</h1> My dotfiles for my PC, managed by GNU Stow.
+# My dotfiles, managed by GNU Stow, inspired by prettyi3
 
 ![gif](https://thumbs.gfycat.com/AlarmingCoordinatedEarwig-max-1mb.gif)
 
-> os: debian sid with i3-gap ([i3wm-themer](https://github.com/unix121/i3wm-themer))
+- vim theme: papercolor
+- alacritty theme: iceberg
+
+    ![shot](wallpaper/.local/wallpaper/shot.png)
 
 ## **Requirments:**
+
+prettyi3(https://github.com/aeghn/prettyi3)
 
 #### **package(apt&&cargo):**
 - [requirements(apt)](requirements.apt)
@@ -12,31 +17,19 @@
 
 #### **other software(manually):**
 ```bash
-i3wm-themes oh-my-zsh vim baidunetdisk neteasecloudmusic sogoupinyin wps qq-linux i3lock-fancy electron-ssr v2raya(docker) glances(docker) zotero docker code 
-i3lock-color wemeet
+oh-my-zsh vim sogoupinyin i3lock-color betterlockscreen v2raya(docker) docker code wemeet
 ```
 
 #### **My fonts:**
-- fonts-noto-cjk                                     
-- fonts-noto-color-emoji                            
-- fonts-firacode                                  
-- fonts-font-awesome                        
-- Droid Sans Mono for Powerline Nerd Font Complete
+- fonts-noto-cjk for Chinese                                  
+- sf mono for code
+- sf pro display for polybar
 
-#### **My GTK theme, cursor theme and icon theme:**
+#### **cursor theme:**
 - breeze-cursor-theme for cursor
-- gruvbox-material-gtk for gtk and icons
 
 ## **Installation**
 install stow first.
-```bash
-sudo apt install stow
-```
-clone the repository
-```bash
-git clone https://github.com/gitzhangzhao/dotfiles.git $HOME
-cd $HOME/dotfiles
-```
 there are four scripts can be used:
 
 - stow_all:  stow all dotfiles, include home/ and /etc/.
@@ -47,7 +40,7 @@ there are four scripts can be used:
 ---------------------------------------------------------------
 
 ## **docker records:**
-### 1. glances
+~~### 1. glances~~
 
 ```bash
 sudo docker run -d \
@@ -75,7 +68,7 @@ sudo docker run -d \
         mzz2017/v2raya
 ```
 
-### 3. lkmpg
+~~### 3. lkmpg~~
 
 ```bash
 sudo docker run --rm \
