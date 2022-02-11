@@ -1,7 +1,7 @@
 #!/bin/bash
 sudo apt install \
  zsh trash-cli fcitx goldendict xclip flex lsyncd \
- stow traceroute bison ntfs-3g\
+ stow traceroute bison ntfs-3g bc \
  rsync ssh arandr firefox zip unzip rar unrar gdb \
  wget universal-ctags global xautolock ccls dunst \
  redshift translate-shell pylint shellcheck linux-headers-amd64 \
