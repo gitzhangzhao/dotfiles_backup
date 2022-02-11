@@ -34,7 +34,7 @@ function install_home_dotfiles() {
     for DOTFILES in $HOME_DIR
     do
         $STOW $STOW_FLAG --target "$HOME" $DOTFILES
-        if [ $? -eq 0 ] 
+        if [ $? -eq 0 ]
         then
             echo -e "$DOTFILES \033[32m stowed. \033[0m"
         else
@@ -50,9 +50,8 @@ function install_etc_dotfiles() {
     echo -e "\033[34m/etc:install...\033[0m"
     pushd etc > /dev/null
     sudo $STOW $STOW_FLAG --target /etc * > /dev/null 2>&1
-    popd > /dev/null
 
-    if [ $? -eq 0 ] 
+    if [ $? -eq 0 ]
     then
         for DOTFILES in $ETC_DIR
         do
@@ -61,6 +60,7 @@ function install_etc_dotfiles() {
     else
         echo -e "\033[31m Error on stow etc. \033[0m"
     fi
+    popd > /dev/null
     echo -e ""
 }
 
@@ -69,9 +69,8 @@ function install_usr_dotfiles() {
     echo -e "\033[34m/usr:install...\033[0m"
     pushd usr > /dev/null
     sudo $STOW $STOW_FLAG --target /usr * >/dev/null 2>&1
-    popd > /dev/null
 
-    if [ $? -eq 0 ] 
+    if [ $? -eq 0 ]
     then
         for DOTFILES in $USR_DIR
         do
@@ -80,6 +79,7 @@ function install_usr_dotfiles() {
     else
         echo -e "\033[31m Error on stow usr. \033[0m"
     fi
+    popd > /dev/null
     echo -e ""
 }
 

@@ -15,7 +15,8 @@ then
 fi
 
 #需要安装的包：
-sudo apt install libxt-dev libxpm-dev libx11-dev ruby ruby-dev libperl-dev liblua5.4-dev lua5.4
+sudo apt install libxt-dev libxpm-dev libx11-dev ruby ruby-dev libperl-dev 
+#liblua5.4-dev lua5.4
 
 if [ $? -ne 0 ] 
 then
