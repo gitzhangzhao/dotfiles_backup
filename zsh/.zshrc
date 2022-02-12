@@ -107,6 +107,10 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # ------------------------------------------------------------------------------
+# options
+setopt globdots
+
+# ------------------------------------------------------------------------------
 # completions
 autoload -U compinit && compinit
 

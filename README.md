@@ -14,6 +14,7 @@ prettyi3(https://github.com/aeghn/prettyi3)
 #### **package(apt&&cargo):**
 - [requirements(apt)](requirements.apt)
 - [requirements(cargo)](requirements.cargo)
+- [requirements(pip)](requirements.pip)
 
 #### **other software(manually):**
 ```bash
