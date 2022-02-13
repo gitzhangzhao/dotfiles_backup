@@ -255,7 +255,7 @@ exec --no-startup-id goldendict
 exec_always --no-startup-id xautolock -time 60 -locker "betterlockscreen -l dimblur"
 exec --no-startup-id redshift -l 39.5:116.2 -t 5600:5000
 exec --no-startup-id lsyncd $HOME/.config/lsyncd/lsyncd.conf
-exec --no-startup-id flashfocus
+exec --no-startup-id /home/zhangzhao/.local/bin/flashfocus
 # exec --no-startup-id synclient TapButton1=1                                                                           #设置触摸板可以点击
 # exec --no-startup-id synclient Touchpadoff=1                                                                          #默认关闭触摸板
 # exec --no-startup-id sleep 20; xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'                                   #将Lock键映射为ESC,延时10s等待X启动完成后设置才有效
@@ -293,12 +293,12 @@ assign [class="baidunetdisk"]         $ws6
 
 ##############################################################################
 #assign workspaces
-workspace 1 output HDMI-1
-workspace 2 output VGA-1
-workspace 3 output HDMI-1
-workspace 4 output HDMI-1
-workspace 5 output HDMI-1 VGA-1
-workspace 6 output HDMI-1 VGA-1
-workspace 7 output HDMI-1 VGA-1
-workspace 8 output VGA-1
+workspace 1 output HDMI-2
+workspace 2 output VGA-2
+workspace 3 output HDMI-2
+workspace 4 output HDMI-2
+workspace 5 output HDMI-2 VGA-2
+workspace 6 output HDMI-2 VGA-2
+workspace 7 output HDMI-2 VGA-2
+workspace 8 output VGA-2
 ##############################################################################
