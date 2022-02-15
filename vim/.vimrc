@@ -253,7 +253,7 @@ set scrolloff=10
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "<F11>格式化代码
-nnoremap <silent><F11> V:Autoformat<CR>
+" nnoremap <silent><F11> V:Autoformat<CR>
 vnoremap <silent><F11> :Autoformat<CR>
 
 "<F12>跳转头文件(:A)
@@ -351,7 +351,7 @@ Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'ekalinin/Dockerfile.vim'
 " code format
-Plug 'vim-autoformat/vim-autoformat',{ 'on': 'Autoformat', 'do': 'python3 -m pip install pynvim' }
+Plug 'vim-autoformat/vim-autoformat',{ 'on': 'Autoformat' }
 " move
 Plug 'unblevable/quick-scope'
 Plug 'psliwka/vim-smoothie'
@@ -491,9 +491,9 @@ let g:ale_linters = {
 " let g:ale_linters_explicit =1
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
-let g:ale_sign_warning               = '⚡'
+let g:ale_sign_warning               = ''
 let g:ale_lint_on_enter              = 1
-let g:ale_sign_error                 = '✗'
+let g:ale_sign_error                 = ''
 let g:airline#extensions#ale#enabled = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
@@ -503,6 +503,11 @@ let g:ale_echo_msg_format  = '[%linter%] %s [%severity%]'
 " 禁用默认INSERT模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
+let g:ale_cpp_ccls_init_options = {
+\   'cache': {
+\   'directory': '/tmp/ccls/cache'
+\   }
+\ }
 
 " gtags && gutentags"
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
@@ -594,6 +599,9 @@ let g:strip_whitespace_confirm = 0
 let g:smoothie_no_default_mappings = 1
 silent! nmap <unique> <C-J> <Plug>(SmoothieDownwards)
 silent! nmap <unique> <C-K> <Plug>(SmoothieUpwards)
+
+silent! vmap <unique> <C-J> <Plug>(SmoothieDownwards)
+silent! vmap <unique> <C-K> <Plug>(SmoothieUpwards)
 
 " lexima
 set backspace=indent,eol,start
