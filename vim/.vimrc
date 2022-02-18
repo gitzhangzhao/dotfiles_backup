@@ -622,3 +622,4 @@ let g:easycomplete_diagnostics_enable = 0
 let g:easycomplete_lsp_checking = 0
 nnoremap <silent> <C-w> :EasyCompleteNextDiagnostic<CR>
 nnoremap <silent> <C-e> :EasyCompletePreviousDiagnostic<CR>
+
