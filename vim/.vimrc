@@ -343,7 +343,7 @@ Plug 'tyru/caw.vim'
 Plug 'junegunn/vim-slash'
 Plug 'junegunn/vim-easy-align'
 " static checking
-Plug 'w0rp/ale',{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
+Plug 'dense-analysis/ale' ,{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
 " syntax highlight
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
