@@ -421,6 +421,8 @@ Plug 'ntpeters/vim-better-whitespace'
 Plug 'farmergreg/vim-lastplace'
 " undotree
 Plug 'mbbill/undotree'
+" minimap
+Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -623,3 +625,7 @@ let g:easycomplete_lsp_checking = 0
 nnoremap <silent> <C-w> :EasyCompleteNextDiagnostic<CR>
 nnoremap <silent> <C-e> :EasyCompletePreviousDiagnostic<CR>
 
+" minimap
+let g:minimap_width = 10
+let g:minimap_auto_start = 1
+let g:minimap_auto_start_win_enter = 1

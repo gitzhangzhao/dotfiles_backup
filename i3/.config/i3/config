@@ -256,6 +256,7 @@ exec_always --no-startup-id xautolock -time 60 -locker "/home/zhangzhao/.local/b
 exec --no-startup-id redshift -l 39.5:116.2 -t 5600:5000
 exec --no-startup-id lsyncd $HOME/.config/lsyncd/lsyncd.conf
 exec_always --no-startup-id /home/zhangzhao/.local/bin/flashfocus
+exec_always --no-startup-id $HOME/.local/bin/alternating_layouts
 # exec --no-startup-id synclient TapButton1=1                                                                           #设置触摸板可以点击
 # exec --no-startup-id synclient Touchpadoff=1                                                                          #默认关闭触摸板
 # exec --no-startup-id sleep 20; xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'                                   #将Lock键映射为ESC,延时10s等待X启动完成后设置才有效
