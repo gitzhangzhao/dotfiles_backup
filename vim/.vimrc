@@ -258,28 +258,28 @@ vnoremap <silent><F11> :Autoformat<CR>
 
 "<F12>跳转头文件(:A)
 function! s:a(cmd)
-   let name = expand('%:r')
-   let ext = tolower(expand('%:e'))
-   let sources = ['c', 'cc', 'cpp', 'cxx']
-   let headers = ['h', 'hh', 'hpp', 'hxx']
-   for pair in [[sources, headers], [headers, sources]]
-     let [set1, set2] = pair
-     if index(set1, ext) >= 0
-       for h in set2
-         let aname = name.'.'.h
-         for a in [aname, toupper(aname)]
-           if filereadable(a)
-             execute a:cmd a
-             return
-           end
-         endfor
-       endfor
-     endif
-   endfor
- endfunction
- command! A call s:a('e')
- command! AV call s:a('botright vertical split')
- nnoremap <silent><F12> :A<CR>
+    let name = expand('%:r')
+    let ext = tolower(expand('%:e'))
+    let sources = ['c', 'cc', 'cpp', 'cxx']
+    let headers = ['h', 'hh', 'hpp', 'hxx']
+    for pair in [[sources, headers], [headers, sources]]
+        let [set1, set2] = pair
+        if index(set1, ext) >= 0
+            for h in set2
+                let aname = name.'.'.h
+                for a in [aname, toupper(aname)]
+                    if filereadable(a)
+                        execute a:cmd a
+                        return
+                    end
+                endfor
+            endfor
+        endif
+    endfor
+endfunction
+command! A call s:a('e')
+command! AV call s:a('botright vertical split')
+nnoremap <silent><F12> :A<CR>
 nnoremap <silent>\<F12> :AV<CR>
 
 " F5编译运行
@@ -363,7 +363,7 @@ Plug 'mg979/vim-visual-multi',{'branch': 'master'}
 Plug 'vim-scripts/fcitx.vim'
 Plug 'myusuf3/numbers.vim'
 Plug 'wellle/context.vim'
-Plug 'dstein64/vim-startuptime'
+" Plug 'dstein64/vim-startuptime'
 " vimdiff
 Plug 'chrisbra/vim-diff-enhanced'
 " LeaderF
@@ -406,13 +406,13 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'godlygeek/tabular', { 'for': ['markdown'] }
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 function! BuildComposer(info)
-  if a:info.status != 'unchanged' || a:info.force
-    if has('nvim')
-      !cargo build --release --locked
-    else
-      !cargo build --release --locked --no-default-features --features json-rpc
+    if a:info.status != 'unchanged' || a:info.force
+        if has('nvim')
+            !cargo build --release --locked
+        else
+            !cargo build --release --locked --no-default-features --features json-rpc
+        endif
     endif
-  endif
 endfunction
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') , 'for': ['markdown'] }
 " whitespace
@@ -420,9 +420,13 @@ Plug 'ntpeters/vim-better-whitespace'
 " lastplace
 Plug 'farmergreg/vim-lastplace'
 " undotree
-Plug 'mbbill/undotree'
+Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
 " minimap
 Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+" sudo
+Plug 'lambdalisue/suda.vim'
+" vim-cool
+Plug 'romainl/vim-cool'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -438,13 +442,13 @@ let g:html_indent_style1  = "inc"
 " quickscope
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 augroup qs_colors
-  autocmd!
-  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+    autocmd!
+    autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+    autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
 augroup END
 
 " number.vim
-let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
+let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree', 'minimap']
 
 " vim-surround
 vmap " S"
@@ -485,11 +489,11 @@ let g:airline_theme = 'papercolor'
 
 " ale
 let g:ale_linters = {
-\   'c++': ['ccls'],
-\   'c': ['ccls'],
-\   'h': ['ccls'],
-\   'sh': ['shellcheck'],
-\}
+            \   'c++': ['ccls'],
+            \   'c': ['ccls'],
+            \   'h': ['ccls'],
+            \   'sh': ['shellcheck'],
+            \}
 " let g:ale_linters_explicit =1
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
@@ -506,10 +510,10 @@ let g:ale_echo_msg_format  = '[%linter%] %s [%severity%]'
 let g:ale_lint_on_text_changed = 'normal'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_cpp_ccls_init_options = {
-\   'cache': {
-\   'directory': '/tmp/ccls/cache'
-\   }
-\ }
+            \   'cache': {
+                \   'directory': '/tmp/ccls/cache'
+                \   }
+                \ }
 
 " gtags && gutentags"
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
@@ -628,4 +632,6 @@ nnoremap <silent> <C-e> :EasyCompletePreviousDiagnostic<CR>
 " minimap
 let g:minimap_width = 10
 let g:minimap_auto_start = 1
-let g:minimap_auto_start_win_enter = 1
+
+" suda
+let g:suda_smart_edit = 1
