@@ -24,7 +24,6 @@ set nocompatible   " 去掉vi一致性模式，避免bug
 set ttimeoutlen=0  " 降低fcitx插件的反应时间
 set lazyredraw     " 延迟绘制（提升性能）
 set fileformats=unix,dos
-" set paste
 
 " syntax support
 syntax on
@@ -82,9 +81,6 @@ nnoremap Q <Nop>
 
 "U撤销撤销操作
 nnoremap U <C-r>
-
-"打开root文件时无法保存
-nnoremap ww :w !sudo tee > /dev/null %<CR>
 
 "跳转到mark时，跳转到行列的具体位置
 nnoremap ' `
@@ -427,6 +423,8 @@ Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 Plug 'lambdalisue/suda.vim'
 " vim-cool
 Plug 'romainl/vim-cool'
+" paste
+Plug 'roxma/vim-paste-easy'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -630,7 +628,7 @@ nnoremap <silent> <C-w> :EasyCompleteNextDiagnostic<CR>
 nnoremap <silent> <C-e> :EasyCompletePreviousDiagnostic<CR>
 
 " minimap
-let g:minimap_width = 10
+let g:minimap_width = 8
 let g:minimap_auto_start = 1
 
 " suda
