@@ -380,7 +380,6 @@ Plug 'RRethy/vim-illuminate'
 Plug 'ludovicchabant/vim-gutentags'
 " snippets
 Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 " completion
 Plug 'jayli/vim-easycomplete'
 " text objects
@@ -486,12 +485,12 @@ colorscheme PaperColor
 let g:airline_theme = 'papercolor'
 
 " ale
-let g:ale_linters = {
-            \   'c++': ['ccls'],
-            \   'c': ['ccls'],
-            \   'h': ['ccls'],
-            \   'sh': ['shellcheck'],
-            \}
+" let g:ale_linters = {
+"            \   'c++': ['clang'],
+"            \   'c': ['clang'],
+"            \   'h': ['clang'],
+"            \   'sh': ['shellcheck'],
+"            \}
 " let g:ale_linters_explicit =1
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
@@ -624,8 +623,7 @@ nnoremap <F6> :UndotreeToggle<CR>
 " easycomplete
 let g:easycomplete_diagnostics_enable = 0
 let g:easycomplete_lsp_checking = 0
-nnoremap <silent> <C-w> :EasyCompleteNextDiagnostic<CR>
-nnoremap <silent> <C-e> :EasyCompletePreviousDiagnostic<CR>
+noremap gr :EasyCompleteReference<CR>
 
 " minimap
 let g:minimap_width = 8

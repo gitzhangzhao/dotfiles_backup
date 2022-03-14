@@ -1,9 +1,9 @@
 #!/bin/bash
 sudo apt install \
  zsh trash-cli fcitx goldendict xclip flex lsyncd \
- stow traceroute bison ntfs-3g bc  clang-format\
+ stow traceroute bison ntfs-3g bc clangd clang-format\
  rsync ssh arandr firefox zip unzip rar unrar gdb \
- wget universal-ctags global xautolock ccls dunst \
+ wget universal-ctags global xautolock dunst \
  redshift translate-shell pylint shellcheck linux-headers-amd64 \
  smartmontools flameshot libjpeg-dev sshfs \
  cflow lxappearance lightdm-gtk-greeter-settings ufw dos2unix \
