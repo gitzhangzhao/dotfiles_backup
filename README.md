@@ -11,7 +11,7 @@
 
 prettyi3(https://github.com/aeghn/prettyi3)
 
-#### **package(apt&&cargo):**
+#### **package(apt&&cargo&&pip):**
 - [requirements(apt)](requirements.apt)
 - [requirements(cargo)](requirements.cargo)
 - [requirements(pip)](requirements.pip)
@@ -22,7 +22,7 @@ oh-my-zsh vim sogoupinyin i3lock-color betterlockscreen v2raya(docker) docker co
 ```
 
 #### **My fonts:**
-- fonts-noto-cjk for Chinese                                  
+- fonts-noto-cjk for Chinese
 - sf mono for code
 - sf pro display for polybar
 
