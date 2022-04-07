@@ -876,35 +876,35 @@ key_bindings:
   # Print all received window events.
   #print_events: false
 
-# Colors (Iceberg Light)
-colors:
-  # Default colors
-  primary:
-    background: '0xe8e9ec'
-    foreground: '0x33374c'
-
-  # Normal colors
-  normal:
-    black:   '0xdcdfe7'
-    red:     '0xcc517a'
-    green:   '0x668e3d'
-    yellow:  '0xc57339'
-    blue:    '0x2d539e'
-    magenta: '0x7759b4'
-    cyan:    '0x3f83a6'
-    white:   '0x33374c'
-
-  # Bright colors
-  bright:
-    black:   '0x8389a3'
-    red:     '0xcc3768'
-    green:   '0x598030'
-    yellow:  '0xb6662d'
-    blue:    '0x22478e'
-    magenta: '0x6845ad'
-    cyan:    '0x327698'
-    white:   '0x262a3f'
-
+# # Colors (Iceberg Light)
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0xe8e9ec'
+#     foreground: '0x33374c'
+#
+#   # Normal colors
+#   normal:
+#     black:   '0xdcdfe7'
+#     red:     '0xcc517a'
+#     green:   '0x668e3d'
+#     yellow:  '0xc57339'
+#     blue:    '0x2d539e'
+#     magenta: '0x7759b4'
+#     cyan:    '0x3f83a6'
+#     white:   '0x33374c'
+#
+#   # Bright colors
+#   bright:
+#     black:   '0x8389a3'
+#     red:     '0xcc3768'
+#     green:   '0x598030'
+#     yellow:  '0xb6662d'
+#     blue:    '0x22478e'
+#     magenta: '0x6845ad'
+#     cyan:    '0x327698'
+#     white:   '0x262a3f'
+#
 
 # Colors (Google Light)
 # colors:
@@ -964,3 +964,68 @@ colors:
 #     magenta: "#D9AE98"
 #     cyan: "#F2854A"
 #     white: "#4C4742"
+
+
+# github Alacritty Colors
+# colors:
+#   # Default colors
+#   primary:
+#     background: '0xffffff'
+#     foreground: '0x586069'
+#
+#   # Normal colors
+#   normal:
+#     black:   '0x697179'
+#     red:     '0xd03d3d'
+#     green:   '0x14ce14'
+#     yellow:  '0x949800'
+#     blue:    '0x0451a5'
+#     magenta: '0xbc05bc'
+#     cyan:    '0x0598bc'
+#     white:   '0x586069'
+#
+#   # Bright colors
+#   bright:
+#     black:   '0x666666'
+#     red:     '0xcd3131'
+#     green:   '0x14ce14'
+#     yellow:  '0xb5ba00'
+#     blue:    '0x0451a5'
+#     magenta: '0xbc05bc'
+#     cyan:    '0x0598bc'
+#     white:   '0x586069'
+#
+#   indexed_colors:
+#     - { index: 16, color: '0xd18616' }
+#     - { index: 17, color: '0xcd3131' }
+#
+
+
+# Colors (Gruvbox light)
+colors:
+  # Default colors
+  primary:
+    background: '#ffffff'
+    foreground: '#3c3836'
+
+  # Normal colors
+  normal:
+    black:   '#fbf1c7'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#7c6f64'
+
+  # Bright colors
+  bright:
+    black:   '#928374'
+    red:     '#9d0006'
+    green:   '#79740e'
+    yellow:  '#b57614'
+    blue:    '#076678'
+    magenta: '#8f3f71'
+    cyan:    '#427b58'
+    white:   '#3c3836'
