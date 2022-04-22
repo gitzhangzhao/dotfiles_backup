@@ -76,7 +76,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(zsh-completions git z zsh-syntax-highlighting zsh-autosuggestions extract vi-mode colored-man-pages sudo last-working-dir you-should-use autoupdate docker rust)
+plugins=(zsh-completions zsh-autosuggestions zsh-syntax-highlighting git extract vi-mode colored-man-pages sudo last-working-dir you-should-use autoupdate docker rust)
 
 
 source $ZSH/oh-my-zsh.sh
@@ -109,27 +109,27 @@ source $ZSH/oh-my-zsh.sh
 # ------------------------------------------------------------------------------
 # options
 
-# ------------------------------------------------------------------------------
+#######################################################################
+#                       personal configurations                       #
+#######################################################################
+
 # completions
 autoload -U compinit && compinit
 
-# ------------------------------------------------------------------------------
 # key bindings
 bindkey '`' autosuggest-accept
 
 # environment variable
 export EDITOR=vim
 export PAGER=less
-export PATH=$HOME/dotfiles:$HOME/.cargo/bin:$HOME/.local/bin:/home/zhangzhao/Lab/epics/base-3.15.5/bin/linux-x86_64:$PATH
+export PATH=$HOME/dotfiles:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/Lab/epics/base-3.15.5/bin/linux-x86_64:$HOME/.vim/plugged/fzf/bin:$PATH
 export EPICS_CA_ADDR_LIST=192.168.206.202
-eval "$(mcfly init zsh)"
 export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_KEY_SCHEME=vim
 export MCFLY_RESULTS=50
 export GIT_SSL_NO_VERIFY=true
 # export C_INCLUDE_PATH=/usr/src/linux-headers-5.10.0-8-amd64:/usr/src/linux-headers-5.10.0-8-common/include:/usr/src/linux-headers-5.10.0-8-common/arch:/usr/src/linux-headers-5.10.0-8-common/arch/x86/include/asm/
 
-# ------------------------------------------------------------------------------
 # aliases
 alias csn='remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina'
 alias zz='remmina -c ~/.local/share/remmina/group_rdp_win-张昭_192-168-206-210-9092.remmina'
@@ -169,7 +169,12 @@ alias p='clippaste'
 alias start='s_mount'
 alias stop='s_umount'
 
-# ------------------------------------------------------------------------------
+# commands
+ulimit -c 0 > /dev/null 2>&1
+
+# prompt
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
 # functions
 # 'ls' after every 'cd'
 function chpwd_cdls() {
@@ -178,30 +183,25 @@ function chpwd_cdls() {
     ls
   fi
 }
+
 if ! (( $chpwd_functions[(I)chpwd_cdls] )); then
   chpwd_functions+=(chpwd_cdls)
 fi
 
-# ------------------------------------------------------------------------------
-# commands
-ulimit -c 0 > /dev/null 2>&1
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
-# ------------------------------------------------------------------------------
-# proxy
-proxy(){
+function proxy(){
     export http_proxy=http://localhost:20172
     export https_proxy=https://localhost:20172
     export all_proxy=socks5://localhost:20170
     echo -e "\033[32mHTTP Proxy on\033[0m"
 }
 
-unproxy(){
+function unproxy(){
     unset http_proxy
     unset https_proxy
     unset all_proxy
     echo -e "\033[31mHTTP Proxy off\033[0m"
 }
+
+# eval
+eval "$(mcfly init zsh)"
+eval "$(zoxide init zsh --cmd cd)"

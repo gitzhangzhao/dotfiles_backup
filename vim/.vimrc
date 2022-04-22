@@ -335,9 +335,6 @@ Plug 'tpope/vim-speeddating'
 Plug 'jiangmiao/auto-pairs'
 " comment
 Plug 'tyru/caw.vim'
-" junegunn'
-Plug 'junegunn/vim-slash'
-Plug 'junegunn/vim-easy-align'
 " static checking
 Plug 'dense-analysis/ale' ,{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
 " syntax highlight
@@ -354,6 +351,8 @@ Plug 'psliwka/vim-smoothie'
 " git
 Plug 'airblade/vim-gitgutter'
 " others
+Plug 'junegunn/vim-slash'
+Plug 'junegunn/vim-easy-align'
 Plug 'mhinz/vim-startify'
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
 Plug 'vim-scripts/fcitx.vim'
@@ -362,10 +361,11 @@ Plug 'wellle/context.vim'
 " Plug 'dstein64/vim-startuptime'
 " vimdiff
 Plug 'chrisbra/vim-diff-enhanced'
-" LeaderF
-Plug 'Yggdroot/LeaderF',{ 'on': ['LeaderfFile','LeaderfFunction'] }
-Plug 'kshenoy/vim-signature'
+" FZF
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, }
+Plug 'junegunn/fzf.vim', {'on': ['Files', 'Rg'] }
 " status line
+Plug 'kshenoy/vim-signature'
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -570,18 +570,9 @@ let g:cpp_concepts_highlight                     = 1
 let g:airline_powerline_fonts = 1
 let g:Powerline_symbols='fancy'
 
-" LeaderF
-nnoremap <C-f> :LeaderfFile<CR>
-nnoremap <C-g> :LeaderfFunction!<CR>
-let g:Lf_PreviewInPopup = 1
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
-let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = expand('~/.vim/cache')
-let g:Lf_ShowRelativePath = 0
-let g:Lf_HideHelp = 1
-let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
-let g:Lf_WindowPosition = 'popup'
+" fzf
+nnoremap <C-f> :Files <CR>
+nnoremap <C-g> :Rg    <CR>
 
 " vim-header
 let g:header_auto_add_header = 0
