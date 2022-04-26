@@ -15,20 +15,25 @@ _procs() {
 
     local context curcontext="$curcontext" state line
     _arguments "${_arguments_options[@]}" \
-'-W+[Watch mode with custom interval]' \
-'--watch-interval=[Watch mode with custom interval]' \
-'*-i+[Insert column to slot]' \
-'*--insert=[Insert column to slot]' \
-'--only=[Specified column only]' \
-'(--sortd -t --tree)--sorta=[Sort column by ascending]' \
-'(--sorta -t --tree)--sortd=[Sort column by descending]' \
-'-c+[Color mode]: :(auto always disable)' \
-'--color=[Color mode]: :(auto always disable)' \
-'--theme=[Theme mode]: :(auto dark light)' \
-'-p+[Pager mode]: :(auto always disable)' \
-'--pager=[Pager mode]: :(auto always disable)' \
-'--interval=[Interval to calculate throughput]' \
-'--completion=[Generate shell completion file]: :(zsh bash fish powershell elvish)' \
+'-W+[Watch mode with custom interval]:second: ' \
+'--watch-interval=[Watch mode with custom interval]:second: ' \
+'*-i+[Insert column to slot]:kind: ' \
+'*--insert=[Insert column to slot]:kind: ' \
+'--only=[Specified column only]:kind: ' \
+'(--sortd -t --tree)--sorta=[Sort column by ascending]:kind: ' \
+'(--sorta -t --tree)--sortd=[Sort column by descending]:kind: ' \
+'-c+[Color mode]:COLOR:(auto always disable)' \
+'--color=[Color mode]:COLOR:(auto always disable)' \
+'--theme=[Theme mode]:THEME:(auto dark light)' \
+'-p+[Pager mode]:PAGER:(auto always disable)' \
+'--pager=[Pager mode]:PAGER:(auto always disable)' \
+'--interval=[Interval to calculate throughput]:millisec: ' \
+'--completion=[Generate shell completion file]:shell: ' \
+'--completion-out=[Generate shell completion file and write to stdout]:shell: ' \
+'-h[Print help information]' \
+'--help[Print help information]' \
+'-V[Print version information]' \
+'--version[Print version information]' \
 '(-o --or -d --nand -r --nor)-a[AND  logic for multi-keyword]' \
 '(-o --or -d --nand -r --nor)--and[AND  logic for multi-keyword]' \
 '(-a --and -d --nand -r --nor)-o[OR   logic for multi-keyword]' \
@@ -47,20 +52,13 @@ _procs() {
 '--config[Generate configuration sample file]' \
 '--no-header[Suppress header]' \
 '--debug[Show debug message]' \
-'-h[Prints help information]' \
-'--help[Prints help information]' \
-'-V[Prints version information]' \
-'--version[Prints version information]' \
-'::KEYWORD -- Keywords for search:_files' \
+'*::KEYWORD -- Keywords for search:' \
 && ret=0
-    
 }
 
 (( $+functions[_procs_commands] )) ||
 _procs_commands() {
-    local commands; commands=(
-        
-    )
+    local commands; commands=()
     _describe -t commands 'procs commands' commands "$@"
 }
 
