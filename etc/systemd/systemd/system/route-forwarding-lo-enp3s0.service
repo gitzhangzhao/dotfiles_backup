@@ -1,0 +1,14 @@
+[Unit]
+Description=route forwarding for lo and enp3s0
+Requires=network.target
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh -c 'echo "1" > /proc/sys/net/ipv4/ip_forward'
+ExecStart=/usr/sbin/iptables -A FORWARD -i lo -o enp3s0 -j ACCEPT
+ExecStart=/usr/sbin/iptables -A FORWARD -i lo -o enp3s0 -m state --state ESTABLISHED,RELATED -j ACCEPT
+ExecStart=/usr/sbin/iptables -t nat -A POSTROUTING -o enp3s0 -j MASQUERADE
+
+[Install]
+WantedBy=multi-user.target

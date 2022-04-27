@@ -1,12 +1,12 @@
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " File              : .vimrc
 " Author            : zhangzhao <zhangzhao@ihep.ac.cn>
-" Date              : 21.05.2020
-" Last Modified Date: 14.09.2021
+" Date              : 27.04.2022
+" Last Modified Date: 27.04.2022
 " Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimrc for zhangzhao ,need powerline-font, nerd-font，ctags and gtags
-""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"    vimrc for zhangzhao ,need powerline-font, nerd-font，ctags and gtags    "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Universal settings                             "
@@ -98,7 +98,6 @@ vnoremap <C-c> "+y
 " prevent vim from clearing the clipboard on exit
 autocmd VimLeave * call system("xclip -selection clipboard -i", getreg('+'))
 
-" 设置基本一些特性
 " 行列线设置
 set cul
 " set cuc
@@ -110,7 +109,6 @@ autocmd InsertEnter,WinLeave * set nocursorline
 set shortmess=atI      " 启动的时候不显示援助乌干达儿童的提示
 set go=                " 不要图形按钮
 set showcmd            " 输入的命令显示出来，看的清楚些
-" set whichwrap+=<,>,h,l " 允许backspace和光标键跨越行边界(不建议)
 
 " 设置折叠
 set foldenable            " 允许折叠
@@ -212,7 +210,7 @@ set backupdir=~/.vim/tmp
 set backupext=.bak
 " 禁用交换文件
 set noswapfile
-" 禁用 undo文件
+" 禁用undo文件
 set noundofile
 " 创建目录，并且忽略可能出现的警告
 silent! call mkdir(expand('~/.vim/tmp'), "p", 0755)
@@ -239,20 +237,14 @@ set matchtime=2
 "光标移动到buffer的顶部和底部时保持10行距离
 set scrolloff=10
 
-"记录退出行
-" if has("autocmd")
-"   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-" endif
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F11>-<F12> mapping                          "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "<F11>格式化代码
-" nnoremap <silent><F11> V:Autoformat<CR>
-vnoremap <silent><F11> :Autoformat<CR>
+vnoremap <silent><F11> :ClangFormat<CR>
 
-"<F12>跳转头文件(:A)
+" <F12>跳转头文件(:A)
 function! s:a(cmd)
     let name = expand('%:r')
     let ext = tolower(expand('%:e'))
@@ -267,358 +259,355 @@ function! s:a(cmd)
                     if filereadable(a)
                         execute a:cmd a
                         return
-                        end
-                    endfor
+                    end
                 endfor
-            endif
-        endfor
-    endfunction
-    command! A call s:a('e')
-    command! AV call s:a('botright vertical split')
-    nnoremap <silent><F12> :A<CR>
-    nnoremap <silent>\<F12> :AV<CR>
-
-    " F5编译运行
-    " func! CompileRunGcc()
-    " nnoremap <silent><F5> :call CompileRunGcc()<CR>
-    "     exec "w"
-    "     if &filetype == 'c'
-    "         exec "!clang % -o %<"
-    "        exec "!time ./%<"
-    "    elseif &filetype == 'cpp'
-    "        exec "!g++ % -std=c++11 -o %<"
-    "        exec "!time ./%<"
-    "    elseif &filetype == 'java'
-    "        exec "!javac %"
-    "        exec "!time java %<"
-    "    elseif &filetype == 'sh'
-    "        :!time bash %
-    "    elseif &filetype == 'python'
-    "        exec "!time python3 %"
-    "    elseif &filetype == 'html'
-    "        exec "!firefox % &"
-    "    elseif &filetype == 'go'
-    "        "        exec "!go build %<"
-    "        exec "!time go run %"
-    "    elseif &filetype == 'mkd'
-    "        exec "!typora %"
-    "    endif
-    " endfunc
-
-    " F6进行C,C++的调试
-    "map <F6> :call Rungdb()<CR>
-    "func! Rungdb()
-    "    exec "w"
-    "    exec "!gcc % -g -o %<"
-    "    exec "!gdb ./%<"
-    "endfunc
-
-    "if has("autocmd")
-    "    autocmd BufReadPost *
-    "                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    "                \   exe "normal g`\"" |
-    "                \ endif
-    " endif
-
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "                                 vim-plug                                   "
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    call plug#begin('~/.vim/plugged')
-    " indent line
-    Plug 'Yggdroot/indentLine'
-    " tpope'
-    Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-endwise'
-    Plug 'tpope/vim-repeat'
-    Plug 'tpope/vim-speeddating'
-    " pairs
-    Plug 'jiangmiao/auto-pairs'
-    " comment
-    Plug 'tyru/caw.vim'
-    " static checking
-    Plug 'dense-analysis/ale' ,{ 'for': ['c', 'cpp', 'python', 'verilog_systemverilog','sh' ] }
-    " syntax highlight
-    Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
-    Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
-    Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
-    Plug 'PotatoesMaster/i3-vim-syntax'
-    Plug 'ekalinin/Dockerfile.vim'
-    " code format
-    Plug 'vim-autoformat/vim-autoformat',{ 'on': 'Autoformat' }
-    " move
-    Plug 'unblevable/quick-scope'
-    Plug 'psliwka/vim-smoothie'
-    " git
-    Plug 'airblade/vim-gitgutter'
-    " others
-    Plug 'junegunn/vim-slash'
-    Plug 'junegunn/vim-easy-align'
-    Plug 'mhinz/vim-startify'
-    Plug 'mg979/vim-visual-multi',{'branch': 'master'}
-    Plug 'vim-scripts/fcitx.vim'
-    Plug 'myusuf3/numbers.vim'
-    Plug 'wellle/context.vim'
-    " Plug 'dstein64/vim-startuptime'
-    " vimdiff
-    Plug 'chrisbra/vim-diff-enhanced'
-    " FZF
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, }
-    Plug 'junegunn/fzf.vim', {'on': ['Files', 'Rg'] }
-    " status line
-    Plug 'kshenoy/vim-signature'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
-    " header
-    Plug 'alpertuna/vim-header'
-    " bar
-    Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
-    Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' }
-    " highlight cursor word
-    Plug 'RRethy/vim-illuminate'
-    " tags(ctags,global)
-    Plug 'ludovicchabant/vim-gutentags'
-    " snippets
-    Plug 'SirVer/ultisnips'
-    " completion
-    Plug 'jayli/vim-easycomplete'
-    " text objects
-    Plug 'kana/vim-textobj-user'
-    Plug 'kana/vim-textobj-function'
-    Plug 'sgur/vim-textobj-parameter'
-    Plug 'glts/vim-textobj-comment'
-    Plug 'tommcdo/vim-exchange'
-    " themes
-    Plug 'NLKNguyen/papercolor-theme'
-    " Plug 'morhetz/gruvbox'
-    " Plug 'joshdick/onedark.vim'
-    " Plug 'jacoborus/tender.vim'
-    " Plug 'arcticicestudio/nord-vim'
-    " Plug 'cocopon/iceberg.vim'
-    " Plug 'junegunn/seoul256.vim'
-    " Plug 'cocopon/iceberg.vim'
-    " markdown
-    Plug 'godlygeek/tabular', { 'for': ['markdown'] }
-    Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
-    function! BuildComposer(info)
-        if a:info.status != 'unchanged' || a:info.force
-            if has('nvim')
-                !cargo build --release --locked
-            else
-                !cargo build --release --locked --no-default-features --features json-rpc
-            endif
+            endfor
         endif
-    endfunction
-    Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') , 'for': ['markdown'] }
-    " whitespace
-    Plug 'ntpeters/vim-better-whitespace'
-    " lastplace
-    Plug 'farmergreg/vim-lastplace'
-    " undotree
-    Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
-    " minimap
-    Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
-    " sudo
-    Plug 'lambdalisue/suda.vim'
-    " vim-cool
-    Plug 'romainl/vim-cool'
-    " paste
-    Plug 'roxma/vim-paste-easy'
-    call plug#end()
+    endfor
+endfunction
+command! A call s:a('e')
+command! AV call s:a('botright vertical split')
+nnoremap <silent><F12> :A<CR>
+nnoremap <silent>\<F12> :AV<CR>
 
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "                               plug settings                                "
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" F5编译运行
+" func! CompileRunGcc()
+" nnoremap <silent><F5> :call CompileRunGcc()<CR>
+"     exec "w"
+"     if &filetype == 'c'
+"         exec "!clang % -o %<"
+"        exec "!time ./%<"
+"    elseif &filetype == 'cpp'
+"        exec "!g++ % -std=c++11 -o %<"
+"        exec "!time ./%<"
+"    elseif &filetype == 'java'
+"        exec "!javac %"
+"        exec "!time java %<"
+"    elseif &filetype == 'sh'
+"        :!time bash %
+"    elseif &filetype == 'python'
+"        exec "!time python3 %"
+"    elseif &filetype == 'html'
+"        exec "!firefox % &"
+"    elseif &filetype == 'go'
+"        "        exec "!go build %<"
+"        exec "!time go run %"
+"    elseif &filetype == 'mkd'
+"        exec "!typora %"
+"    endif
+" endfunc
 
-    " indentline
-    let g:indentLine_char     = '┊'
-    let g:html_indent_inctags = "html,body,head,tbody"
-    let g:html_indent_script1 = "inc"
-    let g:html_indent_style1  = "inc"
+" F6进行C,C++的调试
+"map <F6> :call Rungdb()<CR>
+"func! Rungdb()
+"    exec "w"
+"    exec "!gcc % -g -o %<"
+"    exec "!gdb ./%<"
+"endfunc
 
-    " quickscope
-    let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-    augroup qs_colors
-        autocmd!
-        autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-        autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
-    augroup END
+"if has("autocmd")
+"    autocmd BufReadPost *
+"                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+"                \   exe "normal g`\"" |
+"                \ endif
+" endif
 
-    " number.vim
-    let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree', 'minimap']
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 vim-plug                                   "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-    " vim-surround
-    vmap " S"
-    vmap ] S]
-    vmap [ S]
-    vmap ' S'
-    vmap > S>
-    vmap < S>
-    vmap / S/
-    vmap ) S)
-    vmap ( S)
-    vmap } S}
-    vmap { S}
+call plug#begin('~/.vim/plugged')
+" indent line
+Plug 'Yggdroot/indentLine'
+" tpope'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+" pairs
+Plug 'jiangmiao/auto-pairs'
+" comment
+Plug 'tyru/caw.vim'
+" static checking
+Plug 'dense-analysis/ale' ,{ 'for' : [ 'c', 'cpp', 'python', 'verilog_systemverilog', 'sh' ] }
+" syntax highlight
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
+Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
+Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'ekalinin/Dockerfile.vim'
+" code format
+Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat', 'for' : [ 'c', 'cpp' ] }
+" move
+Plug 'unblevable/quick-scope'
+Plug 'psliwka/vim-smoothie'
+" git
+Plug 'airblade/vim-gitgutter'
+" starup
+Plug 'mhinz/vim-startify'
+" others
+Plug 'junegunn/vim-slash'
+Plug 'junegunn/vim-easy-align'
+Plug 'mg979/vim-visual-multi',{'branch': 'master'}
+Plug 'vim-scripts/fcitx.vim'
+Plug 'myusuf3/numbers.vim'
+Plug 'wellle/context.vim'
+" Plug 'dstein64/vim-startuptime'
+" vimdiff
+Plug 'chrisbra/vim-diff-enhanced'
+" FZF
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, }
+Plug 'junegunn/fzf.vim', {'on': ['Files', 'Rg'] }
+" status line
+Plug 'kshenoy/vim-signature'
+Plug 'ryanoasis/vim-devicons'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" header
+Plug 'alpertuna/vim-header'
+" bar
+Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
+Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' }
+" highlight cursor word
+Plug 'RRethy/vim-illuminate'
+" tags(ctags,global)
+Plug 'ludovicchabant/vim-gutentags'
+" snippets
+Plug 'SirVer/ultisnips'
+" completion
+Plug 'jayli/vim-easycomplete'
+" text objects
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
+Plug 'sgur/vim-textobj-parameter'
+Plug 'glts/vim-textobj-comment'
+Plug 'tommcdo/vim-exchange'
+" themes
+Plug 'NLKNguyen/papercolor-theme'
+" Plug 'morhetz/gruvbox'
+" Plug 'joshdick/onedark.vim'
+" Plug 'jacoborus/tender.vim'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'cocopon/iceberg.vim'
+" Plug 'junegunn/seoul256.vim'
+" Plug 'cocopon/iceberg.vim'
+" markdown
+Plug 'godlygeek/tabular', { 'for': ['markdown'] }
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
+function! BuildComposer(info)
+    if a:info.status != 'unchanged' || a:info.force
+        if has('nvim')
+            !cargo build --release --locked
+        else
+            !cargo build --release --locked --no-default-features --features json-rpc
+        endif
+    endif
+endfunction
+Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') , 'for': ['markdown'] }
+" whitespace
+Plug 'ntpeters/vim-better-whitespace'
+" lastplace
+Plug 'farmergreg/vim-lastplace'
+" undotree
+Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
+" minimap
+Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+" sudo
+Plug 'lambdalisue/suda.vim'
+" vim-cool
+Plug 'romainl/vim-cool'
+" paste
+Plug 'roxma/vim-paste-easy'
+call plug#end()
 
-    " vim-repeat
-    silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                               plug settings                                "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-    " themes settings
-    set t_Co=256
-    set background=light
-    " 让背景，行号，状态栏背景透明
-    " set termguicolors
-    " highlight Normal guibg       = NONE
-    " highlight LineNr guibg       = NONE
-    " highlight SignColumn guibg   = NONE "设置标志列背景色
-    " highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
+" indentline
+let g:indentLine_char     = '┊'
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1  = "inc"
 
-    " gruvbox
-    " let g:gitgutter_override_sign_column_highlight = 1
-    " let g:gruvbox_italic = 1
-    " let g:gruvbox_bold = 1
-    " let g:gruvbox_contrast_dark = 'hard'
-    " color gruvbox
+" quickscope
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+augroup qs_colors
+    autocmd!
+    autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
+    autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
+augroup END
 
-    " paper
-    colorscheme PaperColor
-    let g:airline_theme = 'papercolor'
+" number.vim
+let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree', 'minimap']
 
-    " ale
-    " let g:ale_linters = {
-    "            \   'c++': ['clang'],
-    "            \   'c': ['clang'],
-    "            \   'h': ['clang'],
-    "            \   'sh': ['shellcheck'],
-    "            \}
-    " let g:ale_linters_explicit =1
-    let g:ale_sign_column_always         = 1
-    let g:ale_set_highlights             = 0
-    let g:ale_sign_warning               = ''
-    let g:ale_lint_on_enter              = 1
-    let g:ale_sign_error                 = ''
-    let g:airline#extensions#ale#enabled = 1
-    highlight clear ALEErrorSign
-    highlight clear ALEWarningSign
-    let g:ale_echo_msg_error_str         = 'E'
-    let g:ale_echo_msg_warning_str       = 'W'
-    let g:ale_echo_msg_format  = '[%linter%] %s [%severity%]'
-    " 禁用默认INSERT模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
-    let g:ale_lint_on_text_changed = 'normal'
-    let g:ale_lint_on_insert_leave = 1
-    let g:ale_cpp_ccls_init_options = {
-                \   'cache': {
-                    \   'directory': '/tmp/ccls/cache'
-                    \   }
-                    \ }
+" vim-surround
+vmap " S"
+vmap ] S]
+vmap [ S]
+vmap ' S'
+vmap > S>
+vmap < S>
+vmap / S/
+vmap ) S)
+vmap ( S)
+vmap } S}
+vmap { S}
 
-    " gtags && gutentags"
-    let g:gutentags_modules = ['ctags', 'gtags_cscope']
-    let g:gutentags_ctags_executable = '/usr/bin/ctags'
-    set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
-    "gutentags搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
-    let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-    " 所生成的数据文件的名称
-    let g:gutentags_ctags_tagfile = '.tags'
-    " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-    let g:gutentags_cache_dir = expand('~/.cache/tags')
-    " 配置 ctags 的参数，老的 Exuberant-ctags 不能有 --extra=+q，注意
-    let g:gutentags_ctags_extra_args  = ['--fields=+niazS']
-    let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-    let g:gutentags_ctags_extra_args += ['--extra=+q']
-    let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-    " 如果使用 universal ctags 需要增加下面一行，老的 Exuberant-ctags 不能加下一行
-    let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-    " 增加cscope使用的快捷键(C-[和esc按键一致，可以直接esc+s进行查找)
-    nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-    nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-    nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-    nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+" vim-repeat
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
-    " NerdTree
-    let g:NERDTreeDirArrowExpandable = ''
-    let g:NERDTreeDirArrowCollapsible = ''
-    let NERDTreeShowHidden=1
-    " F7打开目录树
-    nnoremap <silent><F7> :NERDTreeToggle<CR>
-    " 只剩 NERDTree时自动关闭
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" themes settings
+set t_Co=256
+set background=light
+" 让背景，行号，状态栏背景透明
+" set termguicolors
+" highlight Normal guibg       = NONE
+" highlight LineNr guibg       = NONE
+" highlight SignColumn guibg   = NONE "设置标志列背景色
+" highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
 
-    " tagbar键盘命令映射
-    nmap <F8> :TagbarToggle<CR>
-    let g:tagbar_ctags_bin='/usr/bin/ctags'
+" gruvbox
+" let g:gitgutter_override_sign_column_highlight = 1
+" let g:gruvbox_italic = 1
+" let g:gruvbox_bold = 1
+" let g:gruvbox_contrast_dark = 'hard'
+" color gruvbox
 
-    " 设置easy-align
-    " Start interactive EasyAlign in visual mode (e.g. vipga)
-    xmap ga <Plug>(EasyAlign)
-    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-    nmap ga <Plug>(EasyAlign)
+" paper theme
+colorscheme PaperColor
+let g:airline_theme = 'papercolor'
 
-    " vim-cpp-enhanced-highlight
-    let g:cpp_member_variable_highlight              = 1
-    let g:cpp_class_scope_highlight                  = 1
-    let g:cpp_class_decl_highlight                   = 1
-    let g:cpp_experimental_simple_template_highlight = 1
-    let g:cpp_experimental_template_highlight        = 1
-    let g:cpp_concepts_highlight                     = 1
+" ale
+" let g:ale_linters = {
+"            \   'c++': ['clang'],
+"            \   'c': ['clang'],
+"            \   'h': ['clang'],
+"            \   'sh': ['shellcheck'],
+"            \}
+" let g:ale_linters_explicit =1
+let g:ale_sign_column_always         = 1
+let g:ale_set_highlights             = 0
+let g:ale_sign_warning               = ''
+let g:ale_lint_on_enter              = 1
+let g:ale_sign_error                 = ''
+let g:airline#extensions#ale#enabled = 1
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+let g:ale_echo_msg_error_str         = 'E'
+let g:ale_echo_msg_warning_str       = 'W'
+let g:ale_echo_msg_format  = '[%linter%] %s [%severity%]'
+" 禁用默认INSERT模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
 
-    " airline
-    let g:airline_powerline_fonts = 1
-    let g:Powerline_symbols='fancy'
+" gtags && gutentags"
+let g:gutentags_modules = ['ctags', 'gtags_cscope']
+let g:gutentags_ctags_executable = '/usr/bin/ctags'
+set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
+"gutentags搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+" 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+" 配置 ctags 的参数，老的 Exuberant-ctags 不能有 --extra=+q，注意
+let g:gutentags_ctags_extra_args  = ['--fields=+niazS']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+" 如果使用 universal ctags 需要增加下面一行，老的 Exuberant-ctags 不能加下一行
+let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+" 增加cscope使用的快捷键(C-[和esc按键一致，可以直接esc+s进行查找)
+nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
-    " fzf
-    nnoremap <C-f> :Files <CR>
-    nnoremap <C-g> :Rg    <CR>
+" NerdTree
+let g:NERDTreeDirArrowExpandable = ''
+let g:NERDTreeDirArrowCollapsible = ''
+let NERDTreeShowHidden=1
+" F7打开目录树
+nnoremap <silent><F7> :NERDTreeToggle<CR>
+" 只剩 NERDTree时自动关闭
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-    " vim-header
-    let g:header_auto_add_header = 0
-    let g:header_field_author = 'zhangzhao'
-    let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
+" tagbar键盘命令映射
+nmap <F8> :TagbarToggle<CR>
+let g:tagbar_ctags_bin='/usr/bin/ctags'
 
-    " vim-gitgutter
-    let g:gitgutter_sign_allow_clobber = 1
+" 设置easy-align
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
-    " context.vim
-    let g:context_add_mappings = 0
+" vim-cpp-enhanced-highlight
+let g:cpp_member_variable_highlight              = 1
+let g:cpp_class_scope_highlight                  = 1
+let g:cpp_class_decl_highlight                   = 1
+let g:cpp_experimental_simple_template_highlight = 1
+let g:cpp_experimental_template_highlight        = 1
+let g:cpp_concepts_highlight                     = 1
 
-    " whitespace
-    let g:strip_whitespace_on_save = 1
-    let g:strip_whitespace_confirm = 0
+" airline
+let g:airline_powerline_fonts = 1
+let g:Powerline_symbols='fancy'
 
-    " smoothie
-    let g:smoothie_no_default_mappings = 1
-    silent! nmap <unique> <C-J> <Plug>(SmoothieDownwards)
-    silent! nmap <unique> <C-K> <Plug>(SmoothieUpwards)
+" fzf
+nnoremap <C-f> :Files <CR>
+nnoremap <C-g> :Rg    <CR>
 
-    silent! vmap <unique> <C-J> <Plug>(SmoothieDownwards)
-    silent! vmap <unique> <C-K> <Plug>(SmoothieUpwards)
+" vim-header
+let g:header_auto_add_header = 0
+let g:header_field_author = 'zhangzhao'
+let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
-    " lexima
-    set backspace=indent,eol,start
+" vim-gitgutter
+let g:gitgutter_sign_allow_clobber = 1
 
-    " vim-markdown
-    let g:vim_markdown_folding_disabled = 1
-    let g:vim_markdown_conceal = 0
-    let g:vim_markdown_conceal_code_blocks = 0
+" context.vim
+let g:context_add_mappings = 0
 
-    " auto-pairs
-    let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
+" whitespace
+let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
 
-    " undotree
-    nnoremap <F6> :UndotreeToggle<CR>
+" smoothie
+let g:smoothie_no_default_mappings = 1
+silent! nmap <unique> <C-J> <Plug>(SmoothieDownwards)
+silent! nmap <unique> <C-K> <Plug>(SmoothieUpwards)
+silent! vmap <unique> <C-J> <Plug>(SmoothieDownwards)
+silent! vmap <unique> <C-K> <Plug>(SmoothieUpwards)
 
-    " easycomplete
-    let g:easycomplete_diagnostics_enable = 0
-    let g:easycomplete_lsp_checking = 0
-    noremap gr :EasyCompleteReference<CR>
+" vim-markdown
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 
-    " minimap
-    let g:minimap_width = 8
-    let g:minimap_auto_start = 1
+" markdown-composer
+let g:markdown_composer_address = "192.168.137.8"
+let g:markdown_composer_port = 8080
 
-    " suda
-    let g:suda_smart_edit = 1
+" auto-pairs
+let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
+
+" undotree
+nnoremap <F6> :UndotreeToggle<CR>
+
+" easycomplete
+let g:easycomplete_diagnostics_enable = 0
+let g:easycomplete_lsp_checking = 0
+noremap gr :EasyCompleteReference<CR>
+
+" minimap
+let g:minimap_width = 8
+let g:minimap_auto_start = 1
+
+" suda
+let g:suda_smart_edit = 1
