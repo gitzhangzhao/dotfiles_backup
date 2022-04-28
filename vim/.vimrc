@@ -118,18 +118,18 @@ set foldlevel=999999      " 默认开始不折叠
 " autocmd Filetype * AnyFoldActivate               " activate for all filetypes
 " set foldlevel=99 " Open all folds
 
-function! OnSpace()
-    if foldlevel('.')
-        if foldclosed('.') != -1
-            return 'zO'
-        else
-            return 'za'
-        endif
-    else
-        return "\<Space>"
-    endif
-endfunction
-nnoremap <silent> <Space> @=(OnSpace())<CR>
+" function! OnSpace()
+"     if foldlevel('.')
+"         if foldclosed('.') != -1
+"             return 'zO'
+"         else
+"             return 'za'
+"         endif
+"     else
+"         return "\<Space>"
+"     endif
+" endfunction
+" nnoremap <silent> <Space> @=(OnSpace())<CR>
 
 "显示中文帮助
 set encoding=UTF-8
@@ -414,10 +414,12 @@ Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
 Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 " sudo
 Plug 'lambdalisue/suda.vim'
-" vim-cool
+" disable search highlighting
 Plug 'romainl/vim-cool'
-" paste
+" set paste mode
 Plug 'roxma/vim-paste-easy'
+" select the closest test object
+Plug 'gcmt/wildfire.vim'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
