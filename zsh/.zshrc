@@ -69,7 +69,7 @@ export ZSH="/home/zhangzhao/.oh-my-zsh"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(zsh-autosuggestions zsh-syntax-highlighting extract vi-mode colored-man-pages sudo copybuffer last-working-dir you-should-use autoupdate)
+plugins=(zsh-autosuggestions zsh-syntax-highlighting extract vi-mode colored-man-pages sudo copybuffer last-working-dir you-should-use autoupdate rust)
 
 source $ZSH/oh-my-zsh.sh
 # User configuration

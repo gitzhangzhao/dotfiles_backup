@@ -5,10 +5,6 @@
 " Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"    vimrc for zhangzhao ,need powerline-font, nerd-font，ctags and gtags    "
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Universal settings                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -88,7 +84,7 @@ nnoremap ' `
 "normal下;自动添加末尾分号
 nnoremap ; $a;<ESC>
 
-" Use system clipboard
+" set clipboard
 " visual: Ctrl+c copy the selected area; normal: Ctrl+c copy a line
 " defaut to use system clipboard
 " set clipboard=unnamedplus
@@ -118,18 +114,18 @@ set foldlevel=999999      " 默认开始不折叠
 " autocmd Filetype * AnyFoldActivate               " activate for all filetypes
 " set foldlevel=99 " Open all folds
 
-" function! OnSpace()
-"     if foldlevel('.')
-"         if foldclosed('.') != -1
-"             return 'zO'
-"         else
-"             return 'za'
-"         endif
-"     else
-"         return "\<Space>"
-"     endif
-" endfunction
-" nnoremap <silent> <Space> @=(OnSpace())<CR>
+function! OnSpace()
+    if foldlevel('.')
+        if foldclosed('.') != -1
+        else
+            return 'za'
+        endif
+    else
+        return "\<Space>"
+    endif
+            return 'zO'
+endfunction
+nnoremap <silent> <Space> @=(OnSpace())<CR>
 
 "显示中文帮助
 set encoding=UTF-8
@@ -170,17 +166,16 @@ filetype plugin on
 filetype plugin indent on
 autocmd FileType java,c,cpp set commentstring=//\ %s
 
-"保存全局变量
+" save global variables
 set viminfo+=!
 "带有如下符号的单词不要被换行分割
 set iskeyword+=_,$,@,%,#,-
 
-"filetype添加
+" difine filetype
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=markdown
 au BufRead,BufNewFile *.{go}   set filetype=go
 au BufRead,BufNewFile *.{js}   set filetype=javascript
 
-" 自动注释
 " 在注释行之下新开一行时不要自动加注释
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
@@ -238,13 +233,33 @@ set matchtime=2
 set scrolloff=10
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                         Define <F11>-<F12> mapping                          "
+"                         Define <F5>-<F8>mapping                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"<F11>格式化代码
-vnoremap <silent><F11> :ClangFormat<CR>
+" <F5> for undotree
+nnoremap <silent><F5> :UndotreeToggle<CR>
 
-" <F12>跳转头文件(:A)
+" <F7> for nerd tree
+nnoremap <silent><F7> :NERDTreeToggle<CR>
+
+" <F8> for tagbar
+nnoremap <silent><F8> :TagbarToggle<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                         Define <F9>-<F12> mapping                          "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" <F9> format Markdown
+autocmd FileType markdown nnoremap <silent><F9> :AsyncRun -save=1 -post=checktime -silent chmod o+w $(VIM_FILEPATH) && docker run --rm -v $(VIM_FILEDIR):/work tmknom/prettier --write --parser=markdown $(VIM_FILENAME) && chmod o-w $(VIM_FILEPATH) <CR>
+
+" <F10> format verilog
+autocmd FileType verilog_systemverilog nnoremap <silent><F10> :AsyncRun -save=1 -post=checktime -silent istyle $(VIM_FILEPATH) && rm $(VIM_FILEPATH).orig <CR>
+
+" <F11> format C
+autocmd FileType c,cpp nnoremap <silent><F11> :ClangFormat<CR>
+autocmd FileType c,cpp vnoremap <silent><F11> :ClangFormat<CR>
+
+" <F12> jump to header (:A)
 function! s:a(cmd)
     let name = expand('%:r')
     let ext = tolower(expand('%:e'))
@@ -270,48 +285,6 @@ command! AV call s:a('botright vertical split')
 nnoremap <silent><F12> :A<CR>
 nnoremap <silent>\<F12> :AV<CR>
 
-" F5编译运行
-" func! CompileRunGcc()
-" nnoremap <silent><F5> :call CompileRunGcc()<CR>
-"     exec "w"
-"     if &filetype == 'c'
-"         exec "!clang % -o %<"
-"        exec "!time ./%<"
-"    elseif &filetype == 'cpp'
-"        exec "!g++ % -std=c++11 -o %<"
-"        exec "!time ./%<"
-"    elseif &filetype == 'java'
-"        exec "!javac %"
-"        exec "!time java %<"
-"    elseif &filetype == 'sh'
-"        :!time bash %
-"    elseif &filetype == 'python'
-"        exec "!time python3 %"
-"    elseif &filetype == 'html'
-"        exec "!firefox % &"
-"    elseif &filetype == 'go'
-"        "        exec "!go build %<"
-"        exec "!time go run %"
-"    elseif &filetype == 'mkd'
-"        exec "!typora %"
-"    endif
-" endfunc
-
-" F6进行C,C++的调试
-"map <F6> :call Rungdb()<CR>
-"func! Rungdb()
-"    exec "w"
-"    exec "!gcc % -g -o %<"
-"    exec "!gdb ./%<"
-"endfunc
-
-"if has("autocmd")
-"    autocmd BufReadPost *
-"                \ if line("'\"") > 0 && line("'\"") <= line("$") |
-"                \   exe "normal g`\"" |
-"                \ endif
-" endif
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 vim-plug                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -330,7 +303,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tyru/caw.vim'
 " static checking
 Plug 'dense-analysis/ale' ,{ 'for' : [ 'c', 'cpp', 'python', 'verilog_systemverilog', 'sh' ] }
-" syntax highlight
+" code syntax highlight
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
 Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
@@ -338,24 +311,30 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'ekalinin/Dockerfile.vim'
 " code format
 Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat', 'for' : [ 'c', 'cpp' ] }
-" move
+" quickly move
 Plug 'unblevable/quick-scope'
 Plug 'psliwka/vim-smoothie'
-" git
+" git state
 Plug 'airblade/vim-gitgutter'
-" starup
+" starup interface
 Plug 'mhinz/vim-startify'
-" others
+" enhance search
 Plug 'junegunn/vim-slash'
+" format with a common character
 Plug 'junegunn/vim-easy-align'
+" multiline selected
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
+" input
 Plug 'vim-scripts/fcitx.vim'
+" number
 Plug 'myusuf3/numbers.vim'
+" show the context of the current buffer contents
 Plug 'wellle/context.vim'
+" statistics startup time
 " Plug 'dstein64/vim-startuptime'
-" vimdiff
+" enhance vim diff
 Plug 'chrisbra/vim-diff-enhanced'
-" FZF
+" fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, }
 Plug 'junegunn/fzf.vim', {'on': ['Files', 'Rg'] }
 " status line
@@ -365,16 +344,16 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " header
 Plug 'alpertuna/vim-header'
-" bar
+" nerd tree and tagbar
 Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
 Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' }
 " highlight cursor word
 Plug 'RRethy/vim-illuminate'
-" tags(ctags,global)
+" generate tags(ctags,global) automatically
 Plug 'ludovicchabant/vim-gutentags'
 " snippets
 Plug 'SirVer/ultisnips'
-" completion
+" code completion
 Plug 'jayli/vim-easycomplete'
 " text objects
 Plug 'kana/vim-textobj-user'
@@ -389,7 +368,7 @@ Plug 'NLKNguyen/papercolor-theme'
 " Plug 'jacoborus/tender.vim'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'cocopon/iceberg.vim'
-" Plug 'junegunn/seoul256.vim'
+Plug 'junegunn/seoul256.vim'
 " Plug 'cocopon/iceberg.vim'
 " markdown
 Plug 'godlygeek/tabular', { 'for': ['markdown'] }
@@ -420,6 +399,8 @@ Plug 'romainl/vim-cool'
 Plug 'roxma/vim-paste-easy'
 " select the closest test object
 Plug 'gcmt/wildfire.vim'
+" shell commands
+Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -469,6 +450,7 @@ set background=light
 " highlight SignColumn guibg   = NONE "设置标志列背景色
 " highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
 
+" themes
 " gruvbox
 " let g:gitgutter_override_sign_column_highlight = 1
 " let g:gruvbox_italic = 1
@@ -478,7 +460,7 @@ set background=light
 
 " paper theme
 colorscheme PaperColor
-let g:airline_theme = 'papercolor'
+let g:airline_theme = 'tomorrow'
 
 " ale
 " let g:ale_linters = {
@@ -498,21 +480,21 @@ highlight clear ALEErrorSign
 highlight clear ALEWarningSign
 let g:ale_echo_msg_error_str         = 'E'
 let g:ale_echo_msg_warning_str       = 'W'
-let g:ale_echo_msg_format  = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format            = '[%linter%] %s [%severity%]'
 " 禁用默认INSERT模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
-let g:ale_lint_on_text_changed = 'normal'
-let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_text_changed       = 'normal'
+let g:ale_lint_on_insert_leave       = 1
 
 " gtags && gutentags"
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
-let g:gutentags_ctags_executable = '/usr/bin/ctags'
+let g:gutentags_modules           = ['ctags', 'gtags_cscope']
+let g:gutentags_ctags_executable  = '/usr/bin/ctags'
 set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
 "gutentags搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+let g:gutentags_project_root      = ['.root', '.svn', '.git', '.hg', '.project']
 " 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile = '.tags'
+let g:gutentags_ctags_tagfile     = '.tags'
 " 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_cache_dir         = expand('~/.cache/tags')
 " 配置 ctags 的参数，老的 Exuberant-ctags 不能有 --extra=+q，注意
 let g:gutentags_ctags_extra_args  = ['--fields=+niazS']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
@@ -534,16 +516,10 @@ nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 let g:NERDTreeDirArrowExpandable = ''
 let g:NERDTreeDirArrowCollapsible = ''
 let NERDTreeShowHidden=1
-" F7打开目录树
-nnoremap <silent><F7> :NERDTreeToggle<CR>
-" 只剩 NERDTree时自动关闭
+" close the buffer when only NERDTree exits
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" tagbar键盘命令映射
-nmap <F8> :TagbarToggle<CR>
-let g:tagbar_ctags_bin='/usr/bin/ctags'
-
-" 设置easy-align
+" easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
@@ -558,16 +534,16 @@ let g:cpp_experimental_template_highlight        = 1
 let g:cpp_concepts_highlight                     = 1
 
 " airline
-let g:airline_powerline_fonts = 1
-let g:Powerline_symbols='fancy'
+let g:airline_powerline_fonts                    = 1
+let g:Powerline_symbols                          = 'fancy'
 
 " fzf
 nnoremap <C-f> :Files <CR>
 nnoremap <C-g> :Rg    <CR>
 
 " vim-header
-let g:header_auto_add_header = 0
-let g:header_field_author = 'zhangzhao'
+let g:header_auto_add_header    = 0
+let g:header_field_author       = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
 " vim-gitgutter
@@ -580,6 +556,9 @@ let g:context_add_mappings = 0
 let g:strip_whitespace_on_save = 1
 let g:strip_whitespace_confirm = 0
 
+" tagbar
+let g:tagbar_ctags_bin = '/usr/bin/ctags'
+
 " smoothie
 let g:smoothie_no_default_mappings = 1
 silent! nmap <unique> <C-J> <Plug>(SmoothieDownwards)
@@ -588,27 +567,24 @@ silent! vmap <unique> <C-J> <Plug>(SmoothieDownwards)
 silent! vmap <unique> <C-K> <Plug>(SmoothieUpwards)
 
 " vim-markdown
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 0
+let g:vim_markdown_folding_disabled    = 1
+let g:vim_markdown_conceal             = 0
 let g:vim_markdown_conceal_code_blocks = 0
 
 " markdown-composer
 let g:markdown_composer_address = "192.168.137.8"
-let g:markdown_composer_port = 8080
+let g:markdown_composer_port    = 8080
 
 " auto-pairs
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
 
-" undotree
-nnoremap <F6> :UndotreeToggle<CR>
-
 " easycomplete
 let g:easycomplete_diagnostics_enable = 0
-let g:easycomplete_lsp_checking = 0
+let g:easycomplete_lsp_checking       = 0
 noremap gr :EasyCompleteReference<CR>
 
 " minimap
-let g:minimap_width = 8
+let g:minimap_width      = 8
 let g:minimap_auto_start = 1
 
 " suda

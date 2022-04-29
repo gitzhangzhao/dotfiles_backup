@@ -5,42 +5,48 @@
 - vim theme: papercolor
 - alacritty theme: iceberg
 
-    ![shot](wallpaper/.local/wallpaper/shot.png)
+  ![shot](wallpaper/.local/wallpaper/shot.png)
 
 ## **Requirments:**
 
 prettyi3(https://github.com/aeghn/prettyi3)
 
 #### **package(apt&&cargo&&pip):**
+
 - [requirements(apt)](requirements.apt)
 - [requirements(cargo)](requirements.cargo)
 - [requirements(pip)](requirements.pip)
 
 #### **other software(manually):**
+
 ```bash
 oh-my-zsh vim sogoupinyin i3lock-color betterlockscreen v2raya(docker) docker code wemeet
 ```
 
 #### **My fonts:**
+
 - fonts-noto-cjk for Chinese
 - sf mono for code
 - sf pro display for polybar
 
 #### **cursor theme:**
+
 - breeze-cursor-theme for cursor
 
 ## **Installation**
+
 install stow first.
 there are four scripts can be used:
 
-- stow_all:  stow all dotfiles, include home/ and /etc/.
-- unstow_all:  unstow all dotfiles, include home/ and /etc/.
-- stow:  stow one app at a time.
-- unstow:  unstow one app at a time.
+- stow_all: stow all dotfiles, include home/ and /etc/.
+- unstow_all: unstow all dotfiles, include home/ and /etc/.
+- stow: stow one app at a time.
+- unstow: unstow one app at a time.
 
----------------------------------------------------------------
+---
 
 ## **docker records:**
+
 ~~### 1. glances~~
 
 ```bash
@@ -78,7 +84,13 @@ sudo docker run --rm \
         twtug/lkmpg
 ```
 
----------------------------------------------------------------
+### 4. prettier
+
+```bash
+    docker pull tmknom/prettier
+```
+
+---
 
 ## **Bug records**
 
@@ -101,4 +113,3 @@ sudo echo "use_locks 0"  >> /etc/davfs2/davfs2.conf
 sudo echo "address username passwd" >>/etc/davfs2/secrets
 sudo chmod 0600 /etc/davfs2/secrets
 ```
-
