@@ -295,7 +295,6 @@ Plug 'Yggdroot/indentLine'
 " tpope'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-speeddating'
 " pairs
 Plug 'jiangmiao/auto-pairs'
