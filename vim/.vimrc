@@ -232,6 +232,10 @@ set matchtime=2
 "光标移动到buffer的顶部和底部时保持10行距离
 set scrolloff=10
 
+" display space character
+set list
+set listchars=trail:.
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F5>-<F8>mapping                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -368,7 +372,6 @@ Plug 'NLKNguyen/papercolor-theme'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'cocopon/iceberg.vim'
 Plug 'junegunn/seoul256.vim'
-" Plug 'cocopon/iceberg.vim'
 " markdown
 Plug 'godlygeek/tabular', { 'for': ['markdown'] }
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
@@ -458,7 +461,9 @@ set background=light
 " color gruvbox
 
 " paper theme
-colorscheme PaperColor
+" colorscheme Paper
+" colorschemo gruvbox
+colorscheme seoul256-light
 let g:airline_theme = 'tomorrow'
 
 " ale
