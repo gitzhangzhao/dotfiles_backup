@@ -160,10 +160,8 @@ set cmdheight=1
 "文件类型检测设置
 "侦测文件类型
 filetype on
-"载入文件类型插件
-filetype plugin on
 "为特定文件类型载入相关缩进文件
-filetype plugin indent on
+filetype indent on
 autocmd FileType java,c,cpp set commentstring=//\ %s
 
 " save global variables
