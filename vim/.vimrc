@@ -232,7 +232,7 @@ set scrolloff=10
 
 " display space character
 set list
-set listchars=trail:.
+set listchars=tab:↳\ ,trail:·
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F5>-<F8>mapping                            "
@@ -298,6 +298,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-repeat'
 " pairs
 Plug 'jiangmiao/auto-pairs'
 " comment
@@ -383,8 +384,6 @@ function! BuildComposer(info)
     endif
 endfunction
 Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') , 'for': ['markdown'] }
-" whitespace
-Plug 'ntpeters/vim-better-whitespace'
 " lastplace
 Plug 'farmergreg/vim-lastplace'
 " undotree
@@ -553,10 +552,6 @@ let g:gitgutter_sign_allow_clobber = 1
 
 " context.vim
 let g:context_add_mappings = 0
-
-" whitespace
-let g:strip_whitespace_on_save = 1
-let g:strip_whitespace_confirm = 0
 
 " tagbar
 let g:tagbar_ctags_bin = '/usr/bin/ctags'
