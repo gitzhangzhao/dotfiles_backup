@@ -134,7 +134,7 @@ set encoding=UTF-8
 "set autoindent
 set cindent "c语言风格的缩进
 
-"Tab键的宽度
+" Tab设置
 "统一缩进为4
 set softtabstop=4
 set tabstop=4
@@ -142,11 +142,12 @@ set shiftwidth=4
 "在行和段开始处使用制表符
 set smarttab
 set expandtab
-"显示行号
+
+" 显示行号
 set number
-"历史记录数
+" 历史记录数
 set history=1000
-"搜索逐字符高亮
+" 搜索逐字符高亮
 set hlsearch
 set incsearch
 "编码设置
