@@ -2,5 +2,5 @@
 
 # curl https://sh.rustup.rs -sSf | sh
 cargo install ripgrep --features pcre2
-cargo install fd-find difftastic sd exa bat hexyl du-dust mcfly mdbook kmon tokei git-delta fcp tealdeer procs cargo-cache cargo-update alacritty zoxide starship
+cargo install fd-find difftastic sd exa bat hexyl du-dust mcfly mdbook kmon tokei git-delta fcp tealdeer procs cargo-cache cargo-update alacritty zoxide starship ripgrep_all
 

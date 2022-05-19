@@ -461,6 +461,7 @@ set background=light
 " paper theme
 " colorscheme Paper
 " colorschemo gruvbox
+let g:seoul256_background = 254
 colorscheme seoul256-light
 let g:airline_theme = 'tomorrow'
 

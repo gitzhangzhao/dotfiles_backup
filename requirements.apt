@@ -9,6 +9,6 @@ sudo apt install \
  cflow lxappearance lightdm-gtk-greeter-settings ufw dos2unix \
  strace ltrace samba mpv lshw davfs2 remmina \
  neofetch pandoc graphviz feh unclutter netcat-openbsd \
- duf man-db manpages-zh imagemagick \
+ duf man-db manpages-zh imagemagick poppler-utils \
  fonts-noto-cjk iverilog \
  breeze-cursor-theme lsof libssl-dev \
