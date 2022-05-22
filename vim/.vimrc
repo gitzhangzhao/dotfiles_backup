@@ -55,7 +55,11 @@ nnoremap <C-L> o<Esc>
 nnoremap <C-H> O<Esc>
 
 "tt按键切换窗口
-nnoremap tt <C-w>w
+nnoremap <silent> tt :ChooseWin<cr>
+nnoremap <Up>        <C-w>k
+nnoremap <Down>      <C-w>j
+nnoremap <Left>      <C-w>h
+nnoremap <Right>     <C-w>l
 
 "回车快速搜索
 nnoremap <CR> gd
@@ -401,9 +405,21 @@ Plug 'roxma/vim-paste-easy'
 Plug 'gcmt/wildfire.vim'
 " shell commands
 Plug 'skywind3000/asyncrun.vim'
+" window switch
+Plug 't9md/vim-choosewin'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                          settings after plug#end                           "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" 在注释行之下新开一行不要自动加注释，放在插件加载完成后以防被插件修改
+augroup FORMATOPTIONS
+    autocmd!
+    autocmd filetype * set fo-=c fo-=r fo-=o " Disable continuation of comments to the next line
+augroup END
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                               plug settings                                "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
