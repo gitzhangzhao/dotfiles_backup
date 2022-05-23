@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : zhangzhao <zhangzhao@ihep.ac.cn>
 " Date              : 27.04.2022
-" Last Modified Date: 27.04.2022
+" Last Modified Date: 23.05.2022
 " Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -112,11 +112,8 @@ set showcmd            " 输入的命令显示出来，看的清楚些
 
 " 设置折叠
 set foldenable            " 允许折叠
-"autocmd FileType java,c,cpp
 set foldmethod=syntax
 set foldlevel=999999      " 默认开始不折叠
-" autocmd Filetype * AnyFoldActivate               " activate for all filetypes
-" set foldlevel=99 " Open all folds
 
 function! OnSpace()
     if foldlevel('.')
@@ -239,6 +236,9 @@ set scrolloff=10
 set list
 set listchars=tab:↳\ ,trail:·
 
+" define my snippets
+set runtimepath+=~/.vim/snippets
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F5>-<F8>mapping                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -313,14 +313,13 @@ Plug 'dense-analysis/ale' ,{ 'for' : [ 'c', 'cpp', 'python', 'verilog_systemveri
 " code syntax highlight
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
-Plug 'vhda/verilog_systemverilog.vim',{ 'for': 'verilog_systemverilog' }
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'ekalinin/Dockerfile.vim'
 " code format
 Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat', 'for' : [ 'c', 'cpp' ] }
 " quickly move
-Plug 'unblevable/quick-scope'
 Plug 'psliwka/vim-smoothie'
+Plug 'easymotion/vim-easymotion'
 " git state
 Plug 'airblade/vim-gitgutter'
 " starup interface
@@ -360,8 +359,6 @@ Plug 'RRethy/vim-illuminate'
 Plug 'ludovicchabant/vim-gutentags'
 " snippets
 Plug 'SirVer/ultisnips'
-" code completion
-Plug 'jayli/vim-easycomplete'
 " text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
@@ -369,13 +366,13 @@ Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
 Plug 'tommcdo/vim-exchange'
 " themes
-Plug 'NLKNguyen/papercolor-theme'
+" Plug 'NLKNguyen/papercolor-theme'
 " Plug 'morhetz/gruvbox'
-" Plug 'joshdick/onedark.vim'
+Plug 'joshdick/onedark.vim'
 " Plug 'jacoborus/tender.vim'
 " Plug 'arcticicestudio/nord-vim'
 " Plug 'cocopon/iceberg.vim'
-Plug 'junegunn/seoul256.vim'
+" Plug 'junegunn/seoul256.vim'
 " markdown
 Plug 'godlygeek/tabular', { 'for': ['markdown'] }
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
@@ -406,7 +403,15 @@ Plug 'gcmt/wildfire.vim'
 " shell commands
 Plug 'skywind3000/asyncrun.vim'
 " window switch
-Plug 't9md/vim-choosewin'
+Plug 't9md/vim-choosewin', { 'on': 'ChooseWin' }
+" fast fold
+Plug 'Konfekt/FastFold'
+" match highlight
+Plug 'andymass/vim-matchup'
+" command line completion
+Plug 'gelguy/wilder.nvim'
+" code completion
+Plug 'jayli/vim-easycomplete'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -428,14 +433,6 @@ let g:indentLine_char     = '┊'
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1  = "inc"
-
-" quickscope
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-augroup qs_colors
-    autocmd!
-    autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-    autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
-augroup END
 
 " number.vim
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree', 'minimap']
@@ -467,19 +464,15 @@ set background=light
 " highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
 
 " themes
-" gruvbox
 " let g:gitgutter_override_sign_column_highlight = 1
 " let g:gruvbox_italic = 1
 " let g:gruvbox_bold = 1
 " let g:gruvbox_contrast_dark = 'hard'
-" color gruvbox
-
-" paper theme
+" colorscheme gruvbox
 " colorscheme Paper
 " colorschemo gruvbox
-let g:seoul256_background = 254
-colorscheme seoul256-light
-let g:airline_theme = 'tomorrow'
+colorscheme onedark
+" let g:airline_theme = 'tomorrow'
 
 " ale
 " let g:ale_linters = {
@@ -604,3 +597,26 @@ let g:minimap_auto_start = 1
 
 " suda
 let g:suda_smart_edit = 1
+
+" easymotion
+map f <Plug>(easymotion-prefix)
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_startofline = 0        " keep cursor colum when JK motion
+map fl <Plug>(easymotion-lineforward)
+map fh <Plug>(easymotion-linebackward)
+map f. <Plug>(easymotion-repeat)
+
+" wilder
+call wilder#setup({'modes': [':', '/', '?']})
+call wilder#set_option('renderer', wilder#popupmenu_renderer({
+      \ 'highlighter': wilder#basic_highlighter(),
+      \ 'left': [
+      \   ' ', wilder#popupmenu_devicons(),
+      \ ],
+      \ 'right': [
+      \   ' ', wilder#popupmenu_scrollbar(),
+      \ ],
+      \ }))
+
+" choose-window
+let g:choosewin_overlay_enable = 1
