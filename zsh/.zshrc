@@ -105,6 +105,10 @@ source $ZSH/oh-my-zsh.sh
 #                       personal configurations                       #
 #######################################################################
 
+# completion
+autoload -Uz compinit
+compinit -i
+
 # key bindings
 bindkey '`' autosuggest-accept
 
@@ -117,6 +121,7 @@ export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_KEY_SCHEME=vim
 export MCFLY_RESULTS=50
 export GIT_SSL_NO_VERIFY=true
+export BAT_THEME=gruvbox-light
 # export C_INCLUDE_PATH=/usr/src/linux-headers-5.10.0-8-amd64:/usr/src/linux-headers-5.10.0-8-common/include:/usr/src/linux-headers-5.10.0-8-common/arch:/usr/src/linux-headers-5.10.0-8-common/arch/x86/include/asm/
 
 # aliases
@@ -131,7 +136,6 @@ alias lt='ls -T'
 alias rm='trash-put'
 alias feh='feh --full-screen'
 alias bc='eva'
-alias bat='bat --theme GitHub'
 alias hibernate='systemctl hibernate'
 alias suspend='systemctl suspend'
 alias du='dust -r'

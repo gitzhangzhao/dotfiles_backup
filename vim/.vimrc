@@ -103,8 +103,10 @@ set cul
 " set cuc
 
 "智能高亮光标所在行
-autocmd InsertLeave,WinEnter * set cursorline
-autocmd InsertEnter,WinLeave * set nocursorline
+autocmd InsertLeave,WinEnter * set cul
+" autocmd InsertLeave,WinEnter * set cuc
+autocmd InsertEnter,WinLeave * set nocul
+" autocmd InsertEnter,WinLeave * set nocuc
 
 set shortmess=atI      " 启动的时候不显示援助乌干达儿童的提示
 set go=                " 不要图形按钮
@@ -260,7 +262,7 @@ nnoremap <silent><F8> :TagbarToggle<CR>
 autocmd FileType markdown nnoremap <silent><F9> :AsyncRun -save=1 -post=checktime -silent chmod o+w $(VIM_FILEPATH) && docker run --rm -v $(VIM_FILEDIR):/work tmknom/prettier --write --parser=markdown $(VIM_FILENAME) && chmod o-w $(VIM_FILEPATH) <CR>
 
 " <F10> format verilog
-autocmd FileType verilog_systemverilog nnoremap <silent><F10> :AsyncRun -save=1 -post=checktime -silent istyle $(VIM_FILEPATH) && rm $(VIM_FILEPATH).orig <CR>
+autocmd FileType verilog nnoremap <silent><F10> :AsyncRun -save=1 -post=checktime -silent istyle $(VIM_FILEPATH) && rm $(VIM_FILEPATH).orig <CR>
 
 " <F11> format C
 autocmd FileType c,cpp nnoremap <silent><F11> :ClangFormat<CR>
@@ -368,6 +370,7 @@ Plug 'tommcdo/vim-exchange'
 " themes
 " Plug 'NLKNguyen/papercolor-theme'
 " Plug 'morhetz/gruvbox'
+Plug 'sainnhe/everforest'
 Plug 'joshdick/onedark.vim'
 " Plug 'jacoborus/tender.vim'
 " Plug 'arcticicestudio/nord-vim'
@@ -456,23 +459,46 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 " themes settings
 set t_Co=256
 set background=light
-" 让背景，行号，状态栏背景透明
-" set termguicolors
-" highlight Normal guibg       = NONE
+if has('termguicolors')
+    set termguicolors
+endif
+" cursor color
+    " INSERT mode
+    " let &t_SI = "\<Esc>[4 q" . "\<Esc>]12;black\x7"
+    " REPLACE mode
+    " let &t_SR = "\<Esc>[4 q" . "\<Esc>]12;black\x7"
+    " NORMAL mode
+    " let &t_EI = "\<Esc>[4 q" . "\<Esc>]12;black\x7"
+
+" 背景，行号，状态栏配置
 " highlight LineNr guibg       = NONE
 " highlight SignColumn guibg   = NONE "设置标志列背景色
+" highlight Normal guibg       = NONE
 " highlight CursorLineNr guibg = NONE "设置当前高亮行的NUM列背景
+" highlight Cursor guifg=white
+" highlight Cursor guifg=white guibg=black
+" highlight iCursor guifg=white guibg=steelblue
+" set guicursor=n-v-c:block-Cursor
+" set guicursor+=i:ver100-iCursor
+" set guicursor+=n-v-c:blinkon0
+" set guicursor+=i:blinkwait10
 
-" themes
+" themes selection
+" gruvbox
 " let g:gitgutter_override_sign_column_highlight = 1
 " let g:gruvbox_italic = 1
 " let g:gruvbox_bold = 1
 " let g:gruvbox_contrast_dark = 'hard'
 " colorscheme gruvbox
+" paper
 " colorscheme Paper
-" colorschemo gruvbox
-colorscheme onedark
-" let g:airline_theme = 'tomorrow'
+" everforest
+colorscheme everforest
+let g:everforest_better_performance = 1
+let g:everforest_enable_italic = 1
+let g:everforest_current_word = 'underline'
+" onedark
+" colorscheme onedark
 
 " ale
 " let g:ale_linters = {
