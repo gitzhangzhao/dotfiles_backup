@@ -7,8 +7,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             Universal settings                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set ts=4
 set sw=4
 set et
 set lbr
@@ -62,7 +60,7 @@ nnoremap <Left>      <C-w>h
 nnoremap <Right>     <C-w>l
 
 "回车快速搜索
-nnoremap <CR> gd
+" nnoremap <CR> gd
 
 "n和N固定搜索位置
 nnoremap <expr> n  'Nn'[v:searchforward]
@@ -401,8 +399,6 @@ Plug 'lambdalisue/suda.vim'
 Plug 'romainl/vim-cool'
 " set paste mode
 Plug 'roxma/vim-paste-easy'
-" select the closest test object
-Plug 'gcmt/wildfire.vim'
 " shell commands
 Plug 'skywind3000/asyncrun.vim'
 " window switch
@@ -496,7 +492,7 @@ endif
 colorscheme everforest
 let g:everforest_better_performance = 1
 let g:everforest_enable_italic = 1
-let g:everforest_current_word = 'underline'
+
 " onedark
 " colorscheme onedark
 
@@ -543,7 +539,7 @@ let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 " 增加cscope使用的快捷键(C-[和esc按键一致，可以直接esc+s进行查找)
 nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>r :cs find c <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
 nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
@@ -615,7 +611,8 @@ let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
 " easycomplete
 let g:easycomplete_diagnostics_enable = 0
 let g:easycomplete_lsp_checking       = 0
-noremap gr :EasyCompleteReference<CR>
+map gr :EasyCompleteReference<CR>
+map gd :EasyCompleteGotoDefination<CR>
 
 " minimap
 let g:minimap_width      = 8
@@ -633,7 +630,10 @@ map fh <Plug>(easymotion-linebackward)
 map f. <Plug>(easymotion-repeat)
 
 " wilder
-call wilder#setup({'modes': [':', '/', '?']})
+call wilder#setup({
+      \ 'modes': [':', '/', '?'],
+      \ })
+
 call wilder#set_option('renderer', wilder#popupmenu_renderer({
       \ 'highlighter': wilder#basic_highlighter(),
       \ 'left': [
