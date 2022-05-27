@@ -59,9 +59,6 @@ nnoremap <Down>      <C-w>j
 nnoremap <Left>      <C-w>h
 nnoremap <Right>     <C-w>l
 
-"回车快速搜索
-" nnoremap <CR> gd
-
 "n和N固定搜索位置
 nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
@@ -106,33 +103,20 @@ autocmd InsertLeave,WinEnter * set cul
 autocmd InsertEnter,WinLeave * set nocul
 " autocmd InsertEnter,WinLeave * set nocuc
 
-set shortmess=atI      " 启动的时候不显示援助乌干达儿童的提示
-set go=                " 不要图形按钮
-set showcmd            " 输入的命令显示出来，看的清楚些
+set shortmess=atI    " 启动的时候不显示援助乌干达儿童的提示
+set go=              " 不要图形按钮
+set showcmd          " 输入的命令显示出来，看的清楚些
 
 " 设置折叠
-set foldenable            " 允许折叠
+set foldenable       " 允许折叠
 set foldmethod=syntax
-set foldlevel=999999      " 默认开始不折叠
-
-function! OnSpace()
-    if foldlevel('.')
-        if foldclosed('.') != -1
-        else
-            return 'za'
-        endif
-    else
-        return "\<Space>"
-    endif
-            return 'zO'
-endfunction
-nnoremap <silent> <Space> @=(OnSpace())<CR>
+set foldlevel=999999 " 默认开始不折叠
 
 "显示中文帮助
 set encoding=UTF-8
 
 "自动缩进风格
-"set autoindent
+set autoindent
 set cindent "c语言风格的缩进
 
 " Tab设置
@@ -224,7 +208,7 @@ set selectmode=mouse,key
 "通过使用: commands命令，告诉我们文件的哪一行被改变过
 set report=0
 "在被分割的窗口间显示空白，便于阅读
-set fillchars=vert:\ ,stl:\ ,stlnc:\
+set fillchars=vert:\|,stl:\ ,stlnc:\ 
 "高亮显示匹配的括号
 set showmatch
 "匹配括号高亮的时间（单位是十分之一秒）
@@ -357,6 +341,7 @@ Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' }
 Plug 'RRethy/vim-illuminate'
 " generate tags(ctags,global) automatically
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'skywind3000/gutentags_plus'
 " snippets
 Plug 'SirVer/ultisnips'
 " text objects
@@ -506,9 +491,9 @@ let g:everforest_enable_italic = 1
 " let g:ale_linters_explicit =1
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
-let g:ale_sign_warning               = ''
+let g:ale_sign_warning               = ''
 let g:ale_lint_on_enter              = 1
-let g:ale_sign_error                 = ''
+let g:ale_sign_error                 = ''
 let g:airline#extensions#ale#enabled = 1
 highlight clear ALEErrorSign
 highlight clear ALEWarningSign
@@ -527,7 +512,7 @@ set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
 let g:gutentags_project_root      = ['.root', '.svn', '.git', '.hg', '.project']
 " 所生成的数据文件的名称
 let g:gutentags_ctags_tagfile     = '.tags'
-" 将自动生成的 ctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+" 将自动生成的 cctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
 let g:gutentags_cache_dir         = expand('~/.cache/tags')
 " 配置 ctags 的参数，老的 Exuberant-ctags 不能有 --extra=+q，注意
 let g:gutentags_ctags_extra_args  = ['--fields=+niazS']
@@ -536,15 +521,29 @@ let g:gutentags_ctags_extra_args += ['--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 " 如果使用 universal ctags 需要增加下面一行，老的 Exuberant-ctags 不能加下一行
 let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+" ctags使用快捷键
+" nnoremap <CR> <c-]>
 " 增加cscope使用的快捷键(C-[和esc按键一致，可以直接esc+s进行查找)
-nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>r :cs find c <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+" nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+" nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+" nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
+let g:gutentags_plus_nomap = 1
+let g:gutentags_plus_switch = 1
+noremap <C-[>s :GscopeFind s <C-R><C-W><cr>
+noremap <C-[>g :GscopeFind g <C-R><C-W><cr>
+noremap <C-[>c :GscopeFind c <C-R><C-W><cr>
+noremap <C-[>t :GscopeFind t <C-R><C-W><cr>
+noremap <C-[>e :GscopeFind e <C-R><C-W><cr>
+noremap <C-[>f :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
+noremap <C-[>i :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
+noremap <C-[>d :GscopeFind d <C-R><C-W><cr>
+noremap <C-[>a :GscopeFind a <C-R><C-W><cr>
+noremap <C-[>z :GscopeFind z <C-R><C-W><cr>
 
 " NerdTree
 let g:NERDTreeDirArrowExpandable = ''
@@ -611,8 +610,50 @@ let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
 " easycomplete
 let g:easycomplete_diagnostics_enable = 0
 let g:easycomplete_lsp_checking       = 0
-map gr :EasyCompleteReference<CR>
-map gd :EasyCompleteGotoDefination<CR>
+let g:easycomplete_menu_skin = {
+        \   "buf": {
+        \      "kind":"羅",
+        \      "menu":"[B]",
+        \    },
+        \   "snip": {
+        \      "kind":"",
+        \      "menu":"[S]",
+        \    },
+        \   "dict": {
+        \      "kind":"",
+        \      "menu":"[D]",
+        \    },
+        \   "tabnine": {
+        \      "kind":"",
+        \    },
+        \ }
+  let g:easycomplete_filetypes = {"r": {
+        \ "whitelist": []
+        \ }}
+  let g:easycomplete_tabnine_config = {
+        \ 'line_limit': 800,
+        \ 'max_num_result': 5,
+        \ }
+  let g:easycomplete_lsp_type_font = {
+        \ 'class': "",     'color': "",
+        \ 'constant': "",  'constructor': "",
+        \ 'enum': "",      'enummember': "",
+        \ 'field': "料",    'file': '',
+        \ 'folder': "",    'function': "ƒ",
+        \ 'interface': "", 'keyword': "",
+        \ 'snippet': "",   'struct': "פּ",
+        \ 'text': "",      'typeparameter': "",
+        \ 'variable': "",  'module':'',
+        \ 'event': '',
+        \ 'r':'', 't':'',
+        \ 'f':'', 'c':'',
+        \ 'u':'𝘶', 'e':'𝘦',
+        \ 's':'פּ', 'v':'',
+        \ 'i':'𝘪', 'm':'',
+        \ 'p':'', 'k':'𝘬',
+        \ 'o':"𝘰", 'd':'𝘥',
+        \ 'l':"𝘭", 'a':"𝘢",
+        \ }
 
 " minimap
 let g:minimap_width      = 8
