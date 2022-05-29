@@ -6,7 +6,7 @@ python
 
 # License ----------------------------------------------------------------------
 
-# Copyright (c) 2015-2021 Andrea Cardaci <cyrus.and@gmail.com>
+# Copyright (c) 2015-2022 Andrea Cardaci <cyrus.and@gmail.com>
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -192,7 +192,7 @@ See the `prompt` attribute. This value is used as a Python format string.''',
 class Beautifier():
 
     def __init__(self, hint, tab_size=4):
-        self.tab_spaces = ' ' * tab_size
+        self.tab_spaces = ' ' * tab_size if tab_size else None
         self.active = False
         if not R.ansi or not R.syntax_highlighting:
             return
@@ -218,8 +218,9 @@ class Beautifier():
             pass
 
     def process(self, source):
-        # convert tabs anyway
-        source = source.replace('\t', self.tab_spaces)
+        # convert tabs if requested
+        if self.tab_spaces:
+            source = source.replace('\t', self.tab_spaces)
         if self.active:
             import pygments
             source = pygments.highlight(source, self.lexer, self.formatter)
@@ -574,6 +575,8 @@ class Dashboard(gdb.Command):
 
     @staticmethod
     def start():
+        # save the instance for customization convenience
+        global dashboard
         # initialize the dashboard
         dashboard = Dashboard()
         Dashboard.set_custom_prompt(dashboard)
@@ -1157,7 +1160,10 @@ class Source(Dashboard.Module):
         self.offset = 0
 
     def label(self):
-        return 'Source'
+        label = 'Source'
+        if self.show_path and self.file_name:
+            label += ': {}'.format(self.file_name)
+        return label
 
     def lines(self, term_width, term_height, style_changed):
         # skip if the current thread is not stopped
@@ -1167,6 +1173,7 @@ class Source(Dashboard.Module):
         sal = gdb.selected_frame().find_sal()
         current_line = sal.line
         if current_line == 0:
+            self.file_name = None
             return []
         # try to lookup the source file
         candidates = [
@@ -1227,7 +1234,7 @@ class Source(Dashboard.Module):
                 # the current line has a different style without ANSI
                 if R.ansi:
                     if self.highlighted and not self.highlight_line:
-                        line_format = '{}' + ansi(number_format, R.style_selected_1) + ' {}'
+                        line_format = '{}' + ansi(number_format, R.style_selected_1) + '  {}'
                     else:
                         line_format = '{}' + ansi(number_format + '  {}', R.style_selected_1)
                 else:
@@ -1283,6 +1290,12 @@ A value of 0 uses the whole height.''',
                 'type': int,
                 'check': check_gt_zero
             },
+            'path': {
+                'doc': 'Path visibility flag in the module label.',
+                'default': False,
+                'name': 'show_path',
+                'type': bool
+            },
             'highlight-line': {
                 'doc': 'Decide whether the whole current line should be highlighted.',
                 'default': False,
@@ -1322,7 +1335,7 @@ The instructions constituting the current statement are marked, if available.'''
             flavor = gdb.parameter('disassembly-flavor')
         except:
             flavor = 'att'  # not always defined (see #36)
-        highlighter = Beautifier(flavor)
+        highlighter = Beautifier(flavor, tab_size=None)
         # fetch the assembly code
         line_info = None
         frame = gdb.selected_frame()  # PC is here
@@ -1955,11 +1968,14 @@ class Registers(Dashboard.Module):
         # fetch registers status
         registers = []
         for name in register_list:
-            # Exclude registers with a dot '.' or parse_and_eval() will fail
+            # exclude registers with a dot '.' or parse_and_eval() will fail
             if '.' in name:
                 continue
             value = gdb.parse_and_eval('${}'.format(name))
             string_value = Registers.format_value(value)
+            # exclude unavailable registers (see #255)
+            if string_value == '<unavailable>':
+                continue
             changed = self.table and (self.table.get(name, '') != string_value)
             self.table[name] = string_value
             registers.append((name, string_value, changed))

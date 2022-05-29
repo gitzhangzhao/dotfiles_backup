@@ -5,29 +5,18 @@ success_symbol = "[](green)"
 error_symbol = "[](red)"
 vicmd_symbol = "[](green)"
 
-[aws]
-symbol = "  "
-
-[buf]
-symbol = " "
-
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
+[hostname]
+ssh_symbol = " "
+format = "[$ssh_symbol](bold blue) on [$hostname](bold blue) "
 
 [directory]
-read_only = " "
+read_only = " "
+
+[c]
+symbol = ' '
 
 [docker_context]
 symbol = " "
-
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
 
 [git_branch]
 symbol = " "
@@ -35,32 +24,21 @@ symbol = " "
 [golang]
 symbol = " "
 
-[haskell]
-symbol = " "
-
 [hg_branch]
 symbol = " "
 
 [java]
 symbol = " "
 
-[julia]
-symbol = " "
-
-[memory_usage]
-symbol = " "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
-
 [nodejs]
 symbol = " "
 
 [package]
 symbol = " "
+
+[python]
+symbol = " "
+pyenv_version_name = true
 
 [rust]
 symbol = " "

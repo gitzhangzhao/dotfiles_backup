@@ -612,19 +612,20 @@ let g:easycomplete_diagnostics_enable = 0
 let g:easycomplete_lsp_checking       = 0
 let g:easycomplete_menu_skin = {
         \   "buf": {
-        \      "kind":"羅",
+        \      "kind":"",
         \      "menu":"[B]",
         \    },
         \   "snip": {
-        \      "kind":"",
+        \      "kind":"",
         \      "menu":"[S]",
         \    },
         \   "dict": {
-        \      "kind":"",
+        \      "kind":"",
         \      "menu":"[D]",
         \    },
         \   "tabnine": {
-        \      "kind":"",
+        \      "kind":"",
+        \      "menu":"[TN]",
         \    },
         \ }
   let g:easycomplete_filetypes = {"r": {
