@@ -53,11 +53,9 @@ nnoremap <C-L> o<Esc>
 nnoremap <C-H> O<Esc>
 
 "tt按键切换窗口
-nnoremap <silent> tt :ChooseWin<cr>
-nnoremap <Up>        <C-w>k
-nnoremap <Down>      <C-w>j
-nnoremap <Left>      <C-w>h
-nnoremap <Right>     <C-w>l
+nnoremap <silent> t :ChooseWin<cr>
+nnoremap <silent> gh <c-w>h
+nnoremap <silent> gl <c-w>l
 
 "n和N固定搜索位置
 nnoremap <expr> n  'Nn'[v:searchforward]
@@ -306,8 +304,6 @@ Plug 'psliwka/vim-smoothie'
 Plug 'easymotion/vim-easymotion'
 " git state
 Plug 'airblade/vim-gitgutter'
-" starup interface
-Plug 'mhinz/vim-startify'
 " enhance search
 Plug 'junegunn/vim-slash'
 " format with a common character
@@ -439,17 +435,9 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 " themes settings
 set t_Co=256
-set background=light
 if has('termguicolors')
     set termguicolors
 endif
-" cursor color
-    " INSERT mode
-    " let &t_SI = "\<Esc>[4 q" . "\<Esc>]12;black\x7"
-    " REPLACE mode
-    " let &t_SR = "\<Esc>[4 q" . "\<Esc>]12;black\x7"
-    " NORMAL mode
-    " let &t_EI = "\<Esc>[4 q" . "\<Esc>]12;black\x7"
 
 " 背景，行号，状态栏配置
 " highlight LineNr guibg       = NONE
@@ -464,6 +452,16 @@ endif
 " set guicursor+=n-v-c:blinkon0
 " set guicursor+=i:blinkwait10
 
+" themes configuration
+" dark theme or light theme
+set background=dark
+" cursor color
+" INSERT mode
+let &t_SI = "\<Esc>[4 q" . "\<Esc>]12;white\x7"
+" REPLACE mode
+let &t_SR = "\<Esc>[4 q" . "\<Esc>]12;white\x7"
+" NORMAL mode
+let &t_EI = "\<Esc>[4 q" . "\<Esc>]12;white\x7"
 " themes selection
 " gruvbox
 " let g:gitgutter_override_sign_column_highlight = 1
@@ -474,11 +472,17 @@ endif
 " paper
 " colorscheme Paper
 " everforest
-colorscheme everforest
+let g:everforest_sign_column_background = 'none'
+let g:everforest_diagnostic_text_highlight = 1
+let g:everforest_diagnostic_line_highlight = 1
+let g:everforest_current_word = 'underline'
+let g:everforest_ui_contrast = 'high'
 let g:everforest_better_performance = 1
 let g:everforest_enable_italic = 1
-
+let g:everforest_show_eob = 0
+colorscheme everforest
 " onedark
+" let g:onedark_terminal_italics = 1
 " colorscheme onedark
 
 " ale
@@ -657,8 +661,29 @@ let g:easycomplete_menu_skin = {
         \ }
 
 " minimap
-let g:minimap_width      = 8
 let g:minimap_auto_start = 1
+function! CheckLeftBuffers()
+  if tabpagenr('$') == 1
+    let i = 1
+    while i <= winnr('$')
+      if getbufvar(winbufnr(i), '&buftype') == 'help' ||
+          \ getbufvar(winbufnr(i), '&buftype') == 'quickfix' ||
+          \ exists('t:NERDTreeBufName') &&
+          \ bufname(winbufnr(i)) == t:NERDTreeBufName ||
+          \ bufname(winbufnr(i)) == '__Tag_List__' ||
+          \ bufname(winbufnr(i)) == '-MINIMAP-'
+        let i += 1
+      else
+        break
+      endif
+    endwhile
+    if i == winnr('$') + 1
+      qall
+    endif
+    unlet i
+  endif
+endfunction
+autocmd BufEnter * call CheckLeftBuffers()
 
 " suda
 let g:suda_smart_edit = 1
