@@ -475,7 +475,6 @@ let &t_EI = "\<Esc>[4 q" . "\<Esc>]12;white\x7"
 let g:everforest_sign_column_background = 'none'
 let g:everforest_diagnostic_text_highlight = 1
 let g:everforest_diagnostic_line_highlight = 1
-let g:everforest_current_word = 'underline'
 let g:everforest_ui_contrast = 'high'
 let g:everforest_better_performance = 1
 let g:everforest_enable_italic = 1
@@ -486,12 +485,13 @@ colorscheme everforest
 " colorscheme onedark
 
 " ale
-" let g:ale_linters = {
-"            \   'c++': ['clang'],
-"            \   'c': ['clang'],
-"            \   'h': ['clang'],
-"            \   'sh': ['shellcheck'],
-"            \}
+let g:ale_linters = {
+           \   'c++': ['clang'],
+           \   'c': ['clang'],
+           \   'h': ['clang'],
+           \   'sh': ['shellcheck'],
+           \   'verilog': ['iverilog'],
+           \}
 " let g:ale_linters_explicit =1
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
