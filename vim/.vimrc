@@ -107,7 +107,7 @@ set showcmd          " 输入的命令显示出来，看的清楚些
 
 " 设置折叠
 set foldenable       " 允许折叠
-set foldmethod=syntax
+set foldmethod=indent
 set foldlevel=999999 " 默认开始不折叠
 
 "显示中文帮助
@@ -492,7 +492,7 @@ let g:ale_linters = {
            \   'sh': ['shellcheck'],
            \   'verilog': ['iverilog'],
            \}
-" let g:ale_linters_explicit =1
+let g:ale_linters_explicit =1
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
 let g:ale_sign_warning               = ''
