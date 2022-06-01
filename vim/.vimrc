@@ -14,9 +14,9 @@ set fo+=mB
 set sm
 set selection=inclusive
 set mousemodel=popup
-set nocompatible   " 去掉vi一致性模式，避免bug
-set ttimeoutlen=0  " 降低fcitx插件的反应时间
-set lazyredraw     " 延迟绘制（提升性能）
+set nocompatible  " 去掉vi一致性模式，避免bug
+set ttimeoutlen=0 " 降低fcitx插件的反应时间
+set lazyredraw    " 延迟绘制（提升性能）
 set fileformats=unix,dos
 
 " syntax support
@@ -69,6 +69,7 @@ nnoremap J  :<c-u>execute 'move +'. v:count1<cr>
 vnoremap <silent> J :m '>+1gv=gv<cr>gv
 vnoremap <silent> K :m '<-2gv=gv<cr>gv
 
+nnoremap <ESC> X
 "避免进入Ex模式
 nnoremap Q <Nop>
 
@@ -105,10 +106,24 @@ set shortmess=atI    " 启动的时候不显示援助乌干达儿童的提示
 set go=              " 不要图形按钮
 set showcmd          " 输入的命令显示出来，看的清楚些
 
-" 设置折叠
-set foldenable       " 允许折叠
-set foldmethod=indent
-set foldlevel=999999 " 默认开始不折叠
+" fold
+set foldenable       " enable fold
+autocmd FileType c,cpp setlocal foldmethod=syntax
+autocmd FileType python,verilog,vim setlocal foldmethod=indent
+set foldlevel=9999
+" <space> for fold
+function! OnSpace()
+    if foldlevel('.')
+        if foldclosed('.') != -1
+            return 'zO'
+        else
+            return 'za'
+        endif
+    else
+        return "\<Space>"
+    endif
+endfunction
+nnoremap <silent> <Space> @=(OnSpace())<CR>
 
 "显示中文帮助
 set encoding=UTF-8
@@ -133,20 +148,17 @@ set history=1000
 " 搜索逐字符高亮
 set hlsearch
 set incsearch
-"编码设置
+" 编码设置
 set langmenu=zh_CN.UTF-8
 set fileencodings=utf8,gb2312,gbk,gb18030;
 set termencoding=utf-8
 set helplang=cn
-"总是显示状态行
+" 总是显示状态行
 set cmdheight=1
 
 "文件类型检测设置
-"侦测文件类型
 filetype on
-"为特定文件类型载入相关缩进文件
 filetype indent on
-autocmd FileType java,c,cpp set commentstring=//\ %s
 
 " save global variables
 set viminfo+=!
@@ -277,21 +289,19 @@ nnoremap <silent>\<F12> :AV<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 vim-plug                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 call plug#begin('~/.vim/plugged')
 " indent line
 Plug 'Yggdroot/indentLine'
 " tpope'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-repeat'
 " pairs
 Plug 'jiangmiao/auto-pairs'
 " comment
-Plug 'tyru/caw.vim'
+Plug 'tpope/vim-commentary'
 " static checking
-Plug 'dense-analysis/ale' ,{ 'for' : [ 'c', 'cpp', 'python', 'verilog_systemverilog', 'sh' ] }
+Plug 'dense-analysis/ale' ,{ 'for' : [ 'c', 'cpp', 'python', 'verilog', 'sh' ] }
 " code syntax highlight
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
@@ -313,7 +323,8 @@ Plug 'mg979/vim-visual-multi',{'branch': 'master'}
 " input
 Plug 'vim-scripts/fcitx.vim'
 " number
-Plug 'myusuf3/numbers.vim'
+" Plug 'myusuf3/numbers.vim'
+Plug 'jeffkreeftmeijer/vim-numbertoggle' 
 " show the context of the current buffer contents
 Plug 'wellle/context.vim'
 " statistics startup time
@@ -397,7 +408,8 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                          settings after plug#end                           "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
+" set comment strings
+setlocal commentstring=//\ %s
 " 在注释行之下新开一行不要自动加注释，放在插件加载完成后以防被插件修改
 augroup FORMATOPTIONS
     autocmd!
@@ -451,17 +463,11 @@ endif
 " set guicursor+=i:ver100-iCursor
 " set guicursor+=n-v-c:blinkon0
 " set guicursor+=i:blinkwait10
+highlight Cursor ctermfg=3 ctermbg=21
 
 " themes configuration
 " dark theme or light theme
 set background=dark
-" cursor color
-" INSERT mode
-let &t_SI = "\<Esc>[4 q" . "\<Esc>]12;white\x7"
-" REPLACE mode
-let &t_SR = "\<Esc>[4 q" . "\<Esc>]12;white\x7"
-" NORMAL mode
-let &t_EI = "\<Esc>[4 q" . "\<Esc>]12;white\x7"
 " themes selection
 " gruvbox
 " let g:gitgutter_override_sign_column_highlight = 1
@@ -472,35 +478,35 @@ let &t_EI = "\<Esc>[4 q" . "\<Esc>]12;white\x7"
 " paper
 " colorscheme Paper
 " everforest
-let g:everforest_sign_column_background = 'none'
+let g:everforest_sign_column_background    = 'none'
 let g:everforest_diagnostic_text_highlight = 1
 let g:everforest_diagnostic_line_highlight = 1
-let g:everforest_ui_contrast = 'high'
-let g:everforest_better_performance = 1
-let g:everforest_enable_italic = 1
-let g:everforest_show_eob = 0
+let g:everforest_current_word              = 'underline'
+let g:everforest_ui_contrast               = 'low'
+let g:everforest_better_performance        = 1
+let g:everforest_enable_italic             = 1
+let g:everforest_show_eob                  = 0
 colorscheme everforest
 " onedark
 " let g:onedark_terminal_italics = 1
 " colorscheme onedark
 
 " ale
-let g:ale_linters = {
-           \   'c++': ['clang'],
-           \   'c': ['clang'],
-           \   'h': ['clang'],
-           \   'sh': ['shellcheck'],
-           \   'verilog': ['iverilog'],
-           \}
-let g:ale_linters_explicit =1
+" let g:ale_linters = {
+"           \   'c++': ['clang'],
+"           \   'c': ['clang'],
+"           \   'h': ['clang'],
+"            \   'sh': ['shellcheck'],
+"            \   'verilog': ['verilator'],
+"            \}
+" let g:ale_linters_explicit =1
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
-let g:ale_sign_warning               = ''
+let g:ale_sign_warning               = ''
+let g:ale_sign_error                 = ''
+let g:ale_sign_info                  = ''
 let g:ale_lint_on_enter              = 1
-let g:ale_sign_error                 = ''
 let g:airline#extensions#ale#enabled = 1
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
 let g:ale_echo_msg_error_str         = 'E'
 let g:ale_echo_msg_warning_str       = 'W'
 let g:ale_echo_msg_format            = '[%linter%] %s [%severity%]'
@@ -536,7 +542,7 @@ let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 " nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
 " nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
 " nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-let g:gutentags_plus_nomap = 1
+let g:gutentags_plus_nomap  = 1
 let g:gutentags_plus_switch = 1
 noremap <C-[>s :GscopeFind s <C-R><C-W><cr>
 noremap <C-[>g :GscopeFind g <C-R><C-W><cr>
@@ -550,9 +556,11 @@ noremap <C-[>a :GscopeFind a <C-R><C-W><cr>
 noremap <C-[>z :GscopeFind z <C-R><C-W><cr>
 
 " NerdTree
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-let NERDTreeShowHidden=1
+let g:NERDTreeDirArrowExpandable   = ''
+let g:NERDTreeDirArrowCollapsible  = ''
+let NERDTreeShowHidden             = 1
+let NERDTreeMinimalUI              = 1
+let NERDTreeMapOpenInTab           = ''
 " close the buffer when only NERDTree exits
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
@@ -610,6 +618,7 @@ let g:markdown_composer_port    = 8080
 
 " auto-pairs
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
+autocmd FileType verilog let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>', 'begin':'end', 'module':'endmodule'}
 
 " easycomplete
 let g:easycomplete_diagnostics_enable = 0
