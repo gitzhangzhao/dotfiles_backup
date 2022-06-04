@@ -8,28 +8,30 @@
 "                             universal settings                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set nocompatible                                " disable vi mode
 set et
 set sm
 set lbr
-set go=                                       " don't graphically buttons
+set go=                                         " don't graphically buttons
 set sw=4
 set fo+=mB
-set number                                    " Line numbers on
-set showcmd                                   " Show partial commands in status line and Selected characters/lines in visual mode
-set report=0                                  " report which line has been changed
-set lazyredraw                                " draw delay
-set ignorecase                                " case insensitive search
+set number                                      " Line numbers on
+set showcmd                                     " Show partial commands in status line and Selected characters/lines in visual mode
+set report=0                                    " report which line has been changed
+set lazyredraw                                  " draw delay
+set ignorecase                                  " case insensitive search
 set linespace=0
-set backspace=2                               " backspace for indent, eol and start
-set history=1000                              " history number
-set nocompatible                              " disable vi mode
-set ttimeoutlen=0                             " reduce reaction time
-set shortmess=atOI                            " No help Uganda information, and overwrite read messages to avoid PRESS ENTER prompts
+set backspace=2                                 " backspace for indent, eol and start
+set history=1000                                " history number
+set ttimeoutlen=0                               " reduce reaction time
+set shortmess=atOI                              " No help Uganda information, and overwrite read messages to avoid PRESS ENTER prompts
 set mousemodel=popup
 set selection=inclusive
-set fileformats=unix,dos                      " Use Unix as the standard file type
-set runtimepath+=~/.vim/snippets              " define my snippets
-set fillchars=stl:\ ,stlnc:\ ,fold:\ ,vert:\│ " fill character
+set virtualedit=onemore                         " Allow for cursor beyond last character
+set fileformats=unix,dos                        " Use Unix as the standard file type
+set runtimepath+=~/.vim/snippets                " define my snippets
+set fillchars=stl:\ ,stlnc:\ ,fold:\ ,vert:\│   " fill character
+set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 
 " prevent vim from clearing the clipboard on exit
 autocmd VimLeave * call system("xclip -selection clipboard -i", getreg('+'))
@@ -88,7 +90,7 @@ set fileencodings=utf8,gb2312,gbk,gb18030;
 set termencoding=utf-8
 set helplang=cn
 
-" syntax support
+" syntax highlighting
 syntax on
 syntax enable
 
@@ -99,7 +101,7 @@ set iskeyword+=_,$,@,%,#,-
 
 " filetype
 filetype on
-filetype indent on
+filetype plugin indent on " Automatically detect file types
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=markdown
 au BufRead,BufNewFile *.{go}   set filetype=go
 au BufRead,BufNewFile *.{js}   set filetype=javascript
@@ -118,8 +120,8 @@ set noundofile
 silent! call mkdir(expand('~/.vim/tmp'), "p", 0755)
 
 " mouse
-set mouse=a
-set mousehide " Hide the mouse cursor while typing
+set mouse=a " automatically enable mouse usage
+set mousehide " hide the mouse cursor while typing
 set selection=exclusive
 set selectmode=mouse,key
 
@@ -135,6 +137,10 @@ set listchars=tab:↳\ ,trail:·,extends:↷,precedes:↶
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                key binding                                 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" wrapped lines goes down/up to next row, rather than next line in file
+noremap j gj
+noremap k gk
 
 " H and L move to beginning or end of a line
 nnoremap H 0
@@ -168,6 +174,8 @@ nnoremap <C-H> O<Esc>
 nnoremap <silent> t :ChooseWin<cr>
 nnoremap <silent> gh <c-w>h
 nnoremap <silent> gl <c-w>l
+nnoremap <silent> gj <c-w>j
+nnoremap <silent> gk <c-w>k
 
 " searching location
 nnoremap <expr> n  'Nn'[v:searchforward]
@@ -560,6 +568,8 @@ let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 
 " vim-gitgutter
 let g:gitgutter_sign_allow_clobber = 1
+let g:gitgutter_preview_win_floating = 1
+nmap gp <Plug>(GitGutterPreviewHunk)
 
 " context.vim
 let g:context_add_mappings = 0
