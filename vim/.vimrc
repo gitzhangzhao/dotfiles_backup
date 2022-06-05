@@ -182,12 +182,12 @@ nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
 
 " move a line up and down quickly
-nnoremap K  :<c-u>execute 'move -1-'. v:count1<cr>
-nnoremap J  :<c-u>execute 'move +'. v:count1<cr>
+" nnoremap K  :<c-u>execute 'move -1-'. v:count1<cr>
+" nnoremap J  :<c-u>execute 'move +'. v:count1<cr>
 
 " same as K but in visual mode
-vnoremap <silent> J :m '>+1gv=gv<cr>gv
-vnoremap <silent> K :m '<-2gv=gv<cr>gv
+" vnoremap <silent> J :m '>+1gv=gv<cr>gv
+" vnoremap <silent> K :m '<-2gv=gv<cr>gv
 
 " quit ex mode
 nnoremap Q <Nop>
@@ -573,6 +573,7 @@ nmap gp <Plug>(GitGutterPreviewHunk)
 
 " context.vim
 let g:context_add_mappings = 0
+let g:context_highlight_tag = '<hide>'
 
 " tagbar
 let g:tagbar_ctags_bin = '/usr/bin/ctags'
