@@ -46,7 +46,7 @@ autocmd InsertEnter,WinLeave * set nocul
 
 " fold
 set foldenable                                                 " enable fold
-autocmd FileType c,cpp setlocal foldmethod=syntax              “ fold for c and cpp
+autocmd FileType c,cpp setlocal foldmethod=syntax              " fold for c and cpp
 autocmd FileType python,verilog,vim setlocal foldmethod=indent " fold for py,verilog and vim
 set foldlevel=9999
 " <space> for fold
@@ -182,12 +182,12 @@ nnoremap <expr> n  'Nn'[v:searchforward]
 nnoremap <expr> N  'nN'[v:searchforward]
 
 " move a line up and down quickly
-" nnoremap K  :<c-u>execute 'move -1-'. v:count1<cr>
-" nnoremap J  :<c-u>execute 'move +'. v:count1<cr>
+nnoremap K  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap J  :<c-u>execute 'move +'. v:count1<cr>
 
-" same as K but in visual mode
-" vnoremap <silent> J :m '>+1gv=gv<cr>gv
-" vnoremap <silent> K :m '<-2gv=gv<cr>gv
+" same as K J but in visual mode
+vnoremap <silent> J :m '>+1gv=gv<cr>gv
+vnoremap <silent> K :m '<-2gv=gv<cr>gv
 
 " quit ex mode
 nnoremap Q <Nop>
@@ -322,7 +322,6 @@ Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' }
 Plug 'RRethy/vim-illuminate'
 " generate tags(ctags,global) automatically
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
 " snippets
 Plug 'SirVer/ultisnips'
 " text objects
@@ -385,7 +384,7 @@ call plug#end()
 
 " these configurations may be overridden by plugins
 " set comment strings
-setlocal commentstring=//\ %s
+autocmd filetype c,cpp setlocal commentstring=//\ %s
 augroup FORMATOPTIONS
     autocmd!
     autocmd filetype * set fo-=c fo-=r fo-=o " Disable continuation of comments to the next line
@@ -509,26 +508,14 @@ let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
 " ctags使用快捷键
 " nnoremap <CR> <c-]>
 " 增加cscope使用的快捷键(C-[和esc按键一致，可以直接esc+s进行查找)
-" nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-" nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-" nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-" nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
-let g:gutentags_plus_nomap  = 1
-let g:gutentags_plus_switch = 1
-noremap <C-[>s :GscopeFind s <C-R><C-W><cr>
-noremap <C-[>g :GscopeFind g <C-R><C-W><cr>
-noremap <C-[>c :GscopeFind c <C-R><C-W><cr>
-noremap <C-[>t :GscopeFind t <C-R><C-W><cr>
-noremap <C-[>e :GscopeFind e <C-R><C-W><cr>
-noremap <C-[>f :GscopeFind f <C-R>=expand("<cfile>")<cr><cr>
-noremap <C-[>i :GscopeFind i <C-R>=expand("<cfile>")<cr><cr>
-noremap <C-[>d :GscopeFind d <C-R><C-W><cr>
-noremap <C-[>a :GscopeFind a <C-R><C-W><cr>
-noremap <C-[>z :GscopeFind z <C-R><C-W><cr>
+nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " NerdTree
 let g:NERDTreeDirArrowExpandable   = ''
@@ -597,7 +584,6 @@ let g:markdown_composer_port    = 8080
 
 " auto-pairs
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
-autocmd FileType verilog let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>', 'begin':'end', 'module':'endmodule'}
 
 " easycomplete
 let g:easycomplete_diagnostics_enable = 0
