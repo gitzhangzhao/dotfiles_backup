@@ -1,7 +1,7 @@
 " File              : .vimrc
 " Author            : zhangzhao <zhangzhao@ihep.ac.cn>
-" Date              : 02.06.2022
-" Last Modified Date: 02.06.2022
+" Date              : 07.06.2022
+" Last Modified Date: 07.06.2022
 " Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -27,7 +27,6 @@ set ttimeoutlen=0                               " reduce reaction time
 set shortmess=atOI                              " No help Uganda information, and overwrite read messages to avoid PRESS ENTER prompts
 set mousemodel=popup
 set selection=inclusive
-set virtualedit=onemore                         " Allow for cursor beyond last character
 set fileformats=unix,dos                        " Use Unix as the standard file type
 set runtimepath+=~/.vim/snippets                " define my snippets
 set fillchars=stl:\ ,stlnc:\ ,fold:\ ,vert:\│   " fill character
@@ -68,11 +67,10 @@ set autoindent " auto indet
 set cindent    " indent style : C
 
 " tab
-set smarttab
-set expandtab
 set softtabstop=4 " Let backspace delete indent
 set tabstop=4     " An indentation every four columns
 set shiftwidth=4  " Use indents of 4 spaces
+set expandtab
 
 " split
 set splitright " Puts new vsplit windows to the right of the current
@@ -200,6 +198,7 @@ nnoremap ' `
 
 " add ; in normal mode
 nnoremap ; $a;<ESC>
+nnoremap , $a,<ESC>
 
 " set clipboard
 " visual: Ctrl+c copy the selected area; normal: Ctrl+c copy a line
@@ -384,7 +383,7 @@ call plug#end()
 
 " these configurations may be overridden by plugins
 " set comment strings
-autocmd filetype c,cpp setlocal commentstring=//\ %s
+" autocmd filetype c,cpp setlocal commentstring=//\ %s
 augroup FORMATOPTIONS
     autocmd!
     autocmd filetype * set fo-=c fo-=r fo-=o " Disable continuation of comments to the next line
