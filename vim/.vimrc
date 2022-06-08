@@ -420,10 +420,6 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 " themes settings
 set t_Co=256
-if has('termguicolors')
-    set termguicolors
-endif
-
 " background 
 " highlight LineNr guibg       = NONE
 " highlight SignColumn guibg   = NONE
@@ -460,7 +456,7 @@ let g:everforest_enable_italic             = 1
 let g:everforest_show_eob                  = 0
 colorscheme everforest
 " onedark
-" let g:onedark_terminal_italics = 1
+let g:onedark_terminal_italics = 1
 " colorscheme onedark
 
 " ale

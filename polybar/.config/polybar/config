@@ -31,7 +31,7 @@ background = ${colors.xbg}
 foreground = ${colors.xfg}
 
 width = 100%
-height = 30
+height = 35
 ;offset-y = 10
 ;offset-x = 20
 
@@ -46,7 +46,7 @@ bottom = false
 wm-restack = i3
 ;override-redirect = true
 
-font-0 = "SF Pro Display:style=regular:size=12;3"
+font-0 = "SF Pro Display:style=regular:size=16;5"
 
 fixed-center = true
 spacing = 0
