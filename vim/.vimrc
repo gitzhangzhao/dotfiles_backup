@@ -456,7 +456,7 @@ let g:everforest_enable_italic             = 1
 let g:everforest_show_eob                  = 0
 colorscheme everforest
 " onedark
-let g:onedark_terminal_italics = 1
+" let g:onedark_terminal_italics = 1
 " colorscheme onedark
 
 " ale
@@ -487,7 +487,7 @@ let g:ale_lint_on_insert_leave       = 1
 let g:gutentags_modules           = ['ctags', 'gtags_cscope']
 let g:gutentags_ctags_executable  = '/usr/bin/ctags'
 set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
-"gutentags搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
+" gutentags搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
 let g:gutentags_project_root      = ['.root', '.svn', '.git', '.hg', '.project']
 " 所生成的数据文件的名称
 let g:gutentags_ctags_tagfile     = '.tags'
