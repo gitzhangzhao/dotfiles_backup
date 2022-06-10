@@ -29,19 +29,16 @@ function preparation() {
 }
 
 function install_required_packages() {
-
     # Refresh apt
     sudo apt update
-    sudo apt install xserver-xorg x11-xserver-utils firmware-iwlwifi firmware-linux-nonfree firmware-realtek firmware-amd-graphics xutils-dev libiw-dev python3-sphinx libxcb-composite0-dev libxcb1-dev libxcb-image0-dev libcairo2-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf dh-autoreconf unzip binutils gcc make pkg-config fakeroot cmake xcb-proto libxcb-ewmh-dev libasound2-dev libpulse-dev libcurl4-openssl-dev libmpdclient-dev pulseaudio pavucontrol pulseaudio-module-bluetooth python3 python3-pip python3-xcbgen libjsoncpp-dev libxcb-xrm-dev lightdm meson ninja-build libuv1-dev libxcb-damage0-dev libxcb-sync-dev libxcb-glx0-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libevdev-dev uthash-dev libpam0g-dev libx11-xcb-dev libxcb-present-dev
+    sudo apt install xserver-xorg x11-xserver-utils firmware-iwlwifi firmware-linux-nonfree xutils-dev libiw-dev python3-sphinx libxcb-composite0-dev libxcb1-dev libxcb-image0-dev libcairo2-dev libxcb-keysyms1-dev libpango1.0-dev libxcb-util0-dev libxcb-icccm4-dev libyajl-dev libstartup-notification0-dev libxcb-randr0-dev libev-dev libxcb-cursor-dev libxcb-xinerama0-dev libxcb-xkb-dev libxkbcommon-dev libxkbcommon-x11-dev autoconf dh-autoreconf unzip binutils gcc make pkg-config fakeroot cmake xcb-proto libxcb-ewmh-dev libasound2-dev libpulse-dev libcurl4-openssl-dev libmpdclient-dev pulseaudio pavucontrol pulseaudio-module-bluetooth python3 python3-pip python3-xcbgen libjsoncpp-dev libxcb-xrm-dev lightdm meson ninja-build libuv1-dev libxcb-damage0-dev libxcb-sync-dev libxcb-glx0-dev libdbus-1-dev libconfig-dev libgl1-mesa-dev libevdev-dev uthash-dev libpam0g-dev libx11-xcb-dev libxcb-present-dev
 }
+
 function install_xcb() {
     git clone --recursive https://github.com/Airblader/xcb-util-xrm.git
     # shellcheck disable=SC2164
     cd xcb-util-xrm/
     ./autogen.sh
-
-
-
     make
     sudo make install
     # shellcheck disable=SC2103
@@ -52,14 +49,13 @@ function install_xcb() {
 function refresh_shared_libraries() {
     #cat > /etc/ld.so.conf.d/i3.conf
     #/usr/local/lib/
-
     sudo ldconfig
     sudo ldconfig -p
 }
 
 function install_i3_gaps() {
 
-    #git clone https://www.github.com/Airblader/i3 i3-gaps
+    git clone https://www.github.com/Airblader/i3 i3-gaps
     # shellcheck disable=SC2164
     cd i3-gaps
     rm -Rf build/
@@ -72,11 +68,11 @@ function install_i3_gaps() {
     # which i3
     # ls -l /usr/bin/i3
     cd ../..
-    #rm -rf i3-gaps/
+    rm -rf i3-gaps/
 }
 
 function install_polybar() {
-    # git clone https://github.com/jaagr/polybar
+    git clone https://github.com/jaagr/polybar
     # shellcheck disable=SC2164
     cd polybar
     #git submodule update --init --recursive
@@ -86,23 +82,23 @@ function install_polybar() {
     sudo make install
     make userconfig
     cd ../..
-    #rm -fr polybar
+    rm -fr polybar
 }
 
 function install_picom() {
-    #git clone https://github.com/tryone144/picom.git
+    git clone https://github.com/tryone144/picom.git
     cd picom
     git submodule update --init --recursive
     meson --buildtype=release . build
     sudo ninja -C build install
     cd ..
-    #rm -rf picom
+    rm -rf picom
 }
 
 preparation
 install_required_packages
-#install_xcb
+install_xcb
 refresh_shared_libraries
-#install_i3_gaps
-#install_polybar
+install_i3_gaps
+install_polybar
 install_picom
