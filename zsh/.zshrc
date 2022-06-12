@@ -122,6 +122,9 @@ export MCFLY_KEY_SCHEME=vim
 export MCFLY_RESULTS=50
 export GIT_SSL_NO_VERIFY=true
 export BAT_THEME=gruvbox-light
+export http_proxy=http://localhost:20172
+export https_proxy=https://localhost:20172
+export all_proxy=socks5://localhost:20170
 # export C_INCLUDE_PATH=/usr/src/linux-headers-5.10.0-8-amd64:/usr/src/linux-headers-5.10.0-8-common/include:/usr/src/linux-headers-5.10.0-8-common/arch:/usr/src/linux-headers-5.10.0-8-common/arch/x86/include/asm/
 
 # aliases

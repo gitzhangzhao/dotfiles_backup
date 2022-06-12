@@ -184,8 +184,8 @@ nnoremap K  :<c-u>execute 'move -1-'. v:count1<cr>
 nnoremap J  :<c-u>execute 'move +'. v:count1<cr>
 
 " same as K J but in visual mode
-vnoremap <silent> J :m '>+1gv=gv<cr>gv
 vnoremap <silent> K :m '<-2gv=gv<cr>gv
+vnoremap <silent> J :m '>+1gv=gv<cr>gv
 
 " quit ex mode
 nnoremap Q <Nop>
@@ -195,6 +195,9 @@ nnoremap U <C-r>
 
 " jump to marked
 nnoremap ' `
+
+" <CR> for search
+nnoremap <CR> gd
 
 " add ; in normal mode
 nnoremap ; $a;<ESC>
@@ -206,6 +209,46 @@ nnoremap , $a,<ESC>
 " set clipboard=unnamedplus
 nnoremap <C-c> "+Y
 vnoremap <C-c> "+y
+
+" convert between dec and hex
+command! -nargs=? -range Dec2hex call s:Dec2hex(<line1>, <line2>, '<args>')
+function! s:Dec2hex(line1, line2, arg) range
+    if empty(a:arg)
+        if histget(':', -1) =~# "^'<,'>" && visualmode() !=# 'V'
+            let cmd = 's/\%V\<\d\+\>/\=printf("0x%x",submatch(0)+0)/g'
+        else
+            let cmd = 's/\<\d\+\>/\=printf("0x%x",submatch(0)+0)/g'
+        endif
+        try
+            execute a:line1 . ',' . a:line2 . cmd
+        catch
+            echo 'Error: No decimal number found'
+        endtry
+    else
+        echo printf('%x', a:arg + 0)
+    endif
+endfunction
+
+command! -nargs=? -range Hex2dec call s:Hex2dec(<line1>, <line2>, '<args>')
+function! s:Hex2dec(line1, line2, arg) range
+    if empty(a:arg)
+        if histget(':', -1) =~# "^'<,'>" && visualmode() !=# 'V'
+            let cmd = 's/\%V0x\x\+/\=submatch(0)+0/g'
+        else
+            let cmd = 's/0x\x\+/\=submatch(0)+0/g'
+        endif
+        try
+            execute a:line1 . ',' . a:line2 . cmd
+        catch
+            echo 'Error: No hex number starting "0x" found'
+        endtry
+    else
+        echo (a:arg =~? '^0x') ? a:arg + 0 : ('0x'.a:arg) + 0
+    endif
+endfunction
+
+nnoremap <silent> ghd :Hex2dec<CR>
+nnoremap <silent> gdh :Dec2hex<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F5>-<F8> mapping                            "
@@ -375,6 +418,8 @@ Plug 'andymass/vim-matchup'
 Plug 'gelguy/wilder.nvim'
 " code completion
 Plug 'jayli/vim-easycomplete'
+" translator
+Plug 'voldikss/vim-translator'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -683,3 +728,8 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
 
 " choose-window
 let g:choosewin_overlay_enable = 1
+
+" translator
+nmap <silent> gt <Plug>TranslateW
+vmap <silent> gt <Plug>TranslateWV
+let g:translator_default_engines = ['google']
