@@ -120,7 +120,6 @@ silent! call mkdir(expand('~/.vim/tmp'), "p", 0755)
 " mouse
 set mouse=a " automatically enable mouse usage
 set mousehide " hide the mouse cursor while typing
-set selection=exclusive
 set selectmode=mouse,key
 
 " match
@@ -169,7 +168,7 @@ nnoremap <C-L> o<Esc>
 nnoremap <C-H> O<Esc>
 
 " switch window
-nnoremap <silent> t :ChooseWin<cr>
+nnoremap <silent> gw :ChooseWin<cr>
 nnoremap <silent> gh <c-w>h
 nnoremap <silent> gl <c-w>l
 nnoremap <silent> gj <c-w>j
@@ -420,6 +419,9 @@ Plug 'gelguy/wilder.nvim'
 Plug 'jayli/vim-easycomplete'
 " translator
 Plug 'voldikss/vim-translator'
+" convert between dec and hex
+Plug 'glts/vim-magnum'
+Plug 'glts/vim-radical'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -596,7 +598,7 @@ let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 " vim-gitgutter
 let g:gitgutter_sign_allow_clobber = 1
 let g:gitgutter_preview_win_floating = 1
-nmap gp <Plug>(GitGutterPreviewHunk)
+nnoremap gp <Plug>(GitGutterPreviewHunk)
 
 " context.vim
 let g:context_add_mappings = 0
@@ -703,12 +705,12 @@ autocmd BufEnter * call CheckLeftBuffers()
 let g:suda_smart_edit = 1
 
 " easymotion
-map f <Plug>(easymotion-prefix)
+noremap f <Plug>(easymotion-prefix)
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
-map fl <Plug>(easymotion-lineforward)
-map fh <Plug>(easymotion-linebackward)
-map f. <Plug>(easymotion-repeat)
+noremap fl <Plug>(easymotion-lineforward)
+noremap fh <Plug>(easymotion-linebackward)
+noremap f. <Plug>(easymotion-repeat)
 
 " wilder
 call wilder#setup({
@@ -730,6 +732,15 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
 let g:choosewin_overlay_enable = 1
 
 " translator
-nmap <silent> gt <Plug>TranslateW
-vmap <silent> gt <Plug>TranslateWV
+nnoremap <silent> gt <Plug>TranslateW
+vnoremap <silent> gt <Plug>TranslateWV
 let g:translator_default_engines = ['google']
+
+" radical
+let g:radical_no_mappings = 1
+nnoremap 10 <Plug>RadicalCoerceToDecimal
+nnoremap 16 <Plug>RadicalCoerceToHex
+nnoremap 2  <Plug>RadicalCoerceToBinary
+nnoremap 8  <Plug>RadicalCoerceToOctal
+nnoremap gA <Plug>RadicalView
+xnoremap gA <Plug>RadicalView
