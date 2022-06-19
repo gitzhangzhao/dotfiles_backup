@@ -738,9 +738,9 @@ let g:translator_default_engines = ['google']
 
 " radical
 let g:radical_no_mappings = 1
-nnoremap 10 <Plug>RadicalCoerceToDecimal
-nnoremap 16 <Plug>RadicalCoerceToHex
-nnoremap 2  <Plug>RadicalCoerceToBinary
-nnoremap 8  <Plug>RadicalCoerceToOctal
-nnoremap gA <Plug>RadicalView
-xnoremap gA <Plug>RadicalView
+nnoremap <silent> grb  <Plug>RadicalCoerceToBinary
+nnoremap <silent> gro  <Plug>RadicalCoerceToOctal
+nnoremap <silent> grd  <Plug>RadicalCoerceToDecimal
+nnoremap <silent> grh  <Plug>RadicalCoerceToHex
+nnoremap <silent> gA   <Plug>RadicalView
+xnoremap <silent> gA   <Plug>RadicalView
