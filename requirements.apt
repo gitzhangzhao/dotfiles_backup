@@ -12,3 +12,6 @@ sudo apt install \
  duf man-db manpages-zh imagemagick poppler-utils \
  fonts-noto-cjk iverilog \
  breeze-cursor-theme lsof libssl-dev \
+
+# for device tree and u-boot
+# sudo apt install device-tree-compiler u-boot-tools
