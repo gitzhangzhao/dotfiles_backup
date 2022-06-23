@@ -17,10 +17,10 @@ iface enp3s0 inet static
     dns-nameservers 202.38.128.58
     dns-nameservers 202.38.128.10
     
-# auto enp1s0
-# iface enp1s0 inet static
-    # address 192.168.1.1
-    # netmask 255.255.255.0
+auto enx000ec6aa7e1d
+iface enx000ec6aa7e1d inet static
+    address 192.168.1.1
+    netmask 255.255.255.0
     
 # auto wlp2s0
 # iface wlp2s0 inet dhcp
