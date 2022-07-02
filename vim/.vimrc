@@ -430,7 +430,7 @@ call plug#end()
 
 " these configurations may be overridden by plugins
 " set comment strings
-" autocmd filetype c,cpp setlocal commentstring=//\ %s
+autocmd filetype verilog setlocal commentstring=//\ %s
 augroup FORMATOPTIONS
     autocmd!
     autocmd filetype * set fo-=c fo-=r fo-=o " Disable continuation of comments to the next line
@@ -507,13 +507,6 @@ colorscheme everforest
 " colorscheme onedark
 
 " ale
-" let g:ale_linters = {
-"           \   'c++': ['clang'],
-"           \   'c': ['clang'],
-"           \   'h': ['clang'],
-"            \   'sh': ['shellcheck'],
-"            \   'verilog': ['verilator'],
-"            \}
 " let g:ale_linters_explicit =1
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
