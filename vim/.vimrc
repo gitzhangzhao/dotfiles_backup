@@ -614,7 +614,7 @@ let g:vim_markdown_conceal             = 0
 let g:vim_markdown_conceal_code_blocks = 0
 
 " markdown-composer
-let g:markdown_composer_address = "192.168.137.8"
+let g:markdown_composer_address = "192.168.31.102"
 let g:markdown_composer_port    = 8080
 
 " auto-pairs
