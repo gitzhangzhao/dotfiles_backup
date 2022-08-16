@@ -737,4 +737,3 @@ nnoremap <silent> grd  <Plug>RadicalCoerceToDecimal
 nnoremap <silent> grh  <Plug>RadicalCoerceToHex
 nnoremap <silent> gA   <Plug>RadicalView
 xnoremap <silent> gA   <Plug>RadicalView
-
