@@ -256,11 +256,14 @@ vnoremap <C-c> "+y
 " <F5> for undotree
 nnoremap <silent><F5> :UndotreeToggle<CR>
 
-" <F7> for nerd tree
-nnoremap <silent><F7> :NERDTreeToggle<CR>
+" <F6> for nerd tree
+nnoremap <silent><F6> :NERDTreeToggle<CR>
 
-" <F8> for tagbar
-nnoremap <silent><F6> :TagbarToggle<CR>
+" <F7> for tagbar
+nnoremap <silent><F7> :TagbarToggle<CR>
+
+" <F8> for minimap
+nnoremap <silent><F8> :MinimapToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F9>-<F12> mapping                          "
@@ -349,6 +352,7 @@ Plug 'chrisbra/vim-diff-enhanced'
 " fzf
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, }
 Plug 'junegunn/fzf.vim', {'on': ['Files', 'Rg'] }
+Plug 'Yggdroot/LeaderF'
 " status line
 Plug 'kshenoy/vim-signature'
 Plug 'ryanoasis/vim-devicons'
@@ -624,50 +628,50 @@ let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
 let g:easycomplete_diagnostics_enable = 0
 let g:easycomplete_lsp_checking       = 0
 let g:easycomplete_menu_skin = {
-        \   "buf": {
-        \      "kind":"",
-        \      "menu":"[B]",
-        \    },
-        \   "snip": {
-        \      "kind":"",
-        \      "menu":"[S]",
-        \    },
-        \   "dict": {
-        \      "kind":"",
-        \      "menu":"[D]",
-        \    },
-        \   "tabnine": {
-        \      "kind":"",
-        \      "menu":"[TN]",
-        \    },
-        \ }
-  let g:easycomplete_filetypes = {"r": {
-        \ "whitelist": []
-        \ }}
-  let g:easycomplete_tabnine_config = {
-        \ 'line_limit': 800,
-        \ 'max_num_result': 5,
-        \ }
-  let g:easycomplete_lsp_type_font = {
-        \ 'class': "",     'color': "",
-        \ 'constant': "",  'constructor': "",
-        \ 'enum': "",      'enummember': "",
-        \ 'field': "料",    'file': '',
-        \ 'folder': "",    'function': "ƒ",
-        \ 'interface': "", 'keyword': "",
-        \ 'snippet': "",   'struct': "פּ",
-        \ 'text': "",      'typeparameter': "",
-        \ 'variable': "",  'module':'',
-        \ 'event': '',
-        \ 'r':'', 't':'',
-        \ 'f':'', 'c':'',
-        \ 'u':'𝘶', 'e':'𝘦',
-        \ 's':'פּ', 'v':'',
-        \ 'i':'𝘪', 'm':'',
-        \ 'p':'', 'k':'𝘬',
-        \ 'o':"𝘰", 'd':'𝘥',
-        \ 'l':"𝘭", 'a':"𝘢",
-        \ }
+            \   "buf": {
+            \      "kind":"",
+            \      "menu":"[B]",
+            \    },
+            \   "snip": {
+            \      "kind":"",
+            \      "menu":"[S]",
+            \    },
+            \   "dict": {
+            \      "kind":"",
+            \      "menu":"[D]",
+            \    },
+            \   "tabnine": {
+            \      "kind":"",
+            \      "menu":"[TN]",
+            \    },
+            \ }
+let g:easycomplete_filetypes = {"r": {
+            \ "whitelist": []
+            \ }}
+let g:easycomplete_tabnine_config = {
+            \ 'line_limit': 800,
+            \ 'max_num_result': 5,
+            \ }
+let g:easycomplete_lsp_type_font = {
+            \ 'class': "",     'color': "",
+            \ 'constant': "",  'constructor': "",
+            \ 'enum': "",      'enummember': "",
+            \ 'field': "料",    'file': '',
+            \ 'folder': "",    'function': "ƒ",
+            \ 'interface': "", 'keyword': "",
+            \ 'snippet': "",   'struct': "פּ",
+            \ 'text': "",      'typeparameter': "",
+            \ 'variable': "",  'module':'',
+            \ 'event': '',
+            \ 'r':'', 't':'',
+            \ 'f':'', 'c':'',
+            \ 'u':'𝘶', 'e':'𝘦',
+            \ 's':'פּ', 'v':'',
+            \ 'i':'𝘪', 'm':'',
+            \ 'p':'', 'k':'𝘬',
+            \ 'o':"𝘰", 'd':'𝘥',
+            \ 'l':"𝘭", 'a':"𝘢",
+            \ }
 
 " minimap
 let g:minimap_auto_start = 1
@@ -737,3 +741,36 @@ nnoremap <silent> grd  <Plug>RadicalCoerceToDecimal
 nnoremap <silent> grh  <Plug>RadicalCoerceToHex
 nnoremap <silent> gA   <Plug>RadicalView
 xnoremap <silent> gA   <Plug>RadicalView
+
+
+" leaderF
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 1, 'BufTag': 1, 'Gtags': 1 }
+
+let g:Lf_ShortcutF = "<leader>ff"
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bufTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
+
+" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 1
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>tt :<C-U><C-R>=printf("Leaderf! gtags -d %s ", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>

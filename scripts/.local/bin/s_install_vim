@@ -25,7 +25,6 @@ fi
 
 #configure命令：
 ./configure --with-features=huge \
-           --enable-rubyinterp=yes \
            --enable-perlinterp=yes \
             --enable-python3interp=yes \
             --with-python3-config-dir=/usr/lib/python3.10/config-3.10-x86_64-linux-gnu \
