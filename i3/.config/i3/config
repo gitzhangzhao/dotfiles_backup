@@ -180,13 +180,12 @@ mode "resize" {
 
 # Theme colors
 # Theme colors
-client.focused  #ECECEC  #414941   #FAFAFA   #ECECEC   #ECECEC
-client.focused_inactive   #ECECEC     #ECECEC    #171717  #ECECEC   #ECECEC
-client.unfocused   #ECECEC      #CACACA    #171717     #ECECEC       #ECECEC
-client.urgent   #ff0000  #ff0000   #ffffff   #268BD2
-client.placeholder    #000000    #909090   #FFFFFF    #268BD2
-
-client.background #282828
+# client.focused  #ECECEC  #414941   #FAFAFA   #ECECEC   #ECECEC
+# client.focused_inactive   #ECECEC     #ECECEC    #171717  #ECECEC   #ECECEC
+# client.unfocused   #ECECEC      #CACACA    #171717     #ECECEC       #ECECEC
+# client.urgent   #ff0000  #ff0000   #ffffff   #268BD2
+# client.placeholder    #000000    #909090   #FFFFFF    #268BD2
+# client.background #282828
 
 # Gaps
 gaps inner 30
@@ -244,7 +243,7 @@ mode "$mode_gaps_outer" {
 # settings of zhangzhao:                                                     #
 ##############################################################################
 # boot
-exec_always --no-startup-id $HOME/.config/polybar/i3wmthemer_bar_launch.sh
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id feh --bg-fill --noxinerama /home/zhangzhao/.local/wallpaper/wallpaper.jpg
 exec --no-startup-id picom --experimental-backend
 exec --no-startup-id xset dpms 0 0 10800                                                                               #设置自动灭屏
@@ -252,7 +251,7 @@ exec --no-startup-id xset s noexpose
 exec --no-startup-id xset s 0 0
 exec --no-startup-id unclutter -noevents
 exec --no-startup-id goldendict
-exec_always --no-startup-id xautolock -time 60 -locker "/home/zhangzhao/.local/bin/betterlockscreen -l dimblur --off 7200"
+exec_always --no-startup-id xautolock -time 60 -locker "/home/zhangzhao/.local/bin/betterlockscreen -l dim --off 7200"
 exec --no-startup-id redshift -l 39.5:116.2 -t 6000:5400
 exec --no-startup-id lsyncd $HOME/.config/lsyncd/lsyncd.conf
 exec_always --no-startup-id /home/zhangzhao/.local/bin/flashfocus
@@ -269,16 +268,11 @@ exec_always --no-startup-id $HOME/.local/bin/alternating_layouts
 # bindsym $mod+b exec --no-startup-id baidunetdisk
 # bindsym $mod+w exec --no-startup-id wps
 # bindsym $mod+z exec --no-startup-id zotero
-bindsym $mod+x exec --no-startup-id /home/zhangzhao/.local/bin/betterlockscreen -l dimblur --off 7200
+bindsym $mod+x exec --no-startup-id /home/zhangzhao/.local/bin/betterlockscreen -l dim --off 7200
 bindsym $mod+p exec --no-startup-id firefox
 bindsym $mod+9 exec --no-startup-id pavucontrol
-bindsym $mod+Shift+s exec --no-startup-id ssr
-bindsym $mod+q exec --no-startup-id qv2ray
-bindsym $mod+Shift+n exec --no-startup-id nomacs
 bindsym $mod+Shift+f exec --no-startup-id flameshot gui
 bindsym $mod+a exec --no-startup-id flameshot gui -p ~/Share
-bindsym $mod+c exec --no-startup-id code
-bindsym $mod+Shift+b exec --no-startup-id speedcrunch
 bindsym $mod+g exec --no-startup-id remmina -c ~/.local/share/remmina/group_vnc_rasp_192-168-206-210-9091.remmina
 
 ##############################################################################

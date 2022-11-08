@@ -121,16 +121,16 @@ export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_KEY_SCHEME=vim
 export MCFLY_RESULTS=50
 export GIT_SSL_NO_VERIFY=true
-export BAT_THEME=gruvbox-light
 export http_proxy=http://localhost:20172
 export https_proxy=https://localhost:20172
 export all_proxy=socks5://localhost:20170
+export BAT_THEME=Nord
 # export C_INCLUDE_PATH=/usr/src/linux-headers-5.10.0-8-amd64:/usr/src/linux-headers-5.10.0-8-common/include:/usr/src/linux-headers-5.10.0-8-common/arch:/usr/src/linux-headers-5.10.0-8-common/arch/x86/include/asm/
 
 # aliases
 alias csn='remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina'
 alias zz='remmina -c ~/.local/share/remmina/group_rdp_win-张昭_192-168-206-210-9092.remmina'
-alias ls='exa --icons -g'
+alias ls='lsd'
 alias l='ls -l'
 alias ll='ls -l'
 alias la='ls -a'
@@ -151,9 +151,8 @@ alias search='sudo apt search -n'
 alias cp='cp_with_progress -Rg'
 alias mv='mv_with_progress -g'
 alias hexdump='hexyl'
-alias cv='progress'
 alias ip='ip --color'
-alias ps='procs --theme dark'
+alias ps='procs'
 alias ag='sudo apt dist-upgrade'
 alias aa='sudo apt autopurge'
 alias au='sudo apt update'
@@ -203,3 +202,4 @@ function unproxy(){
 eval "$(starship init zsh)"
 eval "$(mcfly init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
+test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)
