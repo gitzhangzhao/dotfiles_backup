@@ -10,10 +10,10 @@ iface lo inet loopback
 
 # # The primary network interface
 auto enp3s0
-iface enp3s0 inet dhcp
-    # address 192.168.137.8
-    # netmask 255.255.255.0
-    # gateway 192.168.137.1
+iface enp3s0 inet static
+    address 192.168.31.102
+    netmask 255.255.255.0
+    gateway 192.168.31.1
     dns-nameservers 202.38.128.58
     dns-nameservers 202.38.128.10
     

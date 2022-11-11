@@ -7,7 +7,7 @@ sudo apt install \
  redshift translate-shell pylint shellcheck linux-headers-amd64 \
  smartmontools flameshot libjpeg-dev sshfs \
  cflow lxappearance lightdm-gtk-greeter-settings ufw dos2unix \
- strace ltrace samba mpv mpd mpc lshw davfs2 remmina \
+ strace ltrace samba mpv mpd lshw davfs2 remmina \
  neofetch pandoc graphviz feh unclutter netcat-openbsd \
  duf man-db manpages-zh imagemagick poppler-utils \
  fonts-noto-cjk iverilog libncurses-dev\
