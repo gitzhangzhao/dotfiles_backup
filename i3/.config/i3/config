@@ -268,6 +268,7 @@ exec_always --no-startup-id $HOME/.local/bin/alternating_layouts
 # bindsym $mod+b exec --no-startup-id baidunetdisk
 # bindsym $mod+w exec --no-startup-id wps
 # bindsym $mod+z exec --no-startup-id zotero
+bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+x exec --no-startup-id /home/zhangzhao/.local/bin/betterlockscreen -l dim --off 7200
 bindsym $mod+p exec --no-startup-id firefox
 bindsym $mod+9 exec --no-startup-id pavucontrol

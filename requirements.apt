@@ -7,11 +7,11 @@ sudo apt install \
  redshift translate-shell pylint shellcheck linux-headers-amd64 \
  smartmontools flameshot libjpeg-dev sshfs \
  cflow lxappearance lightdm-gtk-greeter-settings ufw dos2unix \
- strace ltrace samba mpv lshw davfs2 remmina \
+ strace ltrace samba mpv mpd mpc lshw davfs2 remmina \
  neofetch pandoc graphviz feh unclutter netcat-openbsd \
  duf man-db manpages-zh imagemagick poppler-utils \
  fonts-noto-cjk iverilog libncurses-dev\
- breeze-cursor-theme lsof libssl-dev \
+ breeze-cursor-theme lsof libssl-dev rofi\
 
 # for device tree and u-boot
 # sudo apt install device-tree-compiler u-boot-tools
