@@ -10,7 +10,7 @@ sudo apt install \
  strace ltrace samba mpv mpd cava lshw davfs2 remmina \
  neofetch pandoc graphviz feh unclutter netcat-openbsd \
  duf man-db manpages-zh imagemagick poppler-utils \
- fonts-noto-cjk iverilog libncurses-dev\
+ fonts-noto-cjk iverilog libncurses-dev jq \
  breeze-cursor-theme lsof libssl-dev rofi\
 
 # for device tree and u-boot

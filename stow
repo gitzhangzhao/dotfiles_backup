@@ -48,7 +48,7 @@ function check_argv() {
 }
 
 function stow() {
-    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v 'etc' |grep -v 'usr'|cut -d '/' -f 2|sort)
+    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v '^etc' |grep -v '^usr'|cut -d '/' -f 2|sort)
     ETC_DIR=$(find ./etc/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
     USR_DIR=$(find ./usr/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
 

@@ -86,10 +86,10 @@ function install_polybar() {
 }
 
 function install_picom() {
-    git clone https://github.com/tryone144/picom.git
+    git clone https://github.com/Arian8j2/picom-jonaburg-fix.git
     cd picom
-    git submodule update --init --recursive
     meson --buildtype=release . build
+    ninja -C build
     sudo ninja -C build install
     cd ..
     rm -rf picom
