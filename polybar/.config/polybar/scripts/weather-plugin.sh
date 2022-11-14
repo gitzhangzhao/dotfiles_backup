@@ -9,7 +9,7 @@ APIKEY='63332a7775781a3b3e028d6a7685e669'
 CITY_NAME='Beijing'
 # COUNTRY_CODE='IT'
 # Desired output language
-LANG="zn"
+LANG="zn_CN"
 # UNITS can be "metric", "imperial" or "kelvin". Set KNOTS to "yes" if you
 # want the wind in knots:
 
@@ -25,10 +25,10 @@ UNITS="metric"
 
 COLOR_CLOUD="d8dee9"
 COLOR_THUNDER="#d3b987"
-COLOR_LIGHT_RAIN="#73cef4"
-COLOR_HEAVY_RAIN="#b3deef"
+COLOR_LIGHT_RAIN="#81a1c1"
+COLOR_HEAVY_RAIN="#5e81ac"
 COLOR_SNOW="eceff4"
-COLOR_FOG="#606060"
+COLOR_FOG="d8dee9"
 COLOR_TORNADO="#d3b987"
 COLOR_SUN="ebcb8b"
 COLOR_MOON="eceff4"
@@ -182,7 +182,7 @@ function setIcons {
     elif [ $WID -le 771 ]; then
         #Fog
         ICON_COLOR=$COLOR_FOG
-        ICON=" "
+        ICON="  "
     elif [ $WID -eq 781 ]; then
         #Tornado
         ICON_COLOR=$COLOR_TORNADO
@@ -191,7 +191,7 @@ function setIcons {
         #Clear sky
         if [ $DATE -ge $SUNRISE -a $DATE -le $SUNSET ]; then
             ICON_COLOR=$COLOR_SUN
-            ICON=" "
+            ICON="  "
         else
             ICON_COLOR=$COLOR_MOON
             ICON=" "
