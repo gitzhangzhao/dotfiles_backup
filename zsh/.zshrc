@@ -125,7 +125,6 @@ export http_proxy=http://localhost:20172
 export https_proxy=https://localhost:20172
 export all_proxy=socks5://localhost:20170
 export BAT_THEME=Nord
-# export C_INCLUDE_PATH=/usr/src/linux-headers-5.10.0-8-amd64:/usr/src/linux-headers-5.10.0-8-common/include:/usr/src/linux-headers-5.10.0-8-common/arch:/usr/src/linux-headers-5.10.0-8-common/arch/x86/include/asm/
 
 # aliases
 alias csn='remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina'

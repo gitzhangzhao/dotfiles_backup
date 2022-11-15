@@ -511,6 +511,8 @@ colorscheme nord
 
 " ale
 " let g:ale_linters_explicit =1
+" for c
+let g:ale_c_cc_options               = '-std=c99 -Wall -I/home/zhangzhao/Lab/epics_base/base-7.0.6.1/include -I/home/zhangzhao/Lab/epics_base/base-7.0.6.1/include/compiler/gcc -I/home/zhangzhao/Lab/epics_base/base-7.0.6.1/include/os/Linux'
 let g:ale_sign_column_always         = 1
 let g:ale_set_highlights             = 0
 let g:ale_sign_warning               = ''

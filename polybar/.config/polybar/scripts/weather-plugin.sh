@@ -7,9 +7,9 @@
 APIKEY='63332a7775781a3b3e028d6a7685e669'
 # if you leave these empty location will be picked based on your ip-adres
 CITY_NAME='Beijing'
-# COUNTRY_CODE='IT'
+COUNTRY_CODE='ABJ'
 # Desired output language
-LANG="zn_CN"
+LANG="en"
 # UNITS can be "metric", "imperial" or "kelvin". Set KNOTS to "yes" if you
 # want the wind in knots:
 

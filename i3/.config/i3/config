@@ -232,9 +232,9 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -c 0 -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2db- unmute
-# bindsym XF86AudioMute exec --no-startup-id amixer -q set Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 # touchpad on and off controller on laptop with Fn+<touchpad control functional key>
 # bindsym $mod+[ exec --no-startup-id synclient Touchpadoff=0
 # bindsym $mod+shift+[ exec --no-startup-id synclient Touchpadoff=1
@@ -243,7 +243,6 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -c 0 -q set Master 2db-
 # settings of zhangzhao:                                                     #
 ##############################################################################
 # boot
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id feh --bg-fill --noxinerama /home/zhangzhao/.local/wallpaper/wallpaper.jpg
 exec --no-startup-id picom --experimental-backend
 exec --no-startup-id xset dpms 0 0 10800                                                                               #设置自动灭屏
@@ -254,6 +253,7 @@ exec --no-startup-id goldendict
 exec --no-startup-id sleep 10; mpd
 exec --no-startup-id redshift -l 39.5:116.2 -t 6000:5400
 exec --no-startup-id lsyncd $HOME/.config/lsyncd/lsyncd.conf
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id xautolock -time 60 -locker "/home/zhangzhao/.local/bin/betterlockscreen -l dim --off 7200"
 exec_always --no-startup-id /home/zhangzhao/.local/bin/flashfocus
 exec_always --no-startup-id $HOME/.local/bin/alternating_layouts
