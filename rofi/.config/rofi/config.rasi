@@ -17,10 +17,10 @@ configuration {
     click-to-exit: 					true;
     show-match: 					false;
     combi-hide-mode-prefix: 		false;
-    display-window: 				"";
-    display-windowcd: 				"";
-    display-run: 					"";
-    display-ssh: 					"";
+    display-window: 				" ";
+    display-windowcd: 				" ";
+    display-run: 					" ";
+    display-ssh: 					" ";
     display-drun: 					"";
     display-combi: 					"";
     display-file-browser: 			"B";
