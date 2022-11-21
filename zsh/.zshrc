@@ -125,6 +125,8 @@ export http_proxy=http://localhost:20172
 export https_proxy=https://localhost:20172
 export all_proxy=socks5://localhost:20170
 export BAT_THEME=Nord
+export HISTSIZE=500000
+export SAVEHIST=500000
 
 # aliases
 alias csn='remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina'
@@ -180,9 +182,6 @@ function chpwd_cdls() {
   fi
 }
 
-if ! (( $chpwd_functions[(I)chpwd_cdls] )); then
-  chpwd_functions+=(chpwd_cdls)
-fi
 
 function proxy(){
     export http_proxy=http://localhost:20172
@@ -202,4 +201,3 @@ function unproxy(){
 eval "$(starship init zsh)"
 eval "$(mcfly init zsh)"
 eval "$(zoxide init zsh --cmd cd)"
-test -r ~/.dir_colors && eval $(dircolors ~/.dir_colors)

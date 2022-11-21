@@ -111,7 +111,7 @@ else
     UNIT_URL="&units=$UNITS"
 fi
 URL="api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&q=$CITY_NAME,$COUNTRY_CODE"
-
+echo $URL
 function getData {
     ERROR=0
     # For logging purposes
