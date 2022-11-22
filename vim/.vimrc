@@ -485,7 +485,7 @@ set t_Co=256
 
 " themes configuration
 " theme style
-" set background=dark
+set background=dark
 " themes selection
 " gruvbox
 " let g:gitgutter_override_sign_column_highlight = 1
@@ -496,15 +496,16 @@ set t_Co=256
 " paper
 " colorscheme Paper
 " everforest
-" let g:everforest_sign_column_background    = 'none'
-" let g:everforest_diagnostic_text_highlight = 1
-" let g:everforest_diagnostic_line_highlight = 1
-" let g:everforest_current_word              = 'underline'
-" let g:everforest_ui_contrast               = 'low'
-" let g:everforest_better_performance        = 1
-" let g:everforest_enable_italic             = 1
-" let g:everforest_show_eob                  = 0
-colorscheme nord
+colorscheme everforest
+let g:everforest_sign_column_background    = 'none'
+let g:everforest_diagnostic_text_highlight = 1
+let g:everforest_diagnostic_line_highlight = 1
+let g:everforest_current_word              = 'underline'
+let g:everforest_ui_contrast               = 'low'
+let g:everforest_better_performance        = 1
+let g:everforest_enable_italic             = 1
+let g:everforest_show_eob                  = 0
+" colorscheme nord
 " onedark
 " let g:onedark_terminal_italics = 1
 " colorscheme onedark
