@@ -401,7 +401,7 @@ Plug 'farmergreg/vim-lastplace'
 " undotree
 Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
 " minimap
-Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
+" Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 " sudo
 Plug 'lambdalisue/suda.vim'
 " disable search highlighting
@@ -421,10 +421,10 @@ Plug 'gelguy/wilder.nvim'
 " code completion
 Plug 'jayli/vim-easycomplete'
 " translator
-Plug 'voldikss/vim-translator'
+" Plug 'voldikss/vim-translator'
 " convert between dec and hex
-Plug 'glts/vim-magnum'
-Plug 'glts/vim-radical'
+" Plug 'glts/vim-magnum'
+" Plug 'glts/vim-radical'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
