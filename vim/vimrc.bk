@@ -165,6 +165,8 @@ nnoremap <C-H> O<Esc>
 nnoremap <silent> gw :ChooseWin<cr>
 nnoremap <silent> gh <c-w>h
 nnoremap <silent> gl <c-w>l
+nnoremap <silent> gj <c-w>j
+nnoremap <silent> gk <c-w>k
 
 " searching location
 nnoremap <expr> n  'Nn'[v:searchforward]
@@ -254,6 +256,8 @@ nnoremap <silent><F6> :NERDTreeToggle<CR>
 " <F7> for tagbar
 nnoremap <silent><F7> :TagbarToggle<CR>
 
+" <F8> for minimap
+nnoremap <silent><F8> :MinimapToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F9>-<F12> mapping                          "
@@ -323,6 +327,8 @@ Plug 'psliwka/vim-smoothie'
 Plug 'easymotion/vim-easymotion'
 " git state
 Plug 'airblade/vim-gitgutter'
+" enhance search
+Plug 'junegunn/vim-slash'
 " format with a common character
 Plug 'junegunn/vim-easy-align'
 " multiline selected
@@ -337,6 +343,9 @@ Plug 'wellle/context.vim'
 " Plug 'dstein64/vim-startuptime'
 " enhance vim diff
 Plug 'chrisbra/vim-diff-enhanced'
+" fzf
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() }, }
+Plug 'junegunn/fzf.vim', {'on': ['Files', 'Rg'] }
 " status line
 Plug 'kshenoy/vim-signature'
 Plug 'ryanoasis/vim-devicons'
@@ -385,10 +394,14 @@ Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') , 'for': 
 Plug 'farmergreg/vim-lastplace'
 " undotree
 Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
+" minimap
+" Plug 'wfxr/minimap.vim', {'do': ':!cargo install --locked code-minimap'}
 " sudo
 Plug 'lambdalisue/suda.vim'
 " disable search highlighting
 Plug 'romainl/vim-cool'
+" set paste mode
+" Plug 'roxma/vim-paste-easy'
 " shell commands
 Plug 'skywind3000/asyncrun.vim'
 " window switch
@@ -401,6 +414,11 @@ Plug 'andymass/vim-matchup'
 Plug 'gelguy/wilder.nvim'
 " code completion
 Plug 'jayli/vim-easycomplete'
+" translator
+" Plug 'voldikss/vim-translator'
+" convert between dec and hex
+" Plug 'glts/vim-magnum'
+" Plug 'glts/vim-radical'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -426,7 +444,7 @@ let g:html_indent_script1 = "inc"
 let g:html_indent_style1  = "inc"
 
 " number.vim
-let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
+let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree', 'minimap']
 
 " vim-surround
 vmap " S"
@@ -561,6 +579,10 @@ let g:cpp_concepts_highlight                     = 1
 let g:airline_powerline_fonts                    = 1
 let g:Powerline_symbols                          = 'fancy'
 
+" fzf
+nnoremap <C-f> :Files <CR>
+nnoremap <C-g> :Rg    <CR>
+
 " vim-header
 let g:header_auto_add_header    = 0
 let g:header_field_author       = 'zhangzhao'
@@ -647,6 +669,31 @@ let g:easycomplete_lsp_type_font = {
             \ 'l':"𝘭", 'a':"𝘢",
             \ }
 
+" minimap
+let g:minimap_auto_start = 1
+function! CheckLeftBuffers()
+  if tabpagenr('$') == 1
+    let i = 1
+    while i <= winnr('$')
+      if getbufvar(winbufnr(i), '&buftype') == 'help' ||
+          \ getbufvar(winbufnr(i), '&buftype') == 'quickfix' ||
+          \ exists('t:NERDTreeBufName') &&
+          \ bufname(winbufnr(i)) == t:NERDTreeBufName ||
+          \ bufname(winbufnr(i)) == '__Tag_List__' ||
+          \ bufname(winbufnr(i)) == '-MINIMAP-'
+        let i += 1
+      else
+        break
+      endif
+    endwhile
+    if i == winnr('$') + 1
+      qall
+    endif
+    unlet i
+  endif
+endfunction
+autocmd BufEnter * call CheckLeftBuffers()
+
 " suda
 let g:suda_smart_edit = 1
 
@@ -676,3 +723,17 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
 
 " choose-window
 let g:choosewin_overlay_enable = 1
+
+" translator
+nnoremap <silent> gt <Plug>TranslateW
+vnoremap <silent> gt <Plug>TranslateWV
+let g:translator_default_engines = ['google']
+
+" radical
+let g:radical_no_mappings = 1
+nnoremap <silent> grb  <Plug>RadicalCoerceToBinary
+nnoremap <silent> gro  <Plug>RadicalCoerceToOctal
+nnoremap <silent> grd  <Plug>RadicalCoerceToDecimal
+nnoremap <silent> grh  <Plug>RadicalCoerceToHex
+nnoremap <silent> gA   <Plug>RadicalView
+xnoremap <silent> gA   <Plug>RadicalView
