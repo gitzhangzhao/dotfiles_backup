@@ -242,6 +242,15 @@ vnoremap <C-c> "+y
 " nnoremap <silent> gdh :Dec2hex<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                         Define <F1>-<F4> mapping                            "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" <F3> for compile code
+" nnoremap <silent><F3> :AsyncRun gcc "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<CR>
+" <F4> for run code
+" nnoremap <silent><F4> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENAME)" <cr>
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F5>-<F8> mapping                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -253,6 +262,8 @@ nnoremap <silent><F6> :NERDTreeToggle<CR>
 
 " <F7> for tagbar
 nnoremap <silent><F7> :TagbarToggle<CR>
+
+" <F8> for quickfix_toggle
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
