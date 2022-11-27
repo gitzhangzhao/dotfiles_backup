@@ -412,6 +412,8 @@ Plug 'andymass/vim-matchup'
 Plug 'gelguy/wilder.nvim'
 " code completion
 Plug 'jayli/vim-easycomplete'
+" LeaderF
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension', 'on': 'Leaderf' }
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -687,3 +689,17 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
 
 " choose-window
 let g:choosewin_overlay_enable = 1
+
+" LeaderF
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 0
+let g:Lf_HideHelp = 1
+let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+noremap <C-f> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s", expand("<cword>"))<CR><CR>
+noremap <C-g> :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cword>"))<CR><CR>
+noremap <C-m> :<C-U><C-R>=printf("Leaderf mru  %s", "")<CR><CR>
+
