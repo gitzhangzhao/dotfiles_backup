@@ -19,6 +19,7 @@ set number                                      " Line numbers on
 set report=0                                    " report which line has been changed
 set lazyredraw                                  " draw delay
 set ignorecase                                  " case insensitive search
+set updatetime=500
 set linespace=0
 set backspace=2                                 " backspace for indent, eol and start
 set history=1000                                " history number
@@ -413,7 +414,7 @@ Plug 'gelguy/wilder.nvim'
 " code completion
 Plug 'jayli/vim-easycomplete'
 " LeaderF
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension', 'on': 'Leaderf' }
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension', 'on': ['Leaderf','LeaderfFunction'] }
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -699,7 +700,11 @@ let g:Lf_CacheDirectory = expand('~/.vim/cache')
 let g:Lf_ShowRelativePath = 0
 let g:Lf_HideHelp = 1
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
-noremap <C-f> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s", expand("<cword>"))<CR><CR>
-noremap <C-g> :<C-U><C-R>=printf("Leaderf! rg -e %s", expand("<cword>"))<CR><CR>
-noremap <C-m> :<C-U><C-R>=printf("Leaderf mru  %s", "")<CR><CR>
+noremap <silent><C-f> :<C-U><C-R>=printf("Leaderf rg --current-buffer -e %s", expand("<cword>"))<CR><CR>
+noremap <silent><C-g> :<C-U><C-R>=printf("Leaderf rg -e %s", expand("<cword>"))<CR><CR>
+noremap <silent><C-m> :<C-U><C-R>=printf("Leaderf mru  %s", "")<CR><CR>
+noremap <silent><leader>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
+noremap <silent><leader>g :<C-U><C-R>=printf("Leaderf! function --right %s", "")<CR><CR>
 
+"undotree
+let g:undotree_SplitWidth = 20
