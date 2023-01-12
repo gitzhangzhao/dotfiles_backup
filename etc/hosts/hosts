@@ -6,9 +6,9 @@
 52.85.89.43 static.rust-lang.org
 52.85.89.57 static.rust-lang.org
 52.85.89.102 static.rust-lang.org
-99.84.173.4 download.docker.com
-99.84.173.69 download.docker.com
-99.84.173.113 download.docker.com
+108.156.91.7 download.docker.com
+108.156.91.29 download.docker.com
+108.156.91.41 download.docker.com
 # The following lines are desirable for IPv6 capable hosts
 ::1     localhost ip6-localhost ip6-loopback
 ff02::1 ip6-allnodes

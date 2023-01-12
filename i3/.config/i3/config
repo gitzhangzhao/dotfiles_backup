@@ -245,7 +245,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 # boot
 exec --no-startup-id feh --bg-fill --noxinerama /home/zhangzhao/.local/wallpaper/wallpaper.jpg
 exec --no-startup-id picom --experimental-backend
-exec --no-startup-id xset dpms 0 0 10800                                                                               #设置自动灭屏
+exec --no-startup-id xset dpms 0 0 3600                                                                               #设置自动灭屏
 exec --no-startup-id xset s noexpose
 exec --no-startup-id xset s 0 0
 exec --no-startup-id unclutter -noevents
