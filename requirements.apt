@@ -4,7 +4,7 @@ sudo apt install \
  stow traceroute bison ntfs-3g bc clangd clang-format\
  rsync ssh arandr firefox zip unzip rar unrar gdb \
  wget universal-ctags global xautolock dunst \
- redshift translate-shell pylint shellcheck linux-headers-amd64 \
+ redshift translate-shell pylint shellcheck \
  smartmontools flameshot libjpeg-dev sshfs \
  cflow lxappearance lightdm-gtk-greeter-settings ufw dos2unix \
  strace ltrace samba mpv mpd cava lshw davfs2 remmina \
@@ -12,6 +12,7 @@ sudo apt install \
  duf man-db manpages-zh imagemagick poppler-utils \
  iverilog libncurses-dev jq \
  breeze-cursor-theme lsof libssl-dev rofi\
+ #linux-headers-amd64 \
 
 # for device tree and u-boot
 # sudo apt install device-tree-compiler u-boot-tools
