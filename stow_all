@@ -29,7 +29,7 @@ function check_path() {
 }
 
 function install_home_dotfiles() {
-    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v '^etc'|grep -v '^usr'|cut -d '/' -f 2|sort)
+    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|cut -d '/' -f 2|grep -v '^etc'|grep -v '^usr'|sort)
     echo -e "\033[34m$HOME:install...\033[0m"
     for DOTFILES in $HOME_DIR
     do
@@ -47,6 +47,7 @@ function install_home_dotfiles() {
 
 function install_etc_dotfiles() {
     ETC_DIR=$(find ./etc/ -maxdepth 1 -type d |cut -d '/' -f 3|sed "1d")
+    echo $ETC_DIR
     echo -e "\033[34m/etc:install...\033[0m"
     pushd etc > /dev/null
     sudo $STOW $STOW_FLAG --target /etc * > /dev/null 2>&1

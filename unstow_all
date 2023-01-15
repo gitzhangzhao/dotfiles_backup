@@ -29,7 +29,7 @@ function check_path() {
 }
 
 function uninstall_home_dotfiles() {
-    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|grep -v '^etc'|cut -d '/' -f 2|sort)
+    HOME_DIR=$(find ./ -maxdepth 1 -type d -not -name ".*"|cut -d '/' -f 2|grep -v '^etc'|sort)
     echo -e "\033[34m$HOME:uninstall...\033[0m"
     for DOTFILES in $HOME_DIR
     do
