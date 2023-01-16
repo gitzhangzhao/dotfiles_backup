@@ -272,7 +272,7 @@ nnoremap <silent><F7> :TagbarToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " <F9> format Markdown
-autocmd FileType markdown nnoremap <silent><F9> :AsyncRun -save=1 -post=checktime -silent chmod o+w $(VIM_FILEPATH) && docker run --rm -v $(VIM_FILEDIR):/work tmknom/prettier --write --parser=markdown $(VIM_FILENAME) && chmod o-w $(VIM_FILEPATH) <CR>
+autocmd FileType markdown nnoremap <silent><F9> :AsyncRun -save=1 -post=checktime -silent chmod o+w "$(VIM_FILEPATH)" && docker run --rm -v $(VIM_FILEDIR):/work tmknom/prettier --write --parser=markdown $(VIM_FILENAME) && chmod o-w "$(VIM_FILEPATH)" <CR>
 
 " <F10> format verilog
 autocmd FileType verilog nnoremap <silent><F10> :AsyncRun -save=1 -post=checktime -silent istyle $(VIM_FILEPATH) && rm $(VIM_FILEPATH).orig <CR>
@@ -340,7 +340,7 @@ Plug 'junegunn/vim-easy-align'
 " multiline selected
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
 " input
-" Plug 'vim-scripts/fcitx.vim'
+Plug 'vim-scripts/fcitx.vim'
 " number
 Plug 'myusuf3/numbers.vim'
 " show the context of the current buffer contents
@@ -401,8 +401,6 @@ Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
 Plug 'lambdalisue/suda.vim'
 " disable search highlighting
 Plug 'romainl/vim-cool'
-" shell commands
-Plug 'skywind3000/asyncrun.vim'
 " window switch
 Plug 't9md/vim-choosewin', { 'on': 'ChooseWin' }
 " fast fold
@@ -415,6 +413,8 @@ Plug 'gelguy/wilder.nvim'
 Plug 'jayli/vim-easycomplete'
 " LeaderF
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension', 'on': ['Leaderf','LeaderfFunction'] }
+" shell commands
+Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -692,19 +692,19 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
 let g:choosewin_overlay_enable = 1
 
 " LeaderF
-let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
-let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
-let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = expand('~/.vim/cache')
-let g:Lf_ShowRelativePath = 0
-let g:Lf_HideHelp = 1
-let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
-noremap <silent><C-f> :<C-U><C-R>=printf("Leaderf rg --current-buffer -e %s", expand("<cword>"))<CR><CR>
-noremap <silent><C-g> :<C-U><C-R>=printf("Leaderf rg -e %s", expand("<cword>"))<CR><CR>
-noremap <silent><C-m> :<C-U><C-R>=printf("Leaderf mru  %s", "")<CR><CR>
-noremap <silent><leader>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
-noremap <silent><leader>g :<C-U><C-R>=printf("Leaderf! function --right %s", "")<CR><CR>
+"let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+"let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+"let g:Lf_WorkingDirectoryMode = 'Ac'
+"let g:Lf_WindowHeight = 0.30
+"let g:Lf_CacheDirectory = expand('~/.vim/cache')
+"let g:Lf_ShowRelativePath = 0
+"let g:Lf_HideHelp = 1
+"let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+"noremap <silent><C-f> :<C-U><C-R>=printf("Leaderf rg --current-buffer -e %s", expand("<cword>"))<CR><CR>
+"noremap <silent><C-g> :<C-U><C-R>=printf("Leaderf rg -e %s", expand("<cword>"))<CR><CR>
+"noremap <silent><C-m> :<C-U><C-R>=printf("Leaderf mru  %s", "")<CR><CR>
+"noremap <silent><leader>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
+"noremap <silent><leader>g :<C-U><C-R>=printf("Leaderf! function --right %s", "")<CR><CR>
 
-"undotree
-let g:undotree_SplitWidth = 20
+""undotree
+"let g:undotree_SplitWidth = 20
