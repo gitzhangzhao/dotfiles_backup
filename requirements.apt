@@ -4,7 +4,7 @@ sudo apt install \
  stow traceroute bison ntfs-3g bc clangd clang-format\
  rsync ssh arandr firefox zip unzip rar unrar gdb \
  wget universal-ctags global xautolock dunst \
- redshift translate-shell pylint shellcheck \
+ redshift translate-shell \
  smartmontools flameshot libjpeg-dev sshfs \
  cflow lxappearance lightdm-gtk-greeter-settings ufw dos2unix \
  strace ltrace samba mpv mpd cava lshw davfs2 remmina \

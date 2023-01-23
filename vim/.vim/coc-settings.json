@@ -1,0 +1,9 @@
+{
+  "coc.preferences.messageLevel": "error",
+  "suggest.noselect": true,
+  "diagnostic.errorSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.messageTarget": "echo",
+  "coc.preferences.extensionUpdateCheck": "weekly"
+}

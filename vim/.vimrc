@@ -20,6 +20,7 @@ set report=0                                    " report which line has been cha
 set lazyredraw                                  " draw delay
 set ignorecase                                  " case insensitive search
 set updatetime=500
+set signcolumn=yes
 set linespace=0
 set backspace=2                                 " backspace for indent, eol and start
 set history=1000                                " history number
@@ -81,7 +82,7 @@ set hlsearch
 set incsearch
 
 " codeing
-set encoding=UTF-8
+set encoding=utf-8
 scriptencoding utf-8
 set langmenu=zh_CN.UTF-8
 set fileencodings=utf8,gb2312,gbk,gb18030;
@@ -109,13 +110,15 @@ set autoread
 set autowrite " Automatically write a file when leaving a modified buffer
 
 " backup
-set backup
-set writebackup
-set backupdir=~/.vim/tmp
-set backupext=.bak
-set noswapfile
-set noundofile
-silent! call mkdir(expand('~/.vim/tmp'), "p", 0755)
+set nobackup
+set nowritebackup
+" set backup
+" set writebackup
+" set backupdir=~/.vim/tmp
+" set backupext=.bak
+" set noswapfile
+" set noundofile
+" silent! call mkdir(expand('~/.vim/tmp'), "p", 0755)
 
 " mouse
 set mouse=a " automatically enable mouse usage
@@ -163,7 +166,6 @@ nnoremap <C-L> o<Esc>
 nnoremap <C-H> O<Esc>
 
 " switch window
-nnoremap <silent> gw :ChooseWin<cr>
 nnoremap <silent> gh <c-w>h
 nnoremap <silent> gl <c-w>l
 
@@ -185,11 +187,10 @@ nnoremap Q <Nop>
 " undo the undo
 nnoremap U <C-r>
 
+noremap <CR> gd
+
 " jump to marked
 nnoremap ' `
-
-" <CR> for search
-nnoremap <CR> gd
 
 " add ; in normal mode
 nnoremap ; $a;<ESC>
@@ -202,53 +203,11 @@ nnoremap , $a,<ESC>
 nnoremap <C-c> "+Y
 vnoremap <C-c> "+y
 
-" convert between dec and hex
-" command! -nargs=? -range Dec2hex call s:Dec2hex(<line1>, <line2>, '<args>')
-" function! s:Dec2hex(line1, line2, arg) range
-"     if empty(a:arg)
-"         if histget(':', -1) =~# "^'<,'>" && visualmode() !=# 'V'
-"             let cmd = 's/\%V\<\d\+\>/\=printf("0x%x",submatch(0)+0)/g'
-"         else
-"             let cmd = 's/\<\d\+\>/\=printf("0x%x",submatch(0)+0)/g'
-"         endif
-"         try
-"             execute a:line1 . ',' . a:line2 . cmd
-"         catch
-"             echo 'Error: No decimal number found'
-"         endtry
-"     else
-"         echo printf('%x', a:arg + 0)
-"     endif
-" endfunction
-
-" command! -nargs=? -range Hex2dec call s:Hex2dec(<line1>, <line2>, '<args>')
-" function! s:Hex2dec(line1, line2, arg) range
-"     if empty(a:arg)
-"         if histget(':', -1) =~# "^'<,'>" && visualmode() !=# 'V'
-"             let cmd = 's/\%V0x\x\+/\=submatch(0)+0/g'
-"         else
-"             let cmd = 's/0x\x\+/\=submatch(0)+0/g'
-"         endif
-"         try
-"             execute a:line1 . ',' . a:line2 . cmd
-"         catch
-"             echo 'Error: No hex number starting "0x" found'
-"         endtry
-"     else
-"         echo (a:arg =~? '^0x') ? a:arg + 0 : ('0x'.a:arg) + 0
-"     endif
-" endfunction
-
-" nnoremap <silent> ghd :Hex2dec<CR>
-" nnoremap <silent> gdh :Dec2hex<CR>
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                         Define <F1>-<F4> mapping                            "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " <F3> for compile code
-" nnoremap <silent><F3> :AsyncRun gcc "$(VIM_FILEPATH)" -o "$(VIM_FILEDIR)/$(VIM_FILENOEXT)"<CR>
 " <F4> for run code
-" nnoremap <silent><F4> :AsyncRun -raw -cwd=$(VIM_FILEDIR) "$(VIM_FILEDIR)/$(VIM_FILENAME)" <cr>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -271,41 +230,16 @@ nnoremap <silent><F7> :TagbarToggle<CR>
 "                         Define <F9>-<F12> mapping                          "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" <F9> format Markdown
-autocmd FileType markdown nnoremap <silent><F9> :AsyncRun -save=1 -post=checktime -silent chmod o+w "$(VIM_FILEPATH)" && docker run --rm -v $(VIM_FILEDIR):/work tmknom/prettier --write --parser=markdown $(VIM_FILENAME) && chmod o-w "$(VIM_FILEPATH)" <CR>
+" <F9> format
+nnoremap <silent><F9> :Format<CR>
+xmap <silent><F9> <Plug>(coc-format-selected)
+
 
 " <F10> format verilog
-autocmd FileType verilog nnoremap <silent><F10> :AsyncRun -save=1 -post=checktime -silent istyle $(VIM_FILEPATH) && rm $(VIM_FILEPATH).orig <CR>
+" autocmd FileType verilog nnoremap <silent><F10> :AsyncRun -save=1 -post=checktime -silent istyle $(VIM_FILEPATH) && rm $(VIM_FILEPATH).orig <CR>
 
-" <F11> format C
-autocmd FileType c,cpp nnoremap <silent><F11> :ClangFormat<CR>
-autocmd FileType c,cpp vnoremap <silent><F11> :ClangFormat<CR>
-
-" <F12> jump to header (:A)
-function! s:a(cmd)
-    let name = expand('%:r')
-    let ext = tolower(expand('%:e'))
-    let sources = ['c', 'cc', 'cpp', 'cxx']
-    let headers = ['h', 'hh', 'hpp', 'hxx']
-    for pair in [[sources, headers], [headers, sources]]
-        let [set1, set2] = pair
-        if index(set1, ext) >= 0
-            for h in set2
-                let aname = name.'.'.h
-                for a in [aname, toupper(aname)]
-                    if filereadable(a)
-                        execute a:cmd a
-                        return
-                    end
-                endfor
-            endfor
-        endif
-    endfor
-endfunction
-command! A call s:a('e')
-command! AV call s:a('botright vertical split')
-nnoremap <silent><F12> :A<CR>
-nnoremap <silent>\<F12> :AV<CR>
+" <F12> switching between header and implementaion
+nnoremap <silent><F12> :CocCommand clangd.switchSourceHeader<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 vim-plug                                   "
@@ -321,15 +255,11 @@ Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
 " comment
 Plug 'tpope/vim-commentary'
-" static checking
-Plug 'dense-analysis/ale' ,{ 'for' : [ 'c', 'cpp', 'python', 'verilog', 'sh' ] }
 " code syntax highlight
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
 Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'ekalinin/Dockerfile.vim'
-" code format
-Plug 'rhysd/vim-clang-format',{ 'on': 'ClangFormat', 'for' : [ 'c', 'cpp' ] }
 " quickly move
 Plug 'psliwka/vim-smoothie'
 Plug 'easymotion/vim-easymotion'
@@ -364,7 +294,7 @@ Plug 'RRethy/vim-illuminate'
 " generate tags(ctags,global) automatically
 Plug 'ludovicchabant/vim-gutentags'
 " snippets
-Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 " text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
@@ -380,19 +310,6 @@ Plug 'arcticicestudio/nord-vim'
 " Plug 'jacoborus/tender.vim'
 " Plug 'cocopon/iceberg.vim'
 " Plug 'junegunn/seoul256.vim'
-" markdown
-Plug 'godlygeek/tabular', { 'for': ['markdown'] }
-Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
-function! BuildComposer(info)
-    if a:info.status != 'unchanged' || a:info.force
-        if has('nvim')
-            !cargo build --release --locked
-        else
-            !cargo build --release --locked --no-default-features --features json-rpc
-        endif
-    endif
-endfunction
-Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') , 'for': ['markdown'] }
 " lastplace
 Plug 'farmergreg/vim-lastplace'
 " undotree
@@ -409,12 +326,12 @@ Plug 'Konfekt/FastFold'
 Plug 'andymass/vim-matchup'
 " command line completion
 Plug 'gelguy/wilder.nvim'
-" code completion
-Plug 'jayli/vim-easycomplete'
+" coc
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" markdown preview
+Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install'}
 " LeaderF
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension', 'on': ['Leaderf','LeaderfFunction'] }
-" shell commands
-Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -438,6 +355,8 @@ let g:indentLine_char     = '┊'
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1  = "inc"
+let g:indentLine_setConceal = 2
+let g:indentLine_concealcursor = ""
 
 " number.vim
 let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
@@ -499,25 +418,6 @@ let g:everforest_show_eob                  = 0
 " onedark
 " let g:onedark_terminal_italics = 1
 " colorscheme onedark
-
-" ale
-" let g:ale_linters_explicit =1
-" for c
-let g:ale_c_cc_options               = '-std=c99 -Wall' 
-let g:ale_sign_column_always         = 1
-let g:ale_set_highlights             = 0
-let g:ale_sign_warning               = ''
-let g:ale_sign_error                 = ''
-let g:ale_sign_info                  = ''
-let g:ale_lint_on_enter              = 1
-let g:airline#extensions#ale#enabled = 1
-let g:ale_echo_msg_error_str         = 'E'
-let g:ale_echo_msg_warning_str       = 'W'
-let g:ale_echo_msg_info_str          = 'I'
-let g:ale_echo_msg_format            = '[%linter%] %s [%severity%]'
-" 禁用默认INSERT模式下改变文字也触发的设置，太频繁外，还会让补全窗闪烁
-let g:ale_lint_on_text_changed       = 'normal'
-let g:ale_lint_on_insert_leave       = 1
 
 " gtags && gutentags"
 let g:gutentags_modules           = ['ctags', 'gtags_cscope']
@@ -600,66 +500,8 @@ silent! nmap <unique> <C-K> <Plug>(SmoothieUpwards)
 silent! vmap <unique> <C-J> <Plug>(SmoothieDownwards)
 silent! vmap <unique> <C-K> <Plug>(SmoothieUpwards)
 
-" vim-markdown
-let g:vim_markdown_folding_disabled    = 1
-let g:vim_markdown_conceal             = 0
-let g:vim_markdown_conceal_code_blocks = 0
-
-" markdown-composer
-let g:markdown_composer_address = "192.168.31.102"
-let g:markdown_composer_port    = 8080
-
 " auto-pairs
 let g:AutoPairs = {'(':')', '[':']', '{':'}', "'":"'", '"':'"', '<':'>'}
-
-" easycomplete
-let g:easycomplete_diagnostics_enable = 0
-let g:easycomplete_lsp_checking       = 0
-let g:easycomplete_menu_skin = {
-            \   "buf": {
-            \      "kind":"",
-            \      "menu":"[B]",
-            \    },
-            \   "snip": {
-            \      "kind":"",
-            \      "menu":"[S]",
-            \    },
-            \   "dict": {
-            \      "kind":"",
-            \      "menu":"[D]",
-            \    },
-            \   "tabnine": {
-            \      "kind":"",
-            \      "menu":"[TN]",
-            \    },
-            \ }
-let g:easycomplete_filetypes = {"r": {
-            \ "whitelist": []
-            \ }}
-let g:easycomplete_tabnine_config = {
-            \ 'line_limit': 800,
-            \ 'max_num_result': 5,
-            \ }
-let g:easycomplete_lsp_type_font = {
-            \ 'class': "",     'color': "",
-            \ 'constant': "",  'constructor': "",
-            \ 'enum': "",      'enummember': "",
-            \ 'field': "料",    'file': '',
-            \ 'folder': "",    'function': "ƒ",
-            \ 'interface': "", 'keyword': "",
-            \ 'snippet': "",   'struct': "פּ",
-            \ 'text': "",      'typeparameter': "",
-            \ 'variable': "",  'module':'',
-            \ 'event': '',
-            \ 'r':'', 't':'',
-            \ 'f':'', 'c':'',
-            \ 'u':'𝘶', 'e':'𝘦',
-            \ 's':'פּ', 'v':'',
-            \ 'i':'𝘪', 'm':'',
-            \ 'p':'', 'k':'𝘬',
-            \ 'o':"𝘰", 'd':'𝘥',
-            \ 'l':"𝘭", 'a':"𝘢",
-            \ }
 
 " suda
 let g:suda_smart_edit = 1
@@ -690,21 +532,79 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer({
 
 " choose-window
 let g:choosewin_overlay_enable = 1
+nnoremap <silent> gw :ChooseWin<cr>
 
 " LeaderF
-"let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
-"let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
-"let g:Lf_WorkingDirectoryMode = 'Ac'
-"let g:Lf_WindowHeight = 0.30
-"let g:Lf_CacheDirectory = expand('~/.vim/cache')
-"let g:Lf_ShowRelativePath = 0
-"let g:Lf_HideHelp = 1
-"let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
-"noremap <silent><C-f> :<C-U><C-R>=printf("Leaderf rg --current-buffer -e %s", expand("<cword>"))<CR><CR>
-"noremap <silent><C-g> :<C-U><C-R>=printf("Leaderf rg -e %s", expand("<cword>"))<CR><CR>
-"noremap <silent><C-m> :<C-U><C-R>=printf("Leaderf mru  %s", "")<CR><CR>
-"noremap <silent><leader>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
-"noremap <silent><leader>g :<C-U><C-R>=printf("Leaderf! function --right %s", "")<CR><CR>
+let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
+let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 0
+let g:Lf_HideHelp = 1
+let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+noremap <silent><C-f> :<C-U><C-R>=printf("Leaderf rg --current-buffer -e %s", expand("<cword>"))<CR><CR>
+noremap <silent><C-g> :<C-U><C-R>=printf("Leaderf rg -e %s", expand("<cword>"))<CR><CR>
+noremap <silent><C-m> :<C-U><C-R>=printf("Leaderf mru  %s", "")<CR><CR>
+noremap <silent><leader>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
+noremap <silent><leader>g :<C-U><C-R>=printf("Leaderf! function --right %s", "")<CR><CR>
 
-""undotree
-"let g:undotree_SplitWidth = 20
+" coc
+" install extensions
+let g:coc_global_extensions = ['coc-clangd', 'coc-snippets', 'coc-json', 'coc-sh', 'coc-prettier', 'coc-tabnine']
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+" Use `[g` and `]g` to navigate diagnostics
+" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window
+nnoremap <silent> D :call ShowDocumentation()<CR>
+" do the 'hover' Automatically
+autocmd CursorHold *.c,*.cpp,*.h,*.sh call ShowDocumentation()
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
+" Symbol renaming
+nmap rn <Plug>(coc-rename)
+" Add `:Format` command to format current buffer
+command! -nargs=0 Format :call CocActionAsync('format')
+" Add (Neo)Vim's native statusline support
+" NOTE: Please see `:h coc-status` for integrations with external plugins that
+" provide custom statusline: lightline.vim, vim-airline
+let g:airline#extensions#coc#enabled = 1
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" markdown-preview
+let g:mkdp_auto_start = 1
+let g:mkdp_open_to_the_world = 1
+let g:mkdp_port = '8080'
+let g:mkdp_theme = 'light'
