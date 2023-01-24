@@ -33,9 +33,6 @@ set runtimepath+=~/.vim/snippets                " define my snippets
 set fillchars=stl:\ ,stlnc:\ ,fold:\ ,vert:\│   " fill character
 set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
 
-" prevent vim from clearing the clipboard on exit
-autocmd VimLeave * call system("xclip -selection clipboard -i", getreg('+'))
-
 " row and column line background
 set cul
 " set cuc
@@ -95,7 +92,6 @@ syntax enable
 
 " save global variables
 set viminfo+=!
-"带有如下符号的单词不要被换行分割
 set iskeyword+=_,$,@,%,#,-
 
 " filetype
@@ -112,11 +108,11 @@ set autowrite " Automatically write a file when leaving a modified buffer
 " backup
 set nobackup
 set nowritebackup
+setlocal noswapfile
 " set backup
 " set writebackup
 " set backupdir=~/.vim/tmp
 " set backupext=.bak
-" set noswapfile
 " set noundofile
 " silent! call mkdir(expand('~/.vim/tmp'), "p", 0755)
 
@@ -129,6 +125,9 @@ set selectmode=mouse,key
 set showmatch    " Show matching brackets/parentthesis
 set matchtime=5  " Show matching time
 set scrolloff=10 " Minumum lines to keep above and below cursor
+set matchpairs+=<:>
+" format
+set formatexpr=CocActionAsync('formatSelected')
 
 " hidden characters
 set list
@@ -241,15 +240,25 @@ xmap <silent><F9> <Plug>(coc-format-selected)
 " <F12> switching between header and implementaion
 nnoremap <silent><F12> :CocCommand clangd.switchSourceHeader<CR>
 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                 vim-plug                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-call plug#begin('~/.vim/plugged')
+" download pulg.vim
+" plug.vim {{
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+call plug#begin()
 " indent line
 Plug 'Yggdroot/indentLine'
-" tpope'
+" surroud
 Plug 'tpope/vim-surround'
+" C-a/x
 Plug 'tpope/vim-speeddating'
+" more repeat
 Plug 'tpope/vim-repeat'
 " pairs
 Plug 'jiangmiao/auto-pairs'
@@ -258,13 +267,13 @@ Plug 'tpope/vim-commentary'
 " code syntax highlight
 Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
 Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
-Plug 'PotatoesMaster/i3-vim-syntax'
-Plug 'ekalinin/Dockerfile.vim'
+" Plug 'PotatoesMaster/i3-vim-syntax'
+" Plug 'ekalinin/Dockerfile.vim'
 " quickly move
 Plug 'psliwka/vim-smoothie'
 Plug 'easymotion/vim-easymotion'
 " git state
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 " format with a common character
 Plug 'junegunn/vim-easy-align'
 " multiline selected
@@ -291,8 +300,6 @@ Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
 Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' }
 " highlight cursor word
 Plug 'RRethy/vim-illuminate'
-" generate tags(ctags,global) automatically
-Plug 'ludovicchabant/vim-gutentags'
 " snippets
 Plug 'honza/vim-snippets'
 " text objects
@@ -327,9 +334,9 @@ Plug 'andymass/vim-matchup'
 " command line completion
 Plug 'gelguy/wilder.nvim'
 " coc
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
 " markdown preview
-Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install'}
+Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install', 'for': ['markdown']}
 " LeaderF
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension', 'on': ['Leaderf','LeaderfFunction'] }
 call plug#end()
@@ -337,7 +344,6 @@ call plug#end()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                          settings after plug#end                           "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " these configurations may be overridden by plugins
 " set comment strings
 autocmd filetype verilog setlocal commentstring=//\ %s
@@ -345,11 +351,9 @@ augroup FORMATOPTIONS
     autocmd!
     autocmd filetype * set fo-=c fo-=r fo-=o " Disable continuation of comments to the next line
 augroup END
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                plug settings                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " indentline
 let g:indentLine_char     = '┊'
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -377,9 +381,10 @@ vmap { S}
 " vim-repeat
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
-" themes settings
+" color settings
+set termguicolors
 set t_Co=256
-" background 
+" background color
 " highlight LineNr guibg       = NONE
 " highlight SignColumn guibg   = NONE
 " highlight Normal guibg       = NONE
@@ -387,12 +392,17 @@ set t_Co=256
 " highlight Cursor guifg=white
 " highlight Cursor guifg=white guibg=black
 " highlight iCursor guifg=white guibg=steelblue
+" cursor color
 " set guicursor=n-v-c:block-Cursor
 " set guicursor+=i:ver100-iCursor
 " set guicursor+=n-v-c:blinkon0
 " set guicursor+=i:blinkwait10
+" keep cursor shape to underline
+au VimEnter * set guicursor= | call chansend(v:stderr, "\x1b[ q")
+au VimLeave * set guicursor= | call chansend(v:stderr, "\x1b[ q")
+au WinLeave * set guicursor= | call chansend(v:stderr, "\x1b[ q")
 
-" themes configuration
+" themes
 " theme style
 set background=dark
 " themes selection
@@ -405,7 +415,7 @@ set background=dark
 " paper
 " colorscheme Paper
 " everforest
-colorscheme everforest
+let g:everforest_backgroud                 = 'soft'
 let g:everforest_sign_column_background    = 'none'
 let g:everforest_diagnostic_text_highlight = 1
 let g:everforest_diagnostic_line_highlight = 1
@@ -414,39 +424,11 @@ let g:everforest_ui_contrast               = 'low'
 let g:everforest_better_performance        = 1
 let g:everforest_enable_italic             = 1
 let g:everforest_show_eob                  = 0
+colorscheme everforest
 " colorscheme nord
 " onedark
 " let g:onedark_terminal_italics = 1
 " colorscheme onedark
-
-" gtags && gutentags"
-let g:gutentags_modules           = ['ctags', 'gtags_cscope']
-let g:gutentags_ctags_executable  = '/usr/bin/ctags'
-set cscopeprg='gtags-cscope' " 使用 gtags-cscope 代替 cscope
-" gutentags搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
-let g:gutentags_project_root      = ['.root', '.svn', '.git', '.hg', '.project']
-" 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile     = '.tags'
-" 将自动生成的 cctags/gtags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let g:gutentags_cache_dir         = expand('~/.cache/tags')
-" 配置 ctags 的参数，老的 Exuberant-ctags 不能有 --extra=+q，注意
-let g:gutentags_ctags_extra_args  = ['--fields=+niazS']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-" 如果使用 universal ctags 需要增加下面一行，老的 Exuberant-ctags 不能加下一行
-let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-" ctags使用快捷键
-" nnoremap <CR> <c-]>
-" 增加cscope使用的快捷键(C-[和esc按键一致，可以直接esc+s进行查找)
-nnoremap <C-[>s :cs find s <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>g :cs find g <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>c :cs find c <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>t :cs find t <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>e :cs find e <C-R>=expand("<cword>")<CR><CR>
-nnoremap <C-[>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <C-[>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
-nnoremap <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
 " NerdTree
 let g:NERDTreeDirArrowExpandable   = ''
@@ -479,11 +461,6 @@ let g:Powerline_symbols                          = 'fancy'
 let g:header_auto_add_header    = 0
 let g:header_field_author       = 'zhangzhao'
 let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
-
-" vim-gitgutter
-let g:gitgutter_sign_allow_clobber = 1
-let g:gitgutter_preview_win_floating = 1
-nnoremap gp <Plug>(GitGutterPreviewHunk)
 
 " context.vim
 let g:context_add_mappings = 0
@@ -520,39 +497,42 @@ call wilder#setup({
       \ 'next_key': ['<tab>', '<Down>'],
       \ 'previous_key': '<s-tab>',
       \ })
-call wilder#set_option('renderer', wilder#popupmenu_renderer({
-      \ 'highlighter': wilder#basic_highlighter(),
+call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_border_theme({
+      \ 'highlights': {
+      \   'border': 'Normal',
+      \ },
+      \ 'border': 'rounded',
       \ 'left': [
       \   ' ', wilder#popupmenu_devicons(),
       \ ],
       \ 'right': [
       \   ' ', wilder#popupmenu_scrollbar(),
       \ ],
-      \ }))
+      \ })))
 
 " choose-window
 let g:choosewin_overlay_enable = 1
 nnoremap <silent> gw :ChooseWin<cr>
 
 " LeaderF
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
 let g:Lf_StlSeparator = { 'left': '', 'right': '', 'font': '' }
 let g:Lf_RootMarkers = ['.project', '.root', '.svn', '.git']
 let g:Lf_WorkingDirectoryMode = 'Ac'
-let g:Lf_WindowHeight = 0.30
-let g:Lf_CacheDirectory = expand('~/.vim/cache')
 let g:Lf_ShowRelativePath = 0
+let g:Lf_UseCache = 0
 let g:Lf_HideHelp = 1
+let g:Lf_UseVersionControlTools = 0
 let g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
 noremap <silent><C-f> :<C-U><C-R>=printf("Leaderf rg --current-buffer -e %s", expand("<cword>"))<CR><CR>
 noremap <silent><C-g> :<C-U><C-R>=printf("Leaderf rg -e %s", expand("<cword>"))<CR><CR>
-noremap <silent><C-m> :<C-U><C-R>=printf("Leaderf mru  %s", "")<CR><CR>
 noremap <silent><leader>f :<C-U><C-R>=printf("Leaderf file %s", "")<CR><CR>
 noremap <silent><leader>g :<C-U><C-R>=printf("Leaderf! function --right %s", "")<CR><CR>
 
 " coc
 " install extensions
-let g:coc_global_extensions = ['coc-clangd', 'coc-snippets', 'coc-json', 'coc-sh', 'coc-prettier', 'coc-tabnine']
-
+let g:coc_global_extensions = ['coc-clangd', 'coc-snippets', 'coc-json', 'coc-sh', 'coc-prettier', 'coc-tabnine', 'coc-git']
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
@@ -594,7 +574,7 @@ endfunction
 " Highlight the symbol and its references when holding the cursor
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming
-nmap rn <Plug>(coc-rename)
+nmap gn <Plug>(coc-rename)
 " Add `:Format` command to format current buffer
 command! -nargs=0 Format :call CocActionAsync('format')
 " Add (Neo)Vim's native statusline support
@@ -602,9 +582,13 @@ command! -nargs=0 Format :call CocActionAsync('format')
 " provide custom statusline: lightline.vim, vim-airline
 let g:airline#extensions#coc#enabled = 1
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" for coc-git
+nmap <silent> gm <Plug>(coc-git-commit)
+nmap <silent> gk <Plug>(coc-git-chunkinfo)
 
 " markdown-preview
 let g:mkdp_auto_start = 1
-let g:mkdp_open_to_the_world = 1
 let g:mkdp_port = '8080'
+let g:mkdp_open_to_the_world = 1
 let g:mkdp_theme = 'light'
+
