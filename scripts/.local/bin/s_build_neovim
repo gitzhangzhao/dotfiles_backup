@@ -1,0 +1,17 @@
+#!/bin/bash
+# File              : script_install_vim
+# Author            : zhangzhao <zhangzhao@ihep.ac.cn>
+# Date              : 27.05.2020
+# Last Modified Date: 23.06.2021
+# Last Modified By  : zhangzhao <zhangzhao@ihep.ac.cn>
+#!/bin/sh
+#编译nvim
+
+#需要安装的包：
+sudo apt install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+#liblua5.4-dev lua5.4
+pip3 install pynvim --upgrade
+
+make CMAKE_BUILD_TYPE=Release
+
+sudo make install

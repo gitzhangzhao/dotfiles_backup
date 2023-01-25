@@ -121,9 +121,6 @@ export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_KEY_SCHEME=vim
 export MCFLY_RESULTS=50
 export GIT_SSL_NO_VERIFY=true
-export http_proxy=http://localhost:20172
-export https_proxy=https://localhost:20172
-export all_proxy=socks5://localhost:20170
 export BAT_THEME=Nord
 export HISTSIZE=500000
 export SAVEHIST=500000
@@ -165,6 +162,7 @@ alias hr='history|rg'
 alias start='s_mount'
 alias stop='s_umount'
 alias scp='scp -C -p -r'
+alias vim='nvim'
 # alias pgrep='pgrep -a'
 # alias reconfigure='sudo dpkg-reconfigure'
 # alias on='synclient Touchpadoff=0'
@@ -186,19 +184,18 @@ if ! (( $chpwd_functions[(I)chpwd_cdls] )); then
   chpwd_functions+=(chpwd_cdls)
 fi
 
+function unproxy(){
+    unset http_proxy
+    unset https_proxy
+    unset all_proxy
+    echo -e "\033[31mHTTP Proxy off\033[0m"
+}
 
 function proxy(){
     export http_proxy=http://localhost:20172
     export https_proxy=https://localhost:20172
     export all_proxy=socks5://localhost:20170
     echo -e "\033[32mHTTP Proxy on\033[0m"
-}
-
-function unproxy(){
-    unset http_proxy
-    unset https_proxy
-    unset all_proxy
-    echo -e "\033[31mHTTP Proxy off\033[0m"
 }
 
 # eval

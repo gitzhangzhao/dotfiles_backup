@@ -10,5 +10,6 @@
   "colors.enable": true,
   "suggest.floatConfig": {"border": true,"rounded": true},
   "hover.floatConfig": {"border": true,"rounded": true},
-  "suggest.virtualText": true
+  "suggest.virtualText": true,
+  "snippets.ultisnips.pythonPrompt": false
 }

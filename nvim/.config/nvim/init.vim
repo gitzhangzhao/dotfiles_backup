@@ -7,7 +7,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                             universal settings                             "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 set nocompatible                                " disable vi mode
 set et
 set sm
@@ -42,10 +41,13 @@ autocmd InsertEnter,WinLeave * set nocul
 " autocmd InsertEnter,WinLeave * set nocuc
 
 " fold
-set foldenable                                                 " enable fold
-autocmd FileType c,cpp setlocal foldmethod=syntax              " fold for c and cpp
-autocmd FileType python,verilog,vim setlocal foldmethod=indent " fold for py,verilog and vim
-set foldlevel=9999
+set foldenable                                                   " enable fold
+" autocmd FileType c,cpp setlocal foldmethod=syntax              " fold for c and cpp
+" autocmd FileType python,verilog,vim setlocal foldmethod=indent " fold for py,verilog and vim
+" set to expr for Treesitter
+set foldmethod=expr
+set foldlevel=999
+set foldexpr=nvim_treesitter#foldexpr()
 " <space> for fold
 function! OnSpace()
     if foldlevel('.')
@@ -59,6 +61,7 @@ function! OnSpace()
     endif
 endfunction
 nnoremap <silent> <Space> @=(OnSpace())<CR>
+
 
 " index
 set autoindent " auto indet
@@ -132,6 +135,7 @@ set formatexpr=CocActionAsync('formatSelected')
 " hidden characters
 set list
 set listchars=tab:↳\ ,trail:·,extends:↷,precedes:↶
+",eol:↴,space:⋅
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                key binding                                 "
@@ -155,6 +159,12 @@ nnoremap cH c0
 " copy to beginning or end of a line
 nnoremap yL y$
 nnoremap yH y0
+
+" switch windows
+nnoremap th <C-w>h
+nnoremap tj <C-w>j
+nnoremap tk <C-w>k
+nnoremap tl <C-w>l
 
 " x don't save to clipboard
 nnoremap x "_x
@@ -186,7 +196,7 @@ nnoremap Q <Nop>
 " undo the undo
 nnoremap U <C-r>
 
-noremap <CR> gd
+" noremap <CR> gd
 
 " jump to marked
 nnoremap ' `
@@ -219,9 +229,6 @@ nnoremap <silent><F5> :UndotreeToggle<CR>
 " <F6> for nerd tree
 nnoremap <silent><F6> :NERDTreeToggle<CR>
 
-" <F7> for tagbar
-nnoremap <silent><F7> :TagbarToggle<CR>
-
 " <F8> for quickfix_toggle
 
 
@@ -253,7 +260,7 @@ endif
 
 call plug#begin()
 " indent line
-Plug 'Yggdroot/indentLine'
+Plug 'lukas-reineke/indent-blankline.nvim'
 " surroud
 Plug 'tpope/vim-surround'
 " C-a/x
@@ -264,11 +271,6 @@ Plug 'tpope/vim-repeat'
 Plug 'jiangmiao/auto-pairs'
 " comment
 Plug 'tpope/vim-commentary'
-" code syntax highlight
-Plug 'octol/vim-cpp-enhanced-highlight', { 'for': ['c', 'cpp'] }
-Plug 'justinmk/vim-syntax-extra',{ 'for': ['c', 'bison', 'flex', 'cpp'] }
-" Plug 'PotatoesMaster/i3-vim-syntax'
-" Plug 'ekalinin/Dockerfile.vim'
 " quickly move
 Plug 'psliwka/vim-smoothie'
 Plug 'easymotion/vim-easymotion'
@@ -278,16 +280,14 @@ Plug 'easymotion/vim-easymotion'
 Plug 'junegunn/vim-easy-align'
 " multiline selected
 Plug 'mg979/vim-visual-multi',{'branch': 'master'}
-" input
-Plug 'vim-scripts/fcitx.vim'
+" input state
+Plug 'h-hg/fcitx.nvim'
 " number
 Plug 'myusuf3/numbers.vim'
 " show the context of the current buffer contents
-Plug 'wellle/context.vim'
+" Plug 'wellle/context.vim'
 " statistics startup time
 " Plug 'dstein64/vim-startuptime'
-" enhance vim diff
-Plug 'chrisbra/vim-diff-enhanced'
 " status line
 Plug 'kshenoy/vim-signature'
 Plug 'ryanoasis/vim-devicons'
@@ -295,16 +295,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " header
 Plug 'alpertuna/vim-header'
-" nerd tree and tagbar
+" nerdtree
 Plug 'preservim/nerdtree',{ 'on':  'NERDTreeToggle' }
-Plug 'preservim/tagbar',{ 'on': 'TagbarToggle' }
-" highlight cursor word
-Plug 'RRethy/vim-illuminate'
 " snippets
 Plug 'honza/vim-snippets'
 " text objects
 Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-function'
 Plug 'sgur/vim-textobj-parameter'
 Plug 'glts/vim-textobj-comment'
 Plug 'tommcdo/vim-exchange'
@@ -325,25 +321,40 @@ Plug 'mbbill/undotree', { 'on':  'UndotreeToggle' }
 Plug 'lambdalisue/suda.vim'
 " disable search highlighting
 Plug 'romainl/vim-cool'
-" window switch
-Plug 't9md/vim-choosewin', { 'on': 'ChooseWin' }
-" fast fold
-Plug 'Konfekt/FastFold'
-" match highlight
-Plug 'andymass/vim-matchup'
 " command line completion
 Plug 'gelguy/wilder.nvim'
 " coc
 Plug 'neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}
-" markdown preview
-Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install', 'for': ['markdown']}
+" markdown-preview
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': ['markdown']}
 " LeaderF
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension', 'on': ['Leaderf','LeaderfFunction'] }
+" translate
+Plug 'voldikss/vim-translator'
+" treesitter and context
+Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-context'
+" highlight the word under current cursor
+Plug 'RRethy/vim-illuminate'
+" highlight sets of matching text
+Plug 'andymass/vim-matchup'
+" improve starup time
+Plug 'lewis6991/impatient.nvim'
+" enhance the fold looks
+Plug 'kevinhwang91/promise-async'
+Plug 'kevinhwang91/nvim-ufo'
+" better git signs
+Plug 'lewis6991/gitsigns.nvim'
+" scroll bar
+Plug 'petertriho/nvim-scrollbar'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                          settings after plug#end                           "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" for improve startup time
+lua require('impatient')
+
 " these configurations may be overridden by plugins
 " set comment strings
 autocmd filetype verilog setlocal commentstring=//\ %s
@@ -355,15 +366,15 @@ augroup END
 "                                plug settings                                "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " indentline
-let g:indentLine_char     = '┊'
-let g:html_indent_inctags = "html,body,head,tbody"
-let g:html_indent_script1 = "inc"
-let g:html_indent_style1  = "inc"
-let g:indentLine_setConceal = 2
-let g:indentLine_concealcursor = ""
+" let g:indentLine_char     = '┊'
+" let g:html_indent_inctags = "html,body,head,tbody"
+" let g:html_indent_script1 = "inc"
+" let g:html_indent_style1  = "inc"
+" let g:indentLine_setConceal = 2
+" let g:indentLine_concealcursor = ""
 
 " number.vim
-let g:numbers_exclude = ['tagbar', 'gundo', 'minibufexpl', 'nerdtree']
+let g:numbers_exclude = ['gundo', 'minibufexpl', 'nerdtree']
 
 " vim-surround
 vmap " S"
@@ -466,10 +477,6 @@ let g:header_field_author_email = 'zhangzhao@ihep.ac.cn'
 let g:context_add_mappings = 0
 let g:context_highlight_tag = '<hide>'
 
-" tagbar
-let g:tagbar_ctags_bin = '/usr/bin/ctags'
-let g:tagbar_width = max([25, winwidth(0) / 5])
-
 " smoothie
 let g:smoothie_no_default_mappings = 1
 silent! nmap <unique> <C-J> <Plug>(SmoothieDownwards)
@@ -510,10 +517,6 @@ call wilder#set_option('renderer', wilder#popupmenu_renderer(wilder#popupmenu_bo
       \ ],
       \ })))
 
-" choose-window
-let g:choosewin_overlay_enable = 1
-nnoremap <silent> gw :ChooseWin<cr>
-
 " LeaderF
 let g:Lf_WindowPosition = 'popup'
 let g:Lf_PreviewInPopup = 1
@@ -532,7 +535,7 @@ noremap <silent><leader>g :<C-U><C-R>=printf("Leaderf! function --right %s", "")
 
 " coc
 " install extensions
-let g:coc_global_extensions = ['coc-clangd', 'coc-snippets', 'coc-json', 'coc-sh', 'coc-prettier', 'coc-tabnine', 'coc-git']
+let g:coc_global_extensions = ['coc-clangd', 'coc-snippets', 'coc-json', 'coc-sh', 'coc-prettier', 'coc-tabnine', 'coc-vimlsp']
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
@@ -551,24 +554,29 @@ function! CheckBackspace() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-" Use `[g` and `]g` to navigate diagnostics
+" Use `g[` and `g[` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> g[ <Plug>(coc-diagnostic-prev)
+nmap <silent> g] <Plug>(coc-diagnostic-next)
 " GoTo code navigation
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" text objects
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
 " Use K to show documentation in preview window
 nnoremap <silent> D :call ShowDocumentation()<CR>
 " do the 'hover' Automatically
-autocmd CursorHold *.c,*.cpp,*.h,*.sh call ShowDocumentation()
+autocmd CursorHold *.c,*.cpp,*.h,*.sh,*.vim silent call ShowDocumentation()
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
+    silent call CocActionAsync('doHover')
   else
-    call feedkeys('K', 'in')
+    silent call feedkeys('D', 'm')
   endif
 endfunction
 " Highlight the symbol and its references when holding the cursor
@@ -592,3 +600,285 @@ let g:mkdp_port = '8080'
 let g:mkdp_open_to_the_world = 1
 let g:mkdp_theme = 'light'
 
+" vim-translator
+nmap <silent> gt <Plug>TranslateW
+vmap <silent> gt <Plug>TranslateWV
+let g:translator_window_max_width = 0.9
+let g:translator_window_max_height = 0.9
+
+" indent_blanline
+let g:indent_blankline_space_char_blankline = " "
+let g:indent_blankline_show_first_indent_level = v:false
+highlight IndentBlanklineContextStart guifg=#C678DD gui=underline
+highlight IndentBlanklineContextChar guifg=#C678DD gui=nocombine
+let g:indent_blankline_show_current_context = "true"
+" let g:indent_blankline_show_current_context_start = "true"
+let g:indent_blankline_use_treesitter_scope = "true"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                             settings for lua                               "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+lua<<EOF
+-- treesitter
+require'nvim-treesitter.configs'.setup {
+    -- 安装 language parser
+    -- :TSInstallInfo 命令查看支持的语言
+    ensure_installed = {"vim", "c", "make", "markdown", "json", "diff", "cpp", "bash"},
+    -- 启用代码高亮功能
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false
+        -- 启用增量选择
+    },
+    incremental_selection = {
+        enable = true,
+        keymaps = {
+            init_selection = '<CR>',
+            node_incremental = '<CR>',
+            node_decremental = '<BS>',
+            scope_incremental = '<TAB>',
+        }
+        },
+    illuminate = {
+        enable = true
+    },
+    matchup = {
+        enable = true
+    },
+    indent = {
+        enable = true
+    }
+    }
+
+-- ufo
+local handler = function(virtText, lnum, endLnum, width, truncate)
+    local newVirtText = {}
+    local suffix = ('  %d '):format(endLnum - lnum)
+    local sufWidth = vim.fn.strdisplaywidth(suffix)
+    local targetWidth = width - sufWidth
+    local curWidth = 0
+    for _, chunk in ipairs(virtText) do
+        local chunkText = chunk[1]
+        local chunkWidth = vim.fn.strdisplaywidth(chunkText)
+        if targetWidth > curWidth + chunkWidth then
+            table.insert(newVirtText, chunk)
+        else
+            chunkText = truncate(chunkText, targetWidth - curWidth)
+            local hlGroup = chunk[2]
+            table.insert(newVirtText, {chunkText, hlGroup})
+            chunkWidth = vim.fn.strdisplaywidth(chunkText)
+            -- str width returned from truncate() may less than 2nd argument, need padding
+            if curWidth + chunkWidth < targetWidth then
+                suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
+            end
+            break
+        end
+        curWidth = curWidth + chunkWidth
+    end
+    table.insert(newVirtText, {suffix, 'MoreMsg'})
+    return newVirtText
+end
+-- global handler
+-- `handler` is the 2nd parameter of `setFoldVirtTextHandler`,
+-- check out `./lua/ufo.lua` and search `setFoldVirtTextHandler` for detail.
+require('ufo').setup({
+    fold_virt_text_handler = handler
+})
+
+-- gitsigns
+require('gitsigns').setup {
+  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  watch_gitdir = {
+    interval = 1000,
+    follow_files = true
+  },
+  attach_to_untracked = true,
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 1000,
+    ignore_whitespace = false,
+  },
+  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  max_file_length = 40000, -- Disable if file is longer than this (in lines)
+  preview_config = {
+    -- Options passed to nvim_open_win
+    border = 'single',
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  },
+  yadm = {
+    enable = false
+  },
+
+  on_attach = function(bufnr)
+    local gs = package.loaded.gitsigns
+
+    local function map(mode, l, r, opts)
+      opts = opts or {}
+      opts.buffer = bufnr
+      vim.keymap.set(mode, l, r, opts)
+    end
+
+    -- Actions
+    map('n', 'gp', gs.preview_hunk)
+    map('n', 'gb', gs.toggle_current_line_blame)
+
+    -- Text object
+    map({'o', 'x'}, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
+  end
+}
+
+-- scroll bar
+require("scrollbar").setup({
+    show = true,
+    show_in_active_only = false,
+    set_highlights = true,
+    folds = 1000, -- handle folds, set to number to disable folds if no. of lines in buffer exceeds this
+    max_lines = false, -- disables if no. of lines in buffer exceeds this
+    hide_if_all_visible = false, -- Hides everything if all lines are visible
+    throttle_ms = 100,
+    handle = {
+        text = " ",
+        color = nil,
+        color_nr = nil, -- cterm
+        highlight = "CursorColumn",
+        hide_if_all_visible = true, -- Hides handle if all lines are visible
+    },
+    marks = {
+        Cursor = {
+            text = "•",
+            priority = 0,
+            gui=nil,
+            color = nil,
+            cterm=nil,
+            color_nr = nil, -- cterm
+            highlight = "Normal",
+        },
+        Search = {
+            text = { "-", "=" },
+            priority = 1,
+            gui=nil,
+            color = nil,
+            cterm=nil,
+            color_nr = nil, -- cterm
+            highlight = "Search",
+        },
+        Error = {
+            text = { "-", "=" },
+            priority = 2,
+            gui=nil,
+            color = nil,
+            cterm=nil,
+            color_nr = nil, -- cterm
+            highlight = "DiagnosticVirtualTextError",
+        },
+        Warn = {
+            text = { "-", "=" },
+            priority = 3,
+            gui=nil,
+            color = nil,
+            cterm=nil,
+            color_nr = nil, -- cterm
+            highlight = "DiagnosticVirtualTextWarn",
+        },
+        Info = {
+            text = { "-", "=" },
+            priority = 4,
+            gui=nil,
+            color = nil,
+            cterm=nil,
+            color_nr = nil, -- cterm
+            highlight = "DiagnosticVirtualTextInfo",
+        },
+        Hint = {
+            text = { "-", "=" },
+            priority = 5,
+            gui=nil,
+            color = nil,
+            cterm=nil,
+            color_nr = nil, -- cterm
+            highlight = "DiagnosticVirtualTextHint",
+        },
+        Misc = {
+            text = { "-", "=" },
+            priority = 6,
+            gui=nil,
+            color = nil,
+            cterm=nil,
+            color_nr = nil, -- cterm
+            highlight = "Normal",
+        },
+        GitAdd = {
+            text = "┆",
+            priority = 7,
+            gui=nil,
+            color = nil,
+            cterm=nil,
+            color_nr = nil, -- cterm
+            highlight = "GitSignsAdd",
+        },
+        GitChange = {
+            text = "┆",
+            priority = 7,
+            gui=nil,
+            color = nil,
+            cterm=nil,
+            color_nr = nil, -- cterm
+            highlight = "GitSignsChange",
+        },
+        GitDelete = {
+            text = "▁",
+            priority = 7,
+            gui=nil,
+            color = nil,
+            cterm=nil,
+            color_nr = nil, -- cterm
+            highlight = "GitSignsDelete",
+        },
+    },
+    excluded_buftypes = {
+        "terminal",
+    },
+    excluded_filetypes = {
+        "prompt",
+        "TelescopePrompt",
+        "noice",
+    },
+    autocmd = {
+        render = {
+            "BufWinEnter",
+            "TabEnter",
+            "TermEnter",
+            "WinEnter",
+            "CmdwinLeave",
+            "TextChanged",
+            "VimResized",
+            "WinScrolled",
+        },
+        clear = {
+            "BufWinLeave",
+            "TabLeave",
+            "TermLeave",
+            "WinLeave",
+        },
+    },
+    handlers = {
+        cursor = true,
+        diagnostic = true,
+        gitsigns = false, -- Requires gitsigns
+        handle = true,
+        search = false, -- Requires hlslens
+        ale = false, -- Requires ALE
+    },
+})
+require('scrollbar.handlers.gitsigns').setup()
+EOF
