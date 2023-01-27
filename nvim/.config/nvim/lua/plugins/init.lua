@@ -46,9 +46,11 @@ Plug 'tommcdo/vim-exchange'
 -- themes
 -- Plug 'NLKNguyen/papercolor-theme'
 -- Plug 'morhetz/gruvbox'
+Plug ('folke/tokyonight.nvim', { ['branch'] = 'main' })
+Plug ('rmehri01/onenord.nvim', { ['branch'] = 'main' })
 Plug 'sainnhe/everforest'
-Plug 'joshdick/onedark.vim'
-Plug 'arcticicestudio/nord-vim'
+-- Plug 'joshdick/onedark.vim'
+-- Plug 'arcticicestudio/nord-vim'
 -- Plug 'jacoborus/tender.vim'
 -- Plug 'cocopon/iceberg.vim'
 -- Plug 'junegunn/seoul256.vim'
@@ -96,8 +98,15 @@ require('plugins.hop')
 require('plugins.neoscroll')
 require('plugins.scrollbar')
 require('plugins.suda')
-require('plugins.treesitter')
+require('plugins.nvim-treesitter')
 require('plugins.vim-repeat')
 require('plugins.vim-header')
 require('plugins.wilder')
 require('plugins.coc')
+require('plugins.markdown-preview')
+require('plugins.ufo')
+require('plugins.indent_blankline')
+require("plugins.Comment")
+require("plugins.nvim-tree")
+require("plugins.vim-translator")
+require('plugins.onenord')

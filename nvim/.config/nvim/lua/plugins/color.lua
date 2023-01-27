@@ -19,3 +19,6 @@ vim.g.everforest_ui_contrast               = 'low'
 vim.g.everforest_better_performance        = 1
 vim.g.everforest_enable_italic             = 1
 vim.g.everforest_show_eob                  = 0
+
+-- tokyo night
+
