@@ -1,5 +1,9 @@
 {
   "coc.preferences.messageLevel": "error",
+  "coc.preferences.extensionUpdateCheck": "weekly",
+
+  "suggest.noselect": true,
+
   "diagnostic.messageTarget": "echo",
   "diagnostic.virtualTextFormat": "[%source] %message",
   "diagnostic.errorSign": "",
@@ -8,13 +12,25 @@
   "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
-  "coc.preferences.extensionUpdateCheck": "weekly",
+
   "semanticTokens.enable": true,
+  "signature.target": "float",
+
   "colors.enable": true,
-  "codeLens.enable": true,
-  "codeLens.position": "eol",
   "suggest.floatConfig": { "border": true, "rounded": true },
   "hover.floatConfig": { "border": true, "rounded": true },
-  "suggest.virtualText": true,
-  "snippets.ultisnips.pythonPrompt": false
+  "signature.floatConfig": { "border": true, "rounded": true },
+
+  "snippets.ultisnips.pythonPrompt": false,
+
+  "sumneko-lua.enableNvimLuaDev": true,
+
+  "languageserver": {
+      "veridian": {
+          "command": "veridian",
+          "filetypes": ["systemverilog", "verilog"]
+      }
+  }
+
+  
 }

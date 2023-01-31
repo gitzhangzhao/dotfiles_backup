@@ -1,5 +1,6 @@
--- universal settings
+-- universal
 local o = vim.o
+local g = vim.g
 local wo = vim.wo
 local bo = vim.bo
 local set = vim.opt
@@ -8,7 +9,9 @@ local set = vim.opt
 set.updatetime = 500
 -- set signcolumn=yes
 -- ignore case insensitive
-set.ignorecase = ture
+set.ignorecase = true
+
+set.laststatus = 3
 
 -- row and column line background
 set.cul = true
@@ -44,11 +47,11 @@ nnoremap <silent> <Space> @=(OnSpace())<CR>
 
 -- tab
 -- Let backspace delete indent
-set.softtabstop = 4 
+set.softtabstop = 4
 -- An indentation every four columns
-set.tabstop = 4     
+set.tabstop = 4
 -- Use indents of 4 spaces
-set.shiftwidth = 4  
+set.shiftwidth = 4
 set.expandtab = true
 
 -- split
@@ -59,7 +62,7 @@ set.splitbelow = true
 
 -- codeing
 set.encoding = 'utf-8'
-set.fileencodings = {'utf8','gb2312','gbk','gb18030'}
+set.fileencodings = { 'utf8', 'gb2312', 'gbk', 'gb18030' }
 
 -- syntax
 vim.cmd('syntax enable')
@@ -69,10 +72,10 @@ vim.cmd('syntax enable')
 -- set iskeyword+=_,$,@,%,#,-
 
 -- filetype
-vim.cmd[[
+vim.cmd [[
 filetype plugin indent on 
 au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=markdown
-autocmd filetype verilog setlocal commentstring=//\ %s
+" autocmd filetype verilog setlocal commentstring=//\ %s
 au BufRead,BufNewFile *.{go}   set filetype=go
 au BufRead,BufNewFile *.{js}   set filetype=javascript
 ]]
@@ -87,27 +90,39 @@ vim.cmd('setlocal noswapfile')
 set.mouse = 'a'
 -- hide the mouse cursor while typing
 set.mousehide = true
-set.selectmode = {'mouse', 'key'}
+set.selectmode = { 'mouse', 'key' }
 
 -- scroll remine
 -- minumum lines to keep above and below cursor
 set.scrolloff = 10
 
--- format
-vim.cmd[[
-set formatexpr=CocActionAsync('formatSelected')
-]]
-
 -- hidden characters
 set.list = true
-vim.cmd[[
+vim.cmd [[
 set listchars=tab:↳\ ,trail:·,extends:↷,precedes:↶
 ]]
 
 -- Disable continuation of comments to the next line
-vim.cmd[[
+vim.cmd [[
 augroup FORMATOPTIONS
     autocmd!
     autocmd filetype * set fo-=c fo-=r fo-=o
 augroup END
 ]]
+
+-- prevent nvim from clearing cb on exit
+vim.cmd [[
+    autocmd VimLeave * call system("xclip -selection clipboard -i", getreg('+'))
+]]
+
+-- color setting
+vim.opt.termguicolors = true
+
+-- cursor
+vim.cmd [[
+au VimEnter * set guicursor= | call chansend(v:stderr, "\x1b[ q")
+au VimLeave * set guicursor= | call chansend(v:stderr, "\x1b[ q")
+au WinLeave * set guicursor= | call chansend(v:stderr, "\x1b[ q")
+]]
+
+

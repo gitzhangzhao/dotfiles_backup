@@ -1,6 +1,6 @@
-require('config.setting')
-require('config.plug')
---require('config.mapping')
+require('config.lazy')
+require("config.themes")
+require('config.statusline')
+require('config.options')
+require("config.keybinds")
 
-require("plugins") 
-require("config.theme")
