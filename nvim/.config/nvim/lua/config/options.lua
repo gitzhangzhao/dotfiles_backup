@@ -1,20 +1,22 @@
--- universal
-local o = vim.o
-local g = vim.g
-local wo = vim.wo
-local bo = vim.bo
-local set = vim.opt
 
 -- update time (affect many plugins)
-set.updatetime = 500
--- set signcolumn=yes
--- ignore case insensitive
-set.ignorecase = true
+vim.opt.updatetime = 500
 
-set.laststatus = 3
+-- redraw time
+vim.opt.redrawtime = 100
+
+-- reduce reaction time
+vim.opt.ttimeoutlen = 0
+
+-- ignore case insensitive
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+
+-- hide cmd-line when it's not being used.
+vim.opt.cmdheight = 0
 
 -- row and column line background
-set.cul = true
+vim.opt.cul = true
 -- set.cuc = true
 vim.cmd [[
 " smart highlight row and column line background
@@ -24,11 +26,20 @@ autocmd InsertEnter,WinLeave * set nocul
 " autocmd InsertEnter,WinLeave * set nocuc
 ]]
 
+-- last position
+vim.cmd [[
+" Remember cursor position
+augroup vimrc-remember-cursor-position
+autocmd!
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+augroup END
+]]
+
 -- fold
-set.foldenable = true
-set.foldmethod = 'expr'
-set.foldlevel = 999
-set.foldexpr = 'nvim_treesitter#foldexpr()'
+vim.opt.foldenable = true
+vim.opt.foldmethod = 'expr'
+vim.opt.foldlevel = 999
+vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 -- <space> for fold
 vim.cmd [[
 function! OnSpace()
@@ -47,22 +58,39 @@ nnoremap <silent> <Space> @=(OnSpace())<CR>
 
 -- tab
 -- Let backspace delete indent
-set.softtabstop = 4
+vim.opt.softtabstop = 4
 -- An indentation every four columns
-set.tabstop = 4
+vim.opt.tabstop = 4
 -- Use indents of 4 spaces
-set.shiftwidth = 4
-set.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+-- indent
+-- Take indent for new line from previous line
+vim.opt.autoindent = true
 
 -- split
 -- Puts new vsplit windows to the right of the current
-set.splitright = true
+vim.opt.splitright = true
 -- Puts new split windows to the bottom of the current
-set.splitbelow = true
+vim.opt.splitbelow = true
 
 -- codeing
-set.encoding = 'utf-8'
-set.fileencodings = { 'utf8', 'gb2312', 'gbk', 'gb18030' }
+vim.opt.encoding = 'utf-8'
+vim.opt.fileencodings = { 'utf8', 'gb2312', 'gbk', 'gb18030' }
+
+-- message
+vim.opt.shortmess = 'atO'
+-- Disable intro message
+vim.opt.shortmess:append("I")
+-- Disable search count res from the bottom right corner
+vim.opt.shortmess:append("S")
+-- Disable ins-completion-menu messages
+vim.opt.shortmess:append("c")
+
+-- go to previous/next line with h,l,left arrow and right arrow
+-- when cursor reaches end/beginning of line
+vim.opt.whichwrap:append("<>hl")
 
 -- syntax
 vim.cmd('syntax enable')
@@ -81,23 +109,23 @@ au BufRead,BufNewFile *.{js}   set filetype=javascript
 ]]
 
 -- backup
-o.backup = false
-o.writebackup = false
+vim.opt.backup = false
+vim.opt.writebackup = false
 vim.cmd('setlocal noswapfile')
 
 -- mouse
 -- automatically enable mouse usage
-set.mouse = 'a'
+vim.opt.mouse = 'a'
 -- hide the mouse cursor while typing
-set.mousehide = true
-set.selectmode = { 'mouse', 'key' }
+vim.opt.mousehide = true
+vim.opt.selectmode = { 'mouse', 'key' }
 
 -- scroll remine
 -- minumum lines to keep above and below cursor
-set.scrolloff = 10
+vim.opt.scrolloff = 10
 
 -- hidden characters
-set.list = true
+vim.opt.list = true
 vim.cmd [[
 set listchars=tab:↳\ ,trail:·,extends:↷,precedes:↶
 ]]
@@ -116,7 +144,7 @@ vim.cmd [[
 ]]
 
 -- color setting
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 
 -- cursor
 vim.cmd [[
@@ -125,4 +153,15 @@ au VimLeave * set guicursor= | call chansend(v:stderr, "\x1b[ q")
 au WinLeave * set guicursor= | call chansend(v:stderr, "\x1b[ q")
 ]]
 
+-- auto read file when changed outside of vim
+vim.opt.autoread = true
 
+-- Ignore case when completing file names and directories.
+vim.opt.wildignorecase = true
+
+-- Neovide config
+vim.g.neovide_cursor_animation_length = 0.0
+vim.g.neovide_cursor_trail_length = 0.0
+vim.g.neovide_fullscreen = true
+vim.g.neovide_floating_blur_amount_x = 2.0
+vim.g.neovide_floating_blur_amount_y = 2.0

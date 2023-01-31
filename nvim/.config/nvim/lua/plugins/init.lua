@@ -20,26 +20,6 @@ return {
     -- editor
 
     {
-        'tpope/vim-surround',
-        event = 'VeryLazy',
-        config = function()
-            vim.cmd [[
-            vmap " S"
-            vmap ] S]
-            vmap [ S]
-            vmap ' S'
-            vmap > S>
-            vmap < S>
-            vmap / S/
-            vmap ) S)
-            vmap ( S)
-            vmap } S}
-            vmap { S}
-            ]]
-        end
-    },
-
-    {
         'tpope/vim-speeddating',
         keys = { '<c-a>', '<c-x>' }
     },
@@ -91,11 +71,6 @@ return {
     },
 
     -- others
-
-    {
-        'farmergreg/vim-lastplace',
-        lazy = false
-    },
 
     {
         'romainl/vim-cool',

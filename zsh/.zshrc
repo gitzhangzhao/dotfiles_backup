@@ -163,6 +163,7 @@ alias start='s_mount'
 alias stop='s_umount'
 alias scp='scp -C -p -r'
 alias vim='nvim'
+alias cvim='cd ~/dotfiles/nvim/.config/nvim/'
 # alias pgrep='pgrep -a'
 # alias reconfigure='sudo dpkg-reconfigure'
 # alias on='synclient Touchpadoff=0'
@@ -202,4 +203,5 @@ function proxy(){
 eval "$(starship init zsh)"
 eval "$(mcfly init zsh)"
 
+# add yarn path
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

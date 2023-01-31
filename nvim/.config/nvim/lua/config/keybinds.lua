@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 local opt = { silent = true, noremap = true }
+
 -- buffer
--- H and L
 map('n', 'H', '0', opt )
 map('n', 'L', '$', opt )
 
@@ -53,4 +53,8 @@ map('n', ',', '$a,<ESC>', opt )
 vim.cmd [[
     nnoremap <c-c> "+Y
     vnoremap <c-c> "+y
+]]
+
+vim.cmd [[
+vnoremap / :<c-u>let temp_variable=@"<CR>gvy:<c-u>let @/='\V<C-R>=escape(@",'/\')<CR>'<CR>:let @"=temp_variable<CR>:<c-u>set hlsearch<CR>
 ]]
