@@ -15,6 +15,11 @@ vim.opt.smartcase = true
 -- hide cmd-line when it's not being used.
 vim.opt.cmdheight = 0
 
+-- global status line
+vim.opt.laststatus = 3
+
+vim.opt.showcmd = false
+
 -- row and column line background
 vim.opt.cul = true
 -- set.cuc = true
@@ -27,13 +32,15 @@ autocmd InsertEnter,WinLeave * set nocul
 ]]
 
 -- last position
-vim.cmd [[
-" Remember cursor position
-augroup vimrc-remember-cursor-position
-autocmd!
-autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
-augroup END
-]]
+vim.api.nvim_create_autocmd("BufReadPost", {
+    callback = function()
+        local mark = vim.api.nvim_buf_get_mark(0, '"')
+        local lcount = vim.api.nvim_buf_line_count(0)
+        if mark[1] > 0 and mark[1] <= lcount then
+            pcall(vim.api.nvim_win_set_cursor, 0, mark)
+        end
+    end,
+})
 
 -- fold
 vim.opt.foldenable = true
@@ -80,13 +87,7 @@ vim.opt.encoding = 'utf-8'
 vim.opt.fileencodings = { 'utf8', 'gb2312', 'gbk', 'gb18030' }
 
 -- message
-vim.opt.shortmess = 'atO'
--- Disable intro message
-vim.opt.shortmess:append("I")
--- Disable search count res from the bottom right corner
-vim.opt.shortmess:append("S")
--- Disable ins-completion-menu messages
-vim.opt.shortmess:append("c")
+vim.opt.shortmess = 'atOTIcFS'
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line
