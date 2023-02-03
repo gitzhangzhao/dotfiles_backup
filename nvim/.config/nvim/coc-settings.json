@@ -12,7 +12,12 @@
   "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": true,
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
-  "diagnostic.enable": false,
+
+  "inlayHint.display": false,
+
+  //"outline.autoPreview": true,
+
+  "signature.preferShownAbove": false,
 
   "semanticTokens.enable": true,
   "signature.target": "float",
@@ -32,6 +37,7 @@
           "filetypes": ["systemverilog", "verilog"]
       }
   },
+
   "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd"
 
   
