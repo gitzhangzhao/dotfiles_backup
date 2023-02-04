@@ -249,7 +249,10 @@ return {
 
     {
         'myusuf3/numbers.vim',
-        event = {'BufReadPre','BufNewFile'}
+        event = {'BufReadPre','BufNewFile'},
+        config = function()
+            vim.g.numbers_exclude ={'gundo', 'minibufexpl', 'cocViewId', 'OUTLINE', 'CocTree', 'CocTree1'}
+        end
     },
 
     {

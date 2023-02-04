@@ -86,7 +86,6 @@ Status = function()
         string.format("  %s ", modes[vim.api.nvim_get_mode().mode]):upper(), -- mode
         "%#StatusActive#", -- middle color
         branch(),
-        -- " %f ", -- file name
         "%=", -- right align
         string.format("%s", (icons[vim.bo.filetype] or "")),
         " %f ",
