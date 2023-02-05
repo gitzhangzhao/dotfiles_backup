@@ -65,4 +65,34 @@ return {
         end
     },
 
+    {
+        'liuchengxu/vista.vim',
+        event = 'VeryLazy',
+        config = function()
+            vim.cmd [[
+            let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+            let g:vista_default_executive = 'coc'
+            let g:vista_default_executive = 'coc'
+            let g:vista_sidebar_open_cmd = '25vsplit'
+            let g:vista_stay_on_open = 0
+            let g:vista_blink = [0,0]
+            let g:vista_top_level_blink = [0,0]
+            ]]
+            vim.keymap.set('n', '<F8>', '<CMD>Vista!!<CR>', {silent = true})
+            -- close vista automatically when it's the last window open
+            vim.api.nvim_create_autocmd({ "BufEnter" }, {
+                pattern = { "*" },
+                callback = function()
+                    local is_only_one_win = vim.fn.winnr("$") == 1
+                    local is_vista_open = vim.fn["vista#sidebar#IsOpen"]() == 1
+
+                    if is_only_one_win and is_vista_open then
+                        vim.cmd("silent! q!")
+                    end
+                end,
+            })
+        end
+    }
+
+
 }

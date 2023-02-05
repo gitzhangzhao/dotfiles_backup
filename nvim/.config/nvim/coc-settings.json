@@ -1,6 +1,7 @@
 {
   "coc.preferences.messageLevel": "error",
   "coc.preferences.extensionUpdateCheck": "weekly",
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
 
   "suggest.noselect": true,
 

@@ -25,6 +25,10 @@ local modes = {
     ["R"] = " ",
 }
 
+local status = {
+    ["func"] = "",
+}
+
 local icons = {
     ["typescript"] = " ",
     ["python"] = " ",
@@ -73,7 +77,24 @@ local function branch()
     local branch = cmd:read("*l") or cmd:read("*a")
     cmd:close()
     if branch ~= "" then
-        return string.format("  " .. branch)
+        return string.format("   " .. branch)
+    else
+        return ""
+    end
+end
+
+vim.cmd [[
+function! NearestMethodOrFunction() abort
+  return get(b:, 'vista_nearest_method_or_function', '')
+endfunction
+" set statusline+=%{NearestMethodOrFunction()}
+autocmd User CocStatusChange call vista#RunForNearestMethodOrFunction()
+]]
+
+local function current_func()
+    local func = vim.fn.NearestMethodOrFunction()
+    if func ~= "" then
+        return string.format("   " .. func)
     else
         return ""
     end
@@ -83,14 +104,15 @@ end
 Status = function()
     return table.concat({
         color(), -- mode colors
-        string.format("  %s ", modes[vim.api.nvim_get_mode().mode]):upper(), -- mode
+        string.format(" %s", modes[vim.api.nvim_get_mode().mode]):upper(), -- mode
         "%#StatusActive#", -- middle color
         branch(),
+        current_func(),
         "%=", -- right align
         string.format("%s", (icons[vim.bo.filetype] or "")),
-        " %f ",
+        "%f",
         color(), -- mode colors
-        " %l:%c  ", -- line, column
+        "  %l:%c ", -- line, column
     })
 end
 

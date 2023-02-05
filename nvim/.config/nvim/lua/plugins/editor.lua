@@ -91,9 +91,6 @@ return {
     {
         'nvim-treesitter/nvim-treesitter',
         lazy =false,
-        dependencies = {
-            'andymass/vim-matchup'
-        },
         build = ':TSUpdate',
         config = function()
             require'nvim-treesitter.configs'.setup {
@@ -127,6 +124,15 @@ return {
                 },
             }
         end
+    },
+
+    {
+        'andymass/vim-matchup',
+        event = 'BufReadPost',
+        config = function()
+            vim.g.matchup_matchparen_offscreen = {}
+        end
+
     },
 
     {
