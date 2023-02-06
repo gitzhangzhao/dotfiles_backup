@@ -5,7 +5,7 @@
 
   "suggest.noselect": true,
 
-  "diagnostic.messageTarget": "echo",
+  "diagnostic.enableMessage": "never",
   "diagnostic.virtualTextFormat": "[%source] %message",
   "diagnostic.errorSign": "",
   "diagnostic.infoSign": "",
@@ -15,8 +15,6 @@
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
 
   "inlayHint.display": false,
-
-  //"outline.autoPreview": true,
 
   "signature.preferShownAbove": false,
 
