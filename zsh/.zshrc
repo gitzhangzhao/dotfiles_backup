@@ -206,3 +206,6 @@ eval "$(mcfly init zsh)"
 
 # add yarn path
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# change proxy
+proxy()

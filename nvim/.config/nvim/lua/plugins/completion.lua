@@ -175,6 +175,17 @@ return {
                         })
                         ))
                     end
+                },
+
+                {
+                    "danymat/neogen",
+                    keys = {
+                        {'gs', ":lua require('neogen').generate()<CR>"},
+                },
+                dependencies = "nvim-treesitter/nvim-treesitter",
+                config = true
+                -- Uncomment next line if you want to follow only stable versions
+                    -- version = "*" 
                 }
 
             }
