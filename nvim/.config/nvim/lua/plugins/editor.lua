@@ -276,4 +276,29 @@ return {
         event = { 'CursorMoved', 'InsertEnter' },
     },
 
+    {
+        'kana/vim-textobj-user',
+        event = 'VeryLazy',
+        dependencies = {
+            {'glts/vim-textobj-comment'},
+            {'kana/vim-textobj-line'},
+            {'tommcdo/vim-exchange'},
+            {'sgur/vim-textobj-parameter'}
+        }
+    },
+
+    {
+        'gbprod/yanky.nvim',
+        keys = {'p','P'},
+        config = function()
+            vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
+            vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
+            vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
+            vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
+            vim.keymap.set("n", "<s-w>", "<Plug>(YankyCycleForward)")
+            vim.keymap.set("n", "<s-q>", "<Plug>(YankyCycleBackward)")
+            require('yanky').setup()
+        end
+    }
+
 }
