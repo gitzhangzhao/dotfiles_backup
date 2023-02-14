@@ -220,8 +220,27 @@ return {
     },
 
     {
-        'tpope/vim-speeddating',
-        keys = { '<c-a>', '<c-x>' }
+        'nat-418/boole.nvim',
+        keys = { '<c-a>', '<c-x>' },
+        config = function()
+            require('boole').setup({
+                mappings = {
+                    increment = '<C-a>',
+                    decrement = '<C-x>'
+                },
+                -- User defined loops
+                additions = {
+                    {'Foo', 'Bar'},
+                    {'tic', 'tac', 'toe'}
+                },
+                allow_caps_additions = {
+                    {'enable', 'disable'}
+                    -- enable → disable
+                    -- Enable → Disable
+                    -- ENABLE → DISABLE
+                }
+            })
+        end
     },
 
     {
@@ -291,13 +310,29 @@ return {
         'gbprod/yanky.nvim',
         keys = {'p','P'},
         config = function()
-            vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)")
-            vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)")
-            vim.keymap.set({"n","x"}, "gp", "<Plug>(YankyGPutAfter)")
-            vim.keymap.set({"n","x"}, "gP", "<Plug>(YankyGPutBefore)")
-            vim.keymap.set("n", "<s-w>", "<Plug>(YankyCycleForward)")
-            vim.keymap.set("n", "<s-q>", "<Plug>(YankyCycleBackward)")
+            local opts = { noremap = true, silent = true }
+            vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)", opts)
+            vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)", opts)
+            vim.keymap.set("n", "<s-w>", "<Plug>(YankyCycleForward)", opts)
+            vim.keymap.set("n", "<s-q>", "<Plug>(YankyCycleBackward)", opts)
             require('yanky').setup()
+        end
+    },
+
+    {
+        'fedepujol/move.nvim',
+        keys = {'K', 'J', {'K', mode = 'x'}, {'J', mode = 'x'}, {'HH', mode = 'x'}, {'LL', mode = 'x'}},
+        config = function()
+            local opts = { noremap = true, silent = true }
+            -- Normal-mode commands
+            vim.keymap.set('n', 'J', ':MoveLine(1)<CR>', opts)
+            vim.keymap.set('n', 'K', ':MoveLine(-1)<CR>', opts)
+
+            -- Visual-mode commands
+            vim.keymap.set('x', 'J', ':MoveBlock(1)<CR>', opts)
+            vim.keymap.set('x', 'K', ':MoveBlock(-1)<CR>', opts)
+            vim.keymap.set('x', 'HH', ':MoveHBlock(-1)<CR>', opts)
+            vim.keymap.set('x', 'LL', ':MoveHBlock(1)<CR>', opts)
         end
     }
 

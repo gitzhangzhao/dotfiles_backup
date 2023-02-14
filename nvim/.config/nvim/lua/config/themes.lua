@@ -2,6 +2,5 @@
 vim.opt.background = 'dark'
 
 -- set colorscheme
-vim.cmd('colorscheme tokyonight')
--- vim.cmd('colorscheme everforest')
--- vim.cmd('colorscheme nord')
+vim.cmd('colorscheme tokyonight-night')
+-- vim.cmd('colorscheme catppuccin')

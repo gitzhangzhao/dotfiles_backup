@@ -26,7 +26,7 @@ return {
                 },
                 sidebars = { "qf", "help" }, -- Set a darker background on sidebar-like windows. For example: `["qf", "vista_kind", "terminal", "packer"]`
                 day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Day** style. Number between 0 and 1, from dull to vibrant colors
-                hide_inactive_statusline = false, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
+                hide_inactive_statusline = true, -- Enabling this option, will hide inactive statuslines and replace them with a thin border instead. Should work with the standard **StatusLine** and **LuaLine**.
                 dim_inactive = false, -- dims inactive windows
                 lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
 
@@ -45,26 +45,72 @@ return {
     },
 
     {
-        'shaunsingh/nord.nvim',
+        'catppuccin/nvim',
+        name = 'catppuccin',
         lazy = false,
         priority = 1000,
-    },
-
-    {
-        'sainnhe/everforest',
-        lazy = false,
-        priority = 998,
         config = function()
-            vim.g.everforest_backgroud                 = 'soft'
-            vim.g.everforest_sign_column_background    = 'none'
-            vim.g.everforest_diagnostic_text_highlight = 1
-            vim.g.everforest_diagnostic_line_highlight = 1
-            vim.g.everforest_current_word              = 'underline'
-            vim.g.everforest_ui_contrast               = 'low'
-            vim.g.everforest_better_performance        = 1
-            vim.g.everforest_enable_italic             = 1
-            vim.g.everforest_show_eob                  = 0
-        end
+            require("catppuccin").setup({
+                flavour = "mocha", -- latte, frappe, macchiato, mocha
+                background = { -- :h background
+                light = "latte",
+                dark = "mocha",
+            },
+            transparent_background = false,
+            show_end_of_buffer = false, -- show the '~' characters after the end of buffers
+            term_colors = false,
+            dim_inactive = {
+                enabled = false,
+                shade = "dark",
+                percentage = 0.15,
+            },
+            no_italic = false, -- Force no italic
+            no_bold = false, -- Force no bold
+            styles = {
+                comments = { "italic" },
+                conditionals = { "italic" },
+                loops = {},
+                functions = { "bold" },
+                keywords = {},
+                strings = {},
+                variables = {},
+                numbers = {},
+                booleans = {},
+                properties = {},
+                types = {},
+                operators = {},
+            },
+            color_overrides = {},
+            custom_highlights = {},
+            integrations = {
+                gitsigns = true,
+                nvimtree = true,
+                telescope = true,
+                notify = false,
+                mini = false,
+                -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+                illuminate = true,
+                treesitter = true,
+                treesitter_context = true,
+                coc_nvim = true
+            },
+            coc_nvim = {
+                enabled = true,
+                virtual_text = {
+                    errors = { "italic" },
+                    hints = { "italic" },
+                    warnings = { "italic" },
+                    information = { "italic" },
+                },
+                underlines = {
+                    errors = { "underline" },
+                    hints = { "underline" },
+                    warnings = { "underline" },
+                    information = { "underline" },
+                },
+            },
+        })
+    end
     }
 
 }

@@ -33,21 +33,15 @@ map('n', '<c-H>', 'O<ESC>', opt )
 vim.cmd [[
 map <expr> n  'Nn'[v:searchforward]
 map <expr> N  'nN'[v:searchforward]
-
-map K  :<c-u>execute 'move -1-'. v:count1<cr>
-map J  :<c-u>execute 'move +'. v:count1<cr>
-
-vnoremap <silent> K :m '<-2gv=gv<cr>gv
-vnoremap <silent> J :m '>+1gv=gv<cr>gv
 ]]
 
 map('n', 'Q', '<Nop>', opt )
 
 map('n', 'U', '<c-r>', opt )
 
-vim.cmd("nnoremap ' `")
+-- vim.cmd("nnoremap ' `")
 
-map('n', ';', '$a;<ESC>', opt )
+-- map('n', ';', '$a;<ESC>', opt )
 map('n', ',', '$a,<ESC>', opt )
 
 vim.cmd [[
