@@ -12,6 +12,8 @@ vim.opt.ttimeoutlen = 0
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+vim.opt.signcolumn = 'yes'
+
 -- hide cmd-line when it's not being used.
 vim.opt.cmdheight = 0
 

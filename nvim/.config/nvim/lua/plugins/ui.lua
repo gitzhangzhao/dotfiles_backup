@@ -302,4 +302,15 @@ return {
             config = true
         },
 
+        {
+            'danilamihailov/beacon.nvim',
+            event = 'BufReadPost',
+            config = function()
+                vim.cmd [[highlight Beacon guibg=red]]
+                vim.g.beacon_size = 100
+                vim.g.beacon_shrink = 0
+            end
+
+        }
+
     }

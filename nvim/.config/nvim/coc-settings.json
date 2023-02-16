@@ -6,11 +6,12 @@
   "suggest.noselect": true,
 
   "diagnostic.enableMessage": "never",
-  "diagnostic.virtualTextFormat": "[%source] %message",
-  "diagnostic.errorSign": "",
-  "diagnostic.infoSign": "",
-  "diagnostic.warningSign": "",
   "diagnostic.virtualText": true,
+  "diagnostic.virtualTextFormat": "  %message",
+  "diagnostic.errorSign": "",
+  "diagnostic.infoSign": "",
+  "diagnostic.warningSign": "",
+  "diagnostic.hintSign": "",
   "diagnostic.checkCurrentLine": true,
   "diagnostic.separateRelatedInformationAsDiagnostics": true,
 

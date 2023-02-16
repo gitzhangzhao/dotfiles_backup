@@ -68,11 +68,11 @@ return {
             no_bold = false, -- Force no bold
             styles = {
                 comments = { "italic" },
-                conditionals = { "italic" },
-                loops = {},
-                functions = { "bold" },
+                conditionals = { "bold" },
+                loops = { "bold" },
+                functions = { "bold","italic" },
                 keywords = {},
-                strings = {},
+                strings = { "italic" },
                 variables = {},
                 numbers = {},
                 booleans = {},
@@ -86,27 +86,21 @@ return {
                 gitsigns = true,
                 nvimtree = true,
                 telescope = true,
-                notify = false,
-                mini = false,
                 -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
                 illuminate = true,
                 treesitter = true,
                 treesitter_context = true,
-                coc_nvim = true
+                coc_nvim = true,
+                hop = true,
+                markdown = true,
             },
-            coc_nvim = {
+            native_lsp = {
                 enabled = true,
-                virtual_text = {
-                    errors = { "italic" },
-                    hints = { "italic" },
-                    warnings = { "italic" },
-                    information = { "italic" },
-                },
                 underlines = {
-                    errors = { "underline" },
-                    hints = { "underline" },
-                    warnings = { "underline" },
-                    information = { "underline" },
+                    errors = { "undercurl" },
+                    hints = { "undercurl" },
+                    warnings = { "undercurl" },
+                    information = { "undercurl" },
                 },
             },
         })

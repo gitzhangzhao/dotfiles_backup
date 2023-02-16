@@ -1,6 +1,7 @@
 {
   "Comment.nvim": { "branch": "master", "commit": "418d3117dab2f54c4340ea73e0070dd78fc81753" },
   "alpha-nvim": { "branch": "main", "commit": "1c903fd40b1d51e7740b4d90e9f18e83f2916586" },
+  "beacon.nvim": { "branch": "master", "commit": "a786c9a89b2c739c69f9500a2f70f2586c06ec27" },
   "boole.nvim": { "branch": "main", "commit": "f4f9996f91159e54b8f1893b20e2e599c91bc1bd" },
   "catppuccin": { "branch": "main", "commit": "a5f3ed5d3b1d9ea21183718a8a89a6653bd6ea48" },
   "coc.nvim": { "branch": "master", "commit": "59a942d8d0edfaba0a2db2eb039aa6b873b26262" },

@@ -62,7 +62,7 @@ return {
 
     {
         'karb94/neoscroll.nvim',
-        keys = {'<C-k>', '<C-j>', 'zt', 'zz', 'zb'},
+        keys = {'<C-k>', '<C-j>', 'zt', 'zz', 'zb', {'<C-j>', mode = 'x'}, {'<C-k>', mode = 'x'}},
         config = function()
             require('neoscroll').setup({
                 -- All these keys will be mapped to their corresponding default scrolling animation
