@@ -91,17 +91,23 @@ return {
                 treesitter = true,
                 treesitter_context = true,
                 coc_nvim = true,
+                native_lsp = {
+                    enabled = true,
+                    virtual_text = {
+                        errors = { "italic" },
+                        hints = { "italic" },
+                        warnings = { "italic" },
+                        information = { "italic" },
+                    },
+                    underlines = {
+                        errors = { "undercurl" },
+                        hints = { "undercurl" },
+                        warnings = { "undercurl" },
+                        information = { "undercurl" },
+                    },
+                },
                 hop = true,
                 markdown = true,
-            },
-            native_lsp = {
-                enabled = true,
-                underlines = {
-                    errors = { "undercurl" },
-                    hints = { "undercurl" },
-                    warnings = { "undercurl" },
-                    information = { "undercurl" },
-                },
             },
         })
     end

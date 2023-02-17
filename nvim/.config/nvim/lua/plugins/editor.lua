@@ -308,7 +308,7 @@ return {
 
     {
         'gbprod/yanky.nvim',
-        keys = {'p','P'},
+        keys = {'p','P','y'},
         config = function()
             local opts = { noremap = true, silent = true }
             vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)", opts)

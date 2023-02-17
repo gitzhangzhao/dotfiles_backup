@@ -306,11 +306,22 @@ return {
             'danilamihailov/beacon.nvim',
             event = 'BufReadPost',
             config = function()
-                vim.cmd [[highlight Beacon guibg=red]]
+                vim.cmd [[highlight Beacon guibg=pink]]
                 vim.g.beacon_size = 100
                 vim.g.beacon_shrink = 0
             end
 
-        }
+        },
+
+        {
+            "feline-nvim/feline.nvim",
+            event = 'BufReadPre',
+            dependencies = 'nvim-tree/nvim-web-devicons',
+            config = function()
+                require("feline").setup {
+                    components = require("config.statusline").get(),
+                }
+            end,
+        },
 
     }

@@ -1,4 +1,3 @@
-
 -- update time (affect many plugins)
 vim.opt.updatetime = 500
 
