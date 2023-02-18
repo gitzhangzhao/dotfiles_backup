@@ -1,6 +1,9 @@
 -- update time (affect many plugins)
 vim.opt.updatetime = 500
 
+-- don't show mode
+vim.opt.showmode = false
+
 -- redraw time
 vim.opt.redrawtime = 100
 
@@ -11,6 +14,7 @@ vim.opt.ttimeoutlen = 0
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+-- disable nvim intro
 vim.opt.signcolumn = 'yes'
 
 -- hide cmd-line when it's not being used.
@@ -88,7 +92,7 @@ vim.opt.encoding = 'utf-8'
 vim.opt.fileencodings = { 'utf8', 'gb2312', 'gbk', 'gb18030' }
 
 -- message
-vim.opt.shortmess = 'atOTIcFS'
+vim.opt.shortmess = 'atOTIscFS'
 
 -- go to previous/next line with h,l,left arrow and right arrow
 -- when cursor reaches end/beginning of line

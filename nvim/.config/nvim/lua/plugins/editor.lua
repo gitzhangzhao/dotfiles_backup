@@ -143,7 +143,7 @@ return {
 
     {
         'kevinhwang91/nvim-ufo',
-        event = 'VeryLazy',
+        event = 'BufRead',
         dependencies = 'kevinhwang91/promise-async',
         config = function()
             local handler = function(virtText, lnum, endLnum, width, truncate)
@@ -333,6 +333,14 @@ return {
             vim.keymap.set('x', 'K', ':MoveBlock(-1)<CR>', opts)
             vim.keymap.set('x', 'HH', ':MoveHBlock(-1)<CR>', opts)
             vim.keymap.set('x', 'LL', ':MoveHBlock(1)<CR>', opts)
+        end
+    },
+
+    {
+        'lambdalisue/suda.vim',
+        lazy = false,
+        init = function()
+            vim.g.suda_smart_edit = 1
         end
     }
 
