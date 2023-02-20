@@ -92,7 +92,49 @@ return {
                 end,
             })
         end
+    },
+
+    {
+            'nvim-tree/nvim-tree.lua',
+            cmd = {
+                "NvimTreeToggle",
+                "NvimTreeOpen",
+                "NvimTreeFindFile",
+                "NvimTreeFindFileToggle",
+                "NvimTreeRefresh",
+            },
+            config = function()
+                vim.g.loaded_netrwPlugin = 1
+                vim.g.loaded_netrw = 1
+                require('nvim-tree').setup()
+            end,
+            init = function()
+                vim.keymap.set('n', '<F6>', '<CMD>NvimTreeToggle<CR>', { silent = true } )
+            end
+        },
+
+        {
+            'folke/trouble.nvim',
+            dependencies = 'nvim-tree/nvim-web-devicons',
+            keys = {{'<F7>', '<cmd>TroubleToggle loclist<CR>'}},
+            config = function()
+                vim.api.nvim_create_autocmd('User',{
+                    pattern = 'CocNvimInit',
+                    command = "call coc#rpc#request('fillDiagnostics', [bufnr('%')])",
+                    desc = 'init loc list for trouble'
+                })
+                require('trouble').setup{
+                    signs = {
+                        -- icons / text used for a diagnostic
+                        error = "",
+                        warning = "",
+                        hint = "",
+                        information = "",
+                        other = "﫠"
+                    },
+                }
+            end
+        }
+
+
     }
-
-
-}
