@@ -91,19 +91,11 @@ vim.opt.splitbelow = true
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencodings = { 'utf8', 'gb2312', 'gbk', 'gb18030' }
 
--- message
+-- -- message
 vim.opt.shortmess = 'atOTIscFS'
-
--- go to previous/next line with h,l,left arrow and right arrow
--- when cursor reaches end/beginning of line
-vim.opt.whichwrap:append("<>hl")
 
 -- syntax
 vim.cmd('syntax enable')
-
--- save global variables
--- set viminfo+=!
--- set iskeyword+=_,$,@,%,#,-
 
 -- filetype
 vim.cmd [[
