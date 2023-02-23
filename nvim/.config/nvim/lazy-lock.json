@@ -12,6 +12,7 @@
   "indent-blankline.nvim": { "branch": "master", "commit": "8299fe7703dfff4b1752aeed271c3b95281a952d" },
   "lazy.nvim": { "branch": "main", "commit": "7339145a223dab7e7ddccf0986ffbf9d2cb804e8" },
   "markdown-preview.nvim": { "branch": "master", "commit": "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96" },
+  "modicator.nvim": { "branch": "main", "commit": "b0d2277b661186a5017ed266d9df74c19298e93a" },
   "move.nvim": { "branch": "main", "commit": "4f72d2d86f4392cec1aa4e0a8c20314022a806ad" },
   "neogen": { "branch": "main", "commit": "465af9d6c6fb7f360175991dcc23fc10917e3a06" },
   "neoscroll.nvim": { "branch": "master", "commit": "d7601c26c8a183fa8994ed339e70c2d841253e93" },
