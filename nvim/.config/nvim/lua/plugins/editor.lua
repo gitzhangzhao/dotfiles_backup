@@ -232,7 +232,6 @@ return {
             require('hop').setup{keys = "etovxqpdygfblzhckisuran"}
             local function map(mode, l, r, opts)
                 opts = opts or {}
-                opts.buffer = bufnr
                 vim.keymap.set(mode, l, r, opts)
             end
             map("n", "fj",  ":HopWordAC<cr>", {silent = true})
@@ -343,7 +342,7 @@ return {
         dependencies = {
             {'glts/vim-textobj-comment'},
             {'kana/vim-textobj-line'},
-            {'tommcdo/vim-exchange'},
+            { 'tommcdo/vim-exchange' },
             {'sgur/vim-textobj-parameter'}
         }
     },
@@ -352,7 +351,10 @@ return {
         'gbprod/yanky.nvim',
         keys = {'p','P','y'},
         config = function()
-            local opts = { noremap = true, silent = true }
+            local opts = {
+                noremap = true,
+                silent = true,
+            }
             vim.keymap.set({"n","x"}, "p", "<Plug>(YankyPutAfter)", opts)
             vim.keymap.set({"n","x"}, "P", "<Plug>(YankyPutBefore)", opts)
             vim.keymap.set("n", "<s-w>", "<Plug>(YankyCycleForward)", opts)
@@ -387,18 +389,28 @@ return {
     },
 
     {
-        'mawkler/modicator.nvim',
-        init = function()
-            -- These are required for Modicator to work
-            vim.o.cursorline = true
-            vim.o.number = true
-            vim.o.termguicolors = true
-        end,
+        'Wansmer/treesj',
+        keys = {{'gm', '<cmd>TSJToggle<CR>'}},
         config = function()
-            require('modicator').setup({
-                -- ...
-            })
+                local tsj = require('treesj')
+                local langs = {--[[ configuration for languages ]]}
+                tsj.setup({
+                    -- Use default keymaps
+                    use_default_keymaps = false,
+                    -- Node with syntax error will not be formatted
+                    check_syntax_error = true,
+                    -- If line after join will be longer than max value,
+                    -- node will not be formatted
+                    max_join_length = 240,
+                    cursor_behavior = 'hold',
+                    -- Notify about possible problems or not
+                    notify = true,
+                    langs = langs,
+                    -- Use `dot` for repeat action
+                    dot_repeat = true,
+                })
         end,
     }
+
 
 }

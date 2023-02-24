@@ -1,9 +1,13 @@
 return {
 
     {
+        'nvim-lua/plenary.nvim',
+        event = 'VeryLazy',
+    },
+
+    {
         "nvim-telescope/telescope.nvim",
         -- event = "BufReadPre",
-        dependencies = { "nvim-lua/plenary.nvim" },
         keys = {
             { "<c-f>", "<cmd>lua require('telescope.builtin').find_files()<cr>", { desc = "Find files" } },
             { "<c-g>", "<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<cr>" },
