@@ -2,11 +2,11 @@ local map = vim.keymap.set
 local opt = { silent = true, noremap = true }
 
 -- buffer
-map('n', 'H', '0', opt )
-map('n', 'L', '$', opt )
+map('n', 'gh', '0', opt )
+map('n', 'gl', '$', opt )
 
-map('v', 'H', '0', opt )
-map('v', 'L', '$', opt )
+map('v', 'gh', '0', opt )
+map('v', 'gl', '$', opt )
 
 map('n', 'dL', 'd$', opt )
 map('n', 'dH', 'd0', opt )

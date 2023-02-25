@@ -8,7 +8,7 @@ vim.opt.showmode = false
 vim.opt.redrawtime = 100
 
 -- reduce reaction time
-vim.opt.ttimeoutlen = 0
+-- vim.opt.ttimeoutlen = 0
 
 -- ignore case insensitive
 vim.opt.ignorecase = true

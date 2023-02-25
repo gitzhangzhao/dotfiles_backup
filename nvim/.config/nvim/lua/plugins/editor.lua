@@ -365,18 +365,20 @@ return {
 
     {
         'fedepujol/move.nvim',
-        keys = {'K', 'J', {'K', mode = 'x'}, {'J', mode = 'x'}, {'HH', mode = 'x'}, {'LL', mode = 'x'}},
+        keys = {'K', 'J', 'H', 'L', {'K', mode = 'x'}, {'J', mode = 'x'}, {'H', mode = 'x'}, {'L', mode = 'x'}},
         config = function()
             local opts = { noremap = true, silent = true }
             -- Normal-mode commands
             vim.keymap.set('n', 'J', ':MoveLine(1)<CR>', opts)
             vim.keymap.set('n', 'K', ':MoveLine(-1)<CR>', opts)
+            vim.keymap.set('n', 'H', ':MoveHChar(-1)<CR>', opts)
+            vim.keymap.set('n', 'L', ':MoveHChar(1)<CR>', opts)
 
             -- Visual-mode commands
-            vim.keymap.set('x', 'J', ':MoveBlock(1)<CR>', opts)
-            vim.keymap.set('x', 'K', ':MoveBlock(-1)<CR>', opts)
-            vim.keymap.set('x', 'HH', ':MoveHBlock(-1)<CR>', opts)
-            vim.keymap.set('x', 'LL', ':MoveHBlock(1)<CR>', opts)
+            vim.keymap.set('v', 'J', ':MoveBlock(1)<CR>', opts)
+            vim.keymap.set('v', 'K', ':MoveBlock(-1)<CR>', opts)
+            vim.keymap.set('v', 'H', ':MoveHBlock(-1)<CR>', opts)
+            vim.keymap.set('v', 'L', ':MoveHBlock(1)<CR>', opts)
         end
     },
 
@@ -390,7 +392,7 @@ return {
 
     {
         'Wansmer/treesj',
-        keys = {{'gm', '<cmd>TSJToggle<CR>'}},
+        keys = {{ 'gh', '<cmd>TSJToggle<CR>' }},
         config = function()
                 local tsj = require('treesj')
                 local langs = {--[[ configuration for languages ]]}

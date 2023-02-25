@@ -39,14 +39,14 @@ return {
             -- diagnostic jump
             -- Use `[g` and `]g` to navigate diagnostics
             -- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-            keyset("n", "g[", "<Plug>(coc-diagnostic-prev)", { silent = true })
-            keyset("n", "g]", "<Plug>(coc-diagnostic-next)", { silent = true })
+            keyset("n", 'g[', "<Plug>(coc-diagnostic-prev)", { silent = true })
+            keyset("n", 'g]', "<Plug>(coc-diagnostic-next)", { silent = true })
 
             -- GoTo code navigation
-            keyset("n", "gd", "<Plug>(coc-definition)", { silent = true })
-            keyset("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
-            keyset("n", "gi", "<Plug>(coc-implementation)", { silent = true })
-            keyset("n", "gr", "<Plug>(coc-references)", { silent = true })
+            keyset("n", 'gd', "<Plug>(coc-definition)", { silent = true })
+            keyset("n", 'gy', "<Plug>(coc-type-definition)", { silent = true })
+            keyset("n", 'gi', "<Plug>(coc-implementation)", { silent = true })
+            keyset("n", 'gr', "<Plug>(coc-references)", { silent = true })
 
             -- Hover
             -- Use D to show documentation in preview window
@@ -80,7 +80,7 @@ return {
             })
 
             -- Symbol renaming
-            keyset("n", "gn", "<Plug>(coc-rename)", { silent = true })
+            keyset("n", 'gn', "<Plug>(coc-rename)", { silent = true })
 
             -- Setup formatexpr specified filetype(s)
             vim.api.nvim_create_autocmd("FileType", {
@@ -101,13 +101,13 @@ return {
             -- textobj
             local opts = { silent = true, noremap = true }
             -- Run the Code Lens actions on the current line
-            keyset("n", "gl", "<Plug>(coc-codelens-action)", opts)
+            -- keyset("n", 'gl', "<Plug>(coc-codelens-action)", opts)
             -- Map function and class text objects
             -- NOTE: Requires 'textDocument.documentSymbol' support from the language server
-            keyset("x", "if", "<Plug>(coc-funcobj-i)", opts)
-            keyset("o", "if", "<Plug>(coc-funcobj-i)", opts)
-            keyset("x", "af", "<Plug>(coc-funcobj-a)", opts)
-            keyset("o", "af", "<Plug>(coc-funcobj-a)", opts)
+            keyset("x", 'if', "<Plug>(coc-funcobj-i)", opts)
+            keyset("o", 'if', "<Plug>(coc-funcobj-i)", opts)
+            keyset("x", 'af', "<Plug>(coc-funcobj-a)", opts)
+            keyset("o", 'af', "<Plug>(coc-funcobj-a)", opts)
             -- Use CTRL-S for selections ranges
             -- Requires 'textDocument/selectionRange' support of language server ( this function is sama as incremental selection of treesitter, so quit it)
             -- keyset("n", "<C-s>", "<Plug>(coc-range-select)", { silent = true })
