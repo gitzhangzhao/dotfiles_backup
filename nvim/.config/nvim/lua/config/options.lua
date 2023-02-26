@@ -8,7 +8,11 @@ vim.opt.showmode = false
 vim.opt.redrawtime = 100
 
 -- reduce reaction time
--- vim.opt.ttimeoutlen = 0
+vim.opt.ttimeoutlen = 0
+
+-- number
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- ignore case insensitive
 vim.opt.ignorecase = true
@@ -23,11 +27,14 @@ vim.opt.cmdheight = 0
 -- global status line
 vim.opt.laststatus = 3
 
+-- dont show mode in cmd
 vim.opt.showcmd = false
 
 -- row and column line background
 vim.opt.cul = true
 -- set.cuc = true
+
+-- line background
 vim.cmd [[
 " smart highlight row and column line background
 autocmd InsertLeave,WinEnter * set cul 
@@ -50,7 +57,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- fold
 vim.opt.foldenable = true
 vim.opt.foldmethod = 'expr'
-vim.opt.foldlevel = 999
+vim.opt.foldlevel = 99
 vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
 -- <space> for fold
 vim.cmd [[
@@ -144,7 +151,7 @@ vim.cmd [[
 -- color setting
 vim.o.termguicolors = true
 
--- cursor
+-- keep cursor shape
 vim.cmd [[
 au VimEnter * set guicursor= | call chansend(v:stderr, "\x1b[ q")
 au VimLeave * set guicursor= | call chansend(v:stderr, "\x1b[ q")
@@ -156,43 +163,3 @@ vim.opt.autoread = true
 
 -- Ignore case when completing file names and directories.
 vim.opt.wildignorecase = true
-
--- Neovide config
-vim.g.neovide_cursor_animation_length = 0.0
-vim.g.neovide_cursor_trail_length = 0.0
-vim.g.neovide_fullscreen = true
-vim.g.neovide_floating_blur_amount_x = 2.0
-vim.g.neovide_floating_blur_amount_y = 2.0
-
--- disable builtin plugins
-local disabled_built_ins = {
-   "2html_plugin",
-   "getscript",
-   "getscriptPlugin",
-   "gzip",
-   "logipat",
-   "netrw",
-   "netrwPlugin",
-   "netrwSettings",
-   "netrwFileHandlers",
-   "matchit",
-   "tar",
-   "tarPlugin",
-   "rrhelper",
-   "spellfile_plugin",
-   "vimball",
-   "vimballPlugin",
-   "zip",
-   "zipPlugin",
-   "tutor",
-   "rplugin",
-   "synmenu",
-   "optwin",
-   "compiler",
-   "bugreport",
-   "ftplugin",
-}
-
-for _, plugin in pairs(disabled_built_ins) do
-   vim.g["loaded_" .. plugin] = 1
-end

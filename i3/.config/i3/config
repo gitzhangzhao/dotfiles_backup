@@ -51,8 +51,8 @@ workspace_auto_back_and_forth yes
 bindsym $mod+e split toggle
 
 #swich windows
-bindsym $mod+Tab focus next
-bindsym $mod+Shift+Tab focus prev
+bindsym $mod+Tab workspace back_and_forth
+# bindsym $mod+Shift+Tab [workspace=current,prev] focus
 
 # toggle fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -275,7 +275,7 @@ bindsym $mod+p exec --no-startup-id firefox
 bindsym $mod+9 exec --no-startup-id pavucontrol
 bindsym $mod+Shift+f exec --no-startup-id flameshot gui
 bindsym $mod+a exec --no-startup-id flameshot gui -p ~/Share
-bindsym $mod+g exec --no-startup-id remmina -c ~/.local/share/remmina/group_vnc_rasp_192-168-206-210-9091.remmina
+# bindsym $mod+g exec --no-startup-id remmina -c ~/.local/share/remmina/group_vnc_rasp_192-168-206-210-9091.remmina
 
 ##############################################################################
 

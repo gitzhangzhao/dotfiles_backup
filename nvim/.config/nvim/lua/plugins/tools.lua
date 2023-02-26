@@ -99,30 +99,38 @@ return {
     },
 
     {
-            'nvim-tree/nvim-tree.lua',
-            cmd = {
-                "NvimTreeToggle",
-                "NvimTreeOpen",
-                "NvimTreeFindFile",
-                "NvimTreeFindFileToggle",
-                "NvimTreeRefresh",
-            },
-            config = function()
-                vim.g.loaded_netrwPlugin = 1
-                vim.g.loaded_netrw = 1
-                require('nvim-tree').setup()
-            end,
-            init = function()
-                vim.keymap.set('n', '<F6>', '<CMD>NvimTreeToggle<CR>', { silent = true } )
-            end
+        'nvim-tree/nvim-tree.lua',
+        cmd = {
+            "NvimTreeToggle",
+            "NvimTreeOpen",
+            "NvimTreeFindFile",
+            "NvimTreeFindFileToggle",
+            "NvimTreeRefresh",
         },
+        config = function()
+            vim.g.loaded_netrwPlugin = 1
+            vim.g.loaded_netrw = 1
+            vim.api.nvim_create_autocmd("BufEnter", {
+                group = vim.api.nvim_create_augroup("NvimTreeClose", {clear = true}),
+                pattern = "NvimTree_*",
+                callback = function()
+                    local layout = vim.api.nvim_call_function("winlayout", {})
+                    if layout[1] == "leaf" and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree" and layout[3] == nil then vim.cmd("confirm quit") end
+                end
+            })
+            require('nvim-tree').setup()
+        end,
+        init = function()
+            vim.keymap.set('n', '<F6>', '<CMD>NvimTreeToggle<CR>', { silent = true } )
+        end
+    },
 
-        {
-            'folke/trouble.nvim',
-            dependencies = 'nvim-tree/nvim-web-devicons',
-            keys = {{'<F7>', '<cmd>TroubleToggle loclist<CR>'}},
-            config = function()
-                vim.api.nvim_create_autocmd('User',{
+    {
+        'folke/trouble.nvim',
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        keys = {{'<F7>', '<cmd>TroubleToggle loclist<CR>'}},
+        config = function()
+            vim.api.nvim_create_autocmd('User',{
                     pattern = 'CocNvimInit',
                     command = "call coc#rpc#request('fillDiagnostics', [bufnr('%')])",
                     desc = 'init loc list for trouble'

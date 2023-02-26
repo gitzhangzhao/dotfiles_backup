@@ -55,20 +55,21 @@ function refresh_shared_libraries() {
 
 function install_i3_gaps() {
 
-    git clone https://www.github.com/Airblader/i3 i3-gaps
+    # git clone https://www.github.com/Airblader/i3 i3-gaps
     # shellcheck disable=SC2164
-    cd i3-gaps
-    rm -Rf build/
-    mkdir build
+    # cd i3-gaps
+    # rm -Rf build/
+    # mkdir build
     # shellcheck disable=SC2164
-    cd build/
-    meson ..
-    ninja
-    sudo ninja install
+    # cd build/
+    # meson ..
+    # ninja
+    # sudo ninja install
     # which i3
     # ls -l /usr/bin/i3
-    cd ../..
-    rm -rf i3-gaps/
+    # cd ../..
+    # rm -rf i3-gaps/
+    sudo apt install i3-wm
 }
 
 function install_polybar() {

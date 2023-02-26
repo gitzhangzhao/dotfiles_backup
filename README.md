@@ -1,43 +1,29 @@
-# My dotfiles, managed by GNU Stow, inspired by prettyi3
+### My dotfiles, managed by GNU Stow
 
 ![gif](https://thumbs.gfycat.com/AlarmingCoordinatedEarwig-max-1mb.gif)
 
-- vim theme: papercolor
-- alacritty theme: iceberg
-
-  ![shot](wallpaper/.local/wallpaper/shot.png)
-
-## **Requirments:**
-
-prettyi3(https://github.com/aeghn/prettyi3)
-
-#### **package(apt&&cargo&&pip):**
-
+#### install
 - [requirements(apt)](requirements.apt)
 - [requirements(cargo)](requirements.cargo)
 - [requirements(pip)](requirements.pip)
+- [requirements(node)](requirements.node)
 
-#### **other software(manually):**
-
+#### manual install
 ```bash
-oh-my-zsh vim sogoupinyin i3lock-color betterlockscreen v2raya(docker) docker code wemeet
+oh-my-zsh nvim sogoupinyin i3lock-color betterlockscreen v2raya docker
 ```
 
-#### **My fonts:**
+#### fonts
+- 霞鹜文楷 for Chinese
+- sf mono for terminal
+- sf pro for polybar
 
-- fonts-noto-cjk for Chinese
-- sf mono for code
-- sf pro display for polybar
-
-#### **cursor theme:**
-
+#### theme
+- NordArc for GTK
 - breeze-cursor-theme for cursor
+- NordArc-Icons for icons
 
-## **Installation**
-
-install stow first.
-there are four scripts can be used:
-
+#### install scripts
 - stow_all: stow all dotfiles, include home/ and /etc/.
 - unstow_all: unstow all dotfiles, include home/ and /etc/.
 - stow: stow one app at a time.
@@ -45,10 +31,9 @@ there are four scripts can be used:
 
 ---
 
-## **docker records:**
+#### **docker records:**
 
-~~### 1. glances~~
-
+1. glances
 ```bash
 sudo docker run -d \
          --restart=always \
@@ -61,8 +46,7 @@ sudo docker run -d \
          nicolargo/glances:latest
 ```
 
-### 2. v2raya
-
+2. v2raya
 ```bash
 sudo docker run -d \
         --restart=always \
@@ -75,26 +59,11 @@ sudo docker run -d \
         mzz2017/v2raya
 ```
 
-~~### 3. lkmpg~~
-
-```bash
-sudo docker run --rm \
-        -it \
-        -v /home/zhangzhao/Code/lkmpg:/workdir \
-        twtug/lkmpg
-```
-
-### 4. prettier
-
-```bash
-    docker pull tmknom/prettier
-```
-
 ---
 
-## **Bug records**
+#### **Bug records**
 
-### 1. plymouth failed when update initramfs
+1. plymouth failed when update initramfs
 
 > E: plymouth failed with return 1
 
@@ -105,7 +74,7 @@ cd ~/dotfiles
 stow dejavu
 ```
 
-### 2. webdav: systemd server failed
+2. webdav: systemd server failed
 
 ```bash
 # add webdav address, username and passwd to davfs2:

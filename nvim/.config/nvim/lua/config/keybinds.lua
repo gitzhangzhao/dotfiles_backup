@@ -1,48 +1,45 @@
-local map = vim.keymap.set
 local opt = { silent = true, noremap = true }
 
--- buffer
-map('n', 'gh', '0', opt )
-map('n', 'gl', '$', opt )
+-- buffer keymap
+vim.keymap.set('n', 'gh', '0', opt )
+vim.keymap.set('n', 'gl', '$', opt )
 
-map('v', 'gh', '0', opt )
-map('v', 'gl', '$', opt )
+vim.keymap.set('v', 'gh', '0', opt )
+vim.keymap.set('v', 'gl', '$', opt )
 
-map('n', 'dL', 'd$', opt )
-map('n', 'dH', 'd0', opt )
+vim.keymap.set('n', 'dL', 'd$', opt )
+vim.keymap.set('n', 'dH', 'd0', opt )
 
-map('n', 'cL', 'c$', opt )
-map('n', 'cH', 'c0', opt )
+vim.keymap.set('n', 'cL', 'c$', opt )
+vim.keymap.set('n', 'cH', 'c0', opt )
 
-map('n', 'yL', 'y$', opt )
-map('n', 'yH', 'y0', opt )
+vim.keymap.set('n', 'yL', 'y$', opt )
+vim.keymap.set('n', 'yH', 'y0', opt )
 
-map('n', 'th', '<c-w>h', opt )
-map('n', 'tj', '<c-w>j', opt )
-map('n', 'tk', '<c-w>k', opt )
-map('n', 'tl', '<c-w>l', opt )
+vim.keymap.set('n', 'th', '<c-w>h', opt )
+vim.keymap.set('n', 'tj', '<c-w>j', opt )
+vim.keymap.set('n', 'tk', '<c-w>k', opt )
+vim.keymap.set('n', 'tl', '<c-w>l', opt )
 
-vim.cmd [[
-    nnoremap x "_x
-    nnoremap X "_X
-]]
+vim.keymap.set('n', 'x', '"_x', opt)
+vim.keymap.set('n', 'X', '"_X', opt)
 
-map('n', '<c-L>', 'o<ESC>', opt )
-map('n', '<c-H>', 'O<ESC>', opt )
+vim.keymap.set('n', '<c-L>', 'o<ESC>', opt )
+vim.keymap.set('n', '<c-H>', 'O<ESC>', opt )
 
 vim.cmd [[
 map <expr> n  'Nn'[v:searchforward]
 map <expr> N  'nN'[v:searchforward]
 ]]
 
-map('n', 'Q', '<Nop>', opt )
+vim.keymap.set('n', 'Q', '<Nop>', opt )
 
-map('n', 'U', '<c-r>', opt )
+vim.keymap.set('n', 'U', '<c-r>', opt )
 
 -- vim.cmd("nnoremap ' `")
 
--- map('n', ';', '$a;<ESC>', opt )
-map('n', ',', '$a,<ESC>', opt )
+-- vim.keymap.set('n', ';', '$a;<ESC>', opt )
+vim.keymap.set('n', ',', '$a,<ESC>', opt )
 
 vim.cmd [[
     nnoremap <c-c> "+Y
