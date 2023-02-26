@@ -1,18 +1,29 @@
 #!/bin/bash
+# i3wm environment
 sudo apt install \
- zsh trash-cli fcitx goldendict xclip flex lsyncd \
- stow traceroute bison ntfs-3g bc clangd clang-format\
- rsync ssh arandr firefox zip unzip rar unrar gdb \
- wget xautolock dunst \
- redshift translate-shell \
- smartmontools flameshot libjpeg-dev sshfs \
- cflow lxappearance lightdm-gtk-greeter-settings ufw dos2unix \
- strace ltrace samba mpv mpd cava lshw davfs2 remmina \
- neofetch pandoc graphviz feh unclutter netcat-openbsd \
- duf man-db manpages-zh imagemagick poppler-utils \
- iverilog libncurses-dev jq \
- breeze-cursor-theme lsof libssl-dev rofi\
- #linux-headers-amd64 \
+    i3-wm polybar rofi firefox redshift arandr \
+    zsh trash-cli fcitx xclip feh unclutter \
+    lxappearance lightdm-gtk-greeter-settings \
+    samba mpv mpd cava duf breeze-cursor-theme \
+    xautolock davfs2 dunst flameshot \
+
+# usual tools
+
+sudo apt install \ 
+    stow traceroute bison ntfs-3g bc \
+    rsync ssh zip unzip rar unrar gdb \
+    wget translate-shell lsof \
+    smartmontools sshfs iverilog jq \
+    cflow ufw dos2unix lsyncd \
+    strace ltrace lshw remmina \
+    neofetch pandoc graphviz netcat-openbsd \
+    man-db manpages-zh imagemagick \
+    # linux-headers-amd64 \
 
 # for device tree and u-boot
 # sudo apt install device-tree-compiler u-boot-tools
+
+# disabled
+# goldendict
+# poppler-utils 
+# flex

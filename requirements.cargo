@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# curl https://sh.rustup.rs -sSf | sh
+curl https://sh.rustup.rs -sSf | sh
 cargo install ripgrep --features pcre2
 cargo install fd-find difftastic sd lsd bat hexyl du-dust mcfly mdbook git-delta tealdeer procs cargo-cache cargo-update alacritty starship
-cargo install --git https://github.com/vivekmalneedi/veridian.git
+# cargo install --git https://github.com/vivekmalneedi/veridian.git
 
