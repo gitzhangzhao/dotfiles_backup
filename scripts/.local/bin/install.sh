@@ -31,7 +31,7 @@ function preparation() {
 function install_required_packages() {
     # Refresh apt
     sudo apt update
-    sudo apt install xserver-xorg x11-xserver-utils firmware-iwlwifi firmware-linux-nonfree autoconf dh-autoreconf unzip binutils gcc make pkg-config fakeroot cmake pulseaudio pavucontrol pulseaudio-module-bluetooth python3 python3-pip lightdm meson ninja-build
+    sudo apt install xserver-xorg x11-xserver-utils firmware-iwlwifi firmware-linux-nonfree autoconf unzip binutils gcc make cmake pulseaudio pavucontrol pulseaudio-module-bluetooth python3 python3-pip lightdm meson ninja-build
     # for picom runtime
     sudo apt install libxcb-damage0 libconfig9
 }
