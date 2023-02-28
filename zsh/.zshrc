@@ -113,7 +113,7 @@ compinit -i
 bindkey '`' autosuggest-accept
 
 # environment variable
-export EDITOR=vim
+export EDITOR=nvim
 export PAGER=less
 export PATH=$HOME/dotfiles:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/Lab/epics/base-3.15.5/bin/linux-x86_64:$HOME/.vim/plugged/fzf/bin:$PATH
 export EPICS_CA_ADDR_LIST=192.168.206.202

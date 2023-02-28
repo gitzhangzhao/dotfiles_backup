@@ -1,24 +1,38 @@
 #!/bin/bash
-# i3wm environment
+# base i3wm environment
 sudo apt install \
     i3-wm polybar rofi firefox redshift arandr \
-    zsh trash-cli fcitx xclip feh unclutter \
+    zsh trash-cli xclip feh unclutter \
     lxappearance lightdm-gtk-greeter-settings \
-    samba mpv mpd cava duf breeze-cursor-theme \
+    samba mpv mpd cava breeze-cursor-theme \
     xautolock davfs2 dunst flameshot \
 
 # usual tools
-
-sudo apt install \ 
+sudo apt install \
     stow traceroute bison ntfs-3g bc \
     rsync ssh zip unzip rar unrar gdb \
-    wget translate-shell lsof \
+    wget translate-shell lsof clangd \
     smartmontools sshfs iverilog jq \
-    cflow ufw dos2unix lsyncd \
+    cflow ufw dos2unix duf lsyncd file \
     strace ltrace lshw remmina \
     neofetch pandoc graphviz netcat-openbsd \
     man-db manpages-zh imagemagick \
-    # linux-headers-amd64 \
+
+# for compile neovim
+sudo apt install \
+    gettext
+
+# for kernel dev
+# sudo apt install \
+    # linux-headers-amd64
+
+# for cargo build
+sudo apt install \
+    pkg-config libfontconfig1-dev libssl-dev
+
+# for input method
+sudo apt install \
+    fcitx5 fcitx5-pinyin
 
 # for device tree and u-boot
 # sudo apt install device-tree-compiler u-boot-tools

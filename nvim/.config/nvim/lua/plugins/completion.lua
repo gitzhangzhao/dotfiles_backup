@@ -66,7 +66,7 @@ return {
             -- clangd is faster than LSP of lua. For C, 500 ms is enough.
             vim.fn.timer_start(1000, function()
                 vim.api.nvim_create_autocmd({"CursorHold"},{
-                    pattern = {"*.c", "*.lua", "*.v", "*.sv"},
+                    pattern = {"*.c", "*.lua"},
                     command = "lua _G.show_docs()"
                 })
             end)

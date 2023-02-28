@@ -31,13 +31,4 @@
 
   "sumneko-lua.enableNvimLuaDev": true,
 
-  "languageserver": {
-      "veridian": {
-          "command": "veridian",
-          "filetypes": ["systemverilog", "verilog"]
-      }
-  },
-
-  "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd"
-
-  }
+}

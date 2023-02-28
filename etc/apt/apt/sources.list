@@ -2,8 +2,9 @@
 #deb http://mirrors.163.com/debian/ testing main non-free contrib
 #deb-src http://mirrors.163.com/debian/ testing main non-free contrib
 
-deb http://ftp.cn.debian.org/debian/ sid main non-free contrib
-deb-src http://ftp.cn.debian.org/debian/ sid main non-free contrib
+deb http://ftp.cn.debian.org/debian/ sid main non-free contrib non-free-firmware
+deb-src http://ftp.cn.debian.org/debian/ sid main non-free contrib non-free-firmware
+
 
 deb [arch=amd64] https://download.docker.com/linux/debian/ bullseye stable
 # deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main

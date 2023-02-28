@@ -10,7 +10,7 @@
 
 #### manual install
 ```bash
-oh-my-zsh nvim sogoupinyin i3lock-color betterlockscreen v2raya docker
+oh-my-zsh nvim i3lock-color betterlockscreen v2raya docker
 ```
 
 #### fonts
