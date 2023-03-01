@@ -4,13 +4,4 @@ OrangePi
 RasPi
 Mount
 Share
-.config/lsyncd/lsyncd.log
-.config/lsyncd/lsyncd.status
-.mcfly
-.cache
-.oh-my-zsh
-.z*
-.viminfo*
-.local/share/Trash
-.mozilla
-Trash
+Course

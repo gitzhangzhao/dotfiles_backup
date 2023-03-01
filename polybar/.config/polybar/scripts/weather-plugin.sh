@@ -111,13 +111,13 @@ else
     UNIT_URL="&units=$UNITS"
 fi
 URL="api.openweathermap.org/data/2.5/weather?appid=$APIKEY$UNIT_URL&lang=$LANG&q=$CITY_NAME,$COUNTRY_CODE"
-echo $URL
+# echo $URL
 function getData {
     ERROR=0
     # For logging purposes
     # echo " " >> "$HOME/.weather.log"
     # echo `date`" ################################" >> "$HOME/.weather.log"
-    RESPONSE=`curl -s $URL`
+    RESPONSE=$(curl -s $URL)
     CODE="$?"
     if [ "$1" = "-d" ]; then
         echo $RESPONSE

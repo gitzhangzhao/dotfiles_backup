@@ -245,21 +245,21 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ to
 # boot
 exec --no-startup-id feh --bg-fill --noxinerama /home/zhangzhao/.local/wallpaper/wallpaper.jpg
 exec --no-startup-id /home/zhangzhao/.local/bin/picom --experimental-backend
-exec --no-startup-id xset dpms 0 0 3600                                                                               #设置自动灭屏
+exec --no-startup-id xset dpms 0 0 3600                                                             #设置自动灭屏
 exec --no-startup-id xset s noexpose
 exec --no-startup-id xset s 0 0
 exec --no-startup-id unclutter -noevents
-# exec --no-startup-id goldendict
 exec --no-startup-id mpd
 exec --no-startup-id redshift -l 39.5:116.2 -t 6000:5400
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id xautolock -time 40 -locker "/home/zhangzhao/.local/bin/betterlockscreen -l dim --off 7200"
 exec_always --no-startup-id /home/zhangzhao/.local/bin/flashfocus
 exec_always --no-startup-id $HOME/.local/bin/alternating_layouts
-# exec --no-startup-id lsyncd $HOME/.config/lsyncd/lsyncd.conf
-# exec --no-startup-id synclient TapButton1=1                                                                           #设置触摸板可以点击
-# exec --no-startup-id synclient Touchpadoff=1                                                                          #默认关闭触摸板
-# exec --no-startup-id sleep 20; xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'                                   #将Lock键映射为ESC,延时10s等待X启动完成后设置才有效
+exec_always --no-startup-id lsyncd $HOME/.config/lsyncd/lsyncd.conf
+# exec --no-startup-id goldendict
+# exec --no-startup-id synclient TapButton1=1                                                       #设置触摸板可以点击
+# exec --no-startup-id synclient Touchpadoff=1                                                      #默认关闭触摸板
+# exec --no-startup-id sleep 20; xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'                 #将Lock键映射为ESC,延时10s等待X启动完成后设置才有效
 ##############################################################################
 
 ##############################################################################
