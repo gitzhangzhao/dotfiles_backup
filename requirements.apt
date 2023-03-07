@@ -34,6 +34,7 @@ sudo apt install \
 sudo apt install \
     fcitx5 fcitx5-pinyin
 
+
 # for device tree and u-boot
 # sudo apt install device-tree-compiler u-boot-tools
 

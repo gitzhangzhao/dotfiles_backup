@@ -115,7 +115,6 @@ bindkey '`' autosuggest-accept
 # environment variable
 export EDITOR=nvim
 export PAGER=less
-export PATH=$HOME/dotfiles:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/Lab/epics/base-3.15.5/bin/linux-x86_64:$HOME/.vim/plugged/fzf/bin:$PATH
 export EPICS_CA_ADDR_LIST=192.168.206.202
 export MCFLY_INTERFACE_VIEW=BOTTOM
 export MCFLY_KEY_SCHEME=vim
@@ -124,6 +123,8 @@ export GIT_SSL_NO_VERIFY=true
 export BAT_THEME=Nord
 export HISTSIZE=500000
 export SAVEHIST=500000
+export LD_LIBRARY_PATH=$HOME/.local/lib/mylib:$LD_LIBRARY_PATH
+export PATH=$HOME/dotfiles:$HOME/.cargo/bin:$HOME/.local/bin:$HOME/Lab/epics/base-3.15.5/bin/linux-x86_64:$HOME/.vim/plugged/fzf/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 
 # aliases
 alias csn='remmina -c ~/.local/share/remmina/group_vnc_raspi_192-168-206-210-9091.remmina'
@@ -206,5 +207,3 @@ function proxy(){
 eval "$(starship init zsh)"
 eval "$(mcfly init zsh)"
 
-# add yarn path
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
