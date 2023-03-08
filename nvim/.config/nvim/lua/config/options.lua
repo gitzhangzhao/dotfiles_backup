@@ -111,6 +111,8 @@ au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=markdow
 " autocmd filetype verilog setlocal commentstring=//\ %s
 au BufRead,BufNewFile *.{go}   set filetype=go
 au BufRead,BufNewFile *.{js}   set filetype=javascript
+au BufRead,BufNewFile *.{db}   set filetype=perl
+au BufRead,BufNewFile *.{dbd}   set filetype=perl
 ]]
 
 -- backup
