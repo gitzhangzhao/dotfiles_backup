@@ -106,7 +106,7 @@ prelock() {
 
     # set dpms timeout
     if [ "$DEFAULT_DPMS" == "Enabled" ]; then
-        xset dpms "$lock_timeout"
+        xset dpms 0 0 "$lock_timeout"
     fi
 
     # If dusnt is already paused don't pause it again
@@ -263,7 +263,7 @@ postlock() {
 
     # restore default dpms timeout
     if [ "$DEFAULT_DPMS" == "Enabled" ]; then
-        xset dpms "$DEFAULT_TIMEOUT"
+        xset dpms 0 0 "$DEFAULT_TIMEOUT"
     fi
 
     # If dunst already paused before locking don't unpause dunst
