@@ -254,7 +254,7 @@ exec --no-startup-id redshift -l 39.5:116.2 -t 6000:5400
 exec --no-startup-id xautolock -time 30 -locker "/home/zhangzhao/.local/bin/betterlockscreen -l dim --off 1800"
 exec --no-startup-id lsyncd $HOME/.config/lsyncd/lsyncd.conf
 exec --no-startup-id /home/zhangzhao/.local/bin/flashfocus
-exec --no-startup-id $HOME/.local/bin/alternating_layouts
+exec_always --no-startup-id $HOME/.local/bin/alternating_layouts
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # exec --no-startup-id goldendict
 # exec --no-startup-id synclient TapButton1=1                                                       #设置触摸板可以点击
