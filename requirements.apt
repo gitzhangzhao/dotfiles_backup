@@ -32,7 +32,7 @@ sudo apt install \
 
 # for input method
 sudo apt install \
-    fcitx5 fcitx5-pinyin
+    fcitx5 fcitx5-rime fcitx5-skin-nord rime-data-luna-pinyin
 
 
 # for device tree and u-boot
