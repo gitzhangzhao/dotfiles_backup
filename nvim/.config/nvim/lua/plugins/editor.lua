@@ -1,8 +1,28 @@
 return {
+
     {
         'm4xshen/autoclose.nvim',
         event = 'InsertEnter',
         config = true
+    },
+
+    {
+        'abecodes/tabout.nvim',
+        event = 'InsertEnter',
+        config = function()
+            require('tabout').setup {
+                tabkey = '<c-l>',
+                backwards_tabkey = '<c-h>',
+                tabouts = {
+                    {open = "'", close = "'"},
+                    {open = '"', close = '"'},
+                    {open = '`', close = '`'},
+                    {open = '(', close = ')'},
+                    {open = '[', close = ']'},
+                    {open = '{', close = '}'}
+                }
+            }
+        end,
     },
 
     {

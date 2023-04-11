@@ -24,8 +24,8 @@ vim.keymap.set('n', 'tl', '<c-w>l', opt )
 vim.keymap.set('n', 'x', '"_x', opt)
 vim.keymap.set('n', 'X', '"_X', opt)
 
-vim.keymap.set('n', '<c-L>', 'o<ESC>', opt )
-vim.keymap.set('n', '<c-H>', 'O<ESC>', opt )
+vim.keymap.set('n', '<c-l>', 'o<ESC>', opt )
+vim.keymap.set('n', '<c-h>', 'O<ESC>', opt )
 
 vim.cmd [[
 map <expr> n  'Nn'[v:searchforward]
