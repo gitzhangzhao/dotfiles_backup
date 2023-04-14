@@ -7,10 +7,8 @@ deb-src http://ftp.cn.debian.org/debian/ sid main non-free contrib non-free-firm
 
 
 deb [arch=amd64] https://download.docker.com/linux/debian/ bullseye stable
-# deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
-
-
 # deb [arch=amd64] https://packages.microsoft.com/repos/edge stable main
+# deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
 
 
 #deb http://security.debian.org/debian-security buster/updates main
