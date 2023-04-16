@@ -190,4 +190,22 @@ return {
                     -- version = "*" 
                 },
 
+                {
+                    'zbirenbaum/copilot.lua',
+                    cmd = 'Copilot',
+                    event = 'InsertEnter',
+                    config = function()
+                        require('copilot').setup({
+                            suggestion = {
+                                auto_trigger = true,
+                                keymap = {
+                                    accept = '<c-a>',
+                                    next = '<c-w>',
+                                    prev = '<c-q>'
+                                }
+                            }
+                        })
+                    end
+                }
+
             }
