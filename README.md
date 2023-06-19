@@ -1,3 +1,5 @@
+## This dotfiles repository has been deprecated and is only kept as a backup.
+
 ### My dotfiles, managed by GNU Stow
 
 ![gif](https://thumbs.gfycat.com/AlarmingCoordinatedEarwig-max-1mb.gif)
